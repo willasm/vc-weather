@@ -42,7 +42,7 @@ export const DEFAULT_SETTINGS: vcwSettings = {
   statusbarActive: true,
   statusbarCycle: true,
   weatherTemplate1SB: "🔸%address%: %dow2-today% %month3-today% %date1-today% High: %tempmax-today%° Low: %tempmin-today%°🔸Currently: %conditions% Temperature: %temp%° Feels Like: %feelslike%°🔸",
-  weatherTemplate2SB: "🔸%address%: %dow2-in1day% %month3-in1day% %date1-in1day% High: %tempmax-in1day%° Low: %tempmin-in1day% Clouds: %cloudcover-in1day% Probabilty of precipitation: %precipprob-in1day% (%preciptype-in1day%)🔸",
+  weatherTemplate2SB: "🔸%address%: %dow2-in1day% %month3-in1day% %date1-in1day% High: %tempmax-in1day%° Low: %tempmin-in1day%° Clouds: %cloudcover-in1day% Probabilty of precipitation: %precipprob-in1day% (%preciptype-in1day%)🔸",
   weatherTemplate1: "Short one liner\n%conditions% • Current Temp: %temp%°C • Feels Like: %feelslike%°C\n",
   weatherTemplate2: "More detailed\n%address%: %dow2-today% %month4-today% %date1-today% - %hours12%:%mins% %ampm2%\nLatitude: %latitude% Longitude: %longitude%\nCurrent Temp: %temp%°C • Feels Like: %feelslike%°C\nWind: %windspeed-today% km/h from the %winddirstr-today% with gusts up to %windgust-today% km/h\nSunrise: %sunrise-today% • Sunset: %sunset-today%\n",
   weatherTemplate3: "Historical DIV\n%icon%&nbsp;%month4-today% %date1-today% %year1-today% • %hours12%:%mins% %ampm2% • %conditions%\n&nbsp;Recorded Temp: %temp% • Felt like: %feelslike%\n&nbsp;Wind: %windspeed-today% km/h from the %winddirstr-today% with gusts up to %windgust-today% km/h\n&nbsp;Sunrise: %sunrise-today% • Sunset: %sunset-today%",
