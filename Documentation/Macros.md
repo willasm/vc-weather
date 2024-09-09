@@ -1,6 +1,7 @@
-# Macro definitions
+# Macro Definitions
 These strings in your templates will be replaced with the relevant weather information. All macros are wrapped with the percent character, eg. %datetime% will be replace with 20:45:00
 
+#### Measurement Abreviations
 - F - Fahrenheit
 - C - Celcius
 - mm - Millimeters
@@ -23,8 +24,8 @@ These strings in your templates will be replaced with the relevant weather infor
 > `Edmonton: 28°, London: 30°, Chicago: 31°`
 
 ## Table of Contents
-- [Location Information]()
 - [Current weather](#current-weather)
+- [Location Information]()
 - [Todays Weather](#todays-weather)
 - [Weather in 1 Day](#weather-in-1-day)
 - [Weather in 2 Days](#weather-in-2-days)
@@ -41,23 +42,6 @@ These strings in your templates will be replaced with the relevant weather infor
 - [Weather in 13 Days](#weather-in-13-days)
 - [Weather in 14 Days](#weather-in-14-days)
 - [Macros for Additional Locations](#macros-for-additional-locations)
-
-## Location Information
-| Macro               | Description                            | Replaced With Example |
-| ------------------- | -------------------------------------- | --------------------- |
-| `%address%`         | The address you entered in settings    | Edmonton              |
-| `%resolvedaddress%` | Resolved address returned by the API   | Edmonton, AB, Canada  |
-| `%latitude%`        | Latitude of address                    | 53.5462               |
-| `%longitude%`       | Longitude of address                   | -113.49               |
-| `%timezone%`        | Timezone of address                    | America/Edmonton      |
-| `%tzoffset%`        | Timezone offset                        | -6.0                  |
-| `%querycost%`       | API Query cost for this request        | Should always be 1    |
-| `%hours24%`         | Time of last weather update 24 hours   | 00, midnight 13, 1pm  |
-| `%hours12%`         | Time of last weather update 12 hours   | 12 hours with am/pm   |
-| `%mins%`            | Time of last weather update minutes    | 00 - 59               |
-| `%secs%`            | Time of last weather update seconds    | 00 - 59               |
-| `%ampm1%`           | AM or PM for 12 hour time              | AM or PM              |
-| `%ampm2%`           | am or pm for 12 hour time              | am or pm              |
 
 ## Current weather
 | Macro               | Description                            | Replaced With Example | US     |  Metric  |  UK   |
@@ -92,6 +76,25 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%sunset%`          | Sunset time                            | 20:36:16              | -      | -        | -     |
 | `%sunsetepoch%`     | Sunset Unix time                       | 1724726176            | -      | -        | -     |
 | `%moonphase%`       | Moonphase                              | 0.75                  | -      | -        | -     |
+
+[Table of Contents](#table-of-contents)
+
+## Location Information
+| Macro               | Description                            | Replaced With Example |
+| ------------------- | -------------------------------------- | --------------------- |
+| `%address%`         | The address you entered in settings    | Edmonton              |
+| `%resolvedaddress%` | Resolved address returned by the API   | Edmonton, AB, Canada  |
+| `%latitude%`        | Latitude of address                    | 53.5462               |
+| `%longitude%`       | Longitude of address                   | -113.49               |
+| `%timezone%`        | Timezone of address                    | America/Edmonton      |
+| `%tzoffset%`        | Timezone offset                        | -6.0                  |
+| `%querycost%`       | API Query cost for this request        | Should always be 1    |
+| `%hours24%`         | Time of last weather update 24 hours   | 00, midnight 13, 1pm  |
+| `%hours12%`         | Time of last weather update 12 hours   | 12 hours with am/pm   |
+| `%mins%`            | Time of last weather update minutes    | 00 - 59               |
+| `%secs%`            | Time of last weather update seconds    | 00 - 59               |
+| `%ampm1%`           | AM or PM for 12 hour time              | AM or PM              |
+| `%ampm2%`           | am or pm for 12 hour time              | am or pm              |
 
 [Table of Contents](#table-of-contents)
 
@@ -891,13 +894,15 @@ These strings in your templates will be replaced with the relevant weather infor
 [Table of Contents](#table-of-contents)
 
 ## Macros for Additional Locations
-The macros for the 4 optional additional locations are essentially the same as the previous macros. You just need to prepend to the macro...
+The macros for the 4 optional additional locations are the same as all the previous macros, less the current weather, with just one minor change. You just need to prepend to the macros...
 
 - `l2` for the first additional location (short for location 2)
 - `l3` for the second additional location (short for location 3)
 - `l4` for the third additional location (short for location 4)
 - `l5` for the fourth additional location (short for location 5)
 
-For example, `%tempmax-today%` represents todays high for your primary location. `%l2tempmax-today%` would be todays high for your first additional location, `%l3tempmax-today%` for the second additional location, and prepend `l4` and `l5` for the third and fourth additional locations.
+For example, `%tempmax-today%` represents todays high for your primary location. `%l2tempmax-today%` would be todays high for your first additional location. `%address%` would be your cities name for your primary location and `%l3address%` would be the city name for your second additional location.
+
+Note that the current weather is not repeated at all.
 
 [Table of Contents](#table-of-contents)

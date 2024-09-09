@@ -159,19 +159,19 @@ var VCWSettingsTab = class extends import_obsidian.PluginSettingTab {
       cb.setButtonText("View README.md on Github");
       cb.setTooltip("View this plugins Github Repository");
       cb.onClick(() => {
-        window.open("https://github.com/willasm/willasm");
+        window.open("https://github.com/willasm/vc-weather#readme");
       });
     }).addButton((cb) => {
       cb.setButtonText("View Documentation");
       cb.setTooltip("View this plugins online documentation");
       cb.onClick(() => {
-        window.open("https://github.com/willasm/willasm");
+        window.open("https://github.com/willasm/vc-weather/blob/master/Documentation/00-START-HERE.md");
       });
     }).addButton((cb) => {
       cb.setButtonText("Report Issues Here");
       cb.setTooltip("Have any questions, comments or bug reports? Feel free to post them here");
       cb.onClick(() => {
-        window.open("https://github.com/willasm/willasm");
+        window.open("https://github.com/willasm/vc-weather/issues");
       });
     });
     containerEl.createEl("h2", { text: "Visual Crossing API authentication key (required)" });
@@ -273,7 +273,7 @@ var VCWSettingsTab = class extends import_obsidian.PluginSettingTab {
         cb.setButtonText("View Status Bar Template Documentation");
         cb.setTooltip("View Status Bar Weather Template Documentation on Github");
         cb.onClick(() => {
-          window.open("https://www.visualcrossing.com/resources/documentation/weather-api/unit-groups-and-measurement-units/");
+          window.open("https://github.com/willasm/vc-weather/blob/master/Documentation/Statusbar Templates.md");
         });
       });
       new import_obsidian.Setting(containerEl).addTextArea((textArea) => {
@@ -299,12 +299,12 @@ var VCWSettingsTab = class extends import_obsidian.PluginSettingTab {
       this.plugin.settings.statusbarActive = false;
     }
     ;
-    containerEl.createEl("h2", { text: "Weather templates (6 templates are available)" });
+    containerEl.createEl("h2", { text: "Weather templates (8 templates are available)" });
     new import_obsidian.Setting(containerEl).setName("Weather template 1").setDesc("Feel free to change this to whatever you like.").addButton((cb) => {
       cb.setButtonText("View Template Documentation");
       cb.setTooltip("View Weather Template Documentation on Github");
       cb.onClick(() => {
-        window.open("https://www.visualcrossing.com/resources/documentation/weather-api/unit-groups-and-measurement-units/");
+        window.open("https://github.com/willasm/vc-weather/blob/master/Documentation/Weather Templates.md");
       });
     });
     new import_obsidian.Setting(containerEl).addTextArea((textArea) => {

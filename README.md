@@ -24,7 +24,8 @@ Overall it is much nicer to use over Open Weather. The forecast weather includes
 
 - Get weather data from 5 locations (OpenWeather plugin only had 1)
 - 8 User definable template string (OpenWeather plugin only had 4)
-- Several thousand macro text replacements with more to come
+- Several thousand (3767 currently) macro text replacements with more to come
+  - Once I start aadding the hourly data this number will increase substantialy
 - Includes all core elements of my OpenWeather plugin, auto replace templates, etc.
 - Has 2 status bar template strings which can be displayed alternating every 30 seconds
   - Default has todays weather info for the first one, tomorrows weather for the second
