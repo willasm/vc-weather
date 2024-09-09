@@ -1,0 +1,11 @@
+{
+	"id": "visual-crossing-weather",
+	"name": "Visual Crossing Weather",
+	"version": "1.0.0",
+	"minAppVersion": "1.65.0",
+	"description": "Visual Crossing Weather for Obsidian",
+	"author": "willasm",
+	"authorUrl": "",
+	"fundingUrl": {"Buy me a Coffee": "https://buymeacoffee.com/willasm", "PayPal": "https://www.paypal.com/donate/?business=RPSQD5E9KJPUL&amount=5&no_recurring=0&item_name=If+you+enjoy+using+my+software%2C+please+consider+making+a+small+donation+to+help+me+to+continue+with+my+programming+endeavors.&currency_code=CAD"},
+	"isDesktopOnly": true
+}
