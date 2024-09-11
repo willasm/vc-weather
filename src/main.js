@@ -60,8 +60,8 @@ var DEFAULT_SETTINGS = {
   weatherTemplate2SB: "\u{1F538}%address%: %dow2-in1day% %month3-in1day% %date1-in1day% High: %tempmax-in1day%\xB0 Low: %tempmin-in1day%\xB0 Clouds: %cloudcover-in1day% Probabilty of precipitation: %precipprob-in1day% (%preciptype-in1day%)\u{1F538}",
   weatherTemplate1: "Short one liner\n%conditions% \u2022 Current Temp: %temp%\xB0C \u2022 Feels Like: %feelslike%\xB0C\n",
   weatherTemplate2: "More detailed\n%address%: %dow2-today% %month4-today% %date1-today% - %hours12%:%mins% %ampm2%\nLatitude: %latitude% Longitude: %longitude%\nCurrent Temp: %temp%\xB0C \u2022 Feels Like: %feelslike%\xB0C\nWind: %windspeed-today% km/h from the %winddirstr-today% with gusts up to %windgust-today% km/h\nSunrise: %sunrise-today% \u2022 Sunset: %sunset-today%\n",
-  weatherTemplate3: "Historical DIV\n%icon%&nbsp;%month4-today% %date1-today% %year1-today% \u2022 %hours12%:%mins% %ampm2% \u2022 %conditions%\n&nbsp;Recorded Temp: %temp% \u2022 Felt like: %feelslike%\n&nbsp;Wind: %windspeed-today% km/h from the %winddirstr-today% with gusts up to %windgust-today% km/h\n&nbsp;Sunrise: %sunrise-today% \u2022 Sunset: %sunset-today%",
-  weatherTemplate4: "Current DIV\n%icon%&nbsp;%month4-today% %date1-today% %year1-today% \u2022 %hours12%:%mins% %ampm2% \u2022 %conditions%\n&nbsp;Current Temp: %temp% \u2022 Feels like: %feelslike%\n&nbsp;Wind: %windspeed-today% km/h from the %winddirstr-today% with gusts up to %windgust-today% km/h\n&nbsp;Sunrise: %sunrise-today% \u2022 Sunset: %sunset-today%",
+  weatherTemplate3: "Historical DIV\n<img src=%iconurl% />&nbsp;%month4-today% %date1-today% %year1-today% \u2022 %hours12%:%mins% %ampm2% \u2022 %conditions%\n&nbsp;Recorded Temp: %temp% \u2022 Felt like: %feelslike%\n&nbsp;Wind: %windspeed-today% km/h from the %winddirstr-today% with gusts up to %windgust-today% km/h\n&nbsp;Sunrise: %sunrise-today% \u2022 Sunset: %sunset-today%",
+  weatherTemplate4: "Current DIV\n<img src=%iconurl%  />&nbsp;%month4-today% %date1-today% %year1-today% \u2022 %hours12%:%mins% %ampm2% \u2022 %conditions%\n&nbsp;Current Temp: %temp% \u2022 Feels like: %feelslike%\n&nbsp;Wind: %windspeed-today% km/h from the %winddirstr-today% with gusts up to %windgust-today% km/h\n&nbsp;Sunrise: %sunrise-today% \u2022 Sunset: %sunset-today%",
   weatherTemplate5: "",
   weatherTemplate6: "",
   weatherTemplate7: "",
@@ -5895,6 +5895,7 @@ var vcwPlugin = class extends import_obsidian4.Plugin {
     formattedSBTemplate1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate1SB);
     formattedSBTemplate2 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate2SB);
     statusBarItem.setText(formattedSBTemplate1);
+    this.replaceTemplateStrings(formattedWeatherTemplate1, formattedWeatherTemplate2, formattedWeatherTemplate3, formattedWeatherTemplate4, formattedWeatherTemplate5, formattedWeatherTemplate6, formattedWeatherTemplate7, formattedWeatherTemplate8);
     let sbCycle = false;
     this.registerInterval(window.setInterval(() => {
       if (sbCycle) {
@@ -6044,6 +6045,7 @@ var vcwPlugin = class extends import_obsidian4.Plugin {
           formattedWeatherTemplate8 = "";
         }
         ;
+        this.replaceTemplateStrings(formattedWeatherTemplate1, formattedWeatherTemplate2, formattedWeatherTemplate3, formattedWeatherTemplate4, formattedWeatherTemplate5, formattedWeatherTemplate6, formattedWeatherTemplate7, formattedWeatherTemplate8);
         formattedSBTemplate1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate1SB);
         formattedSBTemplate2 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate2SB);
       }
@@ -6169,6 +6171,25 @@ var vcwPlugin = class extends import_obsidian4.Plugin {
           formattedWeatherTemplate6 = "";
         }
         ;
+        if (this.settings.weatherTemplate7.length > 0) {
+          weatherTemplateTitle7 = this.settings.weatherTemplate7.slice(0, this.settings.weatherTemplate7.indexOf("\n"));
+          let withoutTitleTemplate7 = this.settings.weatherTemplate7.slice(this.settings.weatherTemplate7.indexOf("\n") + 1);
+          formattedWeatherTemplate7 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate7);
+        } else {
+          weatherTemplateTitle7 = "";
+          formattedWeatherTemplate7 = "";
+        }
+        ;
+        if (this.settings.weatherTemplate8.length > 0) {
+          weatherTemplateTitle8 = this.settings.weatherTemplate8.slice(0, this.settings.weatherTemplate8.indexOf("\n"));
+          let withoutTitleTemplate8 = this.settings.weatherTemplate8.slice(this.settings.weatherTemplate8.indexOf("\n") + 1);
+          formattedWeatherTemplate8 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate8);
+        } else {
+          weatherTemplateTitle8 = "";
+          formattedWeatherTemplate8 = "";
+        }
+        ;
+        this.replaceTemplateStrings(formattedWeatherTemplate1, formattedWeatherTemplate2, formattedWeatherTemplate3, formattedWeatherTemplate4, formattedWeatherTemplate5, formattedWeatherTemplate6, formattedWeatherTemplate7, formattedWeatherTemplate8);
         formattedSBTemplate1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate1SB);
         formattedSBTemplate2 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate2SB);
       }
@@ -6293,6 +6314,25 @@ var vcwPlugin = class extends import_obsidian4.Plugin {
           formattedWeatherTemplate6 = "";
         }
         ;
+        if (this.settings.weatherTemplate7.length > 0) {
+          weatherTemplateTitle7 = this.settings.weatherTemplate7.slice(0, this.settings.weatherTemplate7.indexOf("\n"));
+          let withoutTitleTemplate7 = this.settings.weatherTemplate7.slice(this.settings.weatherTemplate7.indexOf("\n") + 1);
+          formattedWeatherTemplate7 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate7);
+        } else {
+          weatherTemplateTitle7 = "";
+          formattedWeatherTemplate7 = "";
+        }
+        ;
+        if (this.settings.weatherTemplate8.length > 0) {
+          weatherTemplateTitle8 = this.settings.weatherTemplate8.slice(0, this.settings.weatherTemplate8.indexOf("\n"));
+          let withoutTitleTemplate8 = this.settings.weatherTemplate8.slice(this.settings.weatherTemplate8.indexOf("\n") + 1);
+          formattedWeatherTemplate8 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate8);
+        } else {
+          weatherTemplateTitle8 = "";
+          formattedWeatherTemplate8 = "";
+        }
+        ;
+        this.replaceTemplateStrings(formattedWeatherTemplate1, formattedWeatherTemplate2, formattedWeatherTemplate3, formattedWeatherTemplate4, formattedWeatherTemplate5, formattedWeatherTemplate6, formattedWeatherTemplate7, formattedWeatherTemplate8);
         formattedSBTemplate1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate1SB);
         formattedSBTemplate2 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate2SB);
       }
@@ -6417,6 +6457,25 @@ var vcwPlugin = class extends import_obsidian4.Plugin {
           formattedWeatherTemplate6 = "";
         }
         ;
+        if (this.settings.weatherTemplate7.length > 0) {
+          weatherTemplateTitle7 = this.settings.weatherTemplate7.slice(0, this.settings.weatherTemplate7.indexOf("\n"));
+          let withoutTitleTemplate7 = this.settings.weatherTemplate7.slice(this.settings.weatherTemplate7.indexOf("\n") + 1);
+          formattedWeatherTemplate7 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate7);
+        } else {
+          weatherTemplateTitle7 = "";
+          formattedWeatherTemplate7 = "";
+        }
+        ;
+        if (this.settings.weatherTemplate8.length > 0) {
+          weatherTemplateTitle8 = this.settings.weatherTemplate8.slice(0, this.settings.weatherTemplate8.indexOf("\n"));
+          let withoutTitleTemplate8 = this.settings.weatherTemplate7.slice(this.settings.weatherTemplate8.indexOf("\n") + 1);
+          formattedWeatherTemplate8 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate8);
+        } else {
+          weatherTemplateTitle8 = "";
+          formattedWeatherTemplate8 = "";
+        }
+        ;
+        this.replaceTemplateStrings(formattedWeatherTemplate1, formattedWeatherTemplate2, formattedWeatherTemplate3, formattedWeatherTemplate4, formattedWeatherTemplate5, formattedWeatherTemplate6, formattedWeatherTemplate7, formattedWeatherTemplate8);
         formattedSBTemplate1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate1SB);
         formattedSBTemplate2 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate2SB);
       }
@@ -6541,6 +6600,25 @@ var vcwPlugin = class extends import_obsidian4.Plugin {
           formattedWeatherTemplate6 = "";
         }
         ;
+        if (this.settings.weatherTemplate7.length > 0) {
+          weatherTemplateTitle7 = this.settings.weatherTemplate7.slice(0, this.settings.weatherTemplate7.indexOf("\n"));
+          let withoutTitleTemplate7 = this.settings.weatherTemplate7.slice(this.settings.weatherTemplate7.indexOf("\n") + 1);
+          formattedWeatherTemplate7 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate7);
+        } else {
+          weatherTemplateTitle7 = "";
+          formattedWeatherTemplate7 = "";
+        }
+        ;
+        if (this.settings.weatherTemplate8.length > 0) {
+          weatherTemplateTitle8 = this.settings.weatherTemplate8.slice(0, this.settings.weatherTemplate8.indexOf("\n"));
+          let withoutTitleTemplate8 = this.settings.weatherTemplate8.slice(this.settings.weatherTemplate8.indexOf("\n") + 1);
+          formattedWeatherTemplate8 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate8);
+        } else {
+          weatherTemplateTitle8 = "";
+          formattedWeatherTemplate8 = "";
+        }
+        ;
+        this.replaceTemplateStrings(formattedWeatherTemplate1, formattedWeatherTemplate2, formattedWeatherTemplate3, formattedWeatherTemplate4, formattedWeatherTemplate5, formattedWeatherTemplate6, formattedWeatherTemplate7, formattedWeatherTemplate8);
         formattedSBTemplate1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate1SB);
         formattedSBTemplate2 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate2SB);
       }
@@ -6665,6 +6743,25 @@ var vcwPlugin = class extends import_obsidian4.Plugin {
           formattedWeatherTemplate6 = "";
         }
         ;
+        if (this.settings.weatherTemplate7.length > 0) {
+          weatherTemplateTitle7 = this.settings.weatherTemplate7.slice(0, this.settings.weatherTemplate7.indexOf("\n"));
+          let withoutTitleTemplate7 = this.settings.weatherTemplate7.slice(this.settings.weatherTemplate7.indexOf("\n") + 1);
+          formattedWeatherTemplate7 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate7);
+        } else {
+          weatherTemplateTitle7 = "";
+          formattedWeatherTemplate7 = "";
+        }
+        ;
+        if (this.settings.weatherTemplate8.length > 0) {
+          weatherTemplateTitle8 = this.settings.weatherTemplate8.slice(0, this.settings.weatherTemplate8.indexOf("\n"));
+          let withoutTitleTemplate8 = this.settings.weatherTemplate8.slice(this.settings.weatherTemplate8.indexOf("\n") + 1);
+          formattedWeatherTemplate8 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate8);
+        } else {
+          weatherTemplateTitle8 = "";
+          formattedWeatherTemplate8 = "";
+        }
+        ;
+        this.replaceTemplateStrings(formattedWeatherTemplate1, formattedWeatherTemplate2, formattedWeatherTemplate3, formattedWeatherTemplate4, formattedWeatherTemplate5, formattedWeatherTemplate6, formattedWeatherTemplate7, formattedWeatherTemplate8);
         formattedSBTemplate1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate1SB);
         formattedSBTemplate2 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate2SB);
       }
@@ -6824,8 +6921,6 @@ var vcwPlugin = class extends import_obsidian4.Plugin {
         const markdownView = this.app.workspace.getActiveViewOfType(import_obsidian4.MarkdownView);
         if (markdownView) {
           if (!checking) {
-            const view2 = this.app.workspace.getActiveViewOfType(import_obsidian4.MarkdownView);
-            let editor2 = view2 == null ? void 0 : view2.editor;
             this.replaceTemplateStrings(formattedWeatherTemplate1, formattedWeatherTemplate2, formattedWeatherTemplate3, formattedWeatherTemplate4, formattedWeatherTemplate5, formattedWeatherTemplate6, formattedWeatherTemplate7, formattedWeatherTemplate8);
           }
           ;
@@ -6929,6 +7024,47 @@ var vcwPlugin = class extends import_obsidian4.Plugin {
         file == null ? void 0 : file.vault.modify(file, editor);
       }
       ;
+    }
+    ;
+    await new Promise((r) => setTimeout(r, 1e3));
+    if (document.getElementsByClassName("weather_current_1").length > 0) {
+      const divEl = document.getElementsByClassName("weather_current_1")[0];
+      divEl.innerHTML = formattedWeatherTemplate1;
+    }
+    ;
+    if (document.getElementsByClassName("weather_current_2").length > 0) {
+      const divEl = document.getElementsByClassName("weather_current_2")[0];
+      divEl.innerHTML = formattedWeatherTemplate2;
+    }
+    ;
+    if (document.getElementsByClassName("weather_current_3").length > 0) {
+      const divEl = document.getElementsByClassName("weather_current_3")[0];
+      divEl.innerHTML = formattedWeatherTemplate3;
+    }
+    ;
+    if (document.getElementsByClassName("weather_current_4").length > 0) {
+      const divEl = document.getElementsByClassName("weather_current_4")[0];
+      divEl.innerHTML = formattedWeatherTemplate4;
+    }
+    ;
+    if (document.getElementsByClassName("weather_current_5").length > 0) {
+      const divEl = document.getElementsByClassName("weather_current_5")[0];
+      divEl.innerHTML = formattedWeatherTemplate5;
+    }
+    ;
+    if (document.getElementsByClassName("weather_current_6").length > 0) {
+      const divEl = document.getElementsByClassName("weather_current_6")[0];
+      divEl.innerHTML = formattedWeatherTemplate6;
+    }
+    ;
+    if (document.getElementsByClassName("weather_current_7").length > 0) {
+      const divEl = document.getElementsByClassName("weather_current_7")[0];
+      divEl.innerHTML = formattedWeatherTemplate7;
+    }
+    ;
+    if (document.getElementsByClassName("weather_current_8").length > 0) {
+      const divEl = document.getElementsByClassName("weather_current_8")[0];
+      divEl.innerHTML = formattedWeatherTemplate8;
     }
     ;
   }
