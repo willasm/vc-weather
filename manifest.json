@@ -1,7 +1,7 @@
 {
 	"id": "visual-crossing-weather",
 	"name": "Visual Crossing Weather",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"minAppVersion": "1.65.0",
 	"description": "Visual Crossing Weather for Obsidian",
 	"author": "willasm",
