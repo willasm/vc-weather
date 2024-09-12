@@ -53,6 +53,9 @@ export default class vcwPlugin extends Plugin {
     let formattedWeatherTemplate7 = "";
     let formattedWeatherTemplate8 = "";
 
+    // Data for internal template used for display current weather modal
+    let formattedInternalCurrentData = "";
+    let internalCurrentData = '{"address":"%address%","resAddress":"%resolvedaddress%","lat":"%latitude%","lon":"%longitude%","timezone":"%timezone%","year":"%year1-today%","month":"%month3-today%","date":"%date1-today%","dow":"%dow1-today%","hours24":"%hours24%","hours12":"%hours12%","mins":"%mins%","secs":"%sec%","ampm1":"%ampm1%","ampm2":"%ampm2%","datetime":"%datetime%","temp":"%temp%","feelslike":"%feelslike%","humidity":"%humidity%","dew":"%dew%","precip":"%precip%","pop":"%precipprob%","preciptype":"%preciptype%","snow":"%snow%","snowdepth":"%snowdepth%","windgust":"%windgust%","windspeed":"%windspeed%","windspeedms":"%windspeedms%","winddirdeg":"%winddirdeg%","winddirstr":"%winddirstr%","pressure":"%pressure%","visibility":"%visibility%","solarradiation":"%solarradiation%","solarenergy":"%solarenergy%","uvindex":"%uvindex%","conditions":"%conditions%","desc":"%description-today%","iconUrl":%iconurl%,"sunrise":"%sunrise%","sunset":"%sunset%","moonphase":"%moonphase%"}'
 
     // • Load plugin settings • 
     await this.loadSettings();
@@ -83,7 +86,7 @@ export default class vcwPlugin extends Plugin {
     statusBarItem.setText('[Visual Crossing Weather]');
     setTooltip(statusBarItem,"View detailed info on todays weather",{ placement: "top" });
     statusBarItem.addClass("statusbar-click");
-    statusBarItem.addEventListener("click", () => new DisplayWeatherModal(this.app).open());
+    statusBarItem.addEventListener("click", () => new DisplayWeatherModal(this.app, formattedInternalCurrentData).open());
 
     // onload - registerEvent - 'file-open' 
     this.registerEvent(this.app.workspace.on('file-open', async (file) => {
@@ -281,6 +284,9 @@ export default class vcwPlugin extends Plugin {
     formattedSBTemplate2 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate2SB);
     statusBarItem.setText(formattedSBTemplate1);
 
+    // Get formatted string for display current weather modal 
+    formattedInternalCurrentData = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, internalCurrentData)
+
     // Replace template strings and update DIV's 
     this.replaceTemplateStrings(formattedWeatherTemplate1, formattedWeatherTemplate2, formattedWeatherTemplate3, formattedWeatherTemplate4, formattedWeatherTemplate5, formattedWeatherTemplate6, formattedWeatherTemplate7, formattedWeatherTemplate8);
 
@@ -443,6 +449,9 @@ export default class vcwPlugin extends Plugin {
         formattedSBTemplate1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate1SB);
         formattedSBTemplate2 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate2SB);
 
+        // Get formatted string for display current weather modal 
+        formattedInternalCurrentData = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, internalCurrentData)
+
       };
     }, 5 * 60 * 1000))
 
@@ -590,6 +599,9 @@ export default class vcwPlugin extends Plugin {
         // Get formatted strings for statusbar from templates 
         formattedSBTemplate1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate1SB);
         formattedSBTemplate2 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate2SB);
+
+        // Get formatted string for display current weather modal 
+        formattedInternalCurrentData = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, internalCurrentData)
 
       }
     }, 10 * 60 * 1000))
@@ -739,6 +751,9 @@ export default class vcwPlugin extends Plugin {
         formattedSBTemplate1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate1SB);
         formattedSBTemplate2 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate2SB);
 
+        // Get formatted string for display current weather modal 
+        formattedInternalCurrentData = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, internalCurrentData)
+
       }
     }, 15 * 60 * 1000))
 
@@ -886,6 +901,9 @@ export default class vcwPlugin extends Plugin {
         // Get formatted strings for statusbar from templates 
         formattedSBTemplate1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate1SB);
         formattedSBTemplate2 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate2SB);
+
+        // Get formatted string for display current weather modal 
+        formattedInternalCurrentData = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, internalCurrentData)
 
       }
     }, 20 * 60 * 1000))
@@ -1035,6 +1053,9 @@ export default class vcwPlugin extends Plugin {
         formattedSBTemplate1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate1SB);
         formattedSBTemplate2 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate2SB);
 
+        // Get formatted string for display current weather modal 
+        formattedInternalCurrentData = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, internalCurrentData)
+
       }
     }, 30 * 60 * 1000))
 
@@ -1182,6 +1203,9 @@ export default class vcwPlugin extends Plugin {
         // Get formatted strings for statusbar from templates 
         formattedSBTemplate1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate1SB);
         formattedSBTemplate2 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate2SB);
+
+        // Get formatted string for display current weather modal 
+        formattedInternalCurrentData = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, internalCurrentData)
 
       }
     }, 60 * 60 * 1000))

@@ -5670,12 +5670,30 @@ var InsertTemplatesModal = class extends import_obsidian2.Modal {
 // src/displayWeatherModal.ts
 var import_obsidian3 = require("obsidian");
 var DisplayWeatherModal = class extends import_obsidian3.Modal {
-  constructor(app) {
+  constructor(app, data) {
     super(app);
+    this.data = data;
   }
   onOpen() {
+    let dataJson = JSON.parse(this.data);
     const { contentEl } = this;
-    contentEl.setText("This is coming soon!");
+    contentEl.createEl("h1", { text: `${dataJson.address} - ${dataJson.dow} ${dataJson.month} ${dataJson.date} ${dataJson.year}` });
+    const imgIcon = contentEl.createEl("img");
+    imgIcon.setAttribute("src", `${dataJson.iconUrl}`);
+    imgIcon.setAttribute("style", "display: block; margin: 10px auto 20px;");
+    imgIcon.setAttribute("alt", "Visual Crossing Corporation");
+    imgIcon.setAttribute("title", `${dataJson.conditions}`);
+    const imgText = contentEl.createEl("span", { text: `${dataJson.desc}` });
+    imgText.setAttribute("style", "display: block; text-align: center; ");
+    contentEl.createEl("br");
+    contentEl.createEl("h4", { text: `Current Tempature: ${dataJson.temp} \u{1F539} Feels Like: ${dataJson.feelslike}` });
+    contentEl.createEl("h4", { text: `Wind Speed: ${dataJson.windspeed} \u{1F539} Gusting To: ${dataJson.windgust}` });
+    contentEl.createEl("h4", { text: `Wind Direction: ${dataJson.winddirdeg}\xB0 from the ${dataJson.winddirstr}` });
+    contentEl.createEl("h4", { text: `PoP: ${dataJson.pop} \u{1F539} Type: ${dataJson.preciptype}` });
+    contentEl.createEl("h4", { text: `Humidity: ${dataJson.humidity} \u{1F539} Dew Point: ${dataJson.dew}` });
+    contentEl.createEl("h4", { text: `Air Pressure: ${dataJson.pressure} \u{1F539} Visibility: ${dataJson.visibility}` });
+    contentEl.createEl("h4", { text: `Solar Energy: ${dataJson.solarenergy} \u{1F539} UV Index: ${dataJson.uvindex}` });
+    contentEl.createEl("h4", { text: `Sunrise: ${dataJson.sunrise} \u{1F539} Sunset: ${dataJson.sunset}` });
   }
   onClose() {
     const { contentEl } = this;
@@ -5715,6 +5733,8 @@ var vcwPlugin = class extends import_obsidian4.Plugin {
     let formattedWeatherTemplate6 = "";
     let formattedWeatherTemplate7 = "";
     let formattedWeatherTemplate8 = "";
+    let formattedInternalCurrentData = "";
+    let internalCurrentData = '{"address":"%address%","resAddress":"%resolvedaddress%","lat":"%latitude%","lon":"%longitude%","timezone":"%timezone%","year":"%year1-today%","month":"%month3-today%","date":"%date1-today%","dow":"%dow1-today%","hours24":"%hours24%","hours12":"%hours12%","mins":"%mins%","secs":"%sec%","ampm1":"%ampm1%","ampm2":"%ampm2%","datetime":"%datetime%","temp":"%temp%","feelslike":"%feelslike%","humidity":"%humidity%","dew":"%dew%","precip":"%precip%","pop":"%precipprob%","preciptype":"%preciptype%","snow":"%snow%","snowdepth":"%snowdepth%","windgust":"%windgust%","windspeed":"%windspeed%","windspeedms":"%windspeedms%","winddirdeg":"%winddirdeg%","winddirstr":"%winddirstr%","pressure":"%pressure%","visibility":"%visibility%","solarradiation":"%solarradiation%","solarenergy":"%solarenergy%","uvindex":"%uvindex%","conditions":"%conditions%","desc":"%description-today%","iconUrl":%iconurl%,"sunrise":"%sunrise%","sunset":"%sunset%","moonphase":"%moonphase%"}';
     await this.loadSettings();
     if (this.settings.apikey.length === 0 || this.settings.location_one.length === 0) {
       new import_obsidian4.Notice("Visual Crossing Weather plugin is missing required settings. Please configure the plugins settings.", 6e3);
@@ -5733,7 +5753,7 @@ var vcwPlugin = class extends import_obsidian4.Plugin {
     statusBarItem.setText("[Visual Crossing Weather]");
     (0, import_obsidian4.setTooltip)(statusBarItem, "View detailed info on todays weather", { placement: "top" });
     statusBarItem.addClass("statusbar-click");
-    statusBarItem.addEventListener("click", () => new DisplayWeatherModal(this.app).open());
+    statusBarItem.addEventListener("click", () => new DisplayWeatherModal(this.app, formattedInternalCurrentData).open());
     this.registerEvent(this.app.workspace.on("file-open", async (file) => {
       if (file) {
         this.replaceTemplateStrings(formattedWeatherTemplate1, formattedWeatherTemplate2, formattedWeatherTemplate3, formattedWeatherTemplate4, formattedWeatherTemplate5, formattedWeatherTemplate6, formattedWeatherTemplate7, formattedWeatherTemplate8);
@@ -5895,6 +5915,7 @@ var vcwPlugin = class extends import_obsidian4.Plugin {
     formattedSBTemplate1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate1SB);
     formattedSBTemplate2 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate2SB);
     statusBarItem.setText(formattedSBTemplate1);
+    formattedInternalCurrentData = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, internalCurrentData);
     this.replaceTemplateStrings(formattedWeatherTemplate1, formattedWeatherTemplate2, formattedWeatherTemplate3, formattedWeatherTemplate4, formattedWeatherTemplate5, formattedWeatherTemplate6, formattedWeatherTemplate7, formattedWeatherTemplate8);
     let sbCycle = false;
     this.registerInterval(window.setInterval(() => {
@@ -6048,6 +6069,7 @@ var vcwPlugin = class extends import_obsidian4.Plugin {
         this.replaceTemplateStrings(formattedWeatherTemplate1, formattedWeatherTemplate2, formattedWeatherTemplate3, formattedWeatherTemplate4, formattedWeatherTemplate5, formattedWeatherTemplate6, formattedWeatherTemplate7, formattedWeatherTemplate8);
         formattedSBTemplate1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate1SB);
         formattedSBTemplate2 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate2SB);
+        formattedInternalCurrentData = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, internalCurrentData);
       }
       ;
     }, 5 * 60 * 1e3));
@@ -6192,6 +6214,7 @@ var vcwPlugin = class extends import_obsidian4.Plugin {
         this.replaceTemplateStrings(formattedWeatherTemplate1, formattedWeatherTemplate2, formattedWeatherTemplate3, formattedWeatherTemplate4, formattedWeatherTemplate5, formattedWeatherTemplate6, formattedWeatherTemplate7, formattedWeatherTemplate8);
         formattedSBTemplate1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate1SB);
         formattedSBTemplate2 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate2SB);
+        formattedInternalCurrentData = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, internalCurrentData);
       }
     }, 10 * 60 * 1e3));
     this.registerInterval(window.setInterval(async () => {
@@ -6335,6 +6358,7 @@ var vcwPlugin = class extends import_obsidian4.Plugin {
         this.replaceTemplateStrings(formattedWeatherTemplate1, formattedWeatherTemplate2, formattedWeatherTemplate3, formattedWeatherTemplate4, formattedWeatherTemplate5, formattedWeatherTemplate6, formattedWeatherTemplate7, formattedWeatherTemplate8);
         formattedSBTemplate1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate1SB);
         formattedSBTemplate2 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate2SB);
+        formattedInternalCurrentData = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, internalCurrentData);
       }
     }, 15 * 60 * 1e3));
     this.registerInterval(window.setInterval(async () => {
@@ -6478,6 +6502,7 @@ var vcwPlugin = class extends import_obsidian4.Plugin {
         this.replaceTemplateStrings(formattedWeatherTemplate1, formattedWeatherTemplate2, formattedWeatherTemplate3, formattedWeatherTemplate4, formattedWeatherTemplate5, formattedWeatherTemplate6, formattedWeatherTemplate7, formattedWeatherTemplate8);
         formattedSBTemplate1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate1SB);
         formattedSBTemplate2 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate2SB);
+        formattedInternalCurrentData = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, internalCurrentData);
       }
     }, 20 * 60 * 1e3));
     this.registerInterval(window.setInterval(async () => {
@@ -6621,6 +6646,7 @@ var vcwPlugin = class extends import_obsidian4.Plugin {
         this.replaceTemplateStrings(formattedWeatherTemplate1, formattedWeatherTemplate2, formattedWeatherTemplate3, formattedWeatherTemplate4, formattedWeatherTemplate5, formattedWeatherTemplate6, formattedWeatherTemplate7, formattedWeatherTemplate8);
         formattedSBTemplate1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate1SB);
         formattedSBTemplate2 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate2SB);
+        formattedInternalCurrentData = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, internalCurrentData);
       }
     }, 30 * 60 * 1e3));
     this.registerInterval(window.setInterval(async () => {
@@ -6764,6 +6790,7 @@ var vcwPlugin = class extends import_obsidian4.Plugin {
         this.replaceTemplateStrings(formattedWeatherTemplate1, formattedWeatherTemplate2, formattedWeatherTemplate3, formattedWeatherTemplate4, formattedWeatherTemplate5, formattedWeatherTemplate6, formattedWeatherTemplate7, formattedWeatherTemplate8);
         formattedSBTemplate1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate1SB);
         formattedSBTemplate2 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate2SB);
+        formattedInternalCurrentData = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, internalCurrentData);
       }
     }, 60 * 60 * 1e3));
     this.addCommand({
