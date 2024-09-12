@@ -32,11 +32,11 @@ export default class DisplayWeatherModal extends Modal {
 
     contentEl.createEl('br');
 
-    contentEl.createEl('h4', {text: `Current Tempature: ${dataJson.temp} 🔹 Feels Like: ${dataJson.feelslike}`});
+    contentEl.createEl('h4', {text: `Current Tempature: ${dataJson.temp}° 🔹 Feels Like: ${dataJson.feelslike}°`});
     contentEl.createEl('h4', {text: `Wind Speed: ${dataJson.windspeed} 🔹 Gusting To: ${dataJson.windgust}`});
     contentEl.createEl('h4', {text: `Wind Direction: ${dataJson.winddirdeg}° from the ${dataJson.winddirstr}`});
     contentEl.createEl('h4', {text: `PoP: ${dataJson.pop} 🔹 Type: ${dataJson.preciptype}`});
-    contentEl.createEl('h4', {text: `Humidity: ${dataJson.humidity} 🔹 Dew Point: ${dataJson.dew}`});
+    contentEl.createEl('h4', {text: `Humidity: ${dataJson.humidity} 🔹 Dew Point: ${dataJson.dew}°`});
     contentEl.createEl('h4', {text: `Air Pressure: ${dataJson.pressure} 🔹 Visibility: ${dataJson.visibility}`});
     contentEl.createEl('h4', {text: `Solar Energy: ${dataJson.solarenergy} 🔹 UV Index: ${dataJson.uvindex}`});
     contentEl.createEl('h4', {text: `Sunrise: ${dataJson.sunrise} 🔹 Sunset: ${dataJson.sunset}`});
