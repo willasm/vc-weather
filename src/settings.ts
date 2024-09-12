@@ -1,7 +1,5 @@
 import { App, Plugin, Notice, PluginSettingTab, Setting, TAbstractFile, TFolder, TextAreaComponent, Platform, FileSystemAdapter } from 'obsidian';
 import vcwPlugin from './main';
-import * as path from 'path';
-import * as fs from 'fs';
 
 export interface vcwSettings {
   apikey: string;
@@ -107,15 +105,15 @@ export class VCWSettingsTab extends PluginSettingTab {
     // Get "Templates" folder if it is defined in core plugin "Templates" 
     let adapter = this.app.vault.adapter;
     let basePath = "";
+    let templateFolder = "";
     if (adapter instanceof FileSystemAdapter) {
       basePath = adapter.getBasePath();
-    };
-    const configDir = this.app.vault.configDir;
-    const templateConfigPath = path.join(basePath,configDir)+path.sep+"templates.json";
-    let templateFolder = "";
-    if (fs.existsSync(templateConfigPath)) {
+      const configDir = this.app.vault.configDir;
+      const templateConfigPath = `${basePath}/${configDir}/templates.json`;
+      console.log("📢templateConfigPath: ", templateConfigPath);
       let json = require(templateConfigPath);
       templateFolder = json.folder;
+      console.log("📢templateFolder: ", templateFolder);
     };
 
     // If "Templates" folder exists and excludeFolder setting is an empty string, write template folder to settings 
