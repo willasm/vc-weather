@@ -1,6 +1,6 @@
 {
 	"name": "visual-crossing-weather",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"description": "Visual Crossing Weather for Obsidian",
 	"main": "main.js",
 	"scripts": {

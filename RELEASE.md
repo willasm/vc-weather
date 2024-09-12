@@ -11,8 +11,8 @@
 
 <!-- ## [v-inc] ${YEAR4}-${MONTHNUMBER}-${DATE} -->
 
-## [0.0.3] 2024-09-11
-- Added dynamic weather with div's
+## [0.0.4] 2024-09-12
+- Added display current weather modal
 
 For a full list of changes, please see the projects [Changelog](CHANGELOG.md) file.
 
