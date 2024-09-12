@@ -2,6 +2,9 @@
 
 <!-- ## [v-inc] ${YEAR4}-${MONTHNUMBER}-${DATE} -->
 
+## [0.0.5] 2024-09-12
+- Added mobile support
+
 ## [0.0.4] 2024-09-12
 - Added display current weather modal
 
