@@ -78,9 +78,6 @@ export default class vcwPlugin extends Plugin {
       };
     });
 
-    // Perform additional things with the ribbon
-    // ribbonIconEl.addClass('vcw-plugin-ribbon-class');
-
     // • Adds plugins status bar item to display weather information. Does not work on mobile apps. • 
     const statusBarItem = this.addStatusBarItem();
     statusBarItem.setText('[Visual Crossing Weather]');

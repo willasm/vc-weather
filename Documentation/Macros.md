@@ -1,5 +1,5 @@
 # Macro Definitions
-These strings in your templates will be replaced with the relevant weather information. All macros are wrapped with the percent character, eg. %datetime% will be replace with 20:45:00
+These strings in your templates will be replaced with the relevant weather information. All macros are wrapped with the percent character, eg. %datetime% will be replaced with 20:45:00
 
 #### Measurement Abreviations
 - F - Fahrenheit

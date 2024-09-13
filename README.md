@@ -1,5 +1,28 @@
 # Visual Crossing Weather
 
+## Table of Contents
+- [Introduction](#introduction)
+- [Features](#features)
+- [Template Macros](#template-macros)
+- [The Statusbar Weather Display & Templates](#the-statusbar-weather-display--templates)
+- [The Weather Templates](#the-weather-templates)
+- [Obsidian & Templater Templates Support](#obsidian--templater-templates-support)
+- [Plugin Commands](#plugin-commands)
+- [Settings](#settings)
+    - [Visual Crossing API authentification Key](#visual-crossing-api-authentification-key)
+    - [Primary location](#primary-location)
+    - [Additional locations 1 to 4](#additional-locations-1-to-4)
+    - [Units of measurement](#units-of-measurement)
+    - [Exclude template folder](#exclude-template-folder)
+    - [Update frequency](#update-frequency)
+    - [Show weather in the statusbar](#show-weather-in-the-statusbar)
+    - [Cycle statusbar display](#cycle-statusbar-display)
+    - [Primary statusbar template](#primary-statusbar-template)
+    - [Secondary statusbar template](#secondary-statusbar-template)
+    - [Weather templates](#weather-templates)
+- [Dynamic Weather Using DIV's](#dynamic-weather-using-divs)
+
+
 ## Introduction
 This is a replacement for my [OpenWeather](https://github.com/willasm/obsidian-open-weather) plugin. Open Weather has discontinued its version 2.5 API on which that plugin is based. They do have a 3.0 API, but that requires a credit card to subscribe to and a lot of people, myself included, are not willing to do that.
 
@@ -8,6 +31,9 @@ Quite a while ago a user requested a feature that was not available in the Open 
 This new plugin uses the [Visual Crossing](https://www.visualcrossing.com/) API.
 
 You can get your [free API key here](https://www.visualcrossing.com/sign-up). It is free and does not require a credit card.
+
+[Table of Contents](#table-of-contents)
+
 
 ## Features
 - Get weather data from 5 locations (OpenWeather plugin only had 1)
@@ -29,21 +55,36 @@ You can get your [free API key here](https://www.visualcrossing.com/sign-up). It
 - Many overall improvements to much of the code
 - Many new features planned for the future
 
+[Table of Contents](#table-of-contents)
+
+
+## Template Macros
+The text macros are used to represent a weather data object and will be expanded to display that particular weather data item at runtime. All macros are contained within 2 percent signs. For an example, `%temp%` represents the current temperature and will be replaced by eg. `24`. `%humidity%` represents the current humidity and will be replaced with eg. `80%`. For a detailed complete list of available macros in table form see [Macros.md](./Documentation/Macros.md)
+
+[Table of Contents](#table-of-contents)
+
+
 ## The Statusbar Weather Display & Templates
 
 > Note: this feature is not available in the mobile version
 
 The current weather is displayed in the statusbar. This is optional and can be disabled in the settings if you would like to remove it. The string itself is completely customizable and can be defined to display whatevever information you would like to see. There is also a second statusbar template string available. By default both strings are displayed in the statusbar, alternating every 30 seconds. This behavior can also be disabled in the settings if you wish. Disabling this would result in only the first string being displayed. The default strings display the current weather information for the first one and the second displays weather information for tommorow.
 
-The default first string displays...
+The default first string `🔸%address%: %dow2-today% %month3-today% %date1-today%🔸High: %tempmax-today%° Low: %tempmin-today%°🔸Currently: %conditions% Temperature: %temp%° Feels Like: %feelslike%°🔸` displays...
 
-TODO: Add image
+![Statusbar1](./images/sb1.png)
 
-The default second string displays...
+The default second string `🔸%address%: %dow2-in1day% %month3-in1day% %date1-in1day%🔸High: %tempmax-in1day%° Low: %tempmin-in1day%° 🔸 Clouds: %cloudcover-in1day% Probabilty of precipitation: %precipprob-in1day% (%preciptype-in1day%)🔸` displays...
 
-TODO: Add image
+![Statusbar2](./images/sb2.png)
 
-For more detailed information on the statusbar templates see (TODO: add link to Statusbar Templates.md)
+The statusbar cycling...
+
+![Statusbar1](./images/sb.gif)
+
+For more detailed information on the statusbar templates see [Statusbar Templates.md](./Documentation/Statusbar%20Templates.md)
+
+[Table of Contents](#table-of-contents)
 
 
 ## The Weather Templates
@@ -56,13 +97,15 @@ There are 8 available templates that can be inserted into your documents. These 
 
 Command palette...
 
-TODO: Add command palette image
+![commandPalette](./images/comPalette.png)
 
-Insert weather temple modal...
+Insert weather template modal...
 
-TODO: Add template modalimage
+![templatePicker](./images/pickerModal.png)
 
-For a much more detailed overview of the templates see (TODO: add link to Weather Templates.md)
+For a much more detailed overview of the weather templates see [Weather Templates.md](./Documentation/Weather%20Templates.md)
+
+[Table of Contents](#table-of-contents)
 
 
 ## Obsidian & Templater Templates Support
@@ -79,15 +122,19 @@ Insertion of the weather templates can be automated by using Obsidian or Templat
 
 The strings above will autmatically be replaced with the templates data when a new file is created with the template or you insert the template into an existing document. Note that the Templater plugin is not required to expand the weather string templates, that is handled by this plugin itself.
 
+[Table of Contents](#table-of-contents)
+
 
 ## Plugin Commands
 #### All these commands are available from the command palette
 
 - `Visual Crossing Weather: Insert 'template title' Template` - Inserts the named weather template into the current document.
   - Each of the 8 templates will appear here, but only when the template is actually defined
-  - The title of the template is taken from the first line of the template See [weather templates](#the-weather-templates) for more info
-- `Visual Crossing Weather: Insert template from Picker with Preview` - Displays a modal allowing you see a preveiw of the selected template berfore insertion
+  - The title of the template is taken from the first line of the template See [Weather Templates.md](#the-weather-templates) for more info
+- `Visual Crossing Weather: Insert template from Picker with Preview` - Displays a modal allowing you see a preveiw of the selected template before insertion
 - `Visual Crossing Weather: Replace template strings` - This will replace all occurences of the weather template strings, `%weather1%` to `%weather8%` with the corresponding defined weather templates data. This should normally not be required as the plugin should automatically do this for you. This command is available in case you wish to do the replacements in an excluded folder.
+
+[Table of Contents](#table-of-contents)
 
 
 ## Settings
@@ -131,7 +178,10 @@ These are the 8 weather templates used to insert weather data into your document
 >
 > This line is not inserted into your document, see the default templates for examples
 
-For a much more detailed overview of the templates see (TODO: add link to Weather Templates.md)
+For a much more detailed overview of the templates see [Weather Templates.md](#the-weather-templates)
+
+[Table of Contents](#table-of-contents)
+
 
 ## Dynamic Weather Using DIV's
 You can insert the following DIV's inside your documents to provide dynamic weather which is updated at the frequency set in the [settings _Update Frequency_](#update-frequency) setting. The `weather_historical_3` is the temperature at the time the document is created and the `weather_current_4` is dynamic. 
@@ -167,3 +217,4 @@ and...
 >
 > It is a very involved process which can not be summarized in this short document
 
+[Table of Contents](#table-of-contents)
