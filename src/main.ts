@@ -44,14 +44,14 @@ export default class vcwPlugin extends Plugin {
     let weatherTemplateTitle7 = "";
     let weatherTemplateTitle8 = "";
 
-    let formattedWeatherTemplate1 = "";
-    let formattedWeatherTemplate2 = "";
-    let formattedWeatherTemplate3 = "";
-    let formattedWeatherTemplate4 = "";
-    let formattedWeatherTemplate5 = "";
-    let formattedWeatherTemplate6 = "";
-    let formattedWeatherTemplate7 = "";
-    let formattedWeatherTemplate8 = "";
+    let weatherTemplateBody1 = "";
+    let weatherTemplateBody2 = "";
+    let weatherTemplateBody3 = "";
+    let weatherTemplateBody4 = "";
+    let weatherTemplateBody5 = "";
+    let weatherTemplateBody6 = "";
+    let weatherTemplateBody7 = "";
+    let weatherTemplateBody8 = "";
 
     // Data for internal template used for display current weather modal
     let formattedInternalCurrentData = "";
@@ -61,20 +61,19 @@ export default class vcwPlugin extends Plugin {
     await this.loadSettings();
 
     // • Ensure settings are configured, inform user if required items are not set. • 
-    if (this.settings.apikey.length === 0 || this.settings.location_one.length === 0) {
+    if (this.settings.apikey.length === 0 || this.settings.location_one.length === 0 || this.settings.excludeFolder.length === 0) {
       new Notice('Visual Crossing Weather plugin is missing required settings. Please configure the plugins settings.',6000);
     };
 
     // • Create icon in the left ribbon bar • 
     const ribbonIconEl = this.addRibbonIcon('thermometer-snowflake', 'Visual Crossing Weather', (evt: MouseEvent) => {
       // Called when the user clicks the icon.
-      // new Notice('Ribbon Icon Clicked!');
       //"insert-vcweather-templates"
       const markdownView = this.app.workspace.getActiveViewOfType(MarkdownView);
       if (markdownView) {
         const view = this.app.workspace.getActiveViewOfType(MarkdownView);
         let editor = view?.editor;
-        new InsertTemplatesModal(this.app, editor, weatherTemplateTitle1, formattedWeatherTemplate1, weatherTemplateTitle2, formattedWeatherTemplate2, weatherTemplateTitle3, formattedWeatherTemplate3, weatherTemplateTitle4, formattedWeatherTemplate4, weatherTemplateTitle5, formattedWeatherTemplate5, weatherTemplateTitle6, formattedWeatherTemplate6, weatherTemplateTitle7, formattedWeatherTemplate7, weatherTemplateTitle8, formattedWeatherTemplate8).open();
+        new InsertTemplatesModal(this.app, editor, weatherTemplateTitle1, weatherTemplateBody1, weatherTemplateTitle2, weatherTemplateBody2, weatherTemplateTitle3, weatherTemplateBody3, weatherTemplateTitle4, weatherTemplateBody4, weatherTemplateTitle5, weatherTemplateBody5, weatherTemplateTitle6, weatherTemplateBody6, weatherTemplateTitle7, weatherTemplateBody7, weatherTemplateTitle8, weatherTemplateBody8).open();
       };
     });
 
@@ -88,20 +87,20 @@ export default class vcwPlugin extends Plugin {
     // onload - registerEvent - 'file-open' 
     this.registerEvent(this.app.workspace.on('file-open', async (file) => {
       if (file) {
-//        await new Promise(r => setTimeout(r, 2000));    // Wait for Templater to do its thing
-        this.replaceTemplateStrings(formattedWeatherTemplate1, formattedWeatherTemplate2, formattedWeatherTemplate3, formattedWeatherTemplate4, formattedWeatherTemplate5, formattedWeatherTemplate6, formattedWeatherTemplate7, formattedWeatherTemplate8);
+        //await new Promise(r => setTimeout(r, 2000));    // Wait for Templater to do its thing
+        this.replaceTemplateStrings(weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8);
       }
     }));
 
     // onload - registerEvent - 'layout-change' 
     this.registerEvent(this.app.workspace.on('layout-change', async () => {
-//      await new Promise(r => setTimeout(r, 2000));    // Wait for Templater to do its thing
-      this.replaceTemplateStrings(formattedWeatherTemplate1, formattedWeatherTemplate2, formattedWeatherTemplate3, formattedWeatherTemplate4, formattedWeatherTemplate5, formattedWeatherTemplate6, formattedWeatherTemplate7, formattedWeatherTemplate8);
+      //await new Promise(r => setTimeout(r, 2000));    // Wait for Templater to do its thing
+      this.replaceTemplateStrings(weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8);
     }));
 
     // onload - registerEvent - 'resolved' 
     this.registerEvent(this.app.metadataCache.on('resolved', async () => {
-      this.replaceTemplateStrings(formattedWeatherTemplate1, formattedWeatherTemplate2, formattedWeatherTemplate3, formattedWeatherTemplate4, formattedWeatherTemplate5, formattedWeatherTemplate6, formattedWeatherTemplate7, formattedWeatherTemplate8);
+      this.replaceTemplateStrings(weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8);
     }));
     
     // • Add settings tab so users can configure this plugin • 
@@ -200,80 +199,80 @@ export default class vcwPlugin extends Plugin {
     if (this.settings.weatherTemplate1.length > 0) {
       weatherTemplateTitle1 = this.settings.weatherTemplate1.slice(0,this.settings.weatherTemplate1.indexOf("\n"));
       let withoutTitleTemplate1 = this.settings.weatherTemplate1.slice(this.settings.weatherTemplate1.indexOf("\n")+1);
-      formattedWeatherTemplate1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate1);
+      weatherTemplateBody1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate1);
     } else {
       weatherTemplateTitle1 = "";       // Ensure title and template are empty strings in case user deleted the template
-      formattedWeatherTemplate1 = "";   //   and will not be added to insert template menu
+      weatherTemplateBody1 = "";        //   and will not be added to insert template menu
     };
 
     // Get formatted string for weather 2 from template 
     if (this.settings.weatherTemplate2.length > 0) {
       weatherTemplateTitle2 = this.settings.weatherTemplate2.slice(0,this.settings.weatherTemplate2.indexOf("\n"));
       let withoutTitleTemplate2 = this.settings.weatherTemplate2.slice(this.settings.weatherTemplate2.indexOf("\n")+1);
-      formattedWeatherTemplate2 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate2);
+      weatherTemplateBody2 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate2);
     } else {
       weatherTemplateTitle2 = "";       // Ensure title and template are empty strings in case user deleted the template
-      formattedWeatherTemplate2 = "";   //   and will not be added to insert template menu
+      weatherTemplateBody2 = "";        //   and will not be added to insert template menu
     };
 
     // Get formatted string for weather 3 from template 
     if (this.settings.weatherTemplate3.length > 0) {
       weatherTemplateTitle3 = this.settings.weatherTemplate3.slice(0,this.settings.weatherTemplate3.indexOf("\n"));
       let withoutTitleTemplate3 = this.settings.weatherTemplate3.slice(this.settings.weatherTemplate3.indexOf("\n")+1);
-      formattedWeatherTemplate3 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate3);
+      weatherTemplateBody3 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate3);
     } else {
       weatherTemplateTitle3 = "";       // Ensure title and template are empty strings in case user deleted the template
-      formattedWeatherTemplate3 = "";   //   and will not be added to insert template menu
+      weatherTemplateBody3 = "";        //   and will not be added to insert template menu
     };
 
     // Get formatted string for weather 4 from template 
     if (this.settings.weatherTemplate4.length > 0) {
       weatherTemplateTitle4 = this.settings.weatherTemplate4.slice(0,this.settings.weatherTemplate4.indexOf("\n"));
       let withoutTitleTemplate4 = this.settings.weatherTemplate4.slice(this.settings.weatherTemplate4.indexOf("\n")+1);
-      formattedWeatherTemplate4 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate4);
+      weatherTemplateBody4 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate4);
     } else {
       weatherTemplateTitle4 = "";       // Ensure title and template are empty strings in case user deleted the template
-      formattedWeatherTemplate4 = "";   //   and will not be added to insert template menu
+      weatherTemplateBody4 = "";        //   and will not be added to insert template menu
     };
 
     // Get formatted string for weather 5 from template 
     if (this.settings.weatherTemplate5.length > 0) {
       weatherTemplateTitle5 = this.settings.weatherTemplate5.slice(0,this.settings.weatherTemplate5.indexOf("\n"));
       let withoutTitleTemplate5 = this.settings.weatherTemplate5.slice(this.settings.weatherTemplate5.indexOf("\n")+1);
-      formattedWeatherTemplate5 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate5);
+      weatherTemplateBody5 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate5);
     } else {
       weatherTemplateTitle5 = "";       // Ensure title and template are empty strings in case user deleted the template
-      formattedWeatherTemplate5 = "";   //   and will not be added to insert template menu
+      weatherTemplateBody5 = "";        //   and will not be added to insert template menu
     };
 
     // Get formatted string for weather 6 from template 
     if (this.settings.weatherTemplate6.length > 0) {
       weatherTemplateTitle6 = this.settings.weatherTemplate6.slice(0,this.settings.weatherTemplate6.indexOf("\n"));
       let withoutTitleTemplate6 = this.settings.weatherTemplate6.slice(this.settings.weatherTemplate6.indexOf("\n")+1);
-      formattedWeatherTemplate6 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate6);
+      weatherTemplateBody6 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate6);
     } else {
       weatherTemplateTitle6 = "";       // Ensure title and template are empty strings in case user deleted the template
-      formattedWeatherTemplate6 = "";   //   and will not be added to insert template menu
+      weatherTemplateBody6 = "";        //   and will not be added to insert template menu
     };
 
     // Get formatted string for weather 7 from template 
     if (this.settings.weatherTemplate7.length > 0) {
       weatherTemplateTitle7 = this.settings.weatherTemplate7.slice(0,this.settings.weatherTemplate7.indexOf("\n"));
       let withoutTitleTemplate7 = this.settings.weatherTemplate7.slice(this.settings.weatherTemplate7.indexOf("\n")+1);
-      formattedWeatherTemplate7 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate7);
+      weatherTemplateBody7 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate7);
     } else {
       weatherTemplateTitle7 = "";       // Ensure title and template are empty strings in case user deleted the template
-      formattedWeatherTemplate7 = "";   //   and will not be added to insert template menu
+      weatherTemplateBody7 = "";        //   and will not be added to insert template menu
     };
 
     // Get formatted string for weather 8 from template 
     if (this.settings.weatherTemplate8.length > 0) {
       weatherTemplateTitle8 = this.settings.weatherTemplate8.slice(0,this.settings.weatherTemplate8.indexOf("\n"));
       let withoutTitleTemplate8 = this.settings.weatherTemplate8.slice(this.settings.weatherTemplate8.indexOf("\n")+1);
-      formattedWeatherTemplate8 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate8);
+      weatherTemplateBody3 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate8);
     } else {
       weatherTemplateTitle8 = "";       // Ensure title and template are empty strings in case user deleted the template
-      formattedWeatherTemplate8 = "";   //   and will not be added to insert template menu
+      weatherTemplateBody8 = "";        //   and will not be added to insert template menu
     };
 
     // Get formatted strings for statusbar from templates 
@@ -285,7 +284,7 @@ export default class vcwPlugin extends Plugin {
     formattedInternalCurrentData = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, internalCurrentData)
 
     // Replace template strings and update DIV's 
-    this.replaceTemplateStrings(formattedWeatherTemplate1, formattedWeatherTemplate2, formattedWeatherTemplate3, formattedWeatherTemplate4, formattedWeatherTemplate5, formattedWeatherTemplate6, formattedWeatherTemplate7, formattedWeatherTemplate8);
+    this.replaceTemplateStrings(weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8);
 
     // • Initialize all weather update intervals • 
 
@@ -370,77 +369,77 @@ export default class vcwPlugin extends Plugin {
         if (this.settings.weatherTemplate1.length > 0) {
           weatherTemplateTitle1 = this.settings.weatherTemplate1.slice(0,this.settings.weatherTemplate1.indexOf("\n"));
           let withoutTitleTemplate1 = this.settings.weatherTemplate1.slice(this.settings.weatherTemplate1.indexOf("\n")+1);
-          formattedWeatherTemplate1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate1);
+          weatherTemplateBody1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate1);
         } else {
           weatherTemplateTitle1 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate1 = "";
+          weatherTemplateBody1 = "";
         };
         // Get formatted string for weather 2 from template 
         if (this.settings.weatherTemplate2.length > 0) {
           weatherTemplateTitle2 = this.settings.weatherTemplate2.slice(0,this.settings.weatherTemplate2.indexOf("\n"));
           let withoutTitleTemplate2 = this.settings.weatherTemplate2.slice(this.settings.weatherTemplate2.indexOf("\n")+1);
-          formattedWeatherTemplate2 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate2);
+          weatherTemplateBody2 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate2);
         } else {
           weatherTemplateTitle2 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate2 = "";   //   and will not be added to insert template menu
+          weatherTemplateBody2 = "";        //   and will not be added to insert template menu
         };
         // Get formatted string for weather 3 from template 
         if (this.settings.weatherTemplate3.length > 0) {
           weatherTemplateTitle3 = this.settings.weatherTemplate3.slice(0,this.settings.weatherTemplate3.indexOf("\n"));
           let withoutTitleTemplate3 = this.settings.weatherTemplate3.slice(this.settings.weatherTemplate3.indexOf("\n")+1);
-          formattedWeatherTemplate3 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate3);
+          weatherTemplateBody3 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate3);
         } else {
           weatherTemplateTitle3 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate3 = "";   //   and will not be added to insert template menu
+          weatherTemplateBody3 = "";        //   and will not be added to insert template menu
         };
         // Get formatted string for weather 4 from template 
         if (this.settings.weatherTemplate4.length > 0) {
           weatherTemplateTitle4 = this.settings.weatherTemplate4.slice(0,this.settings.weatherTemplate4.indexOf("\n"));
           let withoutTitleTemplate4 = this.settings.weatherTemplate4.slice(this.settings.weatherTemplate4.indexOf("\n")+1);
-          formattedWeatherTemplate4 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate4);
+          weatherTemplateBody4 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate4);
         } else {
           weatherTemplateTitle4 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate4 = "";   //   and will not be added to insert template menu
+          weatherTemplateBody4 = "";        //   and will not be added to insert template menu
         };
         // Get formatted string for weather 5 from template 
         if (this.settings.weatherTemplate5.length > 0) {
           weatherTemplateTitle5 = this.settings.weatherTemplate5.slice(0,this.settings.weatherTemplate5.indexOf("\n"));
           let withoutTitleTemplate5 = this.settings.weatherTemplate5.slice(this.settings.weatherTemplate5.indexOf("\n")+1);
-          formattedWeatherTemplate5 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate5);
+          weatherTemplateBody5 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate5);
         } else {
           weatherTemplateTitle5 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate5 = "";   //   and will not be added to insert template menu
+          weatherTemplateBody5 = "";        //   and will not be added to insert template menu
         };
         // Get formatted string for weather 6 from template 
         if (this.settings.weatherTemplate6.length > 0) {
           weatherTemplateTitle6 = this.settings.weatherTemplate6.slice(0,this.settings.weatherTemplate6.indexOf("\n"));
           let withoutTitleTemplate6 = this.settings.weatherTemplate6.slice(this.settings.weatherTemplate6.indexOf("\n")+1);
-          formattedWeatherTemplate6 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate6);
+          weatherTemplateBody6 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate6);
         } else {
           weatherTemplateTitle6 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate6 = "";   //   and will not be added to insert template menu
+          weatherTemplateBody6 = "";        //   and will not be added to insert template menu
         };
         // Get formatted string for weather 7 from template 
         if (this.settings.weatherTemplate7.length > 0) {
           weatherTemplateTitle7 = this.settings.weatherTemplate7.slice(0,this.settings.weatherTemplate7.indexOf("\n"));
           let withoutTitleTemplate7 = this.settings.weatherTemplate7.slice(this.settings.weatherTemplate7.indexOf("\n")+1);
-          formattedWeatherTemplate7 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate7);
+          weatherTemplateBody7 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate7);
         } else {
           weatherTemplateTitle7 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate7 = "";   //   and will not be added to insert template menu
+          weatherTemplateBody7 = "";        //   and will not be added to insert template menu
         };
         // Get formatted string for weather 8 from template 
         if (this.settings.weatherTemplate8.length > 0) {
           weatherTemplateTitle8 = this.settings.weatherTemplate8.slice(0,this.settings.weatherTemplate8.indexOf("\n"));
           let withoutTitleTemplate8 = this.settings.weatherTemplate8.slice(this.settings.weatherTemplate8.indexOf("\n")+1);
-          formattedWeatherTemplate8 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate8);
+          weatherTemplateBody8 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate8);
         } else {
           weatherTemplateTitle8 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate8 = "";   //   and will not be added to insert template menu
+          weatherTemplateBody8 = "";        //   and will not be added to insert template menu
         };
 
         // Replace template strings and update DIV's 
-        this.replaceTemplateStrings(formattedWeatherTemplate1, formattedWeatherTemplate2, formattedWeatherTemplate3, formattedWeatherTemplate4, formattedWeatherTemplate5, formattedWeatherTemplate6, formattedWeatherTemplate7, formattedWeatherTemplate8);
+        this.replaceTemplateStrings(weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8);
 
         // Get formatted strings for statusbar from templates 
         formattedSBTemplate1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate1SB);
@@ -521,77 +520,77 @@ export default class vcwPlugin extends Plugin {
         if (this.settings.weatherTemplate1.length > 0) {
           weatherTemplateTitle1 = this.settings.weatherTemplate1.slice(0,this.settings.weatherTemplate1.indexOf("\n"));
           let withoutTitleTemplate1 = this.settings.weatherTemplate1.slice(this.settings.weatherTemplate1.indexOf("\n")+1);
-          formattedWeatherTemplate1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate1);
+          weatherTemplateBody1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate1);
         } else {
           weatherTemplateTitle1 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate1 = "";
+          weatherTemplateBody1 = "";        //   and will not be added to insert template menu
         };
         // Get formatted string for weather 2 from template 
         if (this.settings.weatherTemplate2.length > 0) {
           weatherTemplateTitle2 = this.settings.weatherTemplate2.slice(0,this.settings.weatherTemplate2.indexOf("\n"));
           let withoutTitleTemplate2 = this.settings.weatherTemplate2.slice(this.settings.weatherTemplate2.indexOf("\n")+1);
-          formattedWeatherTemplate2 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate2);
+          weatherTemplateBody2 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate2);
         } else {
           weatherTemplateTitle2 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate2 = "";   //   and will not be added to insert template menu
+          weatherTemplateBody2 = "";        //   and will not be added to insert template menu
         };
         // Get formatted string for weather 3 from template 
         if (this.settings.weatherTemplate3.length > 0) {
           weatherTemplateTitle3 = this.settings.weatherTemplate3.slice(0,this.settings.weatherTemplate3.indexOf("\n"));
           let withoutTitleTemplate3 = this.settings.weatherTemplate3.slice(this.settings.weatherTemplate3.indexOf("\n")+1);
-          formattedWeatherTemplate3 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate3);
+          weatherTemplateBody3 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate3);
         } else {
           weatherTemplateTitle3 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate3 = "";   //   and will not be added to insert template menu
+          weatherTemplateBody3 = "";        //   and will not be added to insert template menu
         };
         // Get formatted string for weather 4 from template 
         if (this.settings.weatherTemplate4.length > 0) {
           weatherTemplateTitle4 = this.settings.weatherTemplate4.slice(0,this.settings.weatherTemplate4.indexOf("\n"));
           let withoutTitleTemplate4 = this.settings.weatherTemplate4.slice(this.settings.weatherTemplate4.indexOf("\n")+1);
-          formattedWeatherTemplate4 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate4);
+          weatherTemplateBody4 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate4);
         } else {
           weatherTemplateTitle4 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate4 = "";   //   and will not be added to insert template menu
+          weatherTemplateBody4 = "";        //   and will not be added to insert template menu
         };
         // Get formatted string for weather 5 from template 
         if (this.settings.weatherTemplate5.length > 0) {
           weatherTemplateTitle5 = this.settings.weatherTemplate5.slice(0,this.settings.weatherTemplate5.indexOf("\n"));
           let withoutTitleTemplate5 = this.settings.weatherTemplate5.slice(this.settings.weatherTemplate5.indexOf("\n")+1);
-          formattedWeatherTemplate5 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate5);
+          weatherTemplateBody5 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate5);
         } else {
           weatherTemplateTitle5 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate5 = "";   //   and will not be added to insert template menu
+          weatherTemplateBody5 = "";        //   and will not be added to insert template menu
         };
         // Get formatted string for weather 6 from template 
         if (this.settings.weatherTemplate6.length > 0) {
           weatherTemplateTitle6 = this.settings.weatherTemplate6.slice(0,this.settings.weatherTemplate6.indexOf("\n"));
           let withoutTitleTemplate6 = this.settings.weatherTemplate6.slice(this.settings.weatherTemplate6.indexOf("\n")+1);
-          formattedWeatherTemplate6 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate6);
+          weatherTemplateBody6 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate6);
         } else {
           weatherTemplateTitle6 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate6 = "";   //   and will not be added to insert template menu
+          weatherTemplateBody6 = "";        //   and will not be added to insert template menu
         };
         // Get formatted string for weather 7 from template 
         if (this.settings.weatherTemplate7.length > 0) {
           weatherTemplateTitle7 = this.settings.weatherTemplate7.slice(0,this.settings.weatherTemplate7.indexOf("\n"));
           let withoutTitleTemplate7 = this.settings.weatherTemplate7.slice(this.settings.weatherTemplate7.indexOf("\n")+1);
-          formattedWeatherTemplate7 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate7);
+          weatherTemplateBody7 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate7);
         } else {
           weatherTemplateTitle7 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate7 = "";   //   and will not be added to insert template menu
+          weatherTemplateBody7 = "";        //   and will not be added to insert template menu
         };
         // Get formatted string for weather 8 from template 
         if (this.settings.weatherTemplate8.length > 0) {
           weatherTemplateTitle8 = this.settings.weatherTemplate8.slice(0,this.settings.weatherTemplate8.indexOf("\n"));
           let withoutTitleTemplate8 = this.settings.weatherTemplate8.slice(this.settings.weatherTemplate8.indexOf("\n")+1);
-          formattedWeatherTemplate8 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate8);
+          weatherTemplateBody8 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate8);
         } else {
           weatherTemplateTitle8 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate8 = "";   //   and will not be added to insert template menu
+          weatherTemplateBody8 = "";        //   and will not be added to insert template menu
         };
 
         // Replace template strings and update DIV's 
-        this.replaceTemplateStrings(formattedWeatherTemplate1, formattedWeatherTemplate2, formattedWeatherTemplate3, formattedWeatherTemplate4, formattedWeatherTemplate5, formattedWeatherTemplate6, formattedWeatherTemplate7, formattedWeatherTemplate8);
+        this.replaceTemplateStrings(weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8);
 
         // Get formatted strings for statusbar from templates 
         formattedSBTemplate1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate1SB);
@@ -672,77 +671,78 @@ export default class vcwPlugin extends Plugin {
         if (this.settings.weatherTemplate1.length > 0) {
           weatherTemplateTitle1 = this.settings.weatherTemplate1.slice(0,this.settings.weatherTemplate1.indexOf("\n"));
           let withoutTitleTemplate1 = this.settings.weatherTemplate1.slice(this.settings.weatherTemplate1.indexOf("\n")+1);
-          formattedWeatherTemplate1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate1);
+          weatherTemplateBody1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate1);
         } else {
           weatherTemplateTitle1 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate1 = "";
+          weatherTemplateBody1 = "";        //   and will not be added to insert template menu
         };
         // Get formatted string for weather 2 from template 
         if (this.settings.weatherTemplate2.length > 0) {
           weatherTemplateTitle2 = this.settings.weatherTemplate2.slice(0,this.settings.weatherTemplate2.indexOf("\n"));
           let withoutTitleTemplate2 = this.settings.weatherTemplate2.slice(this.settings.weatherTemplate2.indexOf("\n")+1);
-          formattedWeatherTemplate2 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate2);
+          weatherTemplateBody2 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate2);
         } else {
           weatherTemplateTitle2 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate2 = "";   //   and will not be added to insert template menu
+          weatherTemplateBody2 = "";        //   and will not be added to insert template menu
         };
         // Get formatted string for weather 3 from template 
         if (this.settings.weatherTemplate3.length > 0) {
           weatherTemplateTitle3 = this.settings.weatherTemplate3.slice(0,this.settings.weatherTemplate3.indexOf("\n"));
           let withoutTitleTemplate3 = this.settings.weatherTemplate3.slice(this.settings.weatherTemplate3.indexOf("\n")+1);
-          formattedWeatherTemplate3 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate3);
+          weatherTemplateBody3 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate3);
         } else {
           weatherTemplateTitle3 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate3 = "";   //   and will not be added to insert template menu
+          weatherTemplateBody3 = "";        //   and will not be added to insert template menu
         };
         // Get formatted string for weather 4 from template 
         if (this.settings.weatherTemplate4.length > 0) {
           weatherTemplateTitle4 = this.settings.weatherTemplate4.slice(0,this.settings.weatherTemplate4.indexOf("\n"));
-          let withoutTitleTemplate4 = this.settings.weatherTemplate4.slice(this.settings.weatherTemplate4.indexOf("\n"+1)+1);
-          formattedWeatherTemplate4 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate4);
+          let withoutTitleTemplate4 = this.settings.weatherTemplate4.slice(this.settings.weatherTemplate4.indexOf("\n")+1);
+          weatherTemplateBody4 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate4);
+          console.log("📢weatherTemplateBody4 15 Min:\n", weatherTemplateBody4);
         } else {
           weatherTemplateTitle4 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate4 = "";   //   and will not be added to insert template menu
+          weatherTemplateBody4 = "";        //   and will not be added to insert template menu
         };
         // Get formatted string for weather 5 from template 
         if (this.settings.weatherTemplate5.length > 0) {
           weatherTemplateTitle5 = this.settings.weatherTemplate5.slice(0,this.settings.weatherTemplate5.indexOf("\n"));
           let withoutTitleTemplate5 = this.settings.weatherTemplate5.slice(this.settings.weatherTemplate5.indexOf("\n")+1);
-          formattedWeatherTemplate5 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate5);
+          weatherTemplateBody5 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate5);
         } else {
           weatherTemplateTitle5 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate5 = "";   //   and will not be added to insert template menu
+          weatherTemplateBody5 = "";        //   and will not be added to insert template menu
         };
         // Get formatted string for weather 6 from template 
         if (this.settings.weatherTemplate6.length > 0) {
           weatherTemplateTitle6 = this.settings.weatherTemplate6.slice(0,this.settings.weatherTemplate6.indexOf("\n"));
           let withoutTitleTemplate6 = this.settings.weatherTemplate6.slice(this.settings.weatherTemplate6.indexOf("\n")+1);
-          formattedWeatherTemplate6 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate6);
+          weatherTemplateBody6 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate6);
         } else {
           weatherTemplateTitle6 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate6 = "";   //   and will not be added to insert template menu
+          weatherTemplateBody6 = "";        //   and will not be added to insert template menu
         };
         // Get formatted string for weather 7 from template 
         if (this.settings.weatherTemplate7.length > 0) {
           weatherTemplateTitle7 = this.settings.weatherTemplate7.slice(0,this.settings.weatherTemplate7.indexOf("\n"));
           let withoutTitleTemplate7 = this.settings.weatherTemplate7.slice(this.settings.weatherTemplate7.indexOf("\n")+1);
-          formattedWeatherTemplate7 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate7);
+          weatherTemplateBody7 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate7);
         } else {
           weatherTemplateTitle7 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate7 = "";   //   and will not be added to insert template menu
+          weatherTemplateBody7 = "";        //   and will not be added to insert template menu
         };
         // Get formatted string for weather 8 from template 
         if (this.settings.weatherTemplate8.length > 0) {
           weatherTemplateTitle8 = this.settings.weatherTemplate8.slice(0,this.settings.weatherTemplate8.indexOf("\n"));
           let withoutTitleTemplate8 = this.settings.weatherTemplate8.slice(this.settings.weatherTemplate8.indexOf("\n")+1);
-          formattedWeatherTemplate8 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate8);
+          weatherTemplateBody8 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate8);
         } else {
           weatherTemplateTitle8 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate8 = "";   //   and will not be added to insert template menu
+          weatherTemplateBody8 = "";        //   and will not be added to insert template menu
         };
 
         // Replace template strings and update DIV's 
-        this.replaceTemplateStrings(formattedWeatherTemplate1, formattedWeatherTemplate2, formattedWeatherTemplate3, formattedWeatherTemplate4, formattedWeatherTemplate5, formattedWeatherTemplate6, formattedWeatherTemplate7, formattedWeatherTemplate8);
+        this.replaceTemplateStrings(weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8);
 
         // Get formatted strings for statusbar from templates 
         formattedSBTemplate1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate1SB);
@@ -823,77 +823,77 @@ export default class vcwPlugin extends Plugin {
         if (this.settings.weatherTemplate1.length > 0) {
           weatherTemplateTitle1 = this.settings.weatherTemplate1.slice(0,this.settings.weatherTemplate1.indexOf("\n"));
           let withoutTitleTemplate1 = this.settings.weatherTemplate1.slice(this.settings.weatherTemplate1.indexOf("\n")+1);
-          formattedWeatherTemplate1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate1);
+          weatherTemplateBody1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate1);
         } else {
           weatherTemplateTitle1 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate1 = "";
+          weatherTemplateBody1 = "";        //   and will not be added to insert template menu
         };
         // Get formatted string for weather 2 from template 
         if (this.settings.weatherTemplate2.length > 0) {
           weatherTemplateTitle2 = this.settings.weatherTemplate2.slice(0,this.settings.weatherTemplate2.indexOf("\n"));
           let withoutTitleTemplate2 = this.settings.weatherTemplate2.slice(this.settings.weatherTemplate2.indexOf("\n")+1);
-          formattedWeatherTemplate2 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate2);
+          weatherTemplateBody2 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate2);
         } else {
           weatherTemplateTitle2 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate2 = "";   //   and will not be added to insert template menu
+          weatherTemplateBody2 = "";        //   and will not be added to insert template menu
         };
         // Get formatted string for weather 3 from template 
         if (this.settings.weatherTemplate3.length > 0) {
           weatherTemplateTitle3 = this.settings.weatherTemplate3.slice(0,this.settings.weatherTemplate3.indexOf("\n"));
           let withoutTitleTemplate3 = this.settings.weatherTemplate3.slice(this.settings.weatherTemplate3.indexOf("\n")+1);
-          formattedWeatherTemplate3 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate3);
+          weatherTemplateBody3 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate3);
         } else {
           weatherTemplateTitle3 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate3 = "";   //   and will not be added to insert template menu
+          weatherTemplateBody3 = "";        //   and will not be added to insert template menu
         };
         // Get formatted string for weather 4 from template 
         if (this.settings.weatherTemplate4.length > 0) {
           weatherTemplateTitle4 = this.settings.weatherTemplate4.slice(0,this.settings.weatherTemplate4.indexOf("\n"));
           let withoutTitleTemplate4 = this.settings.weatherTemplate4.slice(this.settings.weatherTemplate4.indexOf("\n")+1);
-          formattedWeatherTemplate4 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate4);
+          weatherTemplateBody4 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate4);
         } else {
           weatherTemplateTitle4 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate4 = "";   //   and will not be added to insert template menu
+          weatherTemplateBody4 = "";        //   and will not be added to insert template menu
         };
         // Get formatted string for weather 5 from template 
         if (this.settings.weatherTemplate5.length > 0) {
           weatherTemplateTitle5 = this.settings.weatherTemplate5.slice(0,this.settings.weatherTemplate5.indexOf("\n"));
           let withoutTitleTemplate5 = this.settings.weatherTemplate5.slice(this.settings.weatherTemplate5.indexOf("\n")+1);
-          formattedWeatherTemplate5 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate5);
+          weatherTemplateBody5 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate5);
         } else {
           weatherTemplateTitle5 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate5 = "";   //   and will not be added to insert template menu
+          weatherTemplateBody5 = "";        //   and will not be added to insert template menu
         };
         // Get formatted string for weather 6 from template 
         if (this.settings.weatherTemplate6.length > 0) {
           weatherTemplateTitle6 = this.settings.weatherTemplate6.slice(0,this.settings.weatherTemplate6.indexOf("\n"));
           let withoutTitleTemplate6 = this.settings.weatherTemplate6.slice(this.settings.weatherTemplate6.indexOf("\n")+1);
-          formattedWeatherTemplate6 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate6);
+          weatherTemplateBody6 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate6);
         } else {
           weatherTemplateTitle6 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate6 = "";   //   and will not be added to insert template menu
+          weatherTemplateBody6 = "";        //   and will not be added to insert template menu
         };
         // Get formatted string for weather 7 from template 
         if (this.settings.weatherTemplate7.length > 0) {
           weatherTemplateTitle7 = this.settings.weatherTemplate7.slice(0,this.settings.weatherTemplate7.indexOf("\n"));
           let withoutTitleTemplate7 = this.settings.weatherTemplate7.slice(this.settings.weatherTemplate7.indexOf("\n")+1);
-          formattedWeatherTemplate7 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate7);
+          weatherTemplateBody7 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate7);
         } else {
           weatherTemplateTitle7 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate7 = "";   //   and will not be added to insert template menu
+          weatherTemplateBody7 = "";        //   and will not be added to insert template menu
         };
         // Get formatted string for weather 8 from template 
         if (this.settings.weatherTemplate8.length > 0) {
           weatherTemplateTitle8 = this.settings.weatherTemplate8.slice(0,this.settings.weatherTemplate8.indexOf("\n"));
           let withoutTitleTemplate8 = this.settings.weatherTemplate7.slice(this.settings.weatherTemplate8.indexOf("\n")+1);
-          formattedWeatherTemplate8 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate8);
+          weatherTemplateBody8 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate8);
         } else {
           weatherTemplateTitle8 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate8 = "";   //   and will not be added to insert template menu
+          weatherTemplateBody8 = "";   //   and will not be added to insert template menu
         };
 
         // Replace template strings and update DIV's 
-        this.replaceTemplateStrings(formattedWeatherTemplate1, formattedWeatherTemplate2, formattedWeatherTemplate3, formattedWeatherTemplate4, formattedWeatherTemplate5, formattedWeatherTemplate6, formattedWeatherTemplate7, formattedWeatherTemplate8);
+        this.replaceTemplateStrings(weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8);
 
         // Get formatted strings for statusbar from templates 
         formattedSBTemplate1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate1SB);
@@ -974,77 +974,77 @@ export default class vcwPlugin extends Plugin {
         if (this.settings.weatherTemplate1.length > 0) {
           weatherTemplateTitle1 = this.settings.weatherTemplate1.slice(0,this.settings.weatherTemplate1.indexOf("\n"));
           let withoutTitleTemplate1 = this.settings.weatherTemplate1.slice(this.settings.weatherTemplate1.indexOf("\n")+1);
-          formattedWeatherTemplate1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate1);
+          weatherTemplateBody1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate1);
         } else {
           weatherTemplateTitle1 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate1 = "";
+          weatherTemplateBody1 = "";        //   and will not be added to insert template menu
         };
         // Get formatted string for weather 2 from template 
         if (this.settings.weatherTemplate2.length > 0) {
           weatherTemplateTitle2 = this.settings.weatherTemplate2.slice(0,this.settings.weatherTemplate2.indexOf("\n"));
           let withoutTitleTemplate2 = this.settings.weatherTemplate2.slice(this.settings.weatherTemplate2.indexOf("\n")+1);
-          formattedWeatherTemplate2 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate2);
+          weatherTemplateBody2 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate2);
         } else {
           weatherTemplateTitle2 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate2 = "";   //   and will not be added to insert template menu
+          weatherTemplateBody2 = "";        //   and will not be added to insert template menu
         };
         // Get formatted string for weather 3 from template 
         if (this.settings.weatherTemplate3.length > 0) {
           weatherTemplateTitle3 = this.settings.weatherTemplate3.slice(0,this.settings.weatherTemplate3.indexOf("\n"));
           let withoutTitleTemplate3 = this.settings.weatherTemplate3.slice(this.settings.weatherTemplate3.indexOf("\n")+1);
-          formattedWeatherTemplate3 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate3);
+          weatherTemplateBody3 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate3);
         } else {
           weatherTemplateTitle3 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate3 = "";   //   and will not be added to insert template menu
+          weatherTemplateBody3 = "";        //   and will not be added to insert template menu
         };
         // Get formatted string for weather 4 from template 
         if (this.settings.weatherTemplate4.length > 0) {
           weatherTemplateTitle4 = this.settings.weatherTemplate4.slice(0,this.settings.weatherTemplate4.indexOf("\n"));
           let withoutTitleTemplate4 = this.settings.weatherTemplate4.slice(this.settings.weatherTemplate4.indexOf("\n")+1);
-          formattedWeatherTemplate4 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate4);
+          weatherTemplateBody4 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate4);
         } else {
           weatherTemplateTitle4 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate4 = "";   //   and will not be added to insert template menu
+          weatherTemplateBody4 = "";        //   and will not be added to insert template menu
         };
         // Get formatted string for weather 5 from template 
         if (this.settings.weatherTemplate5.length > 0) {
           weatherTemplateTitle5 = this.settings.weatherTemplate5.slice(0,this.settings.weatherTemplate5.indexOf("\n"));
           let withoutTitleTemplate5 = this.settings.weatherTemplate5.slice(this.settings.weatherTemplate5.indexOf("\n")+1);
-          formattedWeatherTemplate5 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate5);
+          weatherTemplateBody5 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate5);
         } else {
           weatherTemplateTitle5 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate5 = "";   //   and will not be added to insert template menu
+          weatherTemplateBody5 = "";        //   and will not be added to insert template menu
         };
         // Get formatted string for weather 6 from template 
         if (this.settings.weatherTemplate6.length > 0) {
           weatherTemplateTitle6 = this.settings.weatherTemplate6.slice(0,this.settings.weatherTemplate6.indexOf("\n"));
           let withoutTitleTemplate6 = this.settings.weatherTemplate6.slice(this.settings.weatherTemplate6.indexOf("\n")+1);
-          formattedWeatherTemplate6 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate6);
+          weatherTemplateBody6 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate6);
         } else {
           weatherTemplateTitle6 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate6 = "";   //   and will not be added to insert template menu
+          weatherTemplateBody6 = "";        //   and will not be added to insert template menu
         };
         // Get formatted string for weather 7 from template 
         if (this.settings.weatherTemplate7.length > 0) {
           weatherTemplateTitle7 = this.settings.weatherTemplate7.slice(0,this.settings.weatherTemplate7.indexOf("\n"));
           let withoutTitleTemplate7 = this.settings.weatherTemplate7.slice(this.settings.weatherTemplate7.indexOf("\n")+1);
-          formattedWeatherTemplate7 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate7);
+          weatherTemplateBody7 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate7);
         } else {
           weatherTemplateTitle7 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate7 = "";   //   and will not be added to insert template menu
+          weatherTemplateBody7 = "";        //   and will not be added to insert template menu
         };
         // Get formatted string for weather 8 from template 
         if (this.settings.weatherTemplate8.length > 0) {
           weatherTemplateTitle8 = this.settings.weatherTemplate8.slice(0,this.settings.weatherTemplate8.indexOf("\n"));
           let withoutTitleTemplate8 = this.settings.weatherTemplate8.slice(this.settings.weatherTemplate8.indexOf("\n")+1);
-          formattedWeatherTemplate8 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate8);
+          weatherTemplateBody8 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate8);
         } else {
           weatherTemplateTitle8 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate8 = "";   //   and will not be added to insert template menu
+          weatherTemplateBody8 = "";        //   and will not be added to insert template menu
         };
 
         // Replace template strings and update DIV's 
-        this.replaceTemplateStrings(formattedWeatherTemplate1, formattedWeatherTemplate2, formattedWeatherTemplate3, formattedWeatherTemplate4, formattedWeatherTemplate5, formattedWeatherTemplate6, formattedWeatherTemplate7, formattedWeatherTemplate8);
+        this.replaceTemplateStrings(weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8);
 
         // Get formatted strings for statusbar from templates 
         formattedSBTemplate1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate1SB);
@@ -1125,77 +1125,77 @@ export default class vcwPlugin extends Plugin {
         if (this.settings.weatherTemplate1.length > 0) {
           weatherTemplateTitle1 = this.settings.weatherTemplate1.slice(0,this.settings.weatherTemplate1.indexOf("\n"));
           let withoutTitleTemplate1 = this.settings.weatherTemplate1.slice(this.settings.weatherTemplate1.indexOf("\n")+1);
-          formattedWeatherTemplate1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate1);
+          weatherTemplateBody1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate1);
         } else {
           weatherTemplateTitle1 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate1 = "";
+          weatherTemplateBody1 = "";
         };
         // Get formatted string for weather 2 from template 
         if (this.settings.weatherTemplate2.length > 0) {
           weatherTemplateTitle2 = this.settings.weatherTemplate2.slice(0,this.settings.weatherTemplate2.indexOf("\n"));
           let withoutTitleTemplate2 = this.settings.weatherTemplate2.slice(this.settings.weatherTemplate2.indexOf("\n")+1);
-          formattedWeatherTemplate2 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate2);
+          weatherTemplateBody2 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate2);
         } else {
           weatherTemplateTitle2 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate2 = "";   //   and will not be added to insert template menu
+          weatherTemplateBody2 = "";        //   and will not be added to insert template menu
         };
         // Get formatted string for weather 3 from template 
         if (this.settings.weatherTemplate3.length > 0) {
           weatherTemplateTitle3 = this.settings.weatherTemplate3.slice(0,this.settings.weatherTemplate3.indexOf("\n"));
           let withoutTitleTemplate3 = this.settings.weatherTemplate3.slice(this.settings.weatherTemplate3.indexOf("\n")+1);
-          formattedWeatherTemplate3 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate3);
+          weatherTemplateBody3 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate3);
         } else {
           weatherTemplateTitle3 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate3 = "";   //   and will not be added to insert template menu
+          weatherTemplateBody3 = "";        //   and will not be added to insert template menu
         };
         // Get formatted string for weather 4 from template 
         if (this.settings.weatherTemplate4.length > 0) {
           weatherTemplateTitle4 = this.settings.weatherTemplate4.slice(0,this.settings.weatherTemplate4.indexOf("\n"));
           let withoutTitleTemplate4 = this.settings.weatherTemplate4.slice(this.settings.weatherTemplate4.indexOf("\n")+1);
-          formattedWeatherTemplate4 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate4);
+          weatherTemplateBody4 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate4);
         } else {
           weatherTemplateTitle4 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate4 = "";   //   and will not be added to insert template menu
+          weatherTemplateBody4 = "";        //   and will not be added to insert template menu
         };
         // Get formatted string for weather 5 from template 
         if (this.settings.weatherTemplate5.length > 0) {
           weatherTemplateTitle5 = this.settings.weatherTemplate5.slice(0,this.settings.weatherTemplate5.indexOf("\n"));
           let withoutTitleTemplate5 = this.settings.weatherTemplate5.slice(this.settings.weatherTemplate5.indexOf("\n")+1);
-          formattedWeatherTemplate5 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate5);
+          weatherTemplateBody5 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate5);
         } else {
           weatherTemplateTitle5 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate5 = "";   //   and will not be added to insert template menu
+          weatherTemplateBody5 = "";        //   and will not be added to insert template menu
         };
         // Get formatted string for weather 6 from template 
         if (this.settings.weatherTemplate6.length > 0) {
           weatherTemplateTitle6 = this.settings.weatherTemplate6.slice(0,this.settings.weatherTemplate6.indexOf("\n"));
           let withoutTitleTemplate6 = this.settings.weatherTemplate6.slice(this.settings.weatherTemplate6.indexOf("\n")+1);
-          formattedWeatherTemplate6 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate6);
+          weatherTemplateBody6 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate6);
         } else {
           weatherTemplateTitle6 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate6 = "";   //   and will not be added to insert template menu
+          weatherTemplateBody6 = "";        //   and will not be added to insert template menu
         };
         // Get formatted string for weather 7 from template 
         if (this.settings.weatherTemplate7.length > 0) {
           weatherTemplateTitle7 = this.settings.weatherTemplate7.slice(0,this.settings.weatherTemplate7.indexOf("\n"));
           let withoutTitleTemplate7 = this.settings.weatherTemplate7.slice(this.settings.weatherTemplate7.indexOf("\n")+1);
-          formattedWeatherTemplate7 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate7);
+          weatherTemplateBody7 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate7);
         } else {
           weatherTemplateTitle7 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate7 = "";   //   and will not be added to insert template menu
+          weatherTemplateBody7 = "";        //   and will not be added to insert template menu
         };
         // Get formatted string for weather 8 from template 
         if (this.settings.weatherTemplate8.length > 0) {
           weatherTemplateTitle8 = this.settings.weatherTemplate8.slice(0,this.settings.weatherTemplate8.indexOf("\n"));
           let withoutTitleTemplate8 = this.settings.weatherTemplate8.slice(this.settings.weatherTemplate8.indexOf("\n")+1);
-          formattedWeatherTemplate8 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate8);
+          weatherTemplateBody8 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate8);
         } else {
           weatherTemplateTitle8 = "";       // Ensure title and template are empty strings in case user deleted the template
-          formattedWeatherTemplate8 = "";   //   and will not be added to insert template menu
+          weatherTemplateBody8 = "";        //   and will not be added to insert template menu
         };
 
         // Replace template strings and update DIV's 
-        this.replaceTemplateStrings(formattedWeatherTemplate1, formattedWeatherTemplate2, formattedWeatherTemplate3, formattedWeatherTemplate4, formattedWeatherTemplate5, formattedWeatherTemplate6, formattedWeatherTemplate7, formattedWeatherTemplate8);
+        this.replaceTemplateStrings(weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8);
 
         // Get formatted strings for statusbar from templates 
         formattedSBTemplate1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate1SB);
@@ -1215,10 +1215,10 @@ export default class vcwPlugin extends Plugin {
       name: `Insert '${weatherTemplateTitle1}' Template`,
       editorCheckCallback: (checking: boolean, editor: Editor, view: MarkdownView) => {
         const markdownView = this.app.workspace.getActiveViewOfType(MarkdownView);
-        const weatherOneLength = formattedWeatherTemplate1.length;
+        const weatherOneLength = weatherTemplateBody1.length;
         if (markdownView && weatherOneLength) {
           if (!checking) {
-            editor.replaceSelection(formattedWeatherTemplate1);
+            editor.replaceSelection(weatherTemplateBody1);
           };
           return true;
         };
@@ -1232,10 +1232,10 @@ export default class vcwPlugin extends Plugin {
       name: `Insert '${weatherTemplateTitle2}' Template`,
       editorCheckCallback: (checking: boolean, editor: Editor, view: MarkdownView) => {
         const markdownView = this.app.workspace.getActiveViewOfType(MarkdownView);
-        const weatherOneLength = formattedWeatherTemplate2.length;
+        const weatherOneLength = weatherTemplateBody2.length;
         if (markdownView && weatherOneLength) {
           if (!checking) {
-            editor.replaceSelection(formattedWeatherTemplate2);
+            editor.replaceSelection(weatherTemplateBody2);
           };
           return true;
         };
@@ -1249,10 +1249,10 @@ export default class vcwPlugin extends Plugin {
       name: `Insert '${weatherTemplateTitle3}' Template`,
       editorCheckCallback: (checking: boolean, editor: Editor, view: MarkdownView) => {
         const markdownView = this.app.workspace.getActiveViewOfType(MarkdownView);
-        const weatherOneLength = formattedWeatherTemplate3.length;
+        const weatherOneLength = weatherTemplateBody3.length;
         if (markdownView && weatherOneLength) {
           if (!checking) {
-            editor.replaceSelection(formattedWeatherTemplate3);
+            editor.replaceSelection(weatherTemplateBody3);
           };
           return true;
         };
@@ -1266,10 +1266,10 @@ export default class vcwPlugin extends Plugin {
       name: `Insert '${weatherTemplateTitle4}' Template`,
       editorCheckCallback: (checking: boolean, editor: Editor, view: MarkdownView) => {
         const markdownView = this.app.workspace.getActiveViewOfType(MarkdownView);
-        const weatherOneLength = formattedWeatherTemplate4.length;
+        const weatherOneLength = weatherTemplateBody4.length;
         if (markdownView && weatherOneLength) {
           if (!checking) {
-            editor.replaceSelection(formattedWeatherTemplate4);
+            editor.replaceSelection(weatherTemplateBody4);
           };
           return true;
         };
@@ -1283,10 +1283,10 @@ export default class vcwPlugin extends Plugin {
       name: `Insert '${weatherTemplateTitle5}' Template`,
       editorCheckCallback: (checking: boolean, editor: Editor, view: MarkdownView) => {
         const markdownView = this.app.workspace.getActiveViewOfType(MarkdownView);
-        const weatherOneLength = formattedWeatherTemplate5.length;
+        const weatherOneLength = weatherTemplateBody5.length;
         if (markdownView && weatherOneLength) {
           if (!checking) {
-            editor.replaceSelection(formattedWeatherTemplate5);
+            editor.replaceSelection(weatherTemplateBody5);
           };
           return true;
         };
@@ -1300,10 +1300,10 @@ export default class vcwPlugin extends Plugin {
       name: `Insert '${weatherTemplateTitle6}' Template`,
       editorCheckCallback: (checking: boolean, editor: Editor, view: MarkdownView) => {
         const markdownView = this.app.workspace.getActiveViewOfType(MarkdownView);
-        const weatherOneLength = formattedWeatherTemplate6.length;
+        const weatherOneLength = weatherTemplateBody6.length;
         if (markdownView && weatherOneLength) {
           if (!checking) {
-            editor.replaceSelection(formattedWeatherTemplate6);
+            editor.replaceSelection(weatherTemplateBody6);
           }
           return true;
         }
@@ -1317,10 +1317,10 @@ export default class vcwPlugin extends Plugin {
       name: `Insert '${weatherTemplateTitle7}' Template`,
       editorCheckCallback: (checking: boolean, editor: Editor, view: MarkdownView) => {
         const markdownView = this.app.workspace.getActiveViewOfType(MarkdownView);
-        const weatherOneLength = formattedWeatherTemplate7.length;
+        const weatherOneLength = weatherTemplateBody7.length;
         if (markdownView && weatherOneLength) {
           if (!checking) {
-            editor.replaceSelection(formattedWeatherTemplate7);
+            editor.replaceSelection(weatherTemplateBody7);
           }
           return true;
         }
@@ -1334,10 +1334,10 @@ export default class vcwPlugin extends Plugin {
       name: `Insert '${weatherTemplateTitle8}' Template`,
       editorCheckCallback: (checking: boolean, editor: Editor, view: MarkdownView) => {
         const markdownView = this.app.workspace.getActiveViewOfType(MarkdownView);
-        const weatherOneLength = formattedWeatherTemplate8.length;
+        const weatherOneLength = weatherTemplateBody8.length;
         if (markdownView && weatherOneLength) {
           if (!checking) {
-            editor.replaceSelection(formattedWeatherTemplate8);
+            editor.replaceSelection(weatherTemplateBody8);
           }
           return true;
         }
@@ -1355,7 +1355,7 @@ export default class vcwPlugin extends Plugin {
           if (!checking) {
             const view = this.app.workspace.getActiveViewOfType(MarkdownView);
             let editor = view?.editor;
-            new InsertTemplatesModal(this.app, editor, weatherTemplateTitle1, formattedWeatherTemplate1, weatherTemplateTitle2, formattedWeatherTemplate2, weatherTemplateTitle3, formattedWeatherTemplate3, weatherTemplateTitle4, formattedWeatherTemplate4, weatherTemplateTitle5, formattedWeatherTemplate5, weatherTemplateTitle6, formattedWeatherTemplate6, weatherTemplateTitle7, formattedWeatherTemplate7, weatherTemplateTitle8, formattedWeatherTemplate8).open();
+            new InsertTemplatesModal(this.app, editor, weatherTemplateTitle1, weatherTemplateBody1, weatherTemplateTitle2, weatherTemplateBody2, weatherTemplateTitle3, weatherTemplateBody3, weatherTemplateTitle4, weatherTemplateBody4, weatherTemplateTitle5, weatherTemplateBody5, weatherTemplateTitle6, weatherTemplateBody6, weatherTemplateTitle7, weatherTemplateBody7, weatherTemplateTitle8, weatherTemplateBody8).open();
           };
           return true;
         };
@@ -1371,7 +1371,7 @@ export default class vcwPlugin extends Plugin {
         const markdownView = this.app.workspace.getActiveViewOfType(MarkdownView);
         if (markdownView) {
           if (!checking) {
-            this.replaceTemplateStrings(formattedWeatherTemplate1, formattedWeatherTemplate2, formattedWeatherTemplate3, formattedWeatherTemplate4, formattedWeatherTemplate5, formattedWeatherTemplate6, formattedWeatherTemplate7, formattedWeatherTemplate8)
+            this.replaceTemplateStrings(weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8)
           };
           return true;
         };
@@ -1402,7 +1402,7 @@ export default class vcwPlugin extends Plugin {
   };
 
   // • replaceTemplateStrings - Replace any template strings in current file • 
-  async replaceTemplateStrings(formattedWeatherTemplate1:string, formattedWeatherTemplate2:string, formattedWeatherTemplate3:string, formattedWeatherTemplate4:string, formattedWeatherTemplate5:string, formattedWeatherTemplate6:string, formattedWeatherTemplate7:string, formattedWeatherTemplate8:string) {
+  async replaceTemplateStrings(weatherTemplateBody1:string, weatherTemplateBody2:string, weatherTemplateBody3:string, weatherTemplateBody4:string, weatherTemplateBody5:string, weatherTemplateBody6:string, weatherTemplateBody7:string, weatherTemplateBody8:string) {
     const view = this.app.workspace.getActiveViewOfType(MarkdownView);
     if (!view) return;
     const file = this.app.workspace.getActiveFile();
@@ -1414,49 +1414,49 @@ export default class vcwPlugin extends Plugin {
     if (editor == null) return;
     if (this.settings.weatherTemplate1.length > 0) {
       if (editor.contains("%weather1%")) {
-        editor = editor.replace(/%weather1%/gmi, formattedWeatherTemplate1);
+        editor = editor.replace(/%weather1%/gmi, weatherTemplateBody1);
         file?.vault.modify(file, editor);
       };
     };
     if (this.settings.weatherTemplate2.length > 0) {
       if (editor.contains("%weather2%")) {
-        editor = editor.replace(/%weather2%/gmi, formattedWeatherTemplate2);
+        editor = editor.replace(/%weather2%/gmi, weatherTemplateBody2);
         file?.vault.modify(file, editor);
       };
     };
     if (this.settings.weatherTemplate3.length > 0) {
       if (editor.contains("%weather3%")) {
-        editor = editor.replace(/%weather3%/gmi, formattedWeatherTemplate3);
+        editor = editor.replace(/%weather3%/gmi, weatherTemplateBody3);
         file?.vault.modify(file, editor);
       };
     };
     if (this.settings.weatherTemplate4.length > 0) {
       if (editor.contains("%weather4%")) {
-        editor = editor.replace(/%weather4%/gmi, formattedWeatherTemplate4);
+        editor = editor.replace(/%weather4%/gmi, weatherTemplateBody4);
         file?.vault.modify(file, editor);
       };
     };
     if (this.settings.weatherTemplate5.length > 0) {
       if (editor.contains("%weather5%")) {
-        editor = editor.replace(/%weather5%/gmi, formattedWeatherTemplate5);
+        editor = editor.replace(/%weather5%/gmi, weatherTemplateBody5);
         file?.vault.modify(file, editor);
       };
     };
     if (this.settings.weatherTemplate6.length > 0) {
       if (editor.contains("%weather6%")) {
-        editor = editor.replace(/%weather6%/gmi, formattedWeatherTemplate6);
+        editor = editor.replace(/%weather6%/gmi, weatherTemplateBody6);
         file?.vault.modify(file, editor);
       };
     };
     if (this.settings.weatherTemplate7.length > 0) {
       if (editor.contains("%weather7%")) {
-        editor = editor.replace(/%weather7%/gmi, formattedWeatherTemplate7);
+        editor = editor.replace(/%weather7%/gmi, weatherTemplateBody7);
         file?.vault.modify(file, editor);
       };
     };
     if (this.settings.weatherTemplate8.length > 0) {
       if (editor.contains("%weather8%")) {
-        editor = editor.replace(/%weather8%/gmi, formattedWeatherTemplate8);
+        editor = editor.replace(/%weather8%/gmi, weatherTemplateBody8);
         file?.vault.modify(file, editor);
       };
     };
@@ -1465,35 +1465,35 @@ export default class vcwPlugin extends Plugin {
     await new Promise(r => setTimeout(r, 1000));
     if(document.getElementsByClassName('weather_current_1').length > 0) {
       const divEl = document.getElementsByClassName('weather_current_1')[0];
-      divEl.innerHTML = formattedWeatherTemplate1;
+      divEl.innerHTML = weatherTemplateBody1;
     };
     if(document.getElementsByClassName('weather_current_2').length > 0) {
       const divEl = document.getElementsByClassName('weather_current_2')[0];
-      divEl.innerHTML = formattedWeatherTemplate2;
+      divEl.innerHTML = weatherTemplateBody2;
     };
     if(document.getElementsByClassName('weather_current_3').length > 0) {
       const divEl = document.getElementsByClassName('weather_current_3')[0];
-      divEl.innerHTML = formattedWeatherTemplate3;
+      divEl.innerHTML = weatherTemplateBody3;
     };
     if(document.getElementsByClassName('weather_current_4').length > 0) {
       const divEl = document.getElementsByClassName('weather_current_4')[0];
-      divEl.innerHTML = formattedWeatherTemplate4;
+      divEl.innerHTML = weatherTemplateBody4;
     };
     if(document.getElementsByClassName('weather_current_5').length > 0) {
       const divEl = document.getElementsByClassName('weather_current_5')[0];
-      divEl.innerHTML = formattedWeatherTemplate5;
+      divEl.innerHTML = weatherTemplateBody5;
     };
     if(document.getElementsByClassName('weather_current_6').length > 0) {
       const divEl = document.getElementsByClassName('weather_current_6')[0];
-      divEl.innerHTML = formattedWeatherTemplate6;
+      divEl.innerHTML = weatherTemplateBody6;
     };
     if(document.getElementsByClassName('weather_current_7').length > 0) {
       const divEl = document.getElementsByClassName('weather_current_7')[0];
-      divEl.innerHTML = formattedWeatherTemplate7;
+      divEl.innerHTML = weatherTemplateBody7;
     };
     if(document.getElementsByClassName('weather_current_8').length > 0) {
       const divEl = document.getElementsByClassName('weather_current_8')[0];
-      divEl.innerHTML = formattedWeatherTemplate8;
+      divEl.innerHTML = weatherTemplateBody8;
     };
   }
 

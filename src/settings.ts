@@ -41,7 +41,7 @@ export const DEFAULT_SETTINGS: vcwSettings = {
   statusbarCycle: true,
   weatherTemplate1SB: "🔸%address%: %dow2-today% %month3-today% %date1-today%🔸High: %tempmax-today%° Low: %tempmin-today%°🔸Currently: %conditions% Temperature: %temp%° Feels Like: %feelslike%°🔸",
   weatherTemplate2SB: "🔸%address%: %dow2-in1day% %month3-in1day% %date1-in1day%🔸High: %tempmax-in1day%° Low: %tempmin-in1day%° 🔸 Clouds: %cloudcover-in1day% Probabilty of precipitation: %precipprob-in1day% (%preciptype-in1day%)🔸",
-  weatherTemplate1: "Short one liner\n%conditions% • Current Temp: %temp%°C • Feels Like: %feelslike%°C\n",
+  weatherTemplate1: "Short one liner\n%conditions% • Current Temp: %temp%° • Feels Like: %feelslike%°\n",
   weatherTemplate2: "More detailed\n%address%: %dow2-today% %month4-today% %date1-today% - %hours12%:%mins% %ampm2%\nProbability of precipitation: %precipprob% • (%preciptype%)\nCurrent Temp: %temp%°C • Feels Like: %feelslike%°C\nWind: %windspeed-today% km/h from the %winddirstr-today% with gusts up to %windgust-today% km/h\nSunrise: %sunrise-today% • Sunset: %sunset-today%\n",
   weatherTemplate3: "Historical DIV\n<img src=%iconurl% />&nbsp;%month4-today% %date1-today% %year1-today% • %hours12%:%mins% %ampm2% • %conditions%\n&nbsp;Recorded Temp: %temp% • Felt like: %feelslike%\n&nbsp;Wind: %windspeed-today% km/h from the %winddirstr-today% with gusts up to %windgust-today% km/h\n&nbsp;Sunrise: %sunrise-today% • Sunset: %sunset-today%",
   weatherTemplate4: "Current DIV\n<img src=%iconurl%  />&nbsp;%month4-today% %date1-today% %year1-today% • %hours12%:%mins% %ampm2% • %conditions%\n&nbsp;Current Temp: %temp% • Feels like: %feelslike%\n&nbsp;Wind: %windspeed-today% km/h from the %winddirstr-today% with gusts up to %windgust-today% km/h\n&nbsp;Sunrise: %sunrise-today% • Sunset: %sunset-today%",
@@ -65,25 +65,6 @@ export class VCWSettingsTab extends PluginSettingTab {
     super(app, plugin);
     this.plugin = plugin;
     this.app = app;
-  }
-
-  async reload() {
-    // @ts-ignore
-    const { plugins } = this.app;
-    await plugins.disablePlugin("vc-weather")
-    console.debug("disabled", this.plugin);
-
-    // Ensure sourcemaps are loaded (Obsidian 14+)
-    const oldDebug = localStorage.getItem("debug-plugin");
-    localStorage.setItem("debug-plugin", "1");
-    try {
-        await plugins.enablePlugin("vc-weather");
-    } finally {
-        // Restore previous setting
-        if (oldDebug === null) localStorage.removeItem("debug-plugin"); else localStorage.setItem("debug-plugin", oldDebug);
-    }
-    console.debug("enabled", "vc-weather");
-    new Notice(`Plugin "${"vc-weather"}" has been reloaded`);
   }
 
   async display(): Promise<void> {
@@ -110,10 +91,8 @@ export class VCWSettingsTab extends PluginSettingTab {
       basePath = adapter.getBasePath();
       const configDir = this.app.vault.configDir;
       const templateConfigPath = `${basePath}/${configDir}/templates.json`;
-      console.log("📢templateConfigPath: ", templateConfigPath);
-      let json = require(templateConfigPath);
+       let json = require(templateConfigPath);
       templateFolder = json.folder;
-      console.log("📢templateFolder: ", templateFolder);
     };
 
     // If "Templates" folder exists and excludeFolder setting is an empty string, write template folder to settings 

@@ -184,34 +184,38 @@ For a much more detailed overview of the templates see [Weather Templates.md](#t
 
 
 ## Dynamic Weather Using DIV's
-You can insert the following DIV's inside your documents to provide dynamic weather which is updated at the frequency set in the [settings _Update Frequency_](#update-frequency) setting. The `weather_historical_3` is the temperature at the time the document is created and the `weather_current_4` is dynamic. 
+You can insert the following DIV's inside your documents to provide dynamic weather which is updated at the frequency set in the [settings _Update Frequency_](#update-frequency) setting. The `weather_historical_3` is the weather information recorded at the time the document is created and the `weather_current_4` is dynamic current weather information. 
 
 ```html
 <div class="weather_historical_3">%weather3%</div>
 <div class="weather_current_4"></div>
 ```
 
-You can use the following class's to insert the corresponding weather strings
+For example this is what I use in my daily template...
 
-- "weather_current_1" Inserts dynamic weather string One
-- "weather_current_2" Inserts dynamic weather string Two
-- "weather_current_3" Inserts dynamic weather string Three
-- "weather_current_4" Inserts dynamic weather string Four
-- "weather_current_5" Inserts dynamic weather string Five
-- "weather_current_6" Inserts dynamic weather string Six
-- "weather_current_7" Inserts dynamic weather string Seven
-- "weather_current_8" Inserts dynamic weather string Eight
+![dynamic weather](./images/divs.gif)
+
+You can use the following class's to insert the corresponding weather templates
+
+- "weather_current_1" Inserts dynamic weather template One
+- "weather_current_2" Inserts dynamic weather template Two
+- "weather_current_3" Inserts dynamic weather template Three
+- "weather_current_4" Inserts dynamic weather template Four
+- "weather_current_5" Inserts dynamic weather template Five
+- "weather_current_6" Inserts dynamic weather template Six
+- "weather_current_7" Inserts dynamic weather template Seven
+- "weather_current_8" Inserts dynamic weather template Eight
 
 and...
 
-- "weather_historical_1" Inserts static weather string One
-- "weather_historical_2" Inserts static weather string Two
-- "weather_historical_3" Inserts static weather string Three
-- "weather_historical_4" Inserts static weather string Four
-- "weather_historical_5" Inserts static weather string Five
-- "weather_historical_6" Inserts static weather string Six
-- "weather_historical_7" Inserts static weather string Seven
-- "weather_historical_8" Inserts static weather string Eight
+- "weather_historical_1" Inserts static weather template One
+- "weather_historical_2" Inserts static weather template Two
+- "weather_historical_3" Inserts static weather template Three
+- "weather_historical_4" Inserts static weather template Four
+- "weather_historical_5" Inserts static weather template Five
+- "weather_historical_6" Inserts static weather template Six
+- "weather_historical_7" Inserts static weather template Seven
+- "weather_historical_8" Inserts static weather template Eight
 
 > Note: I will be adding an example vault explaing how to accomplish this very soon
 >
