@@ -2,6 +2,10 @@
 
 <!-- ## [v-inc] ${YEAR4}-${MONTHNUMBER}-${DATE} -->
 
+## [0.1.0] 2024-09-15
+- Updated documentation
+- Removed unused code
+
 ## [0.0.5] 2024-09-12
 - Added mobile support
 

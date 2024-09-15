@@ -11,8 +11,9 @@
 
 <!-- ## [v-inc] ${YEAR4}-${MONTHNUMBER}-${DATE} -->
 
-## [0.0.5] 2024-09-12
-- Added mobile support
+## [0.1.0] 2024-09-15
+- Updated documentation
+- Removed unused code
 
 For a full list of changes, please see the projects [Changelog](CHANGELOG.md) file.
 
