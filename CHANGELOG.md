@@ -2,6 +2,9 @@
 
 <!-- ## [v-inc] ${YEAR4}-${MONTHNUMBER}-${DATE} -->
 
+## [0.1.1] 2024-09-15
+- Prepared plugin for submission
+
 ## [0.1.0] 2024-09-15
 - Updated documentation
 - Removed unused code

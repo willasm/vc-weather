@@ -1,7 +1,7 @@
 import { App, Plugin, Notice, PluginSettingTab, Setting, TAbstractFile, TFolder, TextAreaComponent, Platform, FileSystemAdapter } from 'obsidian';
-import vcwPlugin from './main';
+import VCWPlugin from './main';
 
-export interface vcwSettings {
+export interface VCWSettings {
   apikey: string;
   location_one: string;
   location_two: string;
@@ -26,7 +26,7 @@ export interface vcwSettings {
   weatherTemplate8: string;
 }
 
-export const DEFAULT_SETTINGS: vcwSettings = {
+export const DEFAULT_SETTINGS: VCWSettings = {
   apikey: "",
   location_one: "",
   location_two: "",
@@ -58,10 +58,10 @@ export const DEFAULT_SETTINGS: vcwSettings = {
 //  ╰──────────────────────────────────────────────────────────────────────────────╯
 export class VCWSettingsTab extends PluginSettingTab {
 
-  plugin: vcwPlugin;
+  plugin: VCWPlugin;
   app: App;
 
-  constructor(app: App, plugin: vcwPlugin) {
+  constructor(app: App, plugin: VCWPlugin) {
     super(app, plugin);
     this.plugin = plugin;
     this.app = app;
@@ -153,16 +153,9 @@ export class VCWSettingsTab extends PluginSettingTab {
     .setName('This Plugins Info:')
     .addButton(cb => {
       cb.setButtonText('View README.md on Github');
-      cb.setTooltip('View this plugins Github Repository');
+      cb.setTooltip('View this plugins Github Repository Readme');
       cb.onClick(() => {
         window.open("https://github.com/willasm/vc-weather#readme");
-      });
-    })
-    .addButton(cb => {
-      cb.setButtonText('View Documentation');
-      cb.setTooltip('View this plugins online documentation');
-      cb.onClick(() => {
-        window.open("https://github.com/willasm/vc-weather/blob/master/Documentation/00-START-HERE.md");
       });
     })
     .addButton(cb => {
@@ -173,8 +166,8 @@ export class VCWSettingsTab extends PluginSettingTab {
       });
     })
   
-    // • VCWSettingsTab - H2 Header - Visual Crossing API Authentication key (required) • 
-    containerEl.createEl('h2', {text: 'Visual Crossing API authentication key (required)'});
+    // • VCWSettingsTab - Visual Crossing API Authentication key (required) • 
+    new Setting(containerEl).setName('Visual Crossing API authentication key (required)').setHeading();
 
     // API Key 
     new Setting(containerEl)
@@ -186,12 +179,11 @@ export class VCWSettingsTab extends PluginSettingTab {
       .onChange(async (value) => {
         this.plugin.settings.apikey = value;
         await this.plugin.saveSettings();
-        //await this.reload();
       })
     );
 
-    // • VCWSettingsTab - H2 Header - User Locations • 
-    containerEl.createEl('h2', {text: 'Locations - Primary location is required - The others are optional'});
+    // • VCWSettingsTab - User Locations • 
+    new Setting(containerEl).setName('Locations - Primary location is required, the others are optional').setHeading();
 
     // Primary location (Required) 
     new Setting(containerEl)
@@ -203,7 +195,6 @@ export class VCWSettingsTab extends PluginSettingTab {
       .onChange(async (value) => {
         this.plugin.settings.location_one = value;
         await this.plugin.saveSettings();
-        //await this.reload();
       })
     );
 
@@ -217,7 +208,6 @@ export class VCWSettingsTab extends PluginSettingTab {
       .onChange(async (value) => {
         this.plugin.settings.location_two = value;
         await this.plugin.saveSettings();
-        //await this.reload();
       })
     );
 
@@ -231,7 +221,6 @@ export class VCWSettingsTab extends PluginSettingTab {
       .onChange(async (value) => {
         this.plugin.settings.location_three = value;
         await this.plugin.saveSettings();
-        //await this.reload();
       })
     );
     
@@ -245,7 +234,6 @@ export class VCWSettingsTab extends PluginSettingTab {
       .onChange(async (value) => {
         this.plugin.settings.location_four = value;
         await this.plugin.saveSettings();
-        //await this.reload();
       })
     );
 
@@ -259,12 +247,11 @@ export class VCWSettingsTab extends PluginSettingTab {
       .onChange(async (value) => {
         this.plugin.settings.location_five = value;
         await this.plugin.saveSettings();
-        //await this.reload();
       })
     );
         
-    // • VCWSettingsTab - H2 Header - General settings • 
-    containerEl.createEl('h2', {text: 'General settings'});
+    // • VCWSettingsTab - Advanced options • 
+    new Setting(containerEl).setName('Advanced options').setHeading();
 
     // Units of measurement 
     new Setting(containerEl)
@@ -278,7 +265,6 @@ export class VCWSettingsTab extends PluginSettingTab {
       dropDown.onChange(async (value) => {
         this.plugin.settings.units = value;
         await this.plugin.saveSettings();
-        //await this.reload();
       })
     .setValue(this.plugin.settings.units);
     })
@@ -303,7 +289,6 @@ export class VCWSettingsTab extends PluginSettingTab {
       dropDown.onChange(async (value) => {
         this.plugin.settings.excludeFolder = value;
         await this.plugin.saveSettings();
-        //await this.reload();
       })
     .setValue(this.plugin.settings.excludeFolder);
     });
@@ -318,7 +303,6 @@ export class VCWSettingsTab extends PluginSettingTab {
       dropDown.onChange(async (value) => {
         this.plugin.settings.excludeFolder = value;
         await this.plugin.saveSettings();
-        //await this.reload();
       })
     .setValue(this.plugin.settings.excludeFolder2);
     });
@@ -337,14 +321,13 @@ export class VCWSettingsTab extends PluginSettingTab {
       dropDown.onChange(async (value) => {
         this.plugin.settings.updateFrequency = value;
         await this.plugin.saveSettings();
-        //await this.reload();
       })
     .setValue(this.plugin.settings.updateFrequency)
   });
 
-    // • OpenWeatherSettingsTab - H2 Header - Show Weather in Statusbar Options - Not available for mobile • 
+    // • OpenWeatherSettingsTab - Show Weather in Statusbar Options - Not available for mobile • 
     if (Platform.isDesktop) {
-      containerEl.createEl('h2', {text: 'Show weather in statusbar options'});
+      new Setting(containerEl).setName('Show weather in statusbar options').setHeading();
 
     // Weather update frequency 
     new Setting(containerEl)
@@ -355,29 +338,27 @@ export class VCWSettingsTab extends PluginSettingTab {
       .onChange(async (value) => {
         this.plugin.settings.statusbarActive = value;
         await this.plugin.saveSettings();
-        //await this.reload();
       }));
       
     // Cycle statusbar display 
     new Setting(containerEl)
     .setName('Cycle statusbar display')
-    .setDesc('Cycle between primary and secondary status bar templates every 30 seconds')
+    .setDesc('Cycle between primary and secondary statusbar templates every 30 seconds')
     .addToggle(toggle => toggle
       .setValue(this.plugin.settings.statusbarActive)
       .onChange(async (value) => {
         this.plugin.settings.statusbarActive = value;
         await this.plugin.saveSettings();
-        //await this.reload();
       }));
       
     // Cycle statusbar display 
     new Setting(containerEl)
     .setDesc("Weather template string for the statusbar primary")
     .addButton(cb => {
-      cb.setButtonText('View Status Bar Template Documentation');
-      cb.setTooltip('View Status Bar Weather Template Documentation on Github');
+      cb.setButtonText('View Statusbar Template Documentation');
+      cb.setTooltip('View Statusbar Weather Template Documentation on Github');
       cb.onClick(() => {
-        window.open("https://github.com/willasm/vc-weather/blob/master/Documentation/Statusbar Templates.md");
+        window.open("https://github.com/willasm/vc-weather?tab=readme-ov-file#the-statusbar-weather-display--templates");
       })
     });
     
@@ -390,7 +371,6 @@ export class VCWSettingsTab extends PluginSettingTab {
       .onChange(async (value) => {
         this.plugin.settings.weatherTemplate1SB = value;
         await this.plugin.saveSettings();
-        //await this.reload();
       })
       textArea.inputEl.setAttr("style", "margin-top: 12px; padding-left: 0px; margin-left: 0px; margin-right: 20px;");
       textArea.inputEl.setAttr("rows", 3);
@@ -409,7 +389,6 @@ export class VCWSettingsTab extends PluginSettingTab {
       .onChange(async (value) => {
         this.plugin.settings.weatherTemplate2SB = value;
         await this.plugin.saveSettings();
-        //await this.reload();
       })
       textArea.inputEl.setAttr("style", "margin-top: 12px; padding-left: 0px; margin-left: 0px; margin-right: 20px;");
       textArea.inputEl.setAttr("rows", 3);
@@ -420,18 +399,18 @@ export class VCWSettingsTab extends PluginSettingTab {
       this.plugin.settings.statusbarActive = false;   // Set statusbar inactive for mobile
     };
 
-    // • VCWSettingsTab - H2 Header - Weather templates (8 Strings are Available) • 
-    containerEl.createEl('h2', {text: 'Weather templates (8 templates are available)'});
+    // • VCWSettingsTab - Weather templates • 
+    new Setting(containerEl).setName('Weather templates').setHeading();
 
     // Weather template one help button 
     new Setting(containerEl)
     .setName("Weather template 1")
-    .setDesc("Feel free to change this to whatever you like.")
+    .setDesc("First line is the descriptive text used in menus for this template")
     .addButton(cb => {
       cb.setButtonText('View Template Documentation');
       cb.setTooltip('View Weather Template Documentation on Github');
       cb.onClick(() => {
-        window.open("https://github.com/willasm/vc-weather/blob/master/Documentation/Weather Templates.md");
+        window.open("https://github.com/willasm/vc-weather?tab=readme-ov-file#the-weather-templates");
       })
     });
 
@@ -444,7 +423,6 @@ export class VCWSettingsTab extends PluginSettingTab {
       .onChange(async (value) => {
         this.plugin.settings.weatherTemplate1 = value;
         await this.plugin.saveSettings();
-        //await this.reload();
       })
       textArea.inputEl.setAttr("style", "margin-top: 12px; padding-left: 0px; margin-left: 0px; margin-right: 20px;");
       textArea.inputEl.setAttr("rows", 10);
@@ -454,7 +432,7 @@ export class VCWSettingsTab extends PluginSettingTab {
     // Weather template two 
     new Setting(containerEl)
     .setName("Weather template 2")
-    .setDesc("Feel free to change this to whatever you like.")
+    .setDesc("First line is the descriptive text used in menus for this template")
 
     // Weather template two text area 
     new Setting(containerEl)
@@ -465,7 +443,6 @@ export class VCWSettingsTab extends PluginSettingTab {
       .onChange(async (value) => {
         this.plugin.settings.weatherTemplate2 = value;
         await this.plugin.saveSettings();
-        //await this.reload();
       })
       textArea.inputEl.setAttr("style", "margin-top: 12px; padding-left: 0px; margin-left: 0px; margin-right: 20px;");
       textArea.inputEl.setAttr("rows", 10);
@@ -475,7 +452,7 @@ export class VCWSettingsTab extends PluginSettingTab {
     // Weather template three 
     new Setting(containerEl)
     .setName("Weather template 3")
-    .setDesc("Feel free to change this to whatever you like.")
+    .setDesc("First line is the descriptive text used in menus for this template")
 
     // Weather template three text area 
     new Setting(containerEl)
@@ -486,7 +463,6 @@ export class VCWSettingsTab extends PluginSettingTab {
       .onChange(async (value) => {
         this.plugin.settings.weatherTemplate3 = value;
         await this.plugin.saveSettings();
-        //await this.reload();
       })
       textArea.inputEl.setAttr("style", "margin-top: 12px; padding-left: 0px; margin-left: 0px; margin-right: 20px;");
       textArea.inputEl.setAttr("rows", 10);
@@ -496,7 +472,7 @@ export class VCWSettingsTab extends PluginSettingTab {
     // Weather template four 
     new Setting(containerEl)
     .setName("Weather template 4")
-    .setDesc("Feel free to change this to whatever you like.")
+    .setDesc("First line is the descriptive text used in menus for this template")
 
     // Weather template four text area 
     new Setting(containerEl)
@@ -507,7 +483,6 @@ export class VCWSettingsTab extends PluginSettingTab {
       .onChange(async (value) => {
         this.plugin.settings.weatherTemplate4 = value;
         await this.plugin.saveSettings();
-        //await this.reload();
       })
       textArea.inputEl.setAttr("style", "margin-top: 12px; padding-left: 0px; margin-left: 0px; margin-right: 20px;");
       textArea.inputEl.setAttr("rows", 10);
@@ -517,7 +492,7 @@ export class VCWSettingsTab extends PluginSettingTab {
     // Weather template five 
     new Setting(containerEl)
     .setName("Weather template 5")
-    .setDesc("Feel free to change this to whatever you like.")
+    .setDesc("First line is the descriptive text used in menus for this template")
 
     // Weather template five text area 
     new Setting(containerEl)
@@ -528,7 +503,6 @@ export class VCWSettingsTab extends PluginSettingTab {
       .onChange(async (value) => {
         this.plugin.settings.weatherTemplate5 = value;
         await this.plugin.saveSettings();
-        //await this.reload();
       })
       textArea.inputEl.setAttr("style", "margin-top: 12px; padding-left: 0px; margin-left: 0px; margin-right: 20px;");
       textArea.inputEl.setAttr("rows", 10);
@@ -538,7 +512,7 @@ export class VCWSettingsTab extends PluginSettingTab {
     // Weather template six 
     new Setting(containerEl)
     .setName("Weather template 6")
-    .setDesc("Feel free to change this to whatever you like.")
+    .setDesc("First line is the descriptive text used in menus for this template")
 
     // Weather template six text area 
     new Setting(containerEl)
@@ -549,7 +523,6 @@ export class VCWSettingsTab extends PluginSettingTab {
       .onChange(async (value) => {
         this.plugin.settings.weatherTemplate6 = value;
         await this.plugin.saveSettings();
-        //await this.reload();
       })
       textArea.inputEl.setAttr("style", "margin-top: 12px; padding-left: 0px; margin-left: 0px; margin-right: 20px;");
       textArea.inputEl.setAttr("rows", 10);
@@ -559,7 +532,7 @@ export class VCWSettingsTab extends PluginSettingTab {
     // Weather template seven 
     new Setting(containerEl)
     .setName("Weather template 7")
-    .setDesc("Feel free to change this to whatever you like.")
+    .setDesc("First line is the descriptive text used in menus for this template")
 
     // Weather template seven text area 
     new Setting(containerEl)
@@ -570,7 +543,6 @@ export class VCWSettingsTab extends PluginSettingTab {
       .onChange(async (value) => {
         this.plugin.settings.weatherTemplate7 = value;
         await this.plugin.saveSettings();
-        //await this.reload();
       })
       textArea.inputEl.setAttr("style", "margin-top: 12px; padding-left: 0px; margin-left: 0px; margin-right: 20px;");
       textArea.inputEl.setAttr("rows", 10);
@@ -580,7 +552,7 @@ export class VCWSettingsTab extends PluginSettingTab {
     // Weather template eight 
     new Setting(containerEl)
     .setName("Weather template 8")
-    .setDesc("Feel free to change this to whatever you like.")
+    .setDesc("First line is the descriptive text used in menus for this template")
 
     // Weather template eight text area 
     new Setting(containerEl)
@@ -591,14 +563,13 @@ export class VCWSettingsTab extends PluginSettingTab {
       .onChange(async (value) => {
         this.plugin.settings.weatherTemplate8 = value;
         await this.plugin.saveSettings();
-        //await this.reload();
       })
       textArea.inputEl.setAttr("style", "margin-top: 12px; padding-left: 0px; margin-left: 0px; margin-right: 20px;");
       textArea.inputEl.setAttr("rows", 10);
       textArea.inputEl.setAttr("cols", 80);
     });
 
-    // • VCWSettingsTab - H2 Header - Donation Support Links • 
+    // • VCWSettingsTab - Donation Support Links • 
     containerEl.createEl('hr');
     containerEl.createEl('h2', {text: 'If you would like to make a small donation to help support my work, please use one of the buttons below.'});
 

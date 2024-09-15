@@ -1,6 +1,6 @@
 # Statusbar Templates
 
-## Table of Contents
+<!-- ## Table of Contents -->
 
 ## TIPS
 #### Use for More Than Just Weather

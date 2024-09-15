@@ -24,7 +24,7 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 // src/main.ts
 var main_exports = {};
 __export(main_exports, {
-  default: () => vcwPlugin
+  default: () => VCWPlugin
 });
 module.exports = __toCommonJS(main_exports);
 var import_obsidian4 = require("obsidian");
@@ -46,7 +46,7 @@ var DEFAULT_SETTINGS = {
   statusbarCycle: true,
   weatherTemplate1SB: "\u{1F538}%address%: %dow2-today% %month3-today% %date1-today%\u{1F538}High: %tempmax-today%\xB0 Low: %tempmin-today%\xB0\u{1F538}Currently: %conditions% Temperature: %temp%\xB0 Feels Like: %feelslike%\xB0\u{1F538}",
   weatherTemplate2SB: "\u{1F538}%address%: %dow2-in1day% %month3-in1day% %date1-in1day%\u{1F538}High: %tempmax-in1day%\xB0 Low: %tempmin-in1day%\xB0 \u{1F538} Clouds: %cloudcover-in1day% Probabilty of precipitation: %precipprob-in1day% (%preciptype-in1day%)\u{1F538}",
-  weatherTemplate1: "Short one liner\n%conditions% \u2022 Current Temp: %temp%\xB0C \u2022 Feels Like: %feelslike%\xB0C\n",
+  weatherTemplate1: "Short one liner\n%conditions% \u2022 Current Temp: %temp%\xB0 \u2022 Feels Like: %feelslike%\xB0\n",
   weatherTemplate2: "More detailed\n%address%: %dow2-today% %month4-today% %date1-today% - %hours12%:%mins% %ampm2%\nProbability of precipitation: %precipprob% \u2022 (%preciptype%)\nCurrent Temp: %temp%\xB0C \u2022 Feels Like: %feelslike%\xB0C\nWind: %windspeed-today% km/h from the %winddirstr-today% with gusts up to %windgust-today% km/h\nSunrise: %sunrise-today% \u2022 Sunset: %sunset-today%\n",
   weatherTemplate3: "Historical DIV\n<img src=%iconurl% />&nbsp;%month4-today% %date1-today% %year1-today% \u2022 %hours12%:%mins% %ampm2% \u2022 %conditions%\n&nbsp;Recorded Temp: %temp% \u2022 Felt like: %feelslike%\n&nbsp;Wind: %windspeed-today% km/h from the %winddirstr-today% with gusts up to %windgust-today% km/h\n&nbsp;Sunrise: %sunrise-today% \u2022 Sunset: %sunset-today%",
   weatherTemplate4: "Current DIV\n<img src=%iconurl%  />&nbsp;%month4-today% %date1-today% %year1-today% \u2022 %hours12%:%mins% %ampm2% \u2022 %conditions%\n&nbsp;Current Temp: %temp% \u2022 Feels like: %feelslike%\n&nbsp;Wind: %windspeed-today% km/h from the %winddirstr-today% with gusts up to %windgust-today% km/h\n&nbsp;Sunrise: %sunrise-today% \u2022 Sunset: %sunset-today%",
@@ -60,23 +60,6 @@ var VCWSettingsTab = class extends import_obsidian.PluginSettingTab {
     super(app, plugin);
     this.plugin = plugin;
     this.app = app;
-  }
-  async reload() {
-    const { plugins } = this.app;
-    await plugins.disablePlugin("vc-weather");
-    console.debug("disabled", this.plugin);
-    const oldDebug = localStorage.getItem("debug-plugin");
-    localStorage.setItem("debug-plugin", "1");
-    try {
-      await plugins.enablePlugin("vc-weather");
-    } finally {
-      if (oldDebug === null)
-        localStorage.removeItem("debug-plugin");
-      else
-        localStorage.setItem("debug-plugin", oldDebug);
-    }
-    console.debug("enabled", "vc-weather");
-    new import_obsidian.Notice(`Plugin "${"vc-weather"}" has been reloaded`);
   }
   async display() {
     const { containerEl } = this;
@@ -142,15 +125,9 @@ var VCWSettingsTab = class extends import_obsidian.PluginSettingTab {
     });
     new import_obsidian.Setting(containerEl).setName("This Plugins Info:").addButton((cb) => {
       cb.setButtonText("View README.md on Github");
-      cb.setTooltip("View this plugins Github Repository");
+      cb.setTooltip("View this plugins Github Repository Readme");
       cb.onClick(() => {
         window.open("https://github.com/willasm/vc-weather#readme");
-      });
-    }).addButton((cb) => {
-      cb.setButtonText("View Documentation");
-      cb.setTooltip("View this plugins online documentation");
-      cb.onClick(() => {
-        window.open("https://github.com/willasm/vc-weather/blob/master/Documentation/00-START-HERE.md");
       });
     }).addButton((cb) => {
       cb.setButtonText("Report Issues Here");
@@ -159,14 +136,14 @@ var VCWSettingsTab = class extends import_obsidian.PluginSettingTab {
         window.open("https://github.com/willasm/vc-weather/issues");
       });
     });
-    containerEl.createEl("h2", { text: "Visual Crossing API authentication key (required)" });
+    new import_obsidian.Setting(containerEl).setName("Visual Crossing API authentication key (required)").setHeading();
     new import_obsidian.Setting(containerEl).setName("API Key").setDesc("Enter your Visual Crossing API Key").addText(
       (text) => text.setPlaceholder("Enter your API key").setValue(this.plugin.settings.apikey).onChange(async (value) => {
         this.plugin.settings.apikey = value;
         await this.plugin.saveSettings();
       })
     );
-    containerEl.createEl("h2", { text: "Locations - Primary location is required - The others are optional" });
+    new import_obsidian.Setting(containerEl).setName("Locations - Primary location is required, the others are optional").setHeading();
     new import_obsidian.Setting(containerEl).setName("Primary location").setDesc("Address location for which to retrieve weather data (Eg. London,UK), partial address (London) or latitude,longitude (Eg.38.9697,-77.385)").addText(
       (text) => text.setPlaceholder("Enter location Eg. Edmonton,AB,CA").setValue(this.plugin.settings.location_one).onChange(async (value) => {
         this.plugin.settings.location_one = value;
@@ -197,7 +174,7 @@ var VCWSettingsTab = class extends import_obsidian.PluginSettingTab {
         await this.plugin.saveSettings();
       })
     );
-    containerEl.createEl("h2", { text: "General settings" });
+    new import_obsidian.Setting(containerEl).setName("Advanced options").setHeading();
     new import_obsidian.Setting(containerEl).setName("Units of measurement").setDesc("Units of measurement: United States, Metric, United Kingdom and Base").addDropdown((dropDown) => {
       dropDown.addOption("us", "United States");
       dropDown.addOption("metric", "Metric");
@@ -245,20 +222,20 @@ var VCWSettingsTab = class extends import_obsidian.PluginSettingTab {
       }).setValue(this.plugin.settings.updateFrequency);
     });
     if (import_obsidian.Platform.isDesktop) {
-      containerEl.createEl("h2", { text: "Show weather in statusbar options" });
+      new import_obsidian.Setting(containerEl).setName("Show weather in statusbar options").setHeading();
       new import_obsidian.Setting(containerEl).setName("Show weather in statusbar").setDesc("Enable weather display in statusbar").addToggle((toggle) => toggle.setValue(this.plugin.settings.statusbarActive).onChange(async (value) => {
         this.plugin.settings.statusbarActive = value;
         await this.plugin.saveSettings();
       }));
-      new import_obsidian.Setting(containerEl).setName("Cycle statusbar display").setDesc("Cycle between primary and secondary status bar templates every 30 seconds").addToggle((toggle) => toggle.setValue(this.plugin.settings.statusbarActive).onChange(async (value) => {
+      new import_obsidian.Setting(containerEl).setName("Cycle statusbar display").setDesc("Cycle between primary and secondary statusbar templates every 30 seconds").addToggle((toggle) => toggle.setValue(this.plugin.settings.statusbarActive).onChange(async (value) => {
         this.plugin.settings.statusbarActive = value;
         await this.plugin.saveSettings();
       }));
       new import_obsidian.Setting(containerEl).setDesc("Weather template string for the statusbar primary").addButton((cb) => {
-        cb.setButtonText("View Status Bar Template Documentation");
-        cb.setTooltip("View Status Bar Weather Template Documentation on Github");
+        cb.setButtonText("View Statusbar Template Documentation");
+        cb.setTooltip("View Statusbar Weather Template Documentation on Github");
         cb.onClick(() => {
-          window.open("https://github.com/willasm/vc-weather/blob/master/Documentation/Statusbar Templates.md");
+          window.open("https://github.com/willasm/vc-weather?tab=readme-ov-file#the-statusbar-weather-display--templates");
         });
       });
       new import_obsidian.Setting(containerEl).addTextArea((textArea) => {
@@ -284,12 +261,12 @@ var VCWSettingsTab = class extends import_obsidian.PluginSettingTab {
       this.plugin.settings.statusbarActive = false;
     }
     ;
-    containerEl.createEl("h2", { text: "Weather templates (8 templates are available)" });
-    new import_obsidian.Setting(containerEl).setName("Weather template 1").setDesc("Feel free to change this to whatever you like.").addButton((cb) => {
+    new import_obsidian.Setting(containerEl).setName("Weather templates").setHeading();
+    new import_obsidian.Setting(containerEl).setName("Weather template 1").setDesc("First line is the descriptive text used in menus for this template").addButton((cb) => {
       cb.setButtonText("View Template Documentation");
       cb.setTooltip("View Weather Template Documentation on Github");
       cb.onClick(() => {
-        window.open("https://github.com/willasm/vc-weather/blob/master/Documentation/Weather Templates.md");
+        window.open("https://github.com/willasm/vc-weather?tab=readme-ov-file#the-weather-templates");
       });
     });
     new import_obsidian.Setting(containerEl).addTextArea((textArea) => {
@@ -301,7 +278,7 @@ var VCWSettingsTab = class extends import_obsidian.PluginSettingTab {
       textArea.inputEl.setAttr("rows", 10);
       textArea.inputEl.setAttr("cols", 80);
     });
-    new import_obsidian.Setting(containerEl).setName("Weather template 2").setDesc("Feel free to change this to whatever you like.");
+    new import_obsidian.Setting(containerEl).setName("Weather template 2").setDesc("First line is the descriptive text used in menus for this template");
     new import_obsidian.Setting(containerEl).addTextArea((textArea) => {
       textArea.setPlaceholder("Weather template 2").setValue(this.plugin.settings.weatherTemplate2).onChange(async (value) => {
         this.plugin.settings.weatherTemplate2 = value;
@@ -311,7 +288,7 @@ var VCWSettingsTab = class extends import_obsidian.PluginSettingTab {
       textArea.inputEl.setAttr("rows", 10);
       textArea.inputEl.setAttr("cols", 80);
     });
-    new import_obsidian.Setting(containerEl).setName("Weather template 3").setDesc("Feel free to change this to whatever you like.");
+    new import_obsidian.Setting(containerEl).setName("Weather template 3").setDesc("First line is the descriptive text used in menus for this template");
     new import_obsidian.Setting(containerEl).addTextArea((textArea) => {
       textArea.setPlaceholder("Weather template 3").setValue(this.plugin.settings.weatherTemplate3).onChange(async (value) => {
         this.plugin.settings.weatherTemplate3 = value;
@@ -321,7 +298,7 @@ var VCWSettingsTab = class extends import_obsidian.PluginSettingTab {
       textArea.inputEl.setAttr("rows", 10);
       textArea.inputEl.setAttr("cols", 80);
     });
-    new import_obsidian.Setting(containerEl).setName("Weather template 4").setDesc("Feel free to change this to whatever you like.");
+    new import_obsidian.Setting(containerEl).setName("Weather template 4").setDesc("First line is the descriptive text used in menus for this template");
     new import_obsidian.Setting(containerEl).addTextArea((textArea) => {
       textArea.setPlaceholder("Weather template 4").setValue(this.plugin.settings.weatherTemplate4).onChange(async (value) => {
         this.plugin.settings.weatherTemplate4 = value;
@@ -331,7 +308,7 @@ var VCWSettingsTab = class extends import_obsidian.PluginSettingTab {
       textArea.inputEl.setAttr("rows", 10);
       textArea.inputEl.setAttr("cols", 80);
     });
-    new import_obsidian.Setting(containerEl).setName("Weather template 5").setDesc("Feel free to change this to whatever you like.");
+    new import_obsidian.Setting(containerEl).setName("Weather template 5").setDesc("First line is the descriptive text used in menus for this template");
     new import_obsidian.Setting(containerEl).addTextArea((textArea) => {
       textArea.setPlaceholder("Weather template 5").setValue(this.plugin.settings.weatherTemplate5).onChange(async (value) => {
         this.plugin.settings.weatherTemplate5 = value;
@@ -341,7 +318,7 @@ var VCWSettingsTab = class extends import_obsidian.PluginSettingTab {
       textArea.inputEl.setAttr("rows", 10);
       textArea.inputEl.setAttr("cols", 80);
     });
-    new import_obsidian.Setting(containerEl).setName("Weather template 6").setDesc("Feel free to change this to whatever you like.");
+    new import_obsidian.Setting(containerEl).setName("Weather template 6").setDesc("First line is the descriptive text used in menus for this template");
     new import_obsidian.Setting(containerEl).addTextArea((textArea) => {
       textArea.setPlaceholder("Weather template 6").setValue(this.plugin.settings.weatherTemplate6).onChange(async (value) => {
         this.plugin.settings.weatherTemplate6 = value;
@@ -351,7 +328,7 @@ var VCWSettingsTab = class extends import_obsidian.PluginSettingTab {
       textArea.inputEl.setAttr("rows", 10);
       textArea.inputEl.setAttr("cols", 80);
     });
-    new import_obsidian.Setting(containerEl).setName("Weather template 7").setDesc("Feel free to change this to whatever you like.");
+    new import_obsidian.Setting(containerEl).setName("Weather template 7").setDesc("First line is the descriptive text used in menus for this template");
     new import_obsidian.Setting(containerEl).addTextArea((textArea) => {
       textArea.setPlaceholder("Weather template 7").setValue(this.plugin.settings.weatherTemplate7).onChange(async (value) => {
         this.plugin.settings.weatherTemplate7 = value;
@@ -361,7 +338,7 @@ var VCWSettingsTab = class extends import_obsidian.PluginSettingTab {
       textArea.inputEl.setAttr("rows", 10);
       textArea.inputEl.setAttr("cols", 80);
     });
-    new import_obsidian.Setting(containerEl).setName("Weather template 8").setDesc("Feel free to change this to whatever you like.");
+    new import_obsidian.Setting(containerEl).setName("Weather template 8").setDesc("First line is the descriptive text used in menus for this template");
     new import_obsidian.Setting(containerEl).addTextArea((textArea) => {
       textArea.setPlaceholder("Weather template 8").setValue(this.plugin.settings.weatherTemplate8).onChange(async (value) => {
         this.plugin.settings.weatherTemplate8 = value;
@@ -4257,11 +4234,6 @@ var UpdateWeather = class {
     if (delayTime === updFreNum || delayTime === 0) {
       let dateMin = new Date().getMinutes().toString().padStart(2, "0");
       let dateHour = new Date().getHours().toString().padStart(2, "0");
-      console.log("----------------------------------------------");
-      console.log(`Update Weather........: ${dateHour}:${dateMin}`);
-      console.log(`Get Weather Delay Time: ${delayTime} Minutes`);
-      console.log("fetch_location........:", fetch_location);
-      console.log("units.................:", units);
       await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${fetch_location}?unitGroup=${units}&include=days%2Chours%2Calerts%2Ccurrent&key=${apikey}&contentType=json`, {
         "method": "GET",
         "headers": {}
@@ -5687,8 +5659,7 @@ var DisplayWeatherModal = class extends import_obsidian3.Modal {
 };
 
 // src/main.ts
-var vcwPlugin = class extends import_obsidian4.Plugin {
-  //  weatherTemplateTitle1: string;
+var VCWPlugin = class extends import_obsidian4.Plugin {
   async onload() {
     let l1results;
     let l2results;
@@ -5736,7 +5707,7 @@ var vcwPlugin = class extends import_obsidian4.Plugin {
     });
     const statusBarItem = this.addStatusBarItem();
     statusBarItem.setText("[Visual Crossing Weather]");
-    (0, import_obsidian4.setTooltip)(statusBarItem, "View detailed info on todays weather", { placement: "top" });
+    (0, import_obsidian4.setTooltip)(statusBarItem, "Click to view detailed info on todays weather", { placement: "top" });
     statusBarItem.addClass("statusbar-click");
     statusBarItem.addEventListener("click", () => new DisplayWeatherModal(this.app, formattedInternalCurrentData).open());
     this.registerEvent(this.app.workspace.on("file-open", async (file) => {
@@ -6299,7 +6270,6 @@ var vcwPlugin = class extends import_obsidian4.Plugin {
           weatherTemplateTitle4 = this.settings.weatherTemplate4.slice(0, this.settings.weatherTemplate4.indexOf("\n"));
           let withoutTitleTemplate4 = this.settings.weatherTemplate4.slice(this.settings.weatherTemplate4.indexOf("\n") + 1);
           weatherTemplateBody4 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate4);
-          console.log("\u{1F4E2}weatherTemplateBody4 15 Min:\n", weatherTemplateBody4);
         } else {
           weatherTemplateTitle4 = "";
           weatherTemplateBody4 = "";
@@ -6977,64 +6947,80 @@ var vcwPlugin = class extends import_obsidian4.Plugin {
       return;
     if (this.settings.weatherTemplate1.length > 0) {
       if (editor.contains("%weather1%")) {
-        editor = editor.replace(/%weather1%/gmi, weatherTemplateBody1);
-        file == null ? void 0 : file.vault.modify(file, editor);
+        let idx = editor.indexOf("%weather1%");
+        let editPosStart = view.editor.offsetToPos(idx);
+        let editPosEnd = view.editor.offsetToPos(idx + 10);
+        view.editor.replaceRange(weatherTemplateBody1, editPosStart, editPosEnd);
       }
       ;
     }
     ;
     if (this.settings.weatherTemplate2.length > 0) {
       if (editor.contains("%weather2%")) {
-        editor = editor.replace(/%weather2%/gmi, weatherTemplateBody2);
-        file == null ? void 0 : file.vault.modify(file, editor);
+        let idx = editor.indexOf("%weather2%");
+        let editPosStart = view.editor.offsetToPos(idx);
+        let editPosEnd = view.editor.offsetToPos(idx + 10);
+        view.editor.replaceRange(weatherTemplateBody1, editPosStart, editPosEnd);
       }
       ;
     }
     ;
     if (this.settings.weatherTemplate3.length > 0) {
       if (editor.contains("%weather3%")) {
-        editor = editor.replace(/%weather3%/gmi, weatherTemplateBody3);
-        file == null ? void 0 : file.vault.modify(file, editor);
+        let idx = editor.indexOf("%weather3%");
+        let editPosStart = view.editor.offsetToPos(idx);
+        let editPosEnd = view.editor.offsetToPos(idx + 10);
+        view.editor.replaceRange(weatherTemplateBody1, editPosStart, editPosEnd);
       }
       ;
     }
     ;
     if (this.settings.weatherTemplate4.length > 0) {
       if (editor.contains("%weather4%")) {
-        editor = editor.replace(/%weather4%/gmi, weatherTemplateBody4);
-        file == null ? void 0 : file.vault.modify(file, editor);
+        let idx = editor.indexOf("%weather4%");
+        let editPosStart = view.editor.offsetToPos(idx);
+        let editPosEnd = view.editor.offsetToPos(idx + 10);
+        view.editor.replaceRange(weatherTemplateBody1, editPosStart, editPosEnd);
       }
       ;
     }
     ;
     if (this.settings.weatherTemplate5.length > 0) {
       if (editor.contains("%weather5%")) {
-        editor = editor.replace(/%weather5%/gmi, weatherTemplateBody5);
-        file == null ? void 0 : file.vault.modify(file, editor);
+        let idx = editor.indexOf("%weather5%");
+        let editPosStart = view.editor.offsetToPos(idx);
+        let editPosEnd = view.editor.offsetToPos(idx + 10);
+        view.editor.replaceRange(weatherTemplateBody1, editPosStart, editPosEnd);
       }
       ;
     }
     ;
     if (this.settings.weatherTemplate6.length > 0) {
       if (editor.contains("%weather6%")) {
-        editor = editor.replace(/%weather6%/gmi, weatherTemplateBody6);
-        file == null ? void 0 : file.vault.modify(file, editor);
+        let idx = editor.indexOf("%weather6%");
+        let editPosStart = view.editor.offsetToPos(idx);
+        let editPosEnd = view.editor.offsetToPos(idx + 10);
+        view.editor.replaceRange(weatherTemplateBody1, editPosStart, editPosEnd);
       }
       ;
     }
     ;
     if (this.settings.weatherTemplate7.length > 0) {
       if (editor.contains("%weather7%")) {
-        editor = editor.replace(/%weather7%/gmi, weatherTemplateBody7);
-        file == null ? void 0 : file.vault.modify(file, editor);
+        let idx = editor.indexOf("%weather7%");
+        let editPosStart = view.editor.offsetToPos(idx);
+        let editPosEnd = view.editor.offsetToPos(idx + 10);
+        view.editor.replaceRange(weatherTemplateBody1, editPosStart, editPosEnd);
       }
       ;
     }
     ;
     if (this.settings.weatherTemplate8.length > 0) {
       if (editor.contains("%weather8%")) {
-        editor = editor.replace(/%weather8%/gmi, weatherTemplateBody8);
-        file == null ? void 0 : file.vault.modify(file, editor);
+        let idx = editor.indexOf("%weather8%");
+        let editPosStart = view.editor.offsetToPos(idx);
+        let editPosEnd = view.editor.offsetToPos(idx + 10);
+        view.editor.replaceRange(weatherTemplateBody1, editPosStart, editPosEnd);
       }
       ;
     }

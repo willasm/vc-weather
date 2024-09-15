@@ -1,6 +1,5 @@
 //import { App, PluginSettingTab, Setting, TAbstractFile, TFolder, TextAreaComponent, Platform, FileSystemAdapter } from 'obsidian';
-//import vcwPlugin from './main';
-import { vcwSettings } from './settings';
+import { VCWSettings } from './settings';
 
 //  ╭──────────────────────────────────────────────────────────────────────────────╮
 //  │                           ● Class UpdateWeather ●                            │
@@ -8,7 +7,7 @@ import { vcwSettings } from './settings';
 //  │                   • Visual Crossing Weather Update Data •                    │
 //  ╰──────────────────────────────────────────────────────────────────────────────╯
 export default class UpdateWeather {
-  settings: vcwSettings;
+  settings: VCWSettings;
 
   constructor() {
     
@@ -26,11 +25,11 @@ export default class UpdateWeather {
       if (delayTime === updFreNum || delayTime === 0) {
         let dateMin = new Date().getMinutes().toString().padStart(2,"0");
         let dateHour = new Date().getHours().toString().padStart(2,"0");
-        console.log("----------------------------------------------")
-        console.log(`Update Weather........: ${dateHour}:${dateMin}`)
-        console.log(`Get Weather Delay Time: ${delayTime} Minutes`);
-        console.log('fetch_location........:', fetch_location);
-        console.log('units.................:', units);
+        //console.log("----------------------------------------------")
+        //console.log(`Update Weather........: ${dateHour}:${dateMin}`)
+        //console.log(`Get Weather Delay Time: ${delayTime} Minutes`);
+        //console.log('fetch_location........:', fetch_location);
+        //console.log('units.................:', units);
 
         await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${fetch_location}?unitGroup=${units}&include=days%2Chours%2Calerts%2Ccurrent&key=${apikey}&contentType=json`, {
           "method": "GET",

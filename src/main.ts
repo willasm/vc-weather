@@ -1,5 +1,5 @@
 import { App, Editor, MarkdownView, Modal, Notice, Plugin, setTooltip } from 'obsidian';
-import { VCWSettingsTab, vcwSettings, DEFAULT_SETTINGS } from './settings';
+import { VCWSettingsTab, VCWSettings, DEFAULT_SETTINGS } from './settings';
 import FormatTemplates from './formatTemplates';
 import UpdateWeather from './updateWeather';
 import InsertTemplatesModal from './insertWeatherModal'
@@ -7,13 +7,13 @@ import DisplayWeatherModal from './displayWeatherModal';
 
 
 //  ╭──────────────────────────────────────────────────────────────────────────────╮
-//  │                             ● Class vcwPlugin ●                              │
+//  │                             ● Class VCWPlugin ●                              │
 //  │                                                                              │
 //  │                      • Visual Crossing Weather Plugin •                      │
 //  ╰──────────────────────────────────────────────────────────────────────────────╯
-export default class vcwPlugin extends Plugin {
-  settings: vcwSettings;
-//  weatherTemplateTitle1: string;
+export default class VCWPlugin extends Plugin {
+  settings: VCWSettings;
+  statusbarAlertEl: HTMLSpanElement;
 
   async onload() {
 
@@ -78,9 +78,13 @@ export default class vcwPlugin extends Plugin {
     });
 
     // • Adds plugins status bar item to display weather information. Does not work on mobile apps. • 
+    // TODO: Add weather alert statusbar item
+    //const statusbarAlertEl = this.addStatusBarItem().createEl('span');
+    //statusbarAlertEl.setAttr("style","color: red;");
+    //statusbarAlertEl.setText("WEATHER ALERT");
     const statusBarItem = this.addStatusBarItem();
     statusBarItem.setText('[Visual Crossing Weather]');
-    setTooltip(statusBarItem,"View detailed info on todays weather",{ placement: "top" });
+    setTooltip(statusBarItem,"Click to view detailed info on todays weather",{ placement: "top" });
     statusBarItem.addClass("statusbar-click");
     statusBarItem.addEventListener("click", () => new DisplayWeatherModal(this.app, formattedInternalCurrentData).open());
 
@@ -699,7 +703,6 @@ export default class vcwPlugin extends Plugin {
           weatherTemplateTitle4 = this.settings.weatherTemplate4.slice(0,this.settings.weatherTemplate4.indexOf("\n"));
           let withoutTitleTemplate4 = this.settings.weatherTemplate4.slice(this.settings.weatherTemplate4.indexOf("\n")+1);
           weatherTemplateBody4 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate4);
-          console.log("📢weatherTemplateBody4 15 Min:\n", weatherTemplateBody4);
         } else {
           weatherTemplateTitle4 = "";       // Ensure title and template are empty strings in case user deleted the template
           weatherTemplateBody4 = "";        //   and will not be added to insert template menu
@@ -1414,50 +1417,66 @@ export default class vcwPlugin extends Plugin {
     if (editor == null) return;
     if (this.settings.weatherTemplate1.length > 0) {
       if (editor.contains("%weather1%")) {
-        editor = editor.replace(/%weather1%/gmi, weatherTemplateBody1);
-        file?.vault.modify(file, editor);
+        let idx = editor.indexOf('%weather1%');
+        let editPosStart = view.editor.offsetToPos(idx);
+        let editPosEnd = view.editor.offsetToPos(idx+10);
+        view.editor.replaceRange(weatherTemplateBody1, editPosStart,editPosEnd);
       };
     };
     if (this.settings.weatherTemplate2.length > 0) {
       if (editor.contains("%weather2%")) {
-        editor = editor.replace(/%weather2%/gmi, weatherTemplateBody2);
-        file?.vault.modify(file, editor);
+        let idx = editor.indexOf('%weather2%');
+        let editPosStart = view.editor.offsetToPos(idx);
+        let editPosEnd = view.editor.offsetToPos(idx+10);
+        view.editor.replaceRange(weatherTemplateBody1, editPosStart,editPosEnd);
       };
     };
     if (this.settings.weatherTemplate3.length > 0) {
       if (editor.contains("%weather3%")) {
-        editor = editor.replace(/%weather3%/gmi, weatherTemplateBody3);
-        file?.vault.modify(file, editor);
+        let idx = editor.indexOf('%weather3%');
+        let editPosStart = view.editor.offsetToPos(idx);
+        let editPosEnd = view.editor.offsetToPos(idx+10);
+        view.editor.replaceRange(weatherTemplateBody1, editPosStart,editPosEnd);
       };
     };
     if (this.settings.weatherTemplate4.length > 0) {
       if (editor.contains("%weather4%")) {
-        editor = editor.replace(/%weather4%/gmi, weatherTemplateBody4);
-        file?.vault.modify(file, editor);
+        let idx = editor.indexOf('%weather4%');
+        let editPosStart = view.editor.offsetToPos(idx);
+        let editPosEnd = view.editor.offsetToPos(idx+10);
+        view.editor.replaceRange(weatherTemplateBody1, editPosStart,editPosEnd);
       };
     };
     if (this.settings.weatherTemplate5.length > 0) {
       if (editor.contains("%weather5%")) {
-        editor = editor.replace(/%weather5%/gmi, weatherTemplateBody5);
-        file?.vault.modify(file, editor);
+        let idx = editor.indexOf('%weather5%');
+        let editPosStart = view.editor.offsetToPos(idx);
+        let editPosEnd = view.editor.offsetToPos(idx+10);
+        view.editor.replaceRange(weatherTemplateBody1, editPosStart,editPosEnd);
       };
     };
     if (this.settings.weatherTemplate6.length > 0) {
       if (editor.contains("%weather6%")) {
-        editor = editor.replace(/%weather6%/gmi, weatherTemplateBody6);
-        file?.vault.modify(file, editor);
+        let idx = editor.indexOf('%weather6%');
+        let editPosStart = view.editor.offsetToPos(idx);
+        let editPosEnd = view.editor.offsetToPos(idx+10);
+        view.editor.replaceRange(weatherTemplateBody1, editPosStart,editPosEnd);
       };
     };
     if (this.settings.weatherTemplate7.length > 0) {
       if (editor.contains("%weather7%")) {
-        editor = editor.replace(/%weather7%/gmi, weatherTemplateBody7);
-        file?.vault.modify(file, editor);
+        let idx = editor.indexOf('%weather7%');
+        let editPosStart = view.editor.offsetToPos(idx);
+        let editPosEnd = view.editor.offsetToPos(idx+10);
+        view.editor.replaceRange(weatherTemplateBody1, editPosStart,editPosEnd);
       };
     };
     if (this.settings.weatherTemplate8.length > 0) {
       if (editor.contains("%weather8%")) {
-        editor = editor.replace(/%weather8%/gmi, weatherTemplateBody8);
-        file?.vault.modify(file, editor);
+        let idx = editor.indexOf('%weather8%');
+        let editPosStart = view.editor.offsetToPos(idx);
+        let editPosEnd = view.editor.offsetToPos(idx+10);
+        view.editor.replaceRange(weatherTemplateBody1, editPosStart,editPosEnd);
       };
     };
     // Update weather DIV's

@@ -11,10 +11,8 @@ export default class DisplayWeatherModal extends Modal {
 
   onOpen() {
     let dataJson = JSON.parse(this.data);
-//    console.log('Data:\n',this.data);
 
     const {contentEl} = this;
-//    contentEl.setAttribute("style","width: 600px");
 
     contentEl.createEl("h1", {text: `${dataJson.address} - ${dataJson.dow} ${dataJson.month} ${dataJson.date} ${dataJson.year}`});
 

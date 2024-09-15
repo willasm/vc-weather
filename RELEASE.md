@@ -11,9 +11,8 @@
 
 <!-- ## [v-inc] ${YEAR4}-${MONTHNUMBER}-${DATE} -->
 
-## [0.1.0] 2024-09-15
-- Updated documentation
-- Removed unused code
+## [0.1.1] 2024-09-15
+- Prepared plugin for submission
 
 For a full list of changes, please see the projects [Changelog](CHANGELOG.md) file.
 
