@@ -11,7 +11,7 @@
 
 <!-- ## [v-inc] ${YEAR4}-${MONTHNUMBER}-${DATE} -->
 
-## [0.1.2] 2024-09-15
+## [0.1.3] 2024-09-15
 - Fix: corrections for submission
 
 For a full list of changes, please see the projects [Changelog](CHANGELOG.md) file.

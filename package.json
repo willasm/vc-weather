@@ -1,7 +1,7 @@
 {
 	"name": "visual-crossing-weather",
-	"version": "0.1.2",
-	"description": "Visual Crossing Weather for Obsidian",
+	"version": "0.1.3",
+	"description": "Visual Crossing Weather API for Your Notes",
 	"main": "main.js",
 	"scripts": {
 		"dev": "node esbuild.config.mjs",
