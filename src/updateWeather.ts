@@ -509,6 +509,7 @@ export default class UpdateWeather {
           "ampm1": ampm1,
           "ampm2": ampm2,
         },
+        "alerts": response.alerts,
         "CurrentWeather": {
           "datetime": response.currentConditions.datetime,
           "datetimeepoch": response.currentConditions.datetimeEpoch,

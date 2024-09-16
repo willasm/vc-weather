@@ -1,6 +1,6 @@
 {
 	"name": "visual-crossing-weather",
-	"version": "0.1.3",
+	"version": "0.1.4",
 	"description": "Visual Crossing Weather API for Your Notes",
 	"main": "main.js",
 	"scripts": {

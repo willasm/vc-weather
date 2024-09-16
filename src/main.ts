@@ -14,6 +14,7 @@ import DisplayWeatherModal from './displayWeatherModal';
 export default class VCWPlugin extends Plugin {
   settings: VCWSettings;
   statusbarAlertEl: HTMLSpanElement;
+  alerts: any;
 
   async onload() {
 
@@ -273,7 +274,7 @@ export default class VCWPlugin extends Plugin {
     if (this.settings.weatherTemplate8.length > 0) {
       weatherTemplateTitle8 = this.settings.weatherTemplate8.slice(0,this.settings.weatherTemplate8.indexOf("\n"));
       let withoutTitleTemplate8 = this.settings.weatherTemplate8.slice(this.settings.weatherTemplate8.indexOf("\n")+1);
-      weatherTemplateBody3 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate8);
+      weatherTemplateBody8 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate8);
     } else {
       weatherTemplateTitle8 = "";       // Ensure title and template are empty strings in case user deleted the template
       weatherTemplateBody8 = "";        //   and will not be added to insert template menu
@@ -289,6 +290,8 @@ export default class VCWPlugin extends Plugin {
 
     // Replace template strings and update DIV's 
     this.replaceTemplateStrings(weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8);
+    //let alerts = l1formattedresults.alerts[0] ?? [];
+    //console.log("📢l1 alerts: ", l1formattedresults.alerts[0]);
 
     // • Initialize all weather update intervals • 
 
@@ -1428,7 +1431,7 @@ export default class VCWPlugin extends Plugin {
         let idx = editor.indexOf('%weather2%');
         let editPosStart = view.editor.offsetToPos(idx);
         let editPosEnd = view.editor.offsetToPos(idx+10);
-        view.editor.replaceRange(weatherTemplateBody1, editPosStart,editPosEnd);
+        view.editor.replaceRange(weatherTemplateBody2, editPosStart,editPosEnd);
       };
     };
     if (this.settings.weatherTemplate3.length > 0) {
@@ -1436,7 +1439,7 @@ export default class VCWPlugin extends Plugin {
         let idx = editor.indexOf('%weather3%');
         let editPosStart = view.editor.offsetToPos(idx);
         let editPosEnd = view.editor.offsetToPos(idx+10);
-        view.editor.replaceRange(weatherTemplateBody1, editPosStart,editPosEnd);
+        view.editor.replaceRange(weatherTemplateBody3, editPosStart,editPosEnd);
       };
     };
     if (this.settings.weatherTemplate4.length > 0) {
@@ -1444,7 +1447,7 @@ export default class VCWPlugin extends Plugin {
         let idx = editor.indexOf('%weather4%');
         let editPosStart = view.editor.offsetToPos(idx);
         let editPosEnd = view.editor.offsetToPos(idx+10);
-        view.editor.replaceRange(weatherTemplateBody1, editPosStart,editPosEnd);
+        view.editor.replaceRange(weatherTemplateBody4, editPosStart,editPosEnd);
       };
     };
     if (this.settings.weatherTemplate5.length > 0) {
@@ -1452,7 +1455,7 @@ export default class VCWPlugin extends Plugin {
         let idx = editor.indexOf('%weather5%');
         let editPosStart = view.editor.offsetToPos(idx);
         let editPosEnd = view.editor.offsetToPos(idx+10);
-        view.editor.replaceRange(weatherTemplateBody1, editPosStart,editPosEnd);
+        view.editor.replaceRange(weatherTemplateBody5, editPosStart,editPosEnd);
       };
     };
     if (this.settings.weatherTemplate6.length > 0) {
@@ -1460,7 +1463,7 @@ export default class VCWPlugin extends Plugin {
         let idx = editor.indexOf('%weather6%');
         let editPosStart = view.editor.offsetToPos(idx);
         let editPosEnd = view.editor.offsetToPos(idx+10);
-        view.editor.replaceRange(weatherTemplateBody1, editPosStart,editPosEnd);
+        view.editor.replaceRange(weatherTemplateBody6, editPosStart,editPosEnd);
       };
     };
     if (this.settings.weatherTemplate7.length > 0) {
@@ -1468,7 +1471,7 @@ export default class VCWPlugin extends Plugin {
         let idx = editor.indexOf('%weather7%');
         let editPosStart = view.editor.offsetToPos(idx);
         let editPosEnd = view.editor.offsetToPos(idx+10);
-        view.editor.replaceRange(weatherTemplateBody1, editPosStart,editPosEnd);
+        view.editor.replaceRange(weatherTemplateBody7, editPosStart,editPosEnd);
       };
     };
     if (this.settings.weatherTemplate8.length > 0) {
@@ -1476,7 +1479,7 @@ export default class VCWPlugin extends Plugin {
         let idx = editor.indexOf('%weather8%');
         let editPosStart = view.editor.offsetToPos(idx);
         let editPosEnd = view.editor.offsetToPos(idx+10);
-        view.editor.replaceRange(weatherTemplateBody1, editPosStart,editPosEnd);
+        view.editor.replaceRange(weatherTemplateBody8, editPosStart,editPosEnd);
       };
     };
     // Update weather DIV's

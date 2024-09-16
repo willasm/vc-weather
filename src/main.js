@@ -4683,6 +4683,7 @@ var UpdateWeather = class {
         "ampm1": ampm1,
         "ampm2": ampm2
       },
+      "alerts": response.alerts,
       "CurrentWeather": {
         "datetime": response.currentConditions.datetime,
         "datetimeepoch": response.currentConditions.datetimeEpoch,
@@ -5862,7 +5863,7 @@ var VCWPlugin = class extends import_obsidian4.Plugin {
     if (this.settings.weatherTemplate8.length > 0) {
       weatherTemplateTitle8 = this.settings.weatherTemplate8.slice(0, this.settings.weatherTemplate8.indexOf("\n"));
       let withoutTitleTemplate8 = this.settings.weatherTemplate8.slice(this.settings.weatherTemplate8.indexOf("\n") + 1);
-      weatherTemplateBody3 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate8);
+      weatherTemplateBody8 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate8);
     } else {
       weatherTemplateTitle8 = "";
       weatherTemplateBody8 = "";
@@ -6960,7 +6961,7 @@ var VCWPlugin = class extends import_obsidian4.Plugin {
         let idx = editor.indexOf("%weather2%");
         let editPosStart = view.editor.offsetToPos(idx);
         let editPosEnd = view.editor.offsetToPos(idx + 10);
-        view.editor.replaceRange(weatherTemplateBody1, editPosStart, editPosEnd);
+        view.editor.replaceRange(weatherTemplateBody2, editPosStart, editPosEnd);
       }
       ;
     }
@@ -6970,7 +6971,7 @@ var VCWPlugin = class extends import_obsidian4.Plugin {
         let idx = editor.indexOf("%weather3%");
         let editPosStart = view.editor.offsetToPos(idx);
         let editPosEnd = view.editor.offsetToPos(idx + 10);
-        view.editor.replaceRange(weatherTemplateBody1, editPosStart, editPosEnd);
+        view.editor.replaceRange(weatherTemplateBody3, editPosStart, editPosEnd);
       }
       ;
     }
@@ -6980,7 +6981,7 @@ var VCWPlugin = class extends import_obsidian4.Plugin {
         let idx = editor.indexOf("%weather4%");
         let editPosStart = view.editor.offsetToPos(idx);
         let editPosEnd = view.editor.offsetToPos(idx + 10);
-        view.editor.replaceRange(weatherTemplateBody1, editPosStart, editPosEnd);
+        view.editor.replaceRange(weatherTemplateBody4, editPosStart, editPosEnd);
       }
       ;
     }
@@ -6990,7 +6991,7 @@ var VCWPlugin = class extends import_obsidian4.Plugin {
         let idx = editor.indexOf("%weather5%");
         let editPosStart = view.editor.offsetToPos(idx);
         let editPosEnd = view.editor.offsetToPos(idx + 10);
-        view.editor.replaceRange(weatherTemplateBody1, editPosStart, editPosEnd);
+        view.editor.replaceRange(weatherTemplateBody5, editPosStart, editPosEnd);
       }
       ;
     }
@@ -7000,7 +7001,7 @@ var VCWPlugin = class extends import_obsidian4.Plugin {
         let idx = editor.indexOf("%weather6%");
         let editPosStart = view.editor.offsetToPos(idx);
         let editPosEnd = view.editor.offsetToPos(idx + 10);
-        view.editor.replaceRange(weatherTemplateBody1, editPosStart, editPosEnd);
+        view.editor.replaceRange(weatherTemplateBody6, editPosStart, editPosEnd);
       }
       ;
     }
@@ -7010,7 +7011,7 @@ var VCWPlugin = class extends import_obsidian4.Plugin {
         let idx = editor.indexOf("%weather7%");
         let editPosStart = view.editor.offsetToPos(idx);
         let editPosEnd = view.editor.offsetToPos(idx + 10);
-        view.editor.replaceRange(weatherTemplateBody1, editPosStart, editPosEnd);
+        view.editor.replaceRange(weatherTemplateBody7, editPosStart, editPosEnd);
       }
       ;
     }
@@ -7020,7 +7021,7 @@ var VCWPlugin = class extends import_obsidian4.Plugin {
         let idx = editor.indexOf("%weather8%");
         let editPosStart = view.editor.offsetToPos(idx);
         let editPosEnd = view.editor.offsetToPos(idx + 10);
-        view.editor.replaceRange(weatherTemplateBody1, editPosStart, editPosEnd);
+        view.editor.replaceRange(weatherTemplateBody8, editPosStart, editPosEnd);
       }
       ;
     }

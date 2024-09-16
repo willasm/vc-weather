@@ -11,8 +11,8 @@
 
 <!-- ## [v-inc] ${YEAR4}-${MONTHNUMBER}-${DATE} -->
 
-## [0.1.3] 2024-09-15
-- Fix: corrections for submission
+## [0.1.4] 2024-09-16
+- Fix: wrong templates being inserted
 
 For a full list of changes, please see the projects [Changelog](CHANGELOG.md) file.
 
