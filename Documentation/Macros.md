@@ -25,7 +25,8 @@ These strings in your templates will be replaced with the relevant weather infor
 
 ## Table of Contents
 - [Current weather](#current-weather)
-- [Location Information]()
+- [Current Date and Time](#current-date-and-time)
+- [Location Information](#location-information)
 - [Todays Weather](#todays-weather)
 - [Weather in 1 Day](#weather-in-1-day)
 - [Weather in 2 Days](#weather-in-2-days)
@@ -79,7 +80,27 @@ These strings in your templates will be replaced with the relevant weather infor
 
 [Table of Contents](#table-of-contents)
 
-## Location Information
+## Current Date and Time (These represent Date and Time at the moment the templates are inserted into the document)
+| Macro               | Description                            | Replaced With Example |
+| ------------------- | -------------------------------------- | --------------------- |
+| `%year1-now%`       | Expands to the current year long       | 2024                  |
+| `%year2-now%`       | Expands to current year short          | 24                    |
+| `%month1-now%`      | Expands to current month               | 1 - 12                |
+| `%month2-now%`      | Expands to current month               | 01 - 12               |
+| `%month3-now%`      | Expands to current month               | Jan                   |
+| `%month4-now%`      | Expands to current month               | January               |
+| `%date1-now%`       | Expands to current month               | 1 - 31                |
+| `%date2-now%`       | Expands to current month               | 01 - 31               |
+| `%dow1-now%`        | Expands to current day of the week     | Sun                   |
+| `%dow2-now%`        | Expands to current day of the week     | Sunday                |
+| `%hours24-now%`     | Current 24 hours                       | 00 to 23, 1:00am = 13 |
+| `%hours12-now%`     | Current 12 hours                       | 12 hours format       |
+| `%mins-now%`        | Current minutes                        | 00 - 59               |
+| `%secs-now%`        | Current seconds                        | 00 - 59               |
+| `%ampm1-now%`       | AM or PM for 12 hour time              | AM or PM              |
+| `%ampm2-now%`       | am or pm for 12 hour time              | am or pm              |
+
+## Location Information (Date and Times are for the most recent weather data recieved)
 | Macro               | Description                            | Replaced With Example |
 | ------------------- | -------------------------------------- | --------------------- |
 | `%address%`         | The address you entered in settings    | Edmonton              |
@@ -89,7 +110,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%timezone%`        | Timezone of address                    | America/Edmonton      |
 | `%tzoffset%`        | Timezone offset                        | -6.0                  |
 | `%querycost%`       | API Query cost for this request        | Should always be 1    |
-| `%hours24%`         | Time of last weather update 24 hours   | 00, midnight 13, 1pm  |
+| `%hours24%`         | Time of last weather update 24 hours   | 00 to 23, 1:00am = 13 |
 | `%hours12%`         | Time of last weather update 12 hours   | 12 hours with am/pm   |
 | `%mins%`            | Time of last weather update minutes    | 00 - 59               |
 | `%secs%`            | Time of last weather update seconds    | 00 - 59               |
@@ -894,7 +915,7 @@ These strings in your templates will be replaced with the relevant weather infor
 [Table of Contents](#table-of-contents)
 
 ## Macros for Additional Locations
-The macros for the 4 optional additional locations are the same as all the previous macros, less the current weather, with just one minor change. You just need to prepend to the macros...
+The macros for the 4 optional additional locations are the same as all the previous macros (less the current weather and current date and time) with just one minor change. You just need to prepend to the macros with...
 
 - `l2` for the first additional location (short for location 2)
 - `l3` for the second additional location (short for location 3)
@@ -903,6 +924,6 @@ The macros for the 4 optional additional locations are the same as all the previ
 
 For example, `%tempmax-today%` represents todays high for your primary location. `%l2tempmax-today%` would be todays high for your first additional location. `%address%` would be your cities name for your primary location and `%l3address%` would be the city name for your second additional location.
 
-Note that the current weather is not repeated at all.
+> Note that the current weather as well as the current date and time do not have l2 to l5 macro variants as they are not needed for any of the additional locations.
 
 [Table of Contents](#table-of-contents)

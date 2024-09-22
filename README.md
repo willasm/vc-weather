@@ -68,6 +68,7 @@ The text macros are used to represent a weather data object and will be expanded
 
 > Note: this feature is not available in the mobile version
 
+### The current Weather
 The current weather is displayed in the statusbar. This is optional and can be disabled in the settings if you would like to remove it. The string itself is completely customizable and can be defined to display whatevever information you would like to see. There is also a second statusbar template string available. By default both strings are displayed in the statusbar, alternating every 30 seconds. This behavior can also be disabled in the settings if you wish. Disabling this would result in only the first string being displayed. The default strings display the current weather information for the first one and the second displays weather information for tommorow.
 
 The default first string `🔸%address%: %dow2-today% %month3-today% %date1-today%🔸High: %tempmax-today%° Low: %tempmin-today%°🔸Currently: %conditions% Temperature: %temp%° Feels Like: %feelslike%°🔸` displays...
@@ -81,6 +82,13 @@ The default second string `🔸%address%: %dow2-in1day% %month3-in1day% %date1-i
 The statusbar cycling...
 
 ![Statusbar1](./images/sb.gif)
+
+### Weather Alerts
+If a weather alert is active it will be displayed in the statusbar in red. Only one alert is displayed at a time with your primary location taking the highest precedence, then your additional locations in the order that they are entered in the settings. Mouse over the statusbars weather alert to see a description of the alert. Click the statusbars weather alert text to open in your default browser the web page associated with the alert.
+
+Example of a weather alert...
+
+![Weather Alert](./images/weatherAlert.png)
 
 For more detailed information on the statusbar templates see [Statusbar Templates.md](./Documentation/Statusbar%20Templates.md)
 

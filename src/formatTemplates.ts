@@ -23,6 +23,26 @@ export default class FormatTemplates {
     let retFormatted = replace(template, {
 
       //-----------------------
+      // Current Date and Time
+      // Need to preserve these
+      "year1-now" : `%year1-now%`,
+      "year2-now" : `%year2-now%`,
+      "month1-now" : `%month1-now%`,
+      "month2-now" : `%month2-now%`,
+      "month3-now" : `%month3-now%`,
+      "month4-now" : `%month4-now%`,
+      "date1-now" : `%date1-now%`,
+      "date2-now" : `%date2-now%`,
+      "dow1-now" : `%dow1-now%`,
+      "dow2-now" : `%dow2-now%`,
+      "hours24-now" : `%hours24-now%`,
+      "hours12-now" : `%hours12-now%`,
+      "mins-now" : `%mins-now%`,
+      "secs-now" : `%secs-now%`,
+      "ampm1-now" : `%ampm1-now%`,
+      "ampm2-now" : `%ampm2-now%`,
+
+      //-----------------------
       // Location 1 Information
       "address" : `${l1FormattedData.LocationInfo.address}`,
       "resolvedaddress" : `${l1FormattedData.LocationInfo.resolvedaddress}`,

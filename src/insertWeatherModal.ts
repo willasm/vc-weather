@@ -1,4 +1,5 @@
 import { App, MarkdownView, View, DropdownComponent, Editor, Modal, Setting, Plugin } from "obsidian";
+import VCWPlugin from './main'
 
 export default class InsertTemplatesModal extends Modal {
   app: App;
@@ -42,9 +43,18 @@ export default class InsertTemplatesModal extends Modal {
     this.template8 = template8;
   }
 
-  onOpen() {
+  async onOpen() {
     const { contentEl } = this;
     let currentTemplate = 't1';
+
+    let temp1 = await VCWPlugin.prototype.setCurrentDateTime(this.template1);
+    let temp2 = await VCWPlugin.prototype.setCurrentDateTime(this.template2);
+    let temp3 = await VCWPlugin.prototype.setCurrentDateTime(this.template3);
+    let temp4 = await VCWPlugin.prototype.setCurrentDateTime(this.template4);
+    let temp5 = await VCWPlugin.prototype.setCurrentDateTime(this.template5);
+    let temp6 = await VCWPlugin.prototype.setCurrentDateTime(this.template6);
+    let temp7 = await VCWPlugin.prototype.setCurrentDateTime(this.template7);
+    let temp8 = await VCWPlugin.prototype.setCurrentDateTime(this.template8);
 
     contentEl.createEl("br");
 
@@ -98,35 +108,35 @@ export default class InsertTemplatesModal extends Modal {
         };
         dropDown.onChange(async (value) => {
           if (value === 't1') {
-            paragraph.innerText = `${this.template1}`;
+            paragraph.innerText = `${temp1}`;
             currentTemplate = 't1';
           };
           if (value === 't2') {
-            paragraph.innerText = `${this.template2}`;
+            paragraph.innerText = `${temp2}`;
             currentTemplate = 't2';
           };
           if (value === 't3') {
-            paragraph.innerText = `${this.template3}`;
+            paragraph.innerText = `${temp3}`;
             currentTemplate = 't3';
           };
           if (value === 't4') {
-            paragraph.innerText = `${this.template4}`;
+            paragraph.innerText = `${temp4}`;
             currentTemplate = 't4';
           };
           if (value === 't5') {
-            paragraph.innerText = `${this.template5}`;
+            paragraph.innerText = `${temp5}`;
             currentTemplate = 't5';
           };
           if (value === 't6') {
-            paragraph.innerText = `${this.template6}`;
+            paragraph.innerText = `${temp6}`;
             currentTemplate = 't6';
           };
           if (value === 't7') {
-            paragraph.innerText = `${this.template7}`;
+            paragraph.innerText = `${temp7}`;
             currentTemplate = 't7';
           };
           if (value === 't8') {
-            paragraph.innerText = `${this.template8}`;
+            paragraph.innerText = `${temp8}`;
             currentTemplate = 't8';
           };
           //return value;
@@ -140,33 +150,43 @@ export default class InsertTemplatesModal extends Modal {
 
   }
 
-  onSelected(selected: string) {
+  async onSelected(selected: string) {
     const {contentEl} = this;
     contentEl.empty();
     this.close();
+
+    let temp1 = await VCWPlugin.prototype.setCurrentDateTime(this.template1);
+    let temp2 = await VCWPlugin.prototype.setCurrentDateTime(this.template2);
+    let temp3 = await VCWPlugin.prototype.setCurrentDateTime(this.template3);
+    let temp4 = await VCWPlugin.prototype.setCurrentDateTime(this.template4);
+    let temp5 = await VCWPlugin.prototype.setCurrentDateTime(this.template5);
+    let temp6 = await VCWPlugin.prototype.setCurrentDateTime(this.template6);
+    let temp7 = await VCWPlugin.prototype.setCurrentDateTime(this.template7);
+    let temp8 = await VCWPlugin.prototype.setCurrentDateTime(this.template8);
+
     if (selected === 't1') {
-      this.editor.replaceSelection(this.template1);
+      this.editor.replaceSelection(temp1);
     };
     if (selected === 't2') {
-      this.editor.replaceSelection(this.template2);
+      this.editor.replaceSelection(temp2);
     };
     if (selected === 't3') {
-      this.editor.replaceSelection(this.template3);
+      this.editor.replaceSelection(temp3);
     };
     if (selected === 't4') {
-      this.editor.replaceSelection(this.template4);
+      this.editor.replaceSelection(temp4);
     };
     if (selected === 't5') {
-      this.editor.replaceSelection(this.template5);
+      this.editor.replaceSelection(temp5);
     };
     if (selected === 't6') {
-      this.editor.replaceSelection(this.template6);
+      this.editor.replaceSelection(temp6);
     };
     if (selected === 't7') {
-      this.editor.replaceSelection(this.template7);
+      this.editor.replaceSelection(temp7);
     };
     if (selected === 't8') {
-      this.editor.replaceSelection(this.template8);
+      this.editor.replaceSelection(temp8);
     };
   };
 

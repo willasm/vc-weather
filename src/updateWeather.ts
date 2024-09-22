@@ -63,6 +63,61 @@ export default class UpdateWeather {
       return returnData;
     }
 
+    getAlerts(response: any) {
+
+    //   let event;
+    //   let headline;
+    //   let ends;
+    //   let endsepoch;
+    //   let onset
+    //   let onsetepoch;
+    //   let id;
+    //   let language;
+    //   let link;
+    //   let description;
+
+    //   console.log("📢response.alerts: ", response.alerts);
+    //   if (response.alerts.length) {
+    //     event = response.alerts[0].event;
+    //     headline = response.alerts[0].headline;
+    //     ends = response.alerts[0].ends;
+    //     endsepoch = response.alerts[0].endsEpoch;
+    //     onset = response.alerts[0].onset
+    //     onsetepoch = response.alerts[0].onsetEpoch;
+    //     id = response.alerts[0].id;
+    //     language = response.alerts[0].language;
+    //     link = response.alerts[0].link;
+    //     description = response.alerts[0].description;
+    //   } else {
+    //     event = undefined;
+    //     headline = undefined;
+    //     ends = undefined;
+    //     endsepoch = undefined;
+    //     onset = undefined
+    //     onsetepoch = undefined;
+    //     id = undefined;
+    //     language = undefined;
+    //     link = undefined;
+    //     description = undefined;
+    //   };
+
+    //   let alert = {
+    //     "event": event,
+    //     "headline": headline,
+    //     "ends": ends,
+    //     "endsepoch": endsepoch,
+    //     "onset": onset,
+    //     "onsetepoch": onsetepoch,
+    //     "id": id,
+    //     "language": language,
+    //     "link": link,
+    //     "description": description,
+    //   }
+      return response.alerts;
+
+    };
+
+
     processWeatherData(response: any, units: string) {
       
       // • Get Current Weather Data We Want • 
@@ -493,6 +548,7 @@ export default class UpdateWeather {
         windspeedmsin14days = Math.round(response.days[14].windspeed*3.6);
       };
 
+
       let weatherData = {
         "LocationInfo": {
           "address": response.address,
@@ -509,7 +565,19 @@ export default class UpdateWeather {
           "ampm1": ampm1,
           "ampm2": ampm2,
         },
-        "alerts": response.alerts,
+        "Alerts": response.alerts,
+        // "Alerts": {
+        //   "event": event,
+        //   "headline": headline,
+        //   "ends": ends,
+        //   "endsepoch": endsepoch,
+        //   "onset": onset,
+        //   "onsetepoch": onsetepoch,
+        //   "id": id,
+        //   "language": language,
+        //   "link": link,
+        //   "description": description,
+        // },
         "CurrentWeather": {
           "datetime": response.currentConditions.datetime,
           "datetimeepoch": response.currentConditions.datetimeEpoch,
