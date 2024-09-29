@@ -116,27 +116,52 @@ export default class VCWPlugin extends Plugin {
     statusbarAlertEl.addEventListener("click", () => {
       if (this.settings.location_one.length > 0) {
         if (l1Alerts.length > 0) {
-          window.open(`${l1Alerts[0].link}`);
+          let link = l1Alerts[0].link;
+          if (link.startsWith('http://') || link.startsWith('https://')) {
+            window.open(`${l1Alerts[0].link}`);
+          } else {
+            new Notice('A valid link was not returned with this weather alert');
+          };
         };
       };
       if (this.settings.location_two.length > 0) {
         if (l2Alerts.length > 0) {
-          window.open(`${l2Alerts[0].link}`);
+          let link = l2Alerts[0].link;
+          if (link.startsWith('http://') || link.startsWith('https://')) {
+            window.open(`${l2Alerts[0].link}`);
+          } else {
+            new Notice('A valid link was not returned with this weather alert');
+          };
         };
       };
       if (this.settings.location_three.length > 0) {
         if (l3Alerts.length > 0) {
-          window.open(`${l3Alerts[0].link}`);
+          let link = l3Alerts[0].link;
+          if (link.startsWith('http://') || link.startsWith('https://')) {
+            window.open(`${l3Alerts[0].link}`);
+          } else {
+            new Notice('A valid link was not returned with this weather alert');
+          };
         };
       };
       if (this.settings.location_four.length > 0) {
         if (l4Alerts.length > 0) {
-          window.open(`${l4Alerts[0].link}`);
+          let link = l4Alerts[0].link;
+          if (link.startsWith('http://') || link.startsWith('https://')) {
+            window.open(`${l4Alerts[0].link}`);
+          } else {
+            new Notice('A valid link was not returned with this weather alert');
+          };
         };
       };
       if (this.settings.location_five.length > 0) {
         if (l5Alerts.length > 0) {
-          window.open(`${l5Alerts[0].link}`);
+          let link = l5Alerts[0].link;
+          if (link.startsWith('http://') || link.startsWith('https://')) {
+            window.open(`${l5Alerts[0].link}`);
+          } else {
+            new Notice('A valid link was not returned with this weather alert');
+          };
         };
       };
     });
@@ -389,47 +414,143 @@ export default class VCWPlugin extends Plugin {
 
     // Initialize timer for DIV's Update 
     this.registerInterval(window.setInterval(async () => {
-    // Update weather DIV's
-    if(document.getElementsByClassName('weather_current_1').length > 0) {
-      const divEl = document.getElementsByClassName('weather_current_1')[0];
-      let withDate = await this.setCurrentDateTime(weatherTemplateBody1);
-      divEl.innerHTML = withDate;
-    };
-    if(document.getElementsByClassName('weather_current_2').length > 0) {
-      const divEl = document.getElementsByClassName('weather_current_2')[0];
-      let withDate = await this.setCurrentDateTime(weatherTemplateBody2);
-      divEl.innerHTML = withDate;
-    };
-    if(document.getElementsByClassName('weather_current_3').length > 0) {
-      const divEl = document.getElementsByClassName('weather_current_3')[0];
-      let withDate = await this.setCurrentDateTime(weatherTemplateBody3);
-      divEl.innerHTML = withDate;
-    };
-    if(document.getElementsByClassName('weather_current_4').length > 0) {
-      const divEl = document.getElementsByClassName('weather_current_4')[0];
-      let withDate = await this.setCurrentDateTime(weatherTemplateBody4);
-      divEl.innerHTML = withDate;
-    };
-    if(document.getElementsByClassName('weather_current_5').length > 0) {
-      const divEl = document.getElementsByClassName('weather_current_5')[0];
-      let withDate = await this.setCurrentDateTime(weatherTemplateBody5);
-      divEl.innerHTML = withDate;
-    };
-    if(document.getElementsByClassName('weather_current_6').length > 0) {
-      const divEl = document.getElementsByClassName('weather_current_6')[0];
-      let withDate = await this.setCurrentDateTime(weatherTemplateBody6);
-      divEl.innerHTML = withDate;
-    };
-    if(document.getElementsByClassName('weather_current_7').length > 0) {
-      const divEl = document.getElementsByClassName('weather_current_7')[0];
-      let withDate = await this.setCurrentDateTime(weatherTemplateBody7);
-      divEl.innerHTML = withDate;
-    };
-    if(document.getElementsByClassName('weather_current_8').length > 0) {
-      const divEl = document.getElementsByClassName('weather_current_8')[0];
-      let withDate = await this.setCurrentDateTime(weatherTemplateBody8);
-      divEl.innerHTML = withDate;
-    };
+      // Update weather DIV's
+      // FIXME: Need to remove all the innerHTML
+      const view = this.app.workspace.getActiveViewOfType(MarkdownView);
+      if (view) {
+        const file = this.app.workspace.getActiveFile();
+        let editor = view.getViewData();
+        if (editor != null) {
+          if (document.getElementsByClassName('weather_current_1').length > 0) {
+            if (editor.contains('class="weather_current_1">')) {
+              //const divEl = document.getElementsByClassName('weather_current_1')[0];
+              let withDate = await this.setCurrentDateTime(weatherTemplateBody1);
+              let idxStart = editor.indexOf("weather_current_1")+19;
+              let idxEnd = editor.indexOf("</div>",idxStart);
+              //let editPosStart = view.editor.offsetToPos(idxStart);
+              //let editPosEnd = view.editor.offsetToPos(idxEnd);
+              //view.editor.replaceRange(withDate, editPosStart,editPosEnd);
+              let startStr = editor.substring(0,idxStart);
+              let endStr = editor.substring(idxEnd);
+              let newTemplate = startStr+withDate+endStr;
+              file?.vault.modify(file, newTemplate);
+              //divEl.innerHTML = withDate;
+            };
+          };
+          if (document.getElementsByClassName('weather_current_2').length > 0) {
+            if (editor.contains('class="weather_current_2">')) {
+              //const divEl = document.getElementsByClassName('weather_current_2')[0];
+              let withDate = await this.setCurrentDateTime(weatherTemplateBody2);
+              let idxStart = editor.indexOf("weather_current_2")+19;
+              let idxEnd = editor.indexOf("</div>",idxStart);
+              //let editPosStart = view.editor.offsetToPos(idxStart);
+              //let editPosEnd = view.editor.offsetToPos(idxEnd);
+              //view.editor.replaceRange(withDate, editPosStart,editPosEnd);
+              let startStr = editor.substring(0,idxStart);
+              let endStr = editor.substring(idxEnd);
+              let newTemplate = startStr+withDate+endStr;
+              file?.vault.modify(file, newTemplate);
+              //divEl.innerHTML = withDate;
+            };
+          };
+          if (document.getElementsByClassName('weather_current_3').length > 0) {
+            if (editor.contains('class="weather_current_3">')) {
+              //const divEl = document.getElementsByClassName('weather_current_3')[0];
+              let withDate = await this.setCurrentDateTime(weatherTemplateBody3);
+              let idxStart = editor.indexOf("weather_current_3")+19;
+              let idxEnd = editor.indexOf("</div>",idxStart);
+              //let editPosStart = view.editor.offsetToPos(idxStart);
+              //let editPosEnd = view.editor.offsetToPos(idxEnd);
+              //view.editor.replaceRange(withDate, editPosStart,editPosEnd);
+              let startStr = editor.substring(0,idxStart);
+              let endStr = editor.substring(idxEnd);
+              let newTemplate = startStr+withDate+endStr;
+              file?.vault.modify(file, newTemplate);
+              //divEl.innerHTML = withDate;
+            };
+          };
+          if (document.getElementsByClassName('weather_current_4').length > 0) {
+            if (editor.contains('class="weather_current_4">')) {
+              //const divEl = document.getElementsByClassName('weather_current_4')[0];
+              let withDate = await this.setCurrentDateTime(weatherTemplateBody4);
+              let idxStart = editor.indexOf("weather_current_4")+19;
+              let idxEnd = editor.indexOf("</div>",idxStart);
+              //let editPosStart = view.editor.offsetToPos(idxStart);
+              //let editPosEnd = view.editor.offsetToPos(idxEnd);
+              //view.editor.replaceRange(withDate, editPosStart,editPosEnd);
+              let startStr = editor.substring(0,idxStart);
+              let endStr = editor.substring(idxEnd);
+              let newTemplate = startStr+withDate+endStr;
+              file?.vault.modify(file, newTemplate);
+              //divEl.innerHTML = withDate;
+            };
+          };
+          if(document.getElementsByClassName('weather_current_5').length > 0) {
+            if (editor.contains('class="weather_current_5">')) {
+              //const divEl = document.getElementsByClassName('weather_current_5')[0];
+              let withDate = await this.setCurrentDateTime(weatherTemplateBody5);
+              let idxStart = editor.indexOf("weather_current_5")+19;
+              let idxEnd = editor.indexOf("</div>",idxStart);
+              //let editPosStart = view.editor.offsetToPos(idxStart);
+              //let editPosEnd = view.editor.offsetToPos(idxEnd);
+              //view.editor.replaceRange(withDate, editPosStart,editPosEnd);
+              let startStr = editor.substring(0,idxStart);
+              let endStr = editor.substring(idxEnd);
+              let newTemplate = startStr+withDate+endStr;
+              file?.vault.modify(file, newTemplate);
+              //divEl.innerHTML = withDate;
+            };
+          };
+          if(document.getElementsByClassName('weather_current_6').length > 0) {
+            if (editor.contains('class="weather_current_6">')) {
+              //const divEl = document.getElementsByClassName('weather_current_6')[0];
+              let withDate = await this.setCurrentDateTime(weatherTemplateBody6);
+              let idxStart = editor.indexOf("weather_current_6")+19;
+              let idxEnd = editor.indexOf("</div>",idxStart);
+              //let editPosStart = view.editor.offsetToPos(idxStart);
+              //let editPosEnd = view.editor.offsetToPos(idxEnd);
+              //view.editor.replaceRange(withDate, editPosStart,editPosEnd);
+              let startStr = editor.substring(0,idxStart);
+              let endStr = editor.substring(idxEnd);
+              let newTemplate = startStr+withDate+endStr;
+              file?.vault.modify(file, newTemplate);
+              //divEl.innerHTML = withDate;
+            };
+          };
+          if(document.getElementsByClassName('weather_current_7').length > 0) {
+            if (editor.contains('class="weather_current_7">')) {
+              //const divEl = document.getElementsByClassName('weather_current_7')[0];
+              let withDate = await this.setCurrentDateTime(weatherTemplateBody7);
+              let idxStart = editor.indexOf("weather_current_7")+19;
+              let idxEnd = editor.indexOf("</div>",idxStart);
+              //let editPosStart = view.editor.offsetToPos(idxStart);
+              //let editPosEnd = view.editor.offsetToPos(idxEnd);
+              //view.editor.replaceRange(withDate, editPosStart,editPosEnd);
+              let startStr = editor.substring(0,idxStart);
+              let endStr = editor.substring(idxEnd);
+              let newTemplate = startStr+withDate+endStr;
+              file?.vault.modify(file, newTemplate);
+              //divEl.innerHTML = withDate;
+            };
+          };
+          if(document.getElementsByClassName('weather_current_8').length > 0) {
+            if (editor.contains('class="weather_current_8">')) {
+              //const divEl = document.getElementsByClassName('weather_current_8')[0];
+              let withDate = await this.setCurrentDateTime(weatherTemplateBody8);
+              let idxStart = editor.indexOf("weather_current_8")+19;
+              let idxEnd = editor.indexOf("</div>",idxStart);
+              //let editPosStart = view.editor.offsetToPos(idxStart);
+              //let editPosEnd = view.editor.offsetToPos(idxEnd);
+              //view.editor.replaceRange(withDate, editPosStart,editPosEnd);
+              let startStr = editor.substring(0,idxStart);
+              let endStr = editor.substring(idxEnd);
+              let newTemplate = startStr+withDate+endStr;
+              file?.vault.modify(file, newTemplate);
+              //divEl.innerHTML = withDate;
+            };
+          };
+        };
+      };
     }, 1 * 1000))
 
     // Initialize timer for statusbar cycle 
@@ -1840,49 +1961,6 @@ export default class VCWPlugin extends Plugin {
         view.editor.replaceRange(withDate, editPosStart,editPosEnd);
       };
     };
-    // Update weather DIV's
-    //  Need to wait for document string replacements to complete first
-    await new Promise(r => setTimeout(r, 1000));
-    if(document.getElementsByClassName('weather_current_1').length > 0) {
-      const divEl = document.getElementsByClassName('weather_current_1')[0];
-      let withDate = await this.setCurrentDateTime(weatherTemplateBody1);
-      divEl.innerHTML = withDate;
-    };
-    if(document.getElementsByClassName('weather_current_2').length > 0) {
-      const divEl = document.getElementsByClassName('weather_current_2')[0];
-      let withDate = await this.setCurrentDateTime(weatherTemplateBody2);
-      divEl.innerHTML = withDate;
-    };
-    if(document.getElementsByClassName('weather_current_3').length > 0) {
-      const divEl = document.getElementsByClassName('weather_current_3')[0];
-      let withDate = await this.setCurrentDateTime(weatherTemplateBody3);
-      divEl.innerHTML = withDate;
-    };
-    if(document.getElementsByClassName('weather_current_4').length > 0) {
-      const divEl = document.getElementsByClassName('weather_current_4')[0];
-      let withDate = await this.setCurrentDateTime(weatherTemplateBody4);
-      divEl.innerHTML = withDate;
-    };
-    if(document.getElementsByClassName('weather_current_5').length > 0) {
-      const divEl = document.getElementsByClassName('weather_current_5')[0];
-      let withDate = await this.setCurrentDateTime(weatherTemplateBody5);
-      divEl.innerHTML = withDate;
-    };
-    if(document.getElementsByClassName('weather_current_6').length > 0) {
-      const divEl = document.getElementsByClassName('weather_current_6')[0];
-      let withDate = await this.setCurrentDateTime(weatherTemplateBody6);
-      divEl.innerHTML = withDate;
-    };
-    if(document.getElementsByClassName('weather_current_7').length > 0) {
-      const divEl = document.getElementsByClassName('weather_current_7')[0];
-      let withDate = await this.setCurrentDateTime(weatherTemplateBody7);
-      divEl.innerHTML = withDate;
-    };
-    if(document.getElementsByClassName('weather_current_8').length > 0) {
-      const divEl = document.getElementsByClassName('weather_current_8')[0];
-      let withDate = await this.setCurrentDateTime(weatherTemplateBody8);
-      divEl.innerHTML = withDate;
-    };
-  }
+  };
 
 }

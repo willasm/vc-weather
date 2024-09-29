@@ -1,3 +1,4 @@
+// FIXME: FileSystemAdapter need to be removed for mobile
 import { App, Plugin, Notice, PluginSettingTab, Setting, TAbstractFile, TFolder, TextAreaComponent, Platform, FileSystemAdapter } from 'obsidian';
 import VCWPlugin from './main';
 
@@ -39,8 +40,8 @@ export const DEFAULT_SETTINGS: VCWSettings = {
   updateFrequency: "15",
   statusbarActive: true,
   statusbarCycle: true,
-  weatherTemplate1SB: "🔸%address%: %dow2-now% %month3-now% %date1-now% %hours24-now%:%mins-now%:%secs-now%🔸High: %tempmax-today%° Low: %tempmin-today%°🔸Currently: %conditions% Temperature: %temp%° Feels Like: %feelslike%°🔸",
-  weatherTemplate2SB: "🔸%address%: %dow2-in1day% %month3-in1day% %date1-in1day%🔸High: %tempmax-in1day%° Low: %tempmin-in1day%° 🔸 Clouds: %cloudcover-in1day% Probabilty of precipitation: %precipprob-in1day% (%preciptype-in1day%)🔸",
+  weatherTemplate1SB: "🔸%address%: %dow2-now% %month3-now% %date1-now%🔸High: %tempmax-today%° Low: %tempmin-today%°🔸Currently: %conditions% Temp: %temp%° Feels Like: %feelslike%°🔸",
+  weatherTemplate2SB: "🔸%address%: %dow2-in1day% %month3-in1day% %date1-in1day%🔸High: %tempmax-in1day%° Low: %tempmin-in1day%°🔸Clouds: %cloudcover-in1day% Probabilty of precipitation: %precipprob-in1day% (%preciptype-in1day%)🔸",
   weatherTemplate1: "Short one liner\n%conditions% • Current Temp: %temp%° • Feels Like: %feelslike%°\n",
   weatherTemplate2: "More detailed\n%address%: %dow2-now% %month4-now% %date1-now% - %hours12-now%:%mins-now% %ampm2-now%\nProbability of precipitation: %precipprob% • (%preciptype%)\nCurrent Temp: %temp%°C • Feels Like: %feelslike%°C\nWind: %windspeed-today% km/h from the %winddirstr-today% with gusts up to %windgust-today% km/h\nSunrise: %sunrise-today% • Sunset: %sunset-today%\n",
   weatherTemplate3: "Historical DIV\n<img src=%iconurl% />&nbsp;%month4-now% %date1-now% %year1-now% • %hours12-now%:%mins-now% %ampm2-now% • %conditions%\n&nbsp;Recorded Temp: %temp% • Felt like: %feelslike%\n&nbsp;Wind: %windspeed-today% km/h from the %winddirstr-today% with gusts up to %windgust-today% km/h\n&nbsp;Sunrise: %sunrise-today% • Sunset: %sunset-today%",
@@ -87,6 +88,7 @@ export class VCWSettingsTab extends PluginSettingTab {
     let adapter = this.app.vault.adapter;
     let basePath = "";
     let templateFolder = "";
+    // FIXME: FileSystemAdapter & adapter need to be removed for mobile
     if (adapter instanceof FileSystemAdapter) {
       basePath = adapter.getBasePath();
       const configDir = this.app.vault.configDir;

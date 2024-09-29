@@ -2,6 +2,12 @@
 
 <!-- ## [v-inc] ${YEAR4}-${MONTHNUMBER}-${DATE} -->
 
+## [0.2.1] 2024-09-29
+- Removed: Mobile support (until I find valid code work around)
+- Removed: All references to innerHTML as requested by Obsidian
+- Added: Check for valid URL in weather alerts
+- Updated: Default templates
+
 ## [0.2.0] 2024-09-22
 - Added: Weather Alerts
 - Added: Current Date and Time macros
