@@ -47,7 +47,17 @@ export default class UpdateWeather {
           returnData = response;
       
         }).catch((errorResponse) => {
-        if (errorResponse.text) { //additional error information
+          console.log(errorResponse);
+          if (errorResponse.status == 400) {
+            new Notification("VC Weather: [BAD_REQUEST] Your requests is invalid in some way (invalid dates, bad location parameter etc).")
+          } else if (errorResponse.status == 401) {
+            new Notification("VC Weather: [UNAUTHORIZED] Check if your API key is entered correctly.")
+          } else if (errorResponse.status == 429) {
+            new Notification("VC Weather: [TOO_MANY_REQUESTS] You have exceeded the maximum number of daily result records for your account.")
+          } else if (errorResponse.status == 500) {
+            new Notification("VC Weather: [INTERNAL_SERVER_ERROR] Visual Crossing servers returned an unexpected error.")
+          }
+          if (errorResponse.text) { //additional error information
           errorResponse.text().then( (errorMessage: any) => {
             //errorMessage now returns the response body which includes the full error message
             console.error(errorMessage);

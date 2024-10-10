@@ -314,7 +314,6 @@ export class VCWSettingsTab extends PluginSettingTab {
     .setName("Update frequency")
     .setDesc("Update frequency for getting weather information")
     .addDropdown(dropDown => {
-      dropDown.addOption('5', 'Every 5 Minutes');
       dropDown.addOption('10', 'Every 10 Minutes');
       dropDown.addOption('15', 'Every 15 Minutes');
       dropDown.addOption('20', 'Every 20 Minutes');
