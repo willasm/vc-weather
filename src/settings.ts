@@ -1,6 +1,7 @@
 // FIXME: FileSystemAdapter need to be removed for mobile
 import { App, Plugin, Notice, PluginSettingTab, Setting, TAbstractFile, TFolder, TextAreaComponent, Platform, FileSystemAdapter } from 'obsidian';
 import VCWPlugin from './main';
+import * as fs from 'fs';
 
 export interface VCWSettings {
   apikey: string;
@@ -93,8 +94,10 @@ export class VCWSettingsTab extends PluginSettingTab {
       basePath = adapter.getBasePath();
       const configDir = this.app.vault.configDir;
       const templateConfigPath = `${basePath}/${configDir}/templates.json`;
-       let json = require(templateConfigPath);
-      templateFolder = json.folder;
+      if (fs.existsSync(templateConfigPath)) {
+        let json = require(templateConfigPath);
+        templateFolder = json.folder;
+      };
     };
 
     // If "Templates" folder exists and excludeFolder setting is an empty string, write template folder to settings 

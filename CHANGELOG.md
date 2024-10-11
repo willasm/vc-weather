@@ -2,6 +2,9 @@
 
 <!-- ## [v-inc] ${YEAR4}-${MONTHNUMBER}-${DATE} -->
 
+## [0.2.3] 2024-10-11
+Fixed: Settings page would not display if core plugin templates folder was undefined
+
 ## [0.2.2] 2024-10-10
 - Removed: Update frequency every 5 minutes
   - Note: To all beta users if you have update frequency set to 5 minutes you need to change it
