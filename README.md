@@ -5,8 +5,11 @@
 - [Features](#features)
 - [Template Macros](#template-macros)
 - [The Statusbar Weather Display & Templates](#the-statusbar-weather-display--templates)
+  - [The current weather](#the-current-weather)
+  - [Weather alerts](#weather-alerts)
+  - [Customizing the statusbar](#customizing-the-statusbar)
 - [The Weather Templates](#the-weather-templates)
-- [Obsidian & Templater Templates Support](#obsidian--templater-templates-support)
+- [Obsidian Templates Support](#obsidian-templates-support)
 - [Plugin Commands](#plugin-commands)
 - [Settings](#settings)
     - [Visual Crossing API authentification Key](#visual-crossing-api-authentification-key)
@@ -38,7 +41,8 @@ You can get your [free API key here](https://www.visualcrossing.com/sign-up). It
 ## Features
 - Get weather data from 5 locations (OpenWeather plugin only had 1)
 - Display current weather in the statusbar
-  - The statusbar strings are customizable
+  - The statusbar text strings are customizable
+  - The statusbar text can be customized using CSS
   - Has 2 statusbar template strings which can be displayed alternating every 30 seconds
   - Default has todays weather info for the first one, tomorrows weather for the second
   - Clicking on the weather data in the statusbar will open a modal with detailed info on todays weather
@@ -90,6 +94,30 @@ Example of a weather alert...
 
 ![Weather Alert](./images/weatherAlert.png)
 
+### Customizing the statusbar
+You can customize the way the weather information is displayed in the statusbar using CSS. To do so create a css file in your vaults `.obsidian/snippets` folder Eg. vcWeather.css and add the following text...
+
+```css
+.statusbar-vc {
+  background-color: var(--status-bar-background);
+  color: var(--status-bar-text-color);
+  border-radius: var(--status-bar-radius);
+  font-size: var(--status-bar-font-size);
+}
+
+.statusbar-alert-vc {
+  background-color: whitesmoke;
+  color: var(--color-red);
+  border-radius: 8px;
+  font-size: var(--status-bar-font-size);
+}
+```
+Note that the `.obsidian` folder is a hidden folder so you may need to enable `show hidden files` in your file manager. The `snippets` folder may need to be created if it does not already exist in your vault.
+
+Then enable the CSS snippet in Obsidians settings under appearance/CSS snippets (at the bottom).
+
+The example CSS text above is the default settings. Feel free to customize it to your preferences. `.statusbar-vc` is the class name for the weather information in the statusbar. `.statusbar-alert-vc` is the class name used for weather alerts displayed in the status bar.
+
 For more detailed information on the statusbar templates see [Statusbar Templates.md](./Documentation/Statusbar%20Templates.md)
 
 [Table of Contents](#table-of-contents)
@@ -116,7 +144,7 @@ For a much more detailed overview of the weather templates see [Weather Template
 [Table of Contents](#table-of-contents)
 
 
-## Obsidian & Templater Templates Support
+## Obsidian Templates Support
 Insertion of the weather templates can be automated by using Obsidian or Templater plugin templates. Simply add the following to your templates.
 
 - `%weather1%` - Inserts weather template One
@@ -128,7 +156,7 @@ Insertion of the weather templates can be automated by using Obsidian or Templat
 - `%weather7%` - Inserts weather template Seven
 - `%weather8%` - Inserts weather template Eight
 
-The strings above will autmatically be replaced with the templates data when a new file is created with the template or you insert the template into an existing document. Note that the Templater plugin is not required to expand the weather string templates, that is handled by this plugin itself.
+The strings above will autmatically be replaced with the templates data when a new file is created with the template or you insert the template into an existing document. Note that the Templater plugin is not required to expand the weather string templates, that is handled by this plugin itself. Remember to exclude your templates folder in the plugins settings. If you do not exclude the folder the weather templates will be expanded in your template file which you do not want to happen.
 
 [Table of Contents](#table-of-contents)
 
@@ -165,7 +193,7 @@ Note: Base returns temperatures in degrees Kelvin, not very useful in this appli
 You must add your templates folder here. Not doing so would result in all defined weather templates being replaced with weather data. There is an optional second exclude folder which could be useful for your scripts folder. This second one is optional.
 
 #### **Update frequency**
-Time interval for updating the current weather information that is displayed in the statusbar and [DIV's](#dynamic-weather-using-divs) (5, 10, 15, 20, 30 or 60 minutes). How often the weather data is actually updated is dependent on the weather stations near your location. I Recommend setting this to 10 to 30 minutes. The weather stations near you are not likely to update in a shorter time than that.
+Time interval for updating the current weather information that is displayed in the statusbar and [DIV's](#dynamic-weather-using-divs) (10, 15, 20, 30 or 60 minutes). How often the weather data is actually updated is dependent on the weather stations near your location. I Recommend setting this to 10 to 30 minutes. The weather stations near you are not likely to update in a shorter time than that.
 
 #### **Show weather in the statusbar**
 Toggles the weather display in the statusbar on or off
@@ -182,7 +210,7 @@ This template will only be displayed when statubar cycling is enabled. Each temp
 #### **Weather templates**
 These are the 8 weather templates used to insert weather data into your documents
 
-> Note: The first line is used by the command palette menu to identify the template
+> Note: The first line is used in the command palette menu and insert template modal to identify the template by name
 >
 > This line is not inserted into your document, see the default templates for examples
 

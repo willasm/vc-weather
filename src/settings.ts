@@ -1,5 +1,5 @@
 // FIXME: FileSystemAdapter need to be removed for mobile
-import { App, Plugin, Notice, PluginSettingTab, Setting, TAbstractFile, TFolder, TextAreaComponent, Platform, FileSystemAdapter } from 'obsidian';
+import { App, Plugin, Notice, PluginSettingTab, Setting, TAbstractFile, TFolder, TextAreaComponent, Platform, FileSystemAdapter, setTooltip } from 'obsidian';
 import VCWPlugin from './main';
 import * as fs from 'fs';
 
@@ -45,8 +45,8 @@ export const DEFAULT_SETTINGS: VCWSettings = {
   weatherTemplate2SB: "🔸%address%: %dow2-in1day% %month3-in1day% %date1-in1day%🔸High: %tempmax-in1day%° Low: %tempmin-in1day%°🔸Clouds: %cloudcover-in1day% Probabilty of precipitation: %precipprob-in1day% (%preciptype-in1day%)🔸",
   weatherTemplate1: "Short one liner\n%conditions% • Current Temp: %temp%° • Feels Like: %feelslike%°\n",
   weatherTemplate2: "More detailed\n%address%: %dow2-now% %month4-now% %date1-now% - %hours12-now%:%mins-now% %ampm2-now%\nProbability of precipitation: %precipprob% • (%preciptype%)\nCurrent Temp: %temp%°C • Feels Like: %feelslike%°C\nWind: %windspeed-today% km/h from the %winddirstr-today% with gusts up to %windgust-today% km/h\nSunrise: %sunrise-today% • Sunset: %sunset-today%\n",
-  weatherTemplate3: "Historical DIV\n<img src=%iconurl% />&nbsp;%month4-now% %date1-now% %year1-now% • %hours12-now%:%mins-now% %ampm2-now% • %conditions%\n&nbsp;Recorded Temp: %temp% • Felt like: %feelslike%\n&nbsp;Wind: %windspeed-today% km/h from the %winddirstr-today% with gusts up to %windgust-today% km/h\n&nbsp;Sunrise: %sunrise-today% • Sunset: %sunset-today%",
-  weatherTemplate4: "Current DIV\n<img src=%iconurl%  />&nbsp;%month4-now% %date1-now% %year1-now% • %hours12-now%:%mins-now% %ampm2-now% • %conditions%\n&nbsp;Current Temp: %temp% • Feels like: %feelslike%\n&nbsp;Wind: %windspeed-today% km/h from the %winddirstr-today% with gusts up to %windgust-today% km/h\n&nbsp;Sunrise: %sunrise-today% • Sunset: %sunset-today%",
+  weatherTemplate3: "Historical DIV\n<img src=\"%iconurl%\" />&nbsp;%month4-now% %date1-now% %year1-now% • %hours12-now%:%mins-now% %ampm2-now% • %conditions%\n&nbsp;Recorded Temp: %temp% • Felt like: %feelslike%\n&nbsp;Wind: %windspeed-today% km/h from the %winddirstr-today% with gusts up to %windgust-today% km/h\n&nbsp;Sunrise: %sunrise-today% • Sunset: %sunset-today%",
+  weatherTemplate4: "Current DIV\n<img src=\"%iconurl%\"  />&nbsp;%month4-now% %date1-now% %year1-now% • %hours12-now%:%mins-now% %ampm2-now% • %conditions%\n&nbsp;Current Temp: %temp% • Feels like: %feelslike%\n&nbsp;Wind: %windspeed-today% km/h from the %winddirstr-today% with gusts up to %windgust-today% km/h\n&nbsp;Sunrise: %sunrise-today% • Sunset: %sunset-today%",
   weatherTemplate5: "",
   weatherTemplate6: "",
   weatherTemplate7: "",
@@ -86,98 +86,41 @@ export class VCWSettingsTab extends PluginSettingTab {
     });
 
     // Get "Templates" folder if it is defined in core plugin "Templates" 
-    let adapter = this.app.vault.adapter;
-    let basePath = "";
-    let templateFolder = "";
-    // FIXME: FileSystemAdapter & adapter need to be removed for mobile
-    if (adapter instanceof FileSystemAdapter) {
-      basePath = adapter.getBasePath();
-      const configDir = this.app.vault.configDir;
-      const templateConfigPath = `${basePath}/${configDir}/templates.json`;
-      if (fs.existsSync(templateConfigPath)) {
-        let json = require(templateConfigPath);
-        templateFolder = json.folder;
-      };
-    };
+    // Note: Removing this for now (this only applies to desktop)
+    // let adapter = this.app.vault.adapter;
+    // let basePath = "";
+    // let templateFolder = "";
+    // // FIXME: FileSystemAdapter & adapter need to be removed for mobile
+    // if (adapter instanceof FileSystemAdapter) {
+    //   basePath = adapter.getBasePath();
+    //   //console.log("📢basePath: ", basePath);
+    //   const configDir = this.app.vault.configDir;
+    //   //console.log("📢configDir: ", configDir);
+    //   const templateConfigPath = `${basePath}/${configDir}/templates.json`;
+    //   //console.log("📢templateConfigPath: ", templateConfigPath);
+    //   const templateFile = await adapter.exists(templateConfigPath, true)
+    //   if (templateFile) {
+    //   //if (fs.existsSync(templateConfigPath)) {
+    //     //console.log('>>>>>>>>> here');
+    //     let json = require(templateConfigPath);
+    //     templateFolder = json.folder;
+    //     //console.log("📢templateFolder: ", templateFolder);
+    //   };
+    // };
 
     // If "Templates" folder exists and excludeFolder setting is an empty string, write template folder to settings 
-    if (templateFolder.length > 0 && this.plugin.settings.excludeFolder == "") {
-      this.plugin.settings.excludeFolder = templateFolder;
-      await this.plugin.saveSettings();
-    };
+    // if (templateFolder.length > 0 && this.plugin.settings.excludeFolder == "") {
+    //   this.plugin.settings.excludeFolder = templateFolder;
+    //   await this.plugin.saveSettings();
+    // };
 
-    // • Settings for Visual Crossing API • 
-
-    // Visual Crossing Header Image 
-    const imageLink = containerEl.createEl("a");
-    const imageHeader = containerEl.createEl("img");
-    imageHeader.setAttribute("src", "https://www.visualcrossing.com/images/vclogo.svg");
-    imageHeader.setAttribute("height", "15%");
-    imageHeader.setAttribute("width", "100%");
-    imageHeader.setAttribute("alt", "Visual Crossing Corporation");
-    imageHeader.setAttribute("style", "background-color: RGB(209, 198, 70); cursor: pointer");
-    imageHeader.setAttribute("title", "Visit Visual Crossing Home Page");
-    imageHeader.setAttribute("cursor", "pointer");
-    imageLink.appendChild(imageHeader);
-    imageLink.setAttribute('href', "https://www.visualcrossing.com/");
-
-    // Visual Crossing button links 
-    new Setting(containerEl)
-    .setName('Visual Crossing Info:')
-    .addButton(cb => {
-      cb.setButtonText('Homepage');
-      cb.setTooltip('Weather Data & API\nGlobal Forecast & History Data');
-      cb.onClick(() => {
-        window.open("https://www.visualcrossing.com/");
-      });
-    })
-    .addButton(cb => {
-      cb.setButtonText('About Visual Crossing');
-      cb.setTooltip('Information About Visual Crossing');
-      cb.onClick(() => {
-        window.open("https://www.visualcrossing.com/about");
-      });
-    })
-    .addButton(cb => {
-      cb.setButtonText('Weather Query Builder');
-      cb.setTooltip('Weather Query Builder');
-      cb.onClick(() => {
-        window.open("https://www.visualcrossing.com/weather/weather-data-services");
-      });
-    })
-    .addButton(cb => {
-      cb.setButtonText('Get API Key');
-      cb.setTooltip('Sign up for your free account.\n\nSign up requires an email.\nNo credit card is required to sign up\nFree 1000 records per day.');
-      cb.onClick(() => {
-        window.open("https://www.visualcrossing.com/sign-up");
-      });
-    })
-
-    // • This Plugins button links • 
-    new Setting(containerEl)
-    .setName('This Plugins Info:')
-    .addButton(cb => {
-      cb.setButtonText('View README.md on Github');
-      cb.setTooltip('View this plugins Github Repository Readme');
-      cb.onClick(() => {
-        window.open("https://github.com/willasm/vc-weather#readme");
-      });
-    })
-    .addButton(cb => {
-      cb.setButtonText('Report Issues Here');
-      cb.setTooltip('Have any questions, comments or bug reports? Feel free to post them here');
-      cb.onClick(() => {
-        window.open("https://github.com/willasm/vc-weather/issues");
-      });
-    })
-  
     // • VCWSettingsTab - Visual Crossing API Authentication key (required) • 
-    new Setting(containerEl).setName('Visual Crossing API authentication key (required)').setHeading();
+    //new Setting(containerEl).setName('Visual Crossing API authentication key (required)').setHeading();
 
     // API Key 
     new Setting(containerEl)
-    .setName('API Key')
-    .setDesc('Enter your Visual Crossing API Key')
+    .setName('API key')
+    .setDesc('Enter your Visual Crossing API key (required)')
     .addText(text => text
       .setPlaceholder('Enter your API key')
       .setValue(this.plugin.settings.apikey)
@@ -200,6 +143,7 @@ export class VCWSettingsTab extends PluginSettingTab {
       .onChange(async (value) => {
         this.plugin.settings.location_one = value;
         await this.plugin.saveSettings();
+//        await this.plugin.updatedSettings();
       })
     );
 
@@ -256,7 +200,7 @@ export class VCWSettingsTab extends PluginSettingTab {
     );
         
     // • VCWSettingsTab - Advanced options • 
-    new Setting(containerEl).setName('Advanced options').setHeading();
+    new Setting(containerEl).setName('Advanced').setHeading();
 
     // Units of measurement 
     new Setting(containerEl)
@@ -274,8 +218,8 @@ export class VCWSettingsTab extends PluginSettingTab {
     .setValue(this.plugin.settings.units);
     })
     .addButton(cb => {
-      cb.setButtonText('View Info');
-      cb.setTooltip('Weather Query Builder');
+      cb.setButtonText('View info');
+      cb.setTooltip('Weather query builder');
       cb.onClick(() => {
         window.open("https://www.visualcrossing.com/resources/documentation/weather-api/unit-groups-and-measurement-units/");
       });
@@ -285,8 +229,8 @@ export class VCWSettingsTab extends PluginSettingTab {
 
     // Exclude template folder 
     new Setting(containerEl)
-    .setName("Exclude template folder")
-    .setDesc("You need to exclude your template folder or any files containing weather template strings will have that text replaced")
+    .setName("Exclude template folder (required)")
+    .setDesc("You need to exclude your templates folder or any files containing weather template strings will have that text replaced")
     .addDropdown(dropDown => {
       folders.forEach(e => {
         dropDown.addOption(e.name,e.name);
@@ -331,9 +275,9 @@ export class VCWSettingsTab extends PluginSettingTab {
 
     // • OpenWeatherSettingsTab - Show Weather in Statusbar Options - Not available for mobile • 
     if (Platform.isDesktop) {
-      new Setting(containerEl).setName('Show weather in statusbar options').setHeading();
+      new Setting(containerEl).setName('Show weather in statusbar').setHeading();
 
-    // Weather update frequency 
+    // Show weather in statusbar 
     new Setting(containerEl)
     .setName('Show weather in statusbar')
     .setDesc('Enable weather display in statusbar')
@@ -342,6 +286,7 @@ export class VCWSettingsTab extends PluginSettingTab {
       .onChange(async (value) => {
         this.plugin.settings.statusbarActive = value;
         await this.plugin.saveSettings();
+        await this.plugin.updatedSettings();
       }));
       
     // Cycle statusbar display 
@@ -349,13 +294,13 @@ export class VCWSettingsTab extends PluginSettingTab {
     .setName('Cycle statusbar display')
     .setDesc('Cycle between primary and secondary statusbar templates every 30 seconds')
     .addToggle(toggle => toggle
-      .setValue(this.plugin.settings.statusbarActive)
+      .setValue(this.plugin.settings.statusbarCycle)
       .onChange(async (value) => {
-        this.plugin.settings.statusbarActive = value;
+        this.plugin.settings.statusbarCycle = value;
         await this.plugin.saveSettings();
       }));
       
-    // Cycle statusbar display 
+    // Weather template string for the statusbar primary 
     new Setting(containerEl)
     .setDesc("Weather template string for the statusbar primary")
     .addButton(cb => {
@@ -370,11 +315,12 @@ export class VCWSettingsTab extends PluginSettingTab {
     new Setting(containerEl)
     .addTextArea((textArea: TextAreaComponent) => {
       textArea
-      .setPlaceholder('Statusbar Weather Template')
+      .setPlaceholder('Statusbar weather template')
       .setValue(this.plugin.settings.weatherTemplate1SB)
       .onChange(async (value) => {
         this.plugin.settings.weatherTemplate1SB = value;
         await this.plugin.saveSettings();
+        await this.plugin.updatedSettings();
       })
       textArea.inputEl.setAttr("style", "margin-top: 12px; padding-left: 0px; margin-left: 0px; margin-right: 20px;");
       textArea.inputEl.setAttr("rows", 3);
@@ -388,11 +334,12 @@ export class VCWSettingsTab extends PluginSettingTab {
     new Setting(containerEl)
     .addTextArea((textArea: TextAreaComponent) => {
       textArea
-      .setPlaceholder('Statusbar Weather Template Secondary')
+      .setPlaceholder('Statusbar weather template secondary')
       .setValue(this.plugin.settings.weatherTemplate2SB)
       .onChange(async (value) => {
         this.plugin.settings.weatherTemplate2SB = value;
         await this.plugin.saveSettings();
+        await this.plugin.updatedSettings();
       })
       textArea.inputEl.setAttr("style", "margin-top: 12px; padding-left: 0px; margin-left: 0px; margin-right: 20px;");
       textArea.inputEl.setAttr("rows", 3);
@@ -411,8 +358,8 @@ export class VCWSettingsTab extends PluginSettingTab {
     .setName("Weather template 1")
     .setDesc("First line is the descriptive text used in menus for this template")
     .addButton(cb => {
-      cb.setButtonText('View Template Documentation');
-      cb.setTooltip('View Weather Template Documentation on Github');
+      cb.setButtonText('View template documentation');
+      cb.setTooltip('View weather template documentation on Github');
       cb.onClick(() => {
         window.open("https://github.com/willasm/vc-weather?tab=readme-ov-file#the-weather-templates");
       })
@@ -427,6 +374,7 @@ export class VCWSettingsTab extends PluginSettingTab {
       .onChange(async (value) => {
         this.plugin.settings.weatherTemplate1 = value;
         await this.plugin.saveSettings();
+        await this.plugin.updatedSettings();
       })
       textArea.inputEl.setAttr("style", "margin-top: 12px; padding-left: 0px; margin-left: 0px; margin-right: 20px;");
       textArea.inputEl.setAttr("rows", 10);
@@ -447,6 +395,7 @@ export class VCWSettingsTab extends PluginSettingTab {
       .onChange(async (value) => {
         this.plugin.settings.weatherTemplate2 = value;
         await this.plugin.saveSettings();
+        await this.plugin.updatedSettings();
       })
       textArea.inputEl.setAttr("style", "margin-top: 12px; padding-left: 0px; margin-left: 0px; margin-right: 20px;");
       textArea.inputEl.setAttr("rows", 10);
@@ -467,6 +416,7 @@ export class VCWSettingsTab extends PluginSettingTab {
       .onChange(async (value) => {
         this.plugin.settings.weatherTemplate3 = value;
         await this.plugin.saveSettings();
+        await this.plugin.updatedSettings();
       })
       textArea.inputEl.setAttr("style", "margin-top: 12px; padding-left: 0px; margin-left: 0px; margin-right: 20px;");
       textArea.inputEl.setAttr("rows", 10);
@@ -487,6 +437,7 @@ export class VCWSettingsTab extends PluginSettingTab {
       .onChange(async (value) => {
         this.plugin.settings.weatherTemplate4 = value;
         await this.plugin.saveSettings();
+        await this.plugin.updatedSettings();
       })
       textArea.inputEl.setAttr("style", "margin-top: 12px; padding-left: 0px; margin-left: 0px; margin-right: 20px;");
       textArea.inputEl.setAttr("rows", 10);
@@ -507,6 +458,7 @@ export class VCWSettingsTab extends PluginSettingTab {
       .onChange(async (value) => {
         this.plugin.settings.weatherTemplate5 = value;
         await this.plugin.saveSettings();
+        await this.plugin.updatedSettings();
       })
       textArea.inputEl.setAttr("style", "margin-top: 12px; padding-left: 0px; margin-left: 0px; margin-right: 20px;");
       textArea.inputEl.setAttr("rows", 10);
@@ -527,6 +479,7 @@ export class VCWSettingsTab extends PluginSettingTab {
       .onChange(async (value) => {
         this.plugin.settings.weatherTemplate6 = value;
         await this.plugin.saveSettings();
+        await this.plugin.updatedSettings();
       })
       textArea.inputEl.setAttr("style", "margin-top: 12px; padding-left: 0px; margin-left: 0px; margin-right: 20px;");
       textArea.inputEl.setAttr("rows", 10);
@@ -547,6 +500,7 @@ export class VCWSettingsTab extends PluginSettingTab {
       .onChange(async (value) => {
         this.plugin.settings.weatherTemplate7 = value;
         await this.plugin.saveSettings();
+        await this.plugin.updatedSettings();
       })
       textArea.inputEl.setAttr("style", "margin-top: 12px; padding-left: 0px; margin-left: 0px; margin-right: 20px;");
       textArea.inputEl.setAttr("rows", 10);
@@ -567,6 +521,7 @@ export class VCWSettingsTab extends PluginSettingTab {
       .onChange(async (value) => {
         this.plugin.settings.weatherTemplate8 = value;
         await this.plugin.saveSettings();
+        await this.plugin.updatedSettings();
       })
       textArea.inputEl.setAttr("style", "margin-top: 12px; padding-left: 0px; margin-left: 0px; margin-right: 20px;");
       textArea.inputEl.setAttr("rows", 10);
@@ -580,24 +535,18 @@ export class VCWSettingsTab extends PluginSettingTab {
     // Buy me a coffee donation button 
     const bmacLink = containerEl.createEl("a");
     const bmacHeader = containerEl.createEl("img");
-    bmacHeader.setAttribute("src", "https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png");
-    bmacHeader.setAttribute("alt", "Buy Me A Coffee");
-    bmacHeader.setAttribute("style", "height: 40px !important;width: 180px !important; cursor: pointer; border-radius: 25px;"); // 60 x 217
-    bmacHeader.setAttribute("title", "Support me through Buy Me A Coffee");
-    bmacHeader.setAttribute("cursor", "pointer");
+    bmacHeader.className = "bmac";
     bmacLink.appendChild(bmacHeader);
     bmacLink.setAttribute('href', "https://www.buymeacoffee.com/willasm");
+    setTooltip(bmacHeader, "Make a donation through Buy Me a Coffee", {delay: 500, placement: 'top'});
 
     // PayPal donation button 
     const paypalLink = containerEl.createEl("a");
     const paypalHeader = containerEl.createEl("img");
-    paypalHeader.setAttribute("src", "https://www.paypalobjects.com/webstatic/i/logo/rebrand/ppcom.svg");
-    paypalHeader.setAttribute("alt", "Donate on PayPal");
-    paypalHeader.setAttribute("style", "background-color:gold; margin-left: 30px; height: 40px !important;width: 180px !important; cursor: pointer; border-radius: 25px;"); // 60 x 217
-    paypalHeader.setAttribute("title", "Support me through PayPal");
-    paypalHeader.setAttribute("cursor", "pointer");
+    paypalHeader.className = "pp"
     paypalLink.appendChild(paypalHeader);
     paypalLink.setAttribute('href', "https://www.paypal.com/donate/?business=RPSQD5E9KJPUL&amount=5&no_recurring=0&item_name=If+you+enjoy+using+my+software%2C+please+consider+making+a+small+donation+to+help+me+to+continue+with+my+programming+endeavors.&currency_code=CAD");
+    setTooltip(paypalHeader, "Make a donation through PayPal", {delay: 500, placement: 'top'});
 
   }
 }

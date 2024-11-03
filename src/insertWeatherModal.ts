@@ -72,7 +72,7 @@ export default class InsertTemplatesModal extends Modal {
     imageLink.appendChild(imageHeader);
     imageLink.setAttribute('href', "https://www.visualcrossing.com/");
 
-    contentEl.createEl("h2", { text: "Select Template to Insert" });
+    contentEl.createEl("h2", { text: "Select template to insert" });
 
     new Setting(contentEl)
       //.setName("Name")

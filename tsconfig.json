@@ -8,7 +8,8 @@
     "allowJs": true,
     "noImplicitAny": true,
     "moduleResolution": "node",
-    "importHelpers": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,    "importHelpers": true,
     "isolatedModules": true,
     "strictNullChecks": true,
     "lib": [

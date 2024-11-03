@@ -1,5 +1,7 @@
-//import { App, PluginSettingTab, Setting, TAbstractFile, TFolder, TextAreaComponent, Platform, FileSystemAdapter } from 'obsidian';
 import { VCWSettings } from './settings';
+import moment from 'moment';
+import * as testData from './testData.json';
+import { requestUrl } from 'obsidian';
 
 //  ╭──────────────────────────────────────────────────────────────────────────────╮
 //  │                           ● Class UpdateWeather ●                            │
@@ -20,6 +22,13 @@ export default class UpdateWeather {
     apikey: string,
     fetch_location: string,
     units: string,) {
+      //------------------------------------
+      // Use Test Data
+      // Avoids going over daily limit
+      // Comment line below to get real data
+      //------------------------------------
+      //return testData;
+
       let updFreNum = Number(updateFrequency);
       let returnData;
       if (delayTime === updFreNum || delayTime === 0) {
@@ -31,15 +40,21 @@ export default class UpdateWeather {
         //console.log('fetch_location........:', fetch_location);
         //console.log('units.................:', units);
 
-        await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${fetch_location}?unitGroup=${units}&include=days%2Chours%2Calerts%2Ccurrent&key=${apikey}&contentType=json`, {
-          "method": "GET",
-          "headers": {},
-        }).then(response => {
-        if (!response.ok) {
+
+        // await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${fetch_location}?unitGroup=${units}&include=days%2Chours%2Calerts%2Ccurrent&key=${apikey}&contentType=json`, {
+        //   "method": "GET",
+        //   "headers": {},
+        // }).then(response => {
+          await requestUrl({
+            url: `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${fetch_location}?unitGroup=${units}&include=days%2Chours%2Calerts%2Ccurrent&key=${apikey}&contentType=json`,
+            "method": "GET",
+            "headers": {},
+          }).then(response => {;
+          if (response.status != 200) {
           throw response; //check the http response code and if isn't ok then throw the response as an error
         }
 
-        return response.json(); //parse the result as JSON
+        return response.json;//(); //parse the result as JSON
 
         }).then(response => {
           //response now contains parsed JSON ready for use
@@ -66,7 +81,6 @@ export default class UpdateWeather {
         } else {
           //no additional error information 
           console.error(errorResponse);
-
         } 
       });      //     })
       }
@@ -74,42 +88,6 @@ export default class UpdateWeather {
     }
 
     getAlerts(response: any) {
-
-    //   let event;
-    //   let headline;
-    //   let ends;
-    //   let endsepoch;
-    //   let onset
-    //   let onsetepoch;
-    //   let id;
-    //   let language;
-    //   let link;
-    //   let description;
-
-    //   console.log("📢response.alerts: ", response.alerts);
-    //   if (response.alerts.length) {
-    //     event = response.alerts[0].event;
-    //     headline = response.alerts[0].headline;
-    //     ends = response.alerts[0].ends;
-    //     endsepoch = response.alerts[0].endsEpoch;
-    //     onset = response.alerts[0].onset
-    //     onsetepoch = response.alerts[0].onsetEpoch;
-    //     id = response.alerts[0].id;
-    //     language = response.alerts[0].language;
-    //     link = response.alerts[0].link;
-    //     description = response.alerts[0].description;
-    //   } else {
-    //     event = undefined;
-    //     headline = undefined;
-    //     ends = undefined;
-    //     endsepoch = undefined;
-    //     onset = undefined
-    //     onsetepoch = undefined;
-    //     id = undefined;
-    //     language = undefined;
-    //     link = undefined;
-    //     description = undefined;
-    //   };
 
     //   let alert = {
     //     "event": event,
@@ -127,287 +105,217 @@ export default class UpdateWeather {
 
     };
 
-
     processWeatherData(response: any, units: string) {
       
       // • Get Current Weather Data We Want • 
       // Wind direction strings
       const directions = ['North', 'Northeast', 'East', 'Southeast', 'South', 'Southwest', 'West', 'Northwest'];
 
-      // Date strings
-      const dow1str = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
-      const dow2str = ["Sunday","Monday","Tueday","Wednesday","Thursday","Friday","Saturday"]
-      const months1 = ["1","2","3","4","5","6","7","8","9","10","11","12"];
-      const months2 = ["01","02","03","04","05","06","07","08","09","10","11","12"];
-      const months3 = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
-      const months4 = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-
       const responseDate = response.days[0].datetime;
-      const forDate = responseDate.replace(/-/g,',');
-      const d = new Date(forDate);
-      const year1today = d.getFullYear().toString();
-      const year2today = d.getFullYear().toString().slice(-2);
-      const month1today = months1[d.getMonth()];
-      const month2today = months2[d.getMonth()];
-      const month3today = months3[d.getMonth()];
-      const month4today = months4[d.getMonth()];
-      const date1today = d.getDate().toString();
-      const date2today = date1today.padStart(2,"0");
-      const dowtoday = d.getDay();
-      const dow1today = dow1str[dowtoday];
-      const dow2today = dow2str[dowtoday];
+      const year1today = moment(responseDate).format('YYYY');
+      const year2today = moment(responseDate).format('YY');
+      const month1today = moment(responseDate).format('M');
+      const month2today = moment(responseDate).format('MM');
+      const month3today = moment(responseDate).format('MMM');
+      const month4today = moment(responseDate).format('MMMM');
+      const date1today = moment(responseDate).format('D');
+      const date2today = moment(responseDate).format('DD');
+      const dow1today = moment(responseDate).format('ddd');
+      const dow2today = moment(responseDate).format('dddd');
+
       // Time for today
       // NOTE: Only need to get time once as we only get current time
       const responseTime = response.currentConditions.datetime as string;
-      const hours24 = responseTime.slice(0,2);
-      let hours24num = Number(hours24);
-      let hours12;
-      let hours12num;
-      if (hours24num > 12) {
-        hours12num = hours24num-12;
-      } else {
-        hours12num = hours24num;
-      };
-      if (hours12num == 0) {
-        hours12num = 12;
-      };
-      hours12 = hours12num.toString();
-      if (hours12[0] == '0') {
-        hours12.slice(1);
-      };
-      const mins = responseTime.slice(3,5);
-      const secs = responseTime.slice(6);
-      let ampm1 = "AM";
-      let ampm2 = "am";
-      if (hours24num > 11) {
-        ampm1 = "PM";
-        ampm2 = "pm"
-      };
+      const hours24 = moment(responseTime, "HH:mm:ss").format('HH');
+      const hours12 = moment(responseTime, "HH:mm:ss").format('h');
+      const mins = moment(responseTime, "HH:mm:ss").format('mm');
+      const secs = moment(responseTime, "HH:mm:ss").format('ss');
+      let ampm1 = moment(responseTime, "HH:mm:ss").format('A');
+      let ampm2 = moment(responseTime, "HH:mm:ss").format('a');
+
       // Date for in 1 day
       const responseDatein1day = response.days[1].datetime;
-      const forDatein1day = responseDatein1day.replace(/-/g,',');
-      const d1 = new Date(forDatein1day);
-      const year1in1day = d1.getFullYear().toString();
-      const year2in1day = d1.getFullYear().toString().slice(-2);
-      const month1in1day = months1[d1.getMonth()];
-      const month2in1day = months2[d1.getMonth()];
-      const month3in1day = months3[d1.getMonth()];
-      const month4in1day = months4[d1.getMonth()];
-      const date1in1day = d1.getDate().toString();
-      const date2in1day = date1in1day.padStart(2,"0");
-      const dowin1day = d1.getDay();
-      const dow1in1day = dow1str[dowin1day];
-      const dow2in1day = dow2str[dowin1day];
+      const year1in1day = moment(responseDatein1day).format('YYYY');
+      const year2in1day = moment(responseDatein1day).format('YY');
+      const month1in1day = moment(responseDatein1day).format('M');
+      const month2in1day = moment(responseDatein1day).format('MM');
+      const month3in1day = moment(responseDatein1day).format('MMM');
+      const month4in1day = moment(responseDatein1day).format('MMMM');
+      const date1in1day = moment(responseDatein1day).format('D');
+      const date2in1day = moment(responseDatein1day).format('DD');
+      const dow1in1day = moment(responseDatein1day).format('ddd');
+      const dow2in1day = moment(responseDatein1day).format('dddd');
 
       // Date for in 2 days
       const responseDatein2days = response.days[2].datetime;
-      const forDatein2days = responseDatein2days.replace(/-/g,',');
-      const d2 = new Date(forDatein2days);
-      const year1in2days = d2.getFullYear().toString();
-      const year2in2days = d2.getFullYear().toString().slice(-2);
-      const month1in2days = months1[d2.getMonth()];
-      const month2in2days = months2[d2.getMonth()];
-      const month3in2days = months3[d2.getMonth()];
-      const month4in2days = months4[d2.getMonth()];
-      const date1in2days = d2.getDate().toString();
-      const date2in2days = date1in2days.padStart(2,"0");
-      const dowin2days = d2.getDay();
-      const dow1in2days = dow1str[dowin2days];
-      const dow2in2days = dow2str[dowin2days];
+      const year1in2days = moment(responseDatein2days).format('YYYY');
+      const year2in2days = moment(responseDatein2days).format('YY');
+      const month1in2days = moment(responseDatein2days).format('M');
+      const month2in2days = moment(responseDatein2days).format('MM');
+      const month3in2days = moment(responseDatein2days).format('MMM');
+      const month4in2days = moment(responseDatein2days).format('MMMM');
+      const date1in2days = moment(responseDatein2days).format('D');
+      const date2in2days = moment(responseDatein2days).format('DD');
+      const dow1in2days = moment(responseDatein2days).format('ddd');
+      const dow2in2days = moment(responseDatein2days).format('dddd');
 
       // Date for in 3 days
       const responseDatein3days = response.days[3].datetime;
-      const forDatein3days = responseDatein3days.replace(/-/g,',');
-      const d3 = new Date(forDatein3days);
-      const year1in3days = d3.getFullYear().toString();
-      const year2in3days = d3.getFullYear().toString().slice(-2);
-      const month1in3days = months1[d3.getMonth()];
-      const month2in3days = months2[d3.getMonth()];
-      const month3in3days = months3[d3.getMonth()];
-      const month4in3days = months4[d3.getMonth()];
-      const date1in3days = d3.getDate().toString();
-      const date2in3days = date1in3days.padStart(2,"0");
-      const dowin3days = d3.getDay();
-      const dow1in3days = dow1str[dowin3days];
-      const dow2in3days = dow2str[dowin3days];
+      const year1in3days = moment(responseDatein3days).format('YYYY');
+      const year2in3days = moment(responseDatein3days).format('YY');
+      const month1in3days = moment(responseDatein3days).format('M');
+      const month2in3days = moment(responseDatein3days).format('MM');
+      const month3in3days = moment(responseDatein3days).format('MMM');
+      const month4in3days = moment(responseDatein3days).format('MMMM');
+      const date1in3days = moment(responseDatein3days).format('D');
+      const date2in3days = moment(responseDatein3days).format('DD');
+      const dow1in3days = moment(responseDatein3days).format('ddd');
+      const dow2in3days = moment(responseDatein3days).format('dddd');
 
       // Date for in 4 days
       const responseDatein4days = response.days[4].datetime;
-      const forDatein4days = responseDatein4days.replace(/-/g,',');
-      const d4 = new Date(forDatein4days);
-      const year1in4days = d4.getFullYear().toString();
-      const year2in4days = d4.getFullYear().toString().slice(-2);
-      const month1in4days = months1[d4.getMonth()];
-      const month2in4days = months2[d4.getMonth()];
-      const month3in4days = months3[d4.getMonth()];
-      const month4in4days = months4[d4.getMonth()];
-      const date1in4days = d4.getDate().toString();
-      const date2in4days = date1in4days.padStart(2,"0");
-      const dowin4days = d4.getDay();
-      const dow1in4days = dow1str[dowin4days];
-      const dow2in4days = dow2str[dowin4days];
+      const year1in4days = moment(responseDatein4days).format('YYYY');
+      const year2in4days = moment(responseDatein4days).format('YY');
+      const month1in4days = moment(responseDatein4days).format('M');
+      const month2in4days = moment(responseDatein4days).format('MM');
+      const month3in4days = moment(responseDatein4days).format('MMM');
+      const month4in4days = moment(responseDatein4days).format('MMMM');
+      const date1in4days = moment(responseDatein4days).format('D');
+      const date2in4days = moment(responseDatein4days).format('DD');
+      const dow1in4days = moment(responseDatein4days).format('ddd');
+      const dow2in4days = moment(responseDatein4days).format('dddd');
 
       // Date for in 5 days
       const responseDatein5days = response.days[5].datetime;
-      const forDatein5days = responseDatein5days.replace(/-/g,',');
-      const d5 = new Date(forDatein5days);
-      const year1in5days = d5.getFullYear().toString();
-      const year2in5days = d5.getFullYear().toString().slice(-2);
-      const month1in5days = months1[d5.getMonth()];
-      const month2in5days = months2[d5.getMonth()];
-      const month3in5days = months3[d5.getMonth()];
-      const month4in5days = months4[d5.getMonth()];
-      const date1in5days = d5.getDate().toString();
-      const date2in5days = date1in5days.padStart(2,"0");
-      const dowin5days = d5.getDay();
-      const dow1in5days = dow1str[dowin5days];
-      const dow2in5days = dow2str[dowin5days];
+      const year1in5days = moment(responseDatein5days).format('YYYY');
+      const year2in5days = moment(responseDatein5days).format('YY');
+      const month1in5days = moment(responseDatein5days).format('M');
+      const month2in5days = moment(responseDatein5days).format('MM');
+      const month3in5days = moment(responseDatein5days).format('MMM');
+      const month4in5days = moment(responseDatein5days).format('MMMM');
+      const date1in5days = moment(responseDatein5days).format('D');
+      const date2in5days = moment(responseDatein5days).format('DD');
+      const dow1in5days = moment(responseDatein5days).format('ddd');
+      const dow2in5days = moment(responseDatein5days).format('dddd');
 
       // Date for in 6 days
       const responseDatein6days = response.days[6].datetime;
-      const forDatein6days = responseDatein6days.replace(/-/g,',');
-      const d6 = new Date(forDatein6days);
-      const year1in6days = d6.getFullYear().toString();
-      const year2in6days = d6.getFullYear().toString().slice(-2);
-      const month1in6days = months1[d6.getMonth()];
-      const month2in6days = months2[d6.getMonth()];
-      const month3in6days = months3[d6.getMonth()];
-      const month4in6days = months4[d6.getMonth()];
-      const date1in6days = d6.getDate().toString();
-      const date2in6days = date1in6days.padStart(2,"0");
-      const dowin6days = d6.getDay();
-      const dow1in6days = dow1str[dowin6days];
-      const dow2in6days = dow2str[dowin6days];
+      const year1in6days = moment(responseDatein6days).format('YYYY');
+      const year2in6days = moment(responseDatein6days).format('YY');
+      const month1in6days = moment(responseDatein6days).format('M');
+      const month2in6days = moment(responseDatein6days).format('MM');
+      const month3in6days = moment(responseDatein6days).format('MMM');
+      const month4in6days = moment(responseDatein6days).format('MMMM');
+      const date1in6days = moment(responseDatein6days).format('D');
+      const date2in6days = moment(responseDatein6days).format('DD');
+      const dow1in6days = moment(responseDatein6days).format('ddd');
+      const dow2in6days = moment(responseDatein6days).format('dddd');
 
       // Date for in 7 days
       const responseDatein7days = response.days[7].datetime;
-      const forDatein7days = responseDatein7days.replace(/-/g,',');
-      const d7 = new Date(forDatein7days);
-      const year1in7days = d7.getFullYear().toString();
-      const year2in7days = d7.getFullYear().toString().slice(-2);
-      const month1in7days = months1[d7.getMonth()];
-      const month2in7days = months2[d7.getMonth()];
-      const month3in7days = months3[d7.getMonth()];
-      const month4in7days = months4[d7.getMonth()];
-      const date1in7days = d7.getDate().toString();
-      const date2in7days = date1in7days.padStart(2,"0");
-      const dowin7days = d7.getDay();
-      const dow1in7days = dow1str[dowin7days];
-      const dow2in7days = dow2str[dowin7days];
+      const year1in7days = moment(responseDatein7days).format('YYYY');
+      const year2in7days = moment(responseDatein7days).format('YY');
+      const month1in7days = moment(responseDatein7days).format('M');
+      const month2in7days = moment(responseDatein7days).format('MM');
+      const month3in7days = moment(responseDatein7days).format('MMM');
+      const month4in7days = moment(responseDatein7days).format('MMMM');
+      const date1in7days = moment(responseDatein7days).format('D');
+      const date2in7days = moment(responseDatein7days).format('DD');
+      const dow1in7days = moment(responseDatein7days).format('ddd');
+      const dow2in7days = moment(responseDatein7days).format('dddd');
 
       // Date for in 8 days
       const responseDatein8days = response.days[8].datetime;
-      const forDatein8days = responseDatein8days.replace(/-/g,',');
-      const d8 = new Date(forDatein8days);
-      const year1in8days = d8.getFullYear().toString();
-      const year2in8days = d8.getFullYear().toString().slice(-2);
-      const month1in8days = months1[d8.getMonth()];
-      const month2in8days = months2[d8.getMonth()];
-      const month3in8days = months3[d8.getMonth()];
-      const month4in8days = months4[d8.getMonth()];
-      const date1in8days = d8.getDate().toString();
-      const date2in8days = date1in8days.padStart(2,"0");
-      const dowin8days = d8.getDay();
-      const dow1in8days = dow1str[dowin8days];
-      const dow2in8days = dow2str[dowin8days];
+      const year1in8days = moment(responseDatein8days).format('YYYY');
+      const year2in8days = moment(responseDatein8days).format('YY');
+      const month1in8days = moment(responseDatein8days).format('M');
+      const month2in8days = moment(responseDatein8days).format('MM');
+      const month3in8days = moment(responseDatein8days).format('MMM');
+      const month4in8days = moment(responseDatein8days).format('MMMM');
+      const date1in8days = moment(responseDatein8days).format('D');
+      const date2in8days = moment(responseDatein8days).format('DD');
+      const dow1in8days = moment(responseDatein8days).format('ddd');
+      const dow2in8days = moment(responseDatein8days).format('dddd');
 
       // Date for in 9 days
       const responseDatein9days = response.days[9].datetime;
-      const forDatein9days = responseDatein9days.replace(/-/g,',');
-      const d9 = new Date(forDatein9days);
-      const year1in9days = d9.getFullYear().toString();
-      const year2in9days = d9.getFullYear().toString().slice(-2);
-      const month1in9days = months1[d9.getMonth()];
-      const month2in9days = months2[d9.getMonth()];
-      const month3in9days = months3[d9.getMonth()];
-      const month4in9days = months4[d9.getMonth()];
-      const date1in9days = d9.getDate().toString();
-      const date2in9days = date1in9days.padStart(2,"0");
-      const dowin9days = d9.getDay();
-      const dow1in9days = dow1str[dowin9days];
-      const dow2in9days = dow2str[dowin9days];
+      const year1in9days = moment(responseDatein9days).format('YYYY');
+      const year2in9days = moment(responseDatein9days).format('YY');
+      const month1in9days = moment(responseDatein9days).format('M');
+      const month2in9days = moment(responseDatein9days).format('MM');
+      const month3in9days = moment(responseDatein9days).format('MMM');
+      const month4in9days = moment(responseDatein9days).format('MMMM');
+      const date1in9days = moment(responseDatein9days).format('D');
+      const date2in9days = moment(responseDatein9days).format('DD');
+      const dow1in9days = moment(responseDatein9days).format('ddd');
+      const dow2in9days = moment(responseDatein9days).format('dddd');
 
       // Date for in 10 days
       const responseDatein10days = response.days[10].datetime;
-      const forDatein10days = responseDatein10days.replace(/-/g,',');
-      const d10 = new Date(forDatein10days);
-      const year1in10days = d10.getFullYear().toString();
-      const year2in10days = d10.getFullYear().toString().slice(-2);
-      const month1in10days = months1[d10.getMonth()];
-      const month2in10days = months2[d10.getMonth()];
-      const month3in10days = months3[d10.getMonth()];
-      const month4in10days = months4[d10.getMonth()];
-      const date1in10days = d10.getDate().toString();
-      const date2in10days = date1in10days.padStart(2,"0");
-      const dowin10days = d10.getDay();
-      const dow1in10days = dow1str[dowin10days];
-      const dow2in10days = dow2str[dowin10days];
+      const year1in10days = moment(responseDatein10days).format('YYYY');
+      const year2in10days = moment(responseDatein10days).format('YY');
+      const month1in10days = moment(responseDatein10days).format('M');
+      const month2in10days = moment(responseDatein10days).format('MM');
+      const month3in10days = moment(responseDatein10days).format('MMM');
+      const month4in10days = moment(responseDatein10days).format('MMMM');
+      const date1in10days = moment(responseDatein10days).format('D');
+      const date2in10days = moment(responseDatein10days).format('DD');
+      const dow1in10days = moment(responseDatein10days).format('ddd');
+      const dow2in10days = moment(responseDatein10days).format('dddd');
 
       // Date for in 11 days
       const responseDatein11days = response.days[11].datetime;
-      const forDatein11days = responseDatein11days.replace(/-/g,',');
-      const d11 = new Date(forDatein11days);
-      const year1in11days = d11.getFullYear().toString();
-      const year2in11days = d11.getFullYear().toString().slice(-2);
-      const month1in11days = months1[d11.getMonth()];
-      const month2in11days = months2[d11.getMonth()];
-      const month3in11days = months3[d11.getMonth()];
-      const month4in11days = months4[d11.getMonth()];
-      const date1in11days = d11.getDate().toString();
-      const date2in11days = date1in11days.padStart(2,"0");
-      const dowin11days = d11.getDay();
-      const dow1in11days = dow1str[dowin11days];
-      const dow2in11days = dow2str[dowin11days];
+      const year1in11days = moment(responseDatein11days).format('YYYY');
+      const year2in11days = moment(responseDatein11days).format('YY');
+      const month1in11days = moment(responseDatein11days).format('M');
+      const month2in11days = moment(responseDatein11days).format('MM');
+      const month3in11days = moment(responseDatein11days).format('MMM');
+      const month4in11days = moment(responseDatein11days).format('MMMM');
+      const date1in11days = moment(responseDatein11days).format('D');
+      const date2in11days = moment(responseDatein11days).format('DD');
+      const dow1in11days = moment(responseDatein11days).format('ddd');
+      const dow2in11days = moment(responseDatein11days).format('dddd');
 
       // Date for in 12 days
       const responseDatein12days = response.days[12].datetime;
-      const forDatein12days = responseDatein12days.replace(/-/g,',');
-      const d12 = new Date(forDatein12days);
-      const year1in12days = d12.getFullYear().toString();
-      const year2in12days = d12.getFullYear().toString().slice(-2);
-      const month1in12days = months1[d12.getMonth()];
-      const month2in12days = months2[d12.getMonth()];
-      const month3in12days = months3[d12.getMonth()];
-      const month4in12days = months4[d12.getMonth()];
-      const date1in12days = d12.getDate().toString();
-      const date2in12days = date1in12days.padStart(2,"0");
-      const dowin12days = d12.getDay();
-      const dow1in12days = dow1str[dowin12days];
-      const dow2in12days = dow2str[dowin12days];
+      const year1in12days = moment(responseDatein12days).format('YYYY');
+      const year2in12days = moment(responseDatein12days).format('YY');
+      const month1in12days = moment(responseDatein12days).format('M');
+      const month2in12days = moment(responseDatein12days).format('MM');
+      const month3in12days = moment(responseDatein12days).format('MMM');
+      const month4in12days = moment(responseDatein12days).format('MMMM');
+      const date1in12days = moment(responseDatein12days).format('D');
+      const date2in12days = moment(responseDatein12days).format('DD');
+      const dow1in12days = moment(responseDatein12days).format('ddd');
+      const dow2in12days = moment(responseDatein12days).format('dddd');
 
       // Date for in 13 days
       const responseDatein13days = response.days[13].datetime;
-      const forDatein13days = responseDatein13days.replace(/-/g,',');
-      const d13 = new Date(forDatein13days);
-      const year1in13days = d13.getFullYear().toString();
-      const year2in13days = d13.getFullYear().toString().slice(-2);
-      const month1in13days = months1[d13.getMonth()];
-      const month2in13days = months2[d13.getMonth()];
-      const month3in13days = months3[d13.getMonth()];
-      const month4in13days = months4[d13.getMonth()];
-      const date1in13days = d13.getDate().toString();
-      const date2in13days = date1in13days.padStart(2,"0");
-      const dowin13days = d13.getDay();
-      const dow1in13days = dow1str[dowin13days];
-      const dow2in13days = dow2str[dowin13days];
+      const year1in13days = moment(responseDatein13days).format('YYYY');
+      const year2in13days = moment(responseDatein13days).format('YY');
+      const month1in13days = moment(responseDatein13days).format('M');
+      const month2in13days = moment(responseDatein13days).format('MM');
+      const month3in13days = moment(responseDatein13days).format('MMM');
+      const month4in13days = moment(responseDatein13days).format('MMMM');
+      const date1in13days = moment(responseDatein13days).format('D');
+      const date2in13days = moment(responseDatein13days).format('DD');
+      const dow1in13days = moment(responseDatein13days).format('ddd');
+      const dow2in13days = moment(responseDatein13days).format('dddd');
 
       // Date for in 14 days
       const responseDatein14days = response.days[14].datetime;
-      const forDatein14days = responseDatein14days.replace(/-/g,',');
-      const d14 = new Date(forDatein14days);
-      const year1in14days = d14.getFullYear().toString();
-      const year2in14days = d14.getFullYear().toString().slice(-2);
-      const month1in14days = months1[d14.getMonth()];
-      const month2in14days = months2[d14.getMonth()];
-      const month3in14days = months3[d14.getMonth()];
-      const month4in14days = months4[d14.getMonth()];
-      const date1in14days = d14.getDate().toString();
-      const date2in14days = date1in14days.padStart(2,"0");
-      const dowin14days = d14.getDay();
-      const dow1in14days = dow1str[dowin14days];
-      const dow2in14days = dow2str[dowin14days];
+      const year1in14days = moment(responseDatein14days).format('YYYY');
+      const year2in14days = moment(responseDatein14days).format('YY');
+      const month1in14days = moment(responseDatein14days).format('M');
+      const month2in14days = moment(responseDatein14days).format('MM');
+      const month3in14days = moment(responseDatein14days).format('MMM');
+      const month4in14days = moment(responseDatein14days).format('MMMM');
+      const date1in14days = moment(responseDatein14days).format('D');
+      const date2in14days = moment(responseDatein14days).format('DD');
+      const dow1in14days = moment(responseDatein14days).format('ddd');
+      const dow2in14days = moment(responseDatein14days).format('dddd');
 
-      // Configure precipitation to show 'none' instaed of null
+      // Configure precipitation to show 'none' instead of null
       let precipTypeNow;
       let precipTypeToday;
       let precipTypeIn1Day;
@@ -613,7 +521,7 @@ export default class UpdateWeather {
           "uvindex": Math.round(response.currentConditions.uvindex),
           "conditions": response.currentConditions.conditions,
           "icon": response.currentConditions.icon,
-          "iconurl": '"https://github.com/visualcrossing/WeatherIcons/blob/main/PNG/1st%20Set%20-%20Color/'+`${response.currentConditions.icon}`+'.png?raw=true"',
+          "iconurl": "https://github.com/visualcrossing/WeatherIcons/blob/main/PNG/1st%20Set%20-%20Color/"+`${response.currentConditions.icon}`+".png?raw=true",
           "sunrise": response.currentConditions.sunrise,
           "sunriseepoch": response.currentConditions.sunriseEpoch,
           "sunset": response.currentConditions.sunset,
@@ -667,7 +575,7 @@ export default class UpdateWeather {
           "conditionstoday": response.days[0].conditions,
           "descriptiontoday": response.days[0].description,
           "icontoday": response.days[0].icon,
-          "iconurltoday": '"https://github.com/visualcrossing/WeatherIcons/blob/main/PNG/1st%20Set%20-%20Color/'+`${response.days[0].icon}`+'.png?raw=true"',
+          "iconurltoday": "https://github.com/visualcrossing/WeatherIcons/blob/main/PNG/1st%20Set%20-%20Color/"+`${response.days[0].icon}`+".png?raw=true",
 
         },
         "WeatherIn1Day": {
@@ -717,7 +625,7 @@ export default class UpdateWeather {
           "conditionsin1day": response.days[1].conditions,
           "descriptionin1day": response.days[1].description,
           "iconin1day": response.days[1].icon,
-          "iconurlin1day": '"https://github.com/visualcrossing/WeatherIcons/blob/main/PNG/1st%20Set%20-%20Color/'+`${response.days[1].icon}`+'.png?raw=true"',
+          "iconurlin1day": "https://github.com/visualcrossing/WeatherIcons/blob/main/PNG/1st%20Set%20-%20Color/"+`${response.days[1].icon}`+".png?raw=true",
           },
         "WeatherIn2Days": {
           "year1in2days": year1in2days,
@@ -766,7 +674,7 @@ export default class UpdateWeather {
           "conditionsin2days": response.days[2].conditions,
           "descriptionin2days": response.days[2].description,
           "iconin2days": response.days[2].icon,
-          "iconurlin2days": '"https://github.com/visualcrossing/WeatherIcons/blob/main/PNG/1st%20Set%20-%20Color/'+`${response.days[2].icon}`+'.png?raw=true"',
+          "iconurlin2days": "https://github.com/visualcrossing/WeatherIcons/blob/main/PNG/1st%20Set%20-%20Color/"+`${response.days[2].icon}`+".png?raw=true",
         },
         "WeatherIn3Days": {
           "year1in3days": year1in3days,
@@ -815,7 +723,7 @@ export default class UpdateWeather {
           "conditionsin3days": response.days[3].conditions,
           "descriptionin3days": response.days[3].description,
           "iconin3days": response.days[3].icon,
-          "iconurlin3days": '"https://github.com/visualcrossing/WeatherIcons/blob/main/PNG/1st%20Set%20-%20Color/'+`${response.days[3].icon}`+'.png?raw=true"',
+          "iconurlin3days": "https://github.com/visualcrossing/WeatherIcons/blob/main/PNG/1st%20Set%20-%20Color/"+`${response.days[3].icon}`+".png?raw=true",
         },
         "WeatherIn4Days": {
           "year1in4days": year1in4days,
@@ -864,7 +772,7 @@ export default class UpdateWeather {
           "conditionsin4days": response.days[4].conditions,
           "descriptionin4days": response.days[4].description,
           "iconin4days": response.days[4].icon,
-          "iconurlin4days": '"https://github.com/visualcrossing/WeatherIcons/blob/main/PNG/1st%20Set%20-%20Color/'+`${response.days[4].icon}`+'.png?raw=true"',
+          "iconurlin4days": "https://github.com/visualcrossing/WeatherIcons/blob/main/PNG/1st%20Set%20-%20Color/"+`${response.days[4].icon}`+".png?raw=true",
         },
         "WeatherIn5Days": {
           "year1in5days": year1in5days,
@@ -913,7 +821,7 @@ export default class UpdateWeather {
           "conditionsin5days": response.days[5].conditions,
           "descriptionin5days": response.days[5].description,
           "iconin5days": response.days[5].icon,
-          "iconurlin5days": '"https://github.com/visualcrossing/WeatherIcons/blob/main/PNG/1st%20Set%20-%20Color/'+`${response.days[5].icon}`+'.png?raw=true"',
+          "iconurlin5days": "https://github.com/visualcrossing/WeatherIcons/blob/main/PNG/1st%20Set%20-%20Color/"+`${response.days[5].icon}`+".png?raw=true",
         },
         "WeatherIn6Days": {
           "year1in6days": year1in6days,
@@ -962,7 +870,7 @@ export default class UpdateWeather {
           "conditionsin6days": response.days[6].conditions,
           "descriptionin6days": response.days[6].description,
           "iconin6days": response.days[6].icon,
-          "iconurlin6days": '"https://github.com/visualcrossing/WeatherIcons/blob/main/PNG/1st%20Set%20-%20Color/'+`${response.days[6].icon}`+'.png?raw=true"',
+          "iconurlin6days": "https://github.com/visualcrossing/WeatherIcons/blob/main/PNG/1st%20Set%20-%20Color/"+`${response.days[6].icon}`+".png?raw=true",
         },
         "WeatherIn7Days": {
           "year1in7days": year1in7days,
@@ -1011,7 +919,7 @@ export default class UpdateWeather {
           "conditionsin7days": response.days[7].conditions,
           "descriptionin7days": response.days[7].description,
           "iconin7days": response.days[7].icon,
-          "iconurlin7days": '"https://github.com/visualcrossing/WeatherIcons/blob/main/PNG/1st%20Set%20-%20Color/'+`${response.days[7].icon}`+'.png?raw=true"',
+          "iconurlin7days": "https://github.com/visualcrossing/WeatherIcons/blob/main/PNG/1st%20Set%20-%20Color/"+`${response.days[7].icon}`+".png?raw=true",
         },
         "WeatherIn8Days": {
           "year1in8days": year1in8days,
@@ -1060,7 +968,7 @@ export default class UpdateWeather {
           "conditionsin8days": response.days[8].conditions,
           "descriptionin8days": response.days[8].description,
           "iconin8days": response.days[8].icon,
-          "iconurlin8days": '"https://github.com/visualcrossing/WeatherIcons/blob/main/PNG/1st%20Set%20-%20Color/'+`${response.days[8].icon}`+'.png?raw=true"',
+          "iconurlin8days": "https://github.com/visualcrossing/WeatherIcons/blob/main/PNG/1st%20Set%20-%20Color/"+`${response.days[8].icon}`+".png?raw=true",
         },
         "WeatherIn9Days": {
           "year1in9days": year1in9days,
@@ -1109,7 +1017,7 @@ export default class UpdateWeather {
           "conditionsin9days": response.days[9].conditions,
           "descriptionin9days": response.days[9].description,
           "iconin9days": response.days[9].icon,
-          "iconurlin9days": '"https://github.com/visualcrossing/WeatherIcons/blob/main/PNG/1st%20Set%20-%20Color/'+`${response.days[9].icon}`+'.png?raw=true"',
+          "iconurlin9days": "https://github.com/visualcrossing/WeatherIcons/blob/main/PNG/1st%20Set%20-%20Color/"+`${response.days[9].icon}`+".png?raw=true",
         },
         "WeatherIn10Days": {
           "year1in10days": year1in10days,
@@ -1158,7 +1066,7 @@ export default class UpdateWeather {
           "conditionsin10days": response.days[10].conditions,
           "descriptionin10days": response.days[10].description,
           "iconin10days": response.days[10].icon,
-          "iconurlin10days": '"https://github.com/visualcrossing/WeatherIcons/blob/main/PNG/1st%20Set%20-%20Color/'+`${response.days[10].icon}`+'.png?raw=true"',
+          "iconurlin10days": "https://github.com/visualcrossing/WeatherIcons/blob/main/PNG/1st%20Set%20-%20Color/"+`${response.days[10].icon}`+".png?raw=true",
         },
         "WeatherIn11Days": {
           "year1in11days": year1in11days,
@@ -1207,7 +1115,7 @@ export default class UpdateWeather {
           "conditionsin11days": response.days[11].conditions,
           "descriptionin11days": response.days[11].description,
           "iconin11days": response.days[11].icon,
-          "iconurlin11days": '"https://github.com/visualcrossing/WeatherIcons/blob/main/PNG/1st%20Set%20-%20Color/'+`${response.days[11].icon}`+'.png?raw=true"',
+          "iconurlin11days": "https://github.com/visualcrossing/WeatherIcons/blob/main/PNG/1st%20Set%20-%20Color/"+`${response.days[11].icon}`+".png?raw=true",
         },
         "WeatherIn12Days": {
           "year1in12days": year1in12days,
@@ -1256,7 +1164,7 @@ export default class UpdateWeather {
           "conditionsin12days": response.days[12].conditions,
           "descriptionin12days": response.days[12].description,
           "iconin12days": response.days[12].icon,
-          "iconurlin12days": '"https://github.com/visualcrossing/WeatherIcons/blob/main/PNG/1st%20Set%20-%20Color/'+`${response.days[12].icon}`+'.png?raw=true"',
+          "iconurlin12days": "https://github.com/visualcrossing/WeatherIcons/blob/main/PNG/1st%20Set%20-%20Color/"+`${response.days[12].icon}`+".png?raw=true",
         },
         "WeatherIn13Days": {
           "year1in13days": year1in13days,
@@ -1305,7 +1213,7 @@ export default class UpdateWeather {
           "conditionsin13days": response.days[13].conditions,
           "descriptionin13days": response.days[13].description,
           "iconin13days": response.days[13].icon,
-          "iconurlin13days": '"https://github.com/visualcrossing/WeatherIcons/blob/main/PNG/1st%20Set%20-%20Color/'+`${response.days[13].icon}`+'.png?raw=true"',
+          "iconurlin13days": "https://github.com/visualcrossing/WeatherIcons/blob/main/PNG/1st%20Set%20-%20Color/"+`${response.days[13].icon}`+".png?raw=true",
         },
         "WeatherIn14Days": {
           "year1in14days": year1in14days,
@@ -1354,11 +1262,10 @@ export default class UpdateWeather {
           "conditionsin14days": response.days[14].conditions,
           "descriptionin14days": response.days[14].description,
           "iconin14days": response.days[14].icon,
-          "iconurlin14days": '"https://github.com/visualcrossing/WeatherIcons/blob/main/PNG/1st%20Set%20-%20Color/'+`${response.days[14].icon}`+'.png?raw=true"',
+          "iconurlin14days": "https://github.com/visualcrossing/WeatherIcons/blob/main/PNG/1st%20Set%20-%20Color/"+`${response.days[14].icon}`+".png?raw=true",
         }
       }
     return weatherData;
     };
 
   };
-
