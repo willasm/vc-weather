@@ -730,7 +730,9 @@ export default class VCWPlugin extends Plugin {
         const weatherOneLength = weatherTemplateBody1.length;
         if (markdownView && weatherOneLength) {
           if (!checking) {
-            editor.replaceSelection("%weather1%"); //weatherTemplateBody1
+            editor.replaceSelection("%weather1%");
+            this.replaceTemplateStrings(weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8);
+            markdownView.save;
           };
           return true;
         };
@@ -747,7 +749,9 @@ export default class VCWPlugin extends Plugin {
         const weatherOneLength = weatherTemplateBody2.length;
         if (markdownView && weatherOneLength) {
           if (!checking) {
-            editor.replaceSelection("%weather2%"); //weatherTemplateBody2
+            editor.replaceSelection("%weather2%");
+            this.replaceTemplateStrings(weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8);
+            markdownView.save;
           };
           return true;
         };
@@ -764,7 +768,9 @@ export default class VCWPlugin extends Plugin {
         const weatherOneLength = weatherTemplateBody3.length;
         if (markdownView && weatherOneLength) {
           if (!checking) {
-            editor.replaceSelection("%weather3%"); //weatherTemplateBody3
+            editor.replaceSelection("%weather3%");
+            this.replaceTemplateStrings(weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8);
+            markdownView.save;
           };
           return true;
         };
@@ -781,7 +787,9 @@ export default class VCWPlugin extends Plugin {
         const weatherOneLength = weatherTemplateBody4.length;
         if (markdownView && weatherOneLength) {
           if (!checking) {
-            editor.replaceSelection("%weather4%"); //weatherTemplateBody4
+            editor.replaceSelection("%weather4%");
+            this.replaceTemplateStrings(weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8);
+            markdownView.save;
           };
           return true;
         };
@@ -798,7 +806,9 @@ export default class VCWPlugin extends Plugin {
         const weatherOneLength = weatherTemplateBody5.length;
         if (markdownView && weatherOneLength) {
           if (!checking) {
-            editor.replaceSelection("%weather5%"); //weatherTemplateBody5
+            editor.replaceSelection("%weather5%");
+            this.replaceTemplateStrings(weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8);
+            markdownView.save;
           };
           return true;
         };
@@ -815,10 +825,12 @@ export default class VCWPlugin extends Plugin {
         const weatherOneLength = weatherTemplateBody6.length;
         if (markdownView && weatherOneLength) {
           if (!checking) {
-            editor.replaceSelection("%weather6%"); //weatherTemplateBody6
-          }
+            editor.replaceSelection("%weather6%");
+            this.replaceTemplateStrings(weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8);
+            markdownView.save;
+          };
           return true;
-        }
+        };
         return false;
       }
     });
@@ -832,10 +844,12 @@ export default class VCWPlugin extends Plugin {
         const weatherOneLength = weatherTemplateBody7.length;
         if (markdownView && weatherOneLength) {
           if (!checking) {
-            editor.replaceSelection("%weather7%"); //weatherTemplateBody7
-          }
+            editor.replaceSelection("%weather7%");
+            this.replaceTemplateStrings(weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8);
+            markdownView.save;
+          };
           return true;
-        }
+        };
         return false;
       }
     });
@@ -849,10 +863,12 @@ export default class VCWPlugin extends Plugin {
         const weatherOneLength = weatherTemplateBody8.length;
         if (markdownView && weatherOneLength) {
           if (!checking) {
-            editor.replaceSelection("%weather8%"); //weatherTemplateBody8
-          }
+            editor.replaceSelection("%weather8%");
+            this.replaceTemplateStrings(weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8);
+            markdownView.save;
+          };
           return true;
-        }
+        };
         return false;
       }
     });

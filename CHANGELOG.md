@@ -2,6 +2,12 @@
 
 <!-- ## [v-inc] ${YEAR4}-${MONTHNUMBER}-${DATE} -->
 
+## [0.2.5] 2024-11-03
+- Changed: Inserting template from command palette has been improved
+  - It was inserting `%weather1%` to `%weather8%` and then waiting for the template expansion
+  - Now inserts the fully formatted expanded template instead
+  - The insertion is now instant without the slight delay
+
 ## [0.2.4] 2024-11-03
 - Added: `styles.css` to embed images used in settings and to make statusbar strings customizable
 - Added: Author url in manifest.json
