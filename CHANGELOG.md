@@ -2,6 +2,13 @@
 
 <!-- ## [v-inc] ${YEAR4}-${MONTHNUMBER}-${DATE} -->
 
+## [0.2.6] 2024-11-05
+- Changed: Weather icons now imbedded into css
+  - No longer needs to download the icon from the internet
+  - No delay to display the icon now
+- Changed: Weather icons in todays current weather modal now have a background color
+  - This should make them more visible with any theme
+
 ## [0.2.5] 2024-11-03
 - Changed: Inserting template from command palette has been improved
   - It was inserting `%weather1%` to `%weather8%` and then waiting for the template expansion
