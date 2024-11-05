@@ -666,7 +666,7 @@ export default class VCWPlugin extends Plugin {
         statusbarAlertEl.setText('');
       };
 
-      // Cycle statusbar
+      // Cycle statusbar 
       if (this.settings.statusbarActive) {
         if (this.settings.statusbarCycle) {
           if (sbCycled) {
