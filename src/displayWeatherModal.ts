@@ -16,13 +16,13 @@ export default class DisplayWeatherModal extends Modal {
     contentEl.createEl("h1", {text: `${dataJson.address} - ${dataJson.dow} ${dataJson.month} ${dataJson.date} ${dataJson.year}`});
 
     const imgIcon = contentEl.createEl("img");
-    imgIcon.setAttribute("src", `${dataJson.iconUrl}`);
-    imgIcon.setAttribute("style","display: block; margin: 10px auto 20px;");
-    imgIcon.setAttribute("alt", "Visual Crossing Corporation");
-    imgIcon.setAttribute("title", `${dataJson.conditions}`);
+    imgIcon.setAttribute("alt", "Visual Crossing Weather Icon");
+    imgIcon.src='data:image/png;base64,R0lGODlhFAAUAIAAAP///wAAACH5BAEAAAAALAAAAAAUABQAAAIRhI+py+0Po5y02ouz3rz7rxUAOw=='
+    imgIcon.className = `${dataJson.icon}`
+    console.log("📢imgIcon: ", imgIcon);
     const imgText = contentEl.createEl("span",{text: `${dataJson.desc}`});
     imgText.setAttribute("style","display: block; text-align: center; ");
-
+    
     contentEl.createEl('br');
 
     contentEl.createEl('h4', {text: `Current tempature: ${dataJson.temp}° 🔹 Feels like: ${dataJson.feelslike}°`});
