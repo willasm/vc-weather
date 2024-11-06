@@ -9937,7 +9937,20 @@
       "source" : "fcst"
     } ]
   } ],
-  "alerts" : [ ],
+  "alerts": [
+    {
+      "event": "blizzard",
+      "headline": "blizzard warning in effect",
+      "ends": "2024-11-06T06:16:02",
+      "endsEpoch": 1730891762,
+      "onset": "2024-11-05T18:17:00",
+      "onsetEpoch": 1730848620,
+      "id": "urn:oid:2.49.0.1.124.0569096587.2024",
+      "language": "en",
+      "link": "https://weather.gc.ca/",
+      "description": "\n###\n\nVisibility will be suddenly reduced to near zero at times in heavy snow and blowing snow.\n\nPlease continue to monitor alerts and forecasts issued by Environment Canada. To report severe weather, send an email to QCstorm@ec.gc.ca or tweet reports using #QCStorm.\n"
+    }
+  ],
   "stations" : {
     "AU867" : {
       "distance" : 4408.0,

@@ -892,6 +892,15 @@ export default class VCWPlugin extends Plugin {
       }
     });
 
+    // View current weather information 
+    this.addCommand({
+      id: 'view-current-weather',
+      name: 'View current weather information',
+      callback: () => {
+        new DisplayWeatherModal(this.app, formattedInternalCurrentData).open();
+      },
+    });
+
     // Replace template strings 
     this.addCommand({
       id: 'replace-vcweather-template-strings',

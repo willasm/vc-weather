@@ -27,6 +27,7 @@ export default class UpdateWeather {
       // Avoids going over daily limit
       // Comment line below to get real data
       //------------------------------------
+      //console.log("📢testData: \s", testData);
       //return testData;
 
       let updFreNum = Number(updateFrequency);

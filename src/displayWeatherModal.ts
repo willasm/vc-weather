@@ -13,26 +13,24 @@ export default class DisplayWeatherModal extends Modal {
 
     const {contentEl} = this;
 
-    contentEl.createEl("h1", {text: `${dataJson.address} - ${dataJson.dow} ${dataJson.month} ${dataJson.date} ${dataJson.year}`});
+    contentEl.createEl("span", {text: `${dataJson.address} - ${dataJson.dow} ${dataJson.month} ${dataJson.date} ${dataJson.year}`, cls: "current-weather-title"});
 
     const imgIcon = contentEl.createEl("img");
     imgIcon.setAttribute("alt", "Visual Crossing Weather Icon");
-    imgIcon.src='data:image/png;base64,R0lGODlhFAAUAIAAAP///wAAACH5BAEAAAAALAAAAAAUABQAAAIRhI+py+0Po5y02ouz3rz7rxUAOw=='
+    imgIcon.src='data:image/png;base64,R0lGODlhFAAUAIAAAP///wAAACH5BAEAAAAALAAAAAAUABQAAAIRhI+py+0Po5y02ouz3rz7rxUAOw==';
     imgIcon.className = `${dataJson.icon}`
-    console.log("📢imgIcon: ", imgIcon);
-    const imgText = contentEl.createEl("span",{text: `${dataJson.desc}`});
-    imgText.setAttribute("style","display: block; text-align: center; ");
+    contentEl.createEl("span",{text: `${dataJson.desc}`, cls: "current-weather-desc"});
     
-    contentEl.createEl('br');
+    contentEl.createEl('hr', {cls: "hr-vc"});
 
-    contentEl.createEl('h4', {text: `Current tempature: ${dataJson.temp}° 🔹 Feels like: ${dataJson.feelslike}°`});
-    contentEl.createEl('h4', {text: `Wind speed: ${dataJson.windspeed} 🔹 Gusting to: ${dataJson.windgust}`});
-    contentEl.createEl('h4', {text: `Wind direction: ${dataJson.winddirdeg}° from the ${dataJson.winddirstr}`});
-    contentEl.createEl('h4', {text: `PoP: ${dataJson.pop} 🔹 Type: ${dataJson.preciptype}`});
-    contentEl.createEl('h4', {text: `Humidity: ${dataJson.humidity} 🔹 Dew point: ${dataJson.dew}°`});
-    contentEl.createEl('h4', {text: `Air pressure: ${dataJson.pressure} 🔹 Visibility: ${dataJson.visibility}`});
-    contentEl.createEl('h4', {text: `Solar energy: ${dataJson.solarenergy} 🔹 UV index: ${dataJson.uvindex}`});
-    contentEl.createEl('h4', {text: `Sunrise: ${dataJson.sunrise} 🔹 Sunset: ${dataJson.sunset}`});
+    contentEl.createEl('span', {text: `Current tempature: ${dataJson.temp}° 🔹 Feels like: ${dataJson.feelslike}°`, cls: "current-weather-data"});
+    contentEl.createEl('span', {text: `Wind speed: ${dataJson.windspeed} 🔹 Gusting to: ${dataJson.windgust}`, cls: "current-weather-data"});
+    contentEl.createEl('span', {text: `Wind direction: ${dataJson.winddirdeg}° from the ${dataJson.winddirstr}`, cls: "current-weather-data"});
+    contentEl.createEl('span', {text: `PoP: ${dataJson.pop} 🔹 Type: ${dataJson.preciptype}`, cls: "current-weather-data"});
+    contentEl.createEl('span', {text: `Humidity: ${dataJson.humidity} 🔹 Dew point: ${dataJson.dew}°`, cls: "current-weather-data"});
+    contentEl.createEl('span', {text: `Air pressure: ${dataJson.pressure} 🔹 Visibility: ${dataJson.visibility}`, cls: "current-weather-data"});
+    contentEl.createEl('span', {text: `Solar energy: ${dataJson.solarenergy} 🔹 UV index: ${dataJson.uvindex}`, cls: "current-weather-data"});
+    contentEl.createEl('span', {text: `Sunrise: ${dataJson.sunrise} 🔹 Sunset: ${dataJson.sunset}`, cls: "current-weather-data"});
 
   }
 

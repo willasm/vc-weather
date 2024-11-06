@@ -4,6 +4,7 @@
 - [Introduction](#introduction)
 - [Features](#features)
 - [Template Macros](#template-macros)
+- [The Current Weather Display Modal](#the-current-weather-display-modal)
 - [The Statusbar Weather Display & Templates](#the-statusbar-weather-display--templates)
   - [The current weather](#the-current-weather)
   - [Weather alerts](#weather-alerts)
@@ -64,6 +65,16 @@ You can get your [free API key here](https://www.visualcrossing.com/sign-up). It
 
 ## Template Macros
 The text macros are used to represent a weather data object and will be expanded to display that particular weather data item at runtime. All macros are contained within 2 percent signs. For an example, `%temp%` represents the current temperature and will be replaced by eg. `24`. `%humidity%` represents the current humidity and will be replaced with eg. `80%`. For a detailed complete list of available macros in table form see [Macros.md](./Documentation/Macros.md)
+
+[Table of Contents](#table-of-contents)
+
+
+## The Current Weather Display Modal
+Clicking on the weather information in the statusbar will display a modal with the current weather information. It can also be displayed from the command palette by entering `View current weather information`.
+
+For example...
+
+![current weather](./images/currentWeatherModal.png)
 
 [Table of Contents](#table-of-contents)
 

@@ -56,6 +56,55 @@
   font-size: var(--status-bar-font-size);
 }
 
+.hr-vc {
+  --hr-line-offset: 25%;
+  --hr-color: var(--color-orange);
+  border-image-slice: 1;
+  border-image-source: linear-gradient(
+      to right,
+      transparent,
+      var(--hr-color) calc(50% - var(--hr-line-offset)),
+      var(--hr-color) calc(50% + var(--hr-line-offset)),
+      transparent
+  );
+}
+
+.current-weather-title {
+  display: block;
+  margin-bottom: 20px;
+  color: var(--color-orange);
+  font-size: var(--h1-size);
+  font-family: var(--h1-font);
+  font-weight: var(--h1-weight);
+  font-variant: var(--h1-variant);
+  font-style: var(--h1-style);
+  text-decoration: underline;
+  text-align: center;
+}
+
+.current-weather-desc {
+  display: block;
+  color: var(--h5-color);
+  font-size: var(--h5-size);
+  font-family: var(--h5-font);
+  font-weight: var(--h5-weight);
+  font-variant: var(--h5-variant);
+  font-style: var(--h5-style);
+  text-align: center;
+}
+
+.current-weather-data {
+  display: block;
+  margin-top: 15px;
+  color: var(--h4-color);
+  font-size: var(--h4-size);
+  font-family: var(--h4-font);
+  font-weight: var(--h4-weight);
+  font-variant: var(--h4-variant);
+  font-style: var(--h4-style);
+  text-align: center;
+}
+
 /* Weather Icons - Set 1 Color - https://github.com/visualcrossing/WeatherIcons */
 /* clear-day.png */
 .clear-day {
