@@ -11,12 +11,10 @@
 
 <!-- ## [v-inc] ${YEAR4}-${MONTHNUMBER}-${DATE} -->
 
-## [0.2.6] 2024-11-05
-- Changed: Weather icons now imbedded into css
-  - No longer needs to download the icon from the internet
-  - No delay to display the icon now
-- Changed: Weather icons in todays current weather modal now have a background color
-  - This should make them more visible with any theme
+## [0.2.7] 2024-11-06
+- Changed: Display Current weather modal output improved
+- Added: Display current weather modal screenshot in README.md
+- Added: Command `View current weather information` to the command palette
 
 For a full list of changes, please see the projects [Changelog](CHANGELOG.md) file.
 

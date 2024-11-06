@@ -179,6 +179,7 @@ The strings above will autmatically be replaced with the templates data when a n
   - Each of the 8 templates will appear here, but only when the template is actually defined
   - The title of the template is taken from the first line of the template See [Weather Templates.md](#the-weather-templates) for more info
 - `Visual Crossing Weather: Insert template from Picker with Preview` - Displays a modal allowing you see a preveiw of the selected template before insertion
+- - `Visual Crossing Weather: View current weather information` - Displays a modal with the current weather information
 - `Visual Crossing Weather: Replace template strings` - This will replace all occurences of the weather template strings, `%weather1%` to `%weather8%` with the corresponding defined weather templates data. This should normally not be required as the plugin should automatically do this for you. This command is available in case you wish to do the replacements in an excluded folder.
 
 [Table of Contents](#table-of-contents)

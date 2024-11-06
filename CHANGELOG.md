@@ -2,6 +2,11 @@
 
 <!-- ## [v-inc] ${YEAR4}-${MONTHNUMBER}-${DATE} -->
 
+## [0.2.7] 2024-11-06
+- Changed: Display Current weather modal output improved
+- Added: Display current weather modal screenshot in README.md
+- Added: Command `View current weather information` to the command palette
+
 ## [0.2.6] 2024-11-05
 - Changed: Weather icons now imbedded into css
   - No longer needs to download the icon from the internet
