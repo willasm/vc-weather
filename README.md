@@ -111,16 +111,17 @@ You can customize the way the weather information is displayed in the statusbar 
 ```css
 .statusbar-vc {
   background-color: var(--status-bar-background);
-  color: var(--status-bar-text-color);
-  border-radius: var(--status-bar-radius);
-  font-size: var(--status-bar-font-size);
+  color: var(--color-base-100);
+  font-size: small;
+  font-weight: 500;
 }
 
 .statusbar-alert-vc {
-  background-color: whitesmoke;
-  color: var(--color-red);
-  border-radius: 8px;
-  font-size: var(--status-bar-font-size);
+  background-color: var(--color-red);
+  color: var(--color-yellow);
+  border-radius: 10px;
+  font-size: small;
+  font-weight: 600;
 }
 ```
 Note that the `.obsidian` folder is a hidden folder so you may need to enable `show hidden files` in your file manager. The `snippets` folder may need to be created if it does not already exist in your vault.
@@ -128,6 +129,8 @@ Note that the `.obsidian` folder is a hidden folder so you may need to enable `s
 Then enable the CSS snippet in Obsidians settings under appearance/CSS snippets (at the bottom).
 
 The example CSS text above is the default settings. Feel free to customize it to your preferences. `.statusbar-vc` is the class name for the weather information in the statusbar. `.statusbar-alert-vc` is the class name used for weather alerts displayed in the status bar.
+
+For more information, see [Obsidian CSS ariables](https://docs.obsidian.md/Reference/CSS+variables/CSS+variables) and [CSS variables for the Status bar](https://docs.obsidian.md/Reference/CSS+variables/Window/Status+bar)
 
 For more detailed information on the statusbar templates see [Statusbar Templates.md](./Documentation/Statusbar%20Templates.md)
 

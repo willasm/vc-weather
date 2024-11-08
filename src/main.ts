@@ -195,7 +195,6 @@ export default class VCWPlugin extends Plugin {
     // • Adds plugins status bar item to display weather information. Does not work on mobile apps. • 
     // Statusbar weather alert
     statusbarAlertEl = this.addStatusBarItem().createEl('span');
-    statusbarAlertEl.setAttr("style","color: red;");
     statusbarAlertEl.setText("");
     setTooltip(statusbarAlertEl,"WEATHER ALERT\n\nClick to open link...",{ placement: "top" });
     statusbarAlertEl.addClass("statusbar-alert-vc");

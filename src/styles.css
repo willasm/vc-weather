@@ -43,17 +43,25 @@
 
 .statusbar-vc {
   background-color: var(--status-bar-background);
-  color: var(--color-red);
-  color: var(--status-bar-text-color);
-  border-radius: var(--status-bar-radius);
-  font-size: var(--status-bar-font-size);
+  color: var(--color-base-100);
+  font-size: small;
+  font-weight: 500;
 }
 
 .statusbar-alert-vc {
-  background-color: whitesmoke;
-  color: var(--color-red);
-  border-radius: 8px;
-  font-size: var(--status-bar-font-size);
+  background-color: var(--color-red);
+  color: var(--color-yellow);
+  border-radius: 10px;
+  font-size: small;
+  font-weight: 600;
+}
+
+.statusbar-alert-vc:empty {
+  padding:0;
+}
+
+.statusbar-alert-vc:not(:empty) {
+  padding: 5px 10px;
 }
 
 .hr-vc {
