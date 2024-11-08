@@ -11,10 +11,9 @@
 
 <!-- ## [v-inc] ${YEAR4}-${MONTHNUMBER}-${DATE} -->
 
-## [0.2.7] 2024-11-06
-- Changed: Display Current weather modal output improved
-- Added: Display current weather modal screenshot in README.md
-- Added: Command `View current weather information` to the command palette
+## [0.2.8] 2024-11-07
+- Updated: Statusbar styling improved
+- Updated: README.md documentation with CSS information
 
 For a full list of changes, please see the projects [Changelog](CHANGELOG.md) file.
 
