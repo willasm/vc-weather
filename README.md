@@ -130,7 +130,7 @@ Then enable the CSS snippet in Obsidians settings under appearance/CSS snippets 
 
 The example CSS text above is the default settings. Feel free to customize it to your preferences. `.statusbar-vc` is the class name for the weather information in the statusbar. `.statusbar-alert-vc` is the class name used for weather alerts displayed in the status bar.
 
-For more information, see [Obsidian CSS ariables](https://docs.obsidian.md/Reference/CSS+variables/CSS+variables) and [CSS variables for the Status bar](https://docs.obsidian.md/Reference/CSS+variables/Window/Status+bar)
+For more information, see [Obsidian CSS variables](https://docs.obsidian.md/Reference/CSS+variables/CSS+variables) and [CSS variables for the Status bar](https://docs.obsidian.md/Reference/CSS+variables/Window/Status+bar)
 
 For more detailed information on the statusbar templates see [Statusbar Templates.md](./Documentation/Statusbar%20Templates.md)
 
@@ -153,7 +153,7 @@ Insert weather template modal...
 
 ![templatePicker](./images/pickerModal.png)
 
-For a much more detailed overview of the weather templates see [Weather Templates.md](./Documentation/Weather%20Templates.md)
+For a screenshots and a much more detailed overview of the weather templates see [Weather Templates.md](./Documentation/Weather%20Templates.md)
 
 [Table of Contents](#table-of-contents)
 

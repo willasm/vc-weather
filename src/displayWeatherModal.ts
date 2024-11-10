@@ -18,7 +18,7 @@ export default class DisplayWeatherModal extends Modal {
     const imgIcon = contentEl.createEl("img");
     imgIcon.setAttribute("alt", "Visual Crossing Weather Icon");
     imgIcon.src='data:image/png;base64,R0lGODlhFAAUAIAAAP///wAAACH5BAEAAAAALAAAAAAUABQAAAIRhI+py+0Po5y02ouz3rz7rxUAOw==';
-    imgIcon.className = `${dataJson.icon}`
+    imgIcon.className = `${dataJson.icon}-styled`
     contentEl.createEl("span",{text: `${dataJson.desc}`, cls: "current-weather-desc"});
     
     contentEl.createEl('hr', {cls: "hr-vc"});

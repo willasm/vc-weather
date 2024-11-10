@@ -76,7 +76,7 @@ interface internalCurrentData {
   "preciptype": string
   "snow": string
   "snowdepth": string
-  "windgust": string
+  "windgust": number
   "windspeed": string
   "windspeedms": string
   "winddirdeg": string
@@ -517,7 +517,18 @@ export default class VCWPlugin extends Plugin {
       const view = this.app.workspace.getActiveViewOfType(MarkdownView);
       if (view) {
         const file = this.app.workspace.getActiveFile();
-        let editor = view.getViewData();
+        const filePath = file?.path;
+        // Ignore this folder and any subfolders for Template String Replacement
+        if (filePath?.includes(this.settings.excludeFolder)) {
+          return;
+        };
+        // Ignore this folder and any subfolders for Template String Replacement
+        if (this.settings.excludeFolder2.length > 0) {
+          if (filePath?.includes(this.settings.excludeFolder2)) {
+            return;
+          };
+        };
+            let editor = view.getViewData();
         if (editor != null) {
           if (document.getElementsByClassName('weather_current_1').length > 0) {
             if (editor.contains('class="weather_current_1">')) {
@@ -1249,10 +1260,17 @@ export default class VCWPlugin extends Plugin {
     const view = this.app.workspace.getActiveViewOfType(MarkdownView);
     if (!view) return;
     const file = this.app.workspace.getActiveFile();
-    if (view.file?.parent?.path.includes(this.settings.excludeFolder)) return;      // Ignore this folder and any subfolders for Template String Replacement
+    const filePath = file?.path;
+    // Ignore this folder and any subfolders for Template String Replacement
+    if (filePath?.includes(this.settings.excludeFolder)) {
+      return;
+    };
+    // Ignore this folder and any subfolders for Template String Replacement
     if (this.settings.excludeFolder2.length > 0) {
-      if (view.file?.parent?.path.includes(this.settings.excludeFolder2)) return;   // Ignore this folder and any subfolders for Template String Replacement
-    }
+      if (filePath?.includes(this.settings.excludeFolder2)) {
+        return;
+      };
+    };
     let editor = view.getViewData();
     if (editor == null) return;
     if (this.settings.weatherTemplate1.length > 0) {

@@ -59,18 +59,18 @@ export default class InsertTemplatesModal extends Modal {
     contentEl.createEl("br");
 
     // Visual Crossing Header Image 
-    const imageLink = contentEl.createEl("a");
-    const imageHeader = contentEl.createEl("img");
-    imageHeader.setAttribute("src", "https://www.visualcrossing.com/images/vclogo.svg");
-    imageHeader.setAttribute("height", "125px");
-    imageHeader.setAttribute("padding-top", "45px");
-    imageHeader.setAttribute("width", "100%");
-    imageHeader.setAttribute("alt", "Visual Crossing Corporation");
-    imageHeader.setAttribute("style", "background-color: RGB(209, 198, 70); cursor: pointer; border-radius: 12px;");
-    imageHeader.setAttribute("title", "Visit Visual Crossing Home Page");
-    imageHeader.setAttribute("cursor", "pointer");
-    imageLink.appendChild(imageHeader);
-    imageLink.setAttribute('href', "https://www.visualcrossing.com/");
+    // const imageLink = contentEl.createEl("a");
+    // const imageHeader = contentEl.createEl("img");
+    // imageHeader.setAttribute("src", "https://www.visualcrossing.com/images/vclogo.svg");
+    // imageHeader.setAttribute("height", "125px");
+    // imageHeader.setAttribute("padding-top", "45px");
+    // imageHeader.setAttribute("width", "100%");
+    // imageHeader.setAttribute("alt", "Visual Crossing Corporation");
+    // imageHeader.setAttribute("style", "background-color: RGB(209, 198, 70); cursor: pointer; border-radius: 12px;");
+    // imageHeader.setAttribute("title", "Visit Visual Crossing Home Page");
+    // imageHeader.setAttribute("cursor", "pointer");
+    // imageLink.appendChild(imageHeader);
+    // imageLink.setAttribute('href', "https://www.visualcrossing.com/");
 
     contentEl.createEl("h2", { text: "Select template to insert" });
 
