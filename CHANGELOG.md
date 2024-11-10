@@ -2,6 +2,13 @@
 
 <!-- ## [v-inc] ${YEAR4}-${MONTHNUMBER}-${DATE} -->
 
+## [0.2.9] 2024-11-10
+- Added: Three new default weather templates
+- Added: Screenshots for all default templates (see Weather Templates.md)
+- Updated: All default templates
+- Updated: Documentation - Weather Templates.md
+- Updated: Documentation - README.md
+
 ## [0.2.8] 2024-11-07
 - Updated: Statusbar styling improved
 - Updated: README.md documentation with CSS information
