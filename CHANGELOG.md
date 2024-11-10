@@ -2,6 +2,9 @@
 
 <!-- ## [v-inc] ${YEAR4}-${MONTHNUMBER}-${DATE} -->
 
+## [0.3.0] 2024-11-10
+- Fixed: Secondary exclude folder was not correcty saved to settings
+
 ## [0.2.9] 2024-11-10
 - Added: Three new default weather templates
 - Added: Screenshots for all default templates (see Weather Templates.md)

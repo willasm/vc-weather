@@ -250,7 +250,7 @@ export class VCWSettingsTab extends PluginSettingTab {
         dropDown.addOption(e.name,e.name);
       });
       dropDown.onChange(async (value) => {
-        this.plugin.settings.excludeFolder = value;
+        this.plugin.settings.excludeFolder2 = value;
         await this.plugin.saveSettings();
       })
     .setValue(this.plugin.settings.excludeFolder2);
