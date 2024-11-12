@@ -1,6 +1,5 @@
 import { App, Editor, FileView, MarkdownView, Modal, Notice, Plugin, setTooltip } from 'obsidian';
 import { VCWSettingsTab, VCWSettings, DEFAULT_SETTINGS } from './settings';
-import moment from 'moment';
 import FormatTemplates from './formatTemplates';
 import UpdateWeather from './updateWeather';
 import InsertTemplatesModal from './insertWeatherModal'
@@ -1218,23 +1217,23 @@ export default class VCWPlugin extends Plugin {
     // | `%ampm2-now%`       | am or pm for 12 hour time              | am or pm              |
 
     // Current date
-    const year1now = moment().format('YYYY');
-    const year2now = moment().format('YY');
-    const month1now = moment().format('M');
-    const month2now = moment().format('MM');
-    const month3now = moment().format('MMM');
-    const month4now = moment().format('MMMM');
-    const date1now = moment().format('D');
-    const date2now = moment().format('DD');
-    const dow1now = moment().format('ddd');
-    const dow2now = moment().format('dddd');
+    const year1now = window.moment().format('YYYY');
+    const year2now = window.moment().format('YY');
+    const month1now = window.moment().format('M');
+    const month2now = window.moment().format('MM');
+    const month3now = window.moment().format('MMM');
+    const month4now = window.moment().format('MMMM');
+    const date1now = window.moment().format('D');
+    const date2now = window.moment().format('DD');
+    const dow1now = window.moment().format('ddd');
+    const dow2now = window.moment().format('dddd');
     // Current time
-    const hours24 = moment().format('HH');
-    const hours12 = moment().format('h');
-    const mins = moment().format('mm');
-    const secs = moment().format('ss');
-    const ampm1 = moment().format('A');
-    const ampm2 = moment().format('a');
+    const hours24 = window.moment().format('HH');
+    const hours12 = window.moment().format('h');
+    const mins = window.moment().format('mm');
+    const secs = window.moment().format('ss');
+    const ampm1 = window.moment().format('A');
+    const ampm2 = window.moment().format('a');
     // Replace template date/time strings
     template = template.replace(/%year1-now%/gmi, year1now);
     template = template.replace(/%year2-now%/gmi, year2now);

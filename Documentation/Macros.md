@@ -63,6 +63,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%windspeedms%`     | Wind speed in meters per second        | 2                     | -      | -        | -     |
 | `%winddirdeg%`      | Wind direction in degrees              | 245                   | -      | -        | -     |
 | `%winddirstr%`      | Wind direction as string               | northwest             | -      | -        | -     |
+| `%winddirstrshort%` | Wind direction as short string         | N NW W SW S SE E NE   | -      | -        | -     |
 | `%pressure%`        | Sea level air pressure                 | 1013.0                | mb     | mb       | mb    |
 | `%visibility%`      | Visibility                             | 14                    | miles  | km       | miles |
 | `%cloudcover%`      | Cloud cover percentage                 | 85%                   | %      | %        | %     |
@@ -153,6 +154,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%windspeedms-today%`    | Wind speed in meters per second        | 2                                 | -      | -        | -     |
 | `%winddirdeg-today%`     | Wind direction in degrees              | 245                               | -      | -        | -     |
 | `%winddirstr-today%`     | Wind direction as string               | northwest                         | -      | -        | -     |
+| `%winddirstrshort-today%`| Wind direction as short string         | N NW W SW S SE E NE               | -      | -        | -     |
 | `%pressure-today%`       | Sea level air pressure                 | 1013.0                            | mb     | mb       | mb    |
 | `%cloudcover-today%`     | Cloud cover percentage                 | 85%                               | %      | %        | %     |
 | `%visibility-today%`     | Visibility                             | 14                                | miles  | km       | miles |
@@ -206,6 +208,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%windspeedms-in1day%`    | Wind speed in meters per second        | 2                                 | -      | -        | -     |
 | `%winddirdeg-in1day%`     | Wind direction in degrees              | 245                               | -      | -        | -     |
 | `%winddirstr-in1day%`     | Wind direction as string               | northwest                         | -      | -        | -     |
+| `%winddirstrshort-in1day%`| Wind direction as short string         | N NW W SW S SE E NE               | -      | -        | -     |
 | `%pressure-in1day%`       | Sea level air pressure                 | 1013.0                            | mb     | mb       | mb    |
 | `%cloudcover-in1day%`     | Cloud cover percentage                 | 85%                               | %      | %        | %     |
 | `%visibility-in1day%`     | Visibility                             | 14                                | miles  | km       | miles |
@@ -259,6 +262,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%windspeedms-in2days%`    | Wind speed in meters per second        | 2                                 | -      | -        | -     |
 | `%winddirdeg-in2days%`     | Wind direction in degrees              | 245                               | -      | -        | -     |
 | `%winddirstr-in2days%`     | Wind direction as string               | northwest                         | -      | -        | -     |
+| `%winddirstrshort-in2days%`| Wind direction as short string         | N NW W SW S SE E NE               | -      | -        | -     |
 | `%pressure-in2days%`       | Sea level air pressure                 | 1013.0                            | mb     | mb       | mb    |
 | `%cloudcover-in2days%`     | Cloud cover percentage                 | 85%                               | %      | %        | %     |
 | `%visibility-in2days%`     | Visibility                             | 14                                | miles  | km       | miles |
@@ -312,6 +316,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%windspeedms-in3days%`    | Wind speed in meters per second        | 2                                 | -      | -        | -     |
 | `%winddirdeg-in3days%`     | Wind direction in degrees              | 245                               | -      | -        | -     |
 | `%winddirstr-in3days%`     | Wind direction as string               | northwest                         | -      | -        | -     |
+| `%winddirstrshort-in3days%`| Wind direction as short string         | N NW W SW S SE E NE               | -      | -        | -     |
 | `%pressure-in3days%`       | Sea level air pressure                 | 1013.0                            | mb     | mb       | mb    |
 | `%cloudcover-in3days%`     | Cloud cover percentage                 | 85%                               | %      | %        | %     |
 | `%visibility-in3days%`     | Visibility                             | 14                                | miles  | km       | miles |
@@ -365,6 +370,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%windspeedms-in4days%`    | Wind speed in meters per second        | 2                                 | -      | -        | -     |
 | `%winddirdeg-in4days%`     | Wind direction in degrees              | 245                               | -      | -        | -     |
 | `%winddirstr-in4days%`     | Wind direction as string               | northwest                         | -      | -        | -     |
+| `%winddirstrshort-in4days%`| Wind direction as short string         | N NW W SW S SE E NE               | -      | -        | -     |
 | `%pressure-in4days%`       | Sea level air pressure                 | 1013.0                            | mb     | mb       | mb    |
 | `%cloudcover-in4days%`     | Cloud cover percentage                 | 85%                               | %      | %        | %     |
 | `%visibility-in4days%`     | Visibility                             | 14                                | miles  | km       | miles |
@@ -418,6 +424,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%windspeedms-in5days%`    | Wind speed in meters per second        | 2                                 | -      | -        | -     |
 | `%winddirdeg-in5days%`     | Wind direction in degrees              | 245                               | -      | -        | -     |
 | `%winddirstr-in5days%`     | Wind direction as string               | northwest                         | -      | -        | -     |
+| `%winddirstrshort-in5days%`| Wind direction as short string         | N NW W SW S SE E NE               | -      | -        | -     |
 | `%pressure-in5days%`       | Sea level air pressure                 | 1013.0                            | mb     | mb       | mb    |
 | `%cloudcover-in5days%`     | Cloud cover percentage                 | 85%                               | %      | %        | %     |
 | `%visibility-in5days%`     | Visibility                             | 14                                | miles  | km       | miles |
@@ -471,6 +478,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%windspeedms-in6days%`    | Wind speed in meters per second        | 2                                 | -      | -        | -     |
 | `%winddirdeg-in6days%`     | Wind direction in degrees              | 245                               | -      | -        | -     |
 | `%winddirstr-in6days%`     | Wind direction as string               | northwest                         | -      | -        | -     |
+| `%winddirstrshort-in6days%`| Wind direction as short string         | N NW W SW S SE E NE               | -      | -        | -     |
 | `%pressure-in6days%`       | Sea level air pressure                 | 1013.0                            | mb     | mb       | mb    |
 | `%cloudcover-in6days%`     | Cloud cover percentage                 | 85%                               | %      | %        | %     |
 | `%visibility-in6days%`     | Visibility                             | 14                                | miles  | km       | miles |
@@ -524,6 +532,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%windspeedms-in7days%`    | Wind speed in meters per second        | 2                                 | -      | -        | -     |
 | `%winddirdeg-in7days%`     | Wind direction in degrees              | 245                               | -      | -        | -     |
 | `%winddirstr-in7days%`     | Wind direction as string               | northwest                         | -      | -        | -     |
+| `%winddirstrshort-in7days%`| Wind direction as short string         | N NW W SW S SE E NE               | -      | -        | -     |
 | `%pressure-in7days%`       | Sea level air pressure                 | 1013.0                            | mb     | mb       | mb    |
 | `%cloudcover-in7days%`     | Cloud cover percentage                 | 85%                               | %      | %        | %     |
 | `%visibility-in7days%`     | Visibility                             | 14                                | miles  | km       | miles |
@@ -577,6 +586,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%windspeedms-in8days%`    | Wind speed in meters per second        | 2                                 | -      | -        | -     |
 | `%winddirdeg-in8days%`     | Wind direction in degrees              | 245                               | -      | -        | -     |
 | `%winddirstr-in8days%`     | Wind direction as string               | northwest                         | -      | -        | -     |
+| `%winddirstrshort-in8days%`| Wind direction as short string         | N NW W SW S SE E NE               | -      | -        | -     |
 | `%pressure-in8days%`       | Sea level air pressure                 | 1013.0                            | mb     | mb       | mb    |
 | `%cloudcover-in8days%`     | Cloud cover percentage                 | 85%                               | %      | %        | %     |
 | `%visibility-in8days%`     | Visibility                             | 14                                | miles  | km       | miles |
@@ -630,6 +640,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%windspeedms-in9days%`    | Wind speed in meters per second        | 2                                 | -      | -        | -     |
 | `%winddirdeg-in9days%`     | Wind direction in degrees              | 245                               | -      | -        | -     |
 | `%winddirstr-in9days%`     | Wind direction as string               | northwest                         | -      | -        | -     |
+| `%winddirstrshort-in9days%`| Wind direction as short string         | N NW W SW S SE E NE               | -      | -        | -     |
 | `%pressure-in9days%`       | Sea level air pressure                 | 1013.0                            | mb     | mb       | mb    |
 | `%cloudcover-in9days%`     | Cloud cover percentage                 | 85%                               | %      | %        | %     |
 | `%visibility-in9days%`     | Visibility                             | 14                                | miles  | km       | miles |
@@ -683,6 +694,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%windspeedms-in10days%`    | Wind speed in meters per second        | 2                                 | -      | -        | -     |
 | `%winddirdeg-in10days%`     | Wind direction in degrees              | 245                               | -      | -        | -     |
 | `%winddirstr-in10days%`     | Wind direction as string               | northwest                         | -      | -        | -     |
+| `%winddirstrshort-in10days%`| Wind direction as short string         | N NW W SW S SE E NE               | -      | -        | -     |
 | `%pressure-in10days%`       | Sea level air pressure                 | 1013.0                            | mb     | mb       | mb    |
 | `%cloudcover-in10days%`     | Cloud cover percentage                 | 85%                               | %      | %        | %     |
 | `%visibility-in10days%`     | Visibility                             | 14                                | miles  | km       | miles |
@@ -736,6 +748,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%windspeedms-in11days%`    | Wind speed in meters per second        | 2                                 | -      | -        | -     |
 | `%winddirdeg-in11days%`     | Wind direction in degrees              | 245                               | -      | -        | -     |
 | `%winddirstr-in11days%`     | Wind direction as string               | northwest                         | -      | -        | -     |
+| `%winddirstrshort-in11days%`| Wind direction as short string         | N NW W SW S SE E NE               | -      | -        | -     |
 | `%pressure-in11days%`       | Sea level air pressure                 | 1013.0                            | mb     | mb       | mb    |
 | `%cloudcover-in11days%`     | Cloud cover percentage                 | 85%                               | %      | %        | %     |
 | `%visibility-in11days%`     | Visibility                             | 14                                | miles  | km       | miles |
@@ -789,6 +802,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%windspeedms-in12days%`    | Wind speed in meters per second        | 2                                 | -      | -        | -     |
 | `%winddirdeg-in12days%`     | Wind direction in degrees              | 245                               | -      | -        | -     |
 | `%winddirstr-in12days%`     | Wind direction as string               | northwest                         | -      | -        | -     |
+| `%winddirstrshort-in12days%`| Wind direction as short string         | N NW W SW S SE E NE               | -      | -        | -     |
 | `%pressure-in12days%`       | Sea level air pressure                 | 1013.0                            | mb     | mb       | mb    |
 | `%cloudcover-in12days%`     | Cloud cover percentage                 | 85%                               | %      | %        | %     |
 | `%visibility-in12days%`     | Visibility                             | 14                                | miles  | km       | miles |
@@ -842,6 +856,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%windspeedms-in13days%`    | Wind speed in meters per second        | 2                                 | -      | -        | -     |
 | `%winddirdeg-in13days%`     | Wind direction in degrees              | 245                               | -      | -        | -     |
 | `%winddirstr-in13days%`     | Wind direction as string               | northwest                         | -      | -        | -     |
+| `%winddirstrshort-in13days%`| Wind direction as short string         | N NW W SW S SE E NE               | -      | -        | -     |
 | `%pressure-in13days%`       | Sea level air pressure                 | 1013.0                            | mb     | mb       | mb    |
 | `%cloudcover-in13days%`     | Cloud cover percentage                 | 85%                               | %      | %        | %     |
 | `%visibility-in13days%`     | Visibility                             | 14                                | miles  | km       | miles |
@@ -895,6 +910,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%windspeedms-in14days%`    | Wind speed in meters per second        | 2                                 | -      | -        | -     |
 | `%winddirdeg-in14days%`     | Wind direction in degrees              | 245                               | -      | -        | -     |
 | `%winddirstr-in14days%`     | Wind direction as string               | northwest                         | -      | -        | -     |
+| `%winddirstrshort-in14days%`| Wind direction as short string         | N NW W SW S SE E NE               | -      | -        | -     |
 | `%pressure-in14days%`       | Sea level air pressure                 | 1013.0                            | mb     | mb       | mb    |
 | `%cloudcover-in14days%`     | Cloud cover percentage                 | 85%                               | %      | %        | %     |
 | `%visibility-in14days%`     | Visibility                             | 14                                | miles  | km       | miles |
