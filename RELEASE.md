@@ -11,8 +11,10 @@
 
 <!-- ## [v-inc] ${YEAR4}-${MONTHNUMBER}-${DATE} -->
 
-## [0.3.0] 2024-11-10
-- Fixed: Secondary exclude folder was not correcty saved to settings
+## [0.3.1] 2024-11-12
+- Added: Wind direction string short version
+- Removed: Some unnecessary duplicated code
+- Updated: Documentation: `Macros.md`
 
 For a full list of changes, please see the projects [Changelog](CHANGELOG.md) file.
 
