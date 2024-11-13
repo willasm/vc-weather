@@ -411,86 +411,38 @@ export default class VCWPlugin extends Plugin {
       l5formattedresults = l1formattedresults;
     };
 
-    // Get formatted string for weather 1 from template 
+    // Get formatted strings for all weather templates 
     const getFormatted = new FormatTemplates;
-    if (this.settings.weatherTemplate1.length > 0) {
-      weatherTemplateTitle1 = this.settings.weatherTemplate1.slice(0,this.settings.weatherTemplate1.indexOf("\n"));
-      let withoutTitleTemplate1 = this.settings.weatherTemplate1.slice(this.settings.weatherTemplate1.indexOf("\n")+1);
-      weatherTemplateBody1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate1);
-    } else {
-      weatherTemplateTitle1 = "";       // Ensure title and template are empty strings in case user deleted the template
-      weatherTemplateBody1 = "";        //   and will not be added to insert template menu
-    };
 
-    // Get formatted string for weather 2 from template 
-    if (this.settings.weatherTemplate2.length > 0) {
-      weatherTemplateTitle2 = this.settings.weatherTemplate2.slice(0,this.settings.weatherTemplate2.indexOf("\n"));
-      let withoutTitleTemplate2 = this.settings.weatherTemplate2.slice(this.settings.weatherTemplate2.indexOf("\n")+1);
-      weatherTemplateBody2 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate2);
-    } else {
-      weatherTemplateTitle2 = "";       // Ensure title and template are empty strings in case user deleted the template
-      weatherTemplateBody2 = "";        //   and will not be added to insert template menu
+    let templates = [this.settings.weatherTemplate1, this.settings.weatherTemplate2, this.settings.weatherTemplate3, this.settings.weatherTemplate4, this.settings.weatherTemplate5, this.settings.weatherTemplate6, this.settings.weatherTemplate7, this.settings.weatherTemplate8];
+    let templateBodies = [weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8];
+    let templateTitles = [weatherTemplateTitle1, weatherTemplateTitle2, weatherTemplateTitle3, weatherTemplateTitle4, weatherTemplateTitle5, weatherTemplateTitle6, weatherTemplateTitle7, weatherTemplateTitle8];
+    for (let i = 0; i < 8; i++) {
+      if (templates[i].length > 0) {
+        templateTitles[i] = templates[i].slice(0,templates[i].indexOf("\n"));
+        let withoutTitleTemplate = templates[i].slice(templates[i].indexOf("\n")+1);
+        templateBodies[i] = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate);
+      } else {
+        templateTitles[i] = "";       // Ensure title and template are empty strings in case user deleted the template
+        templateBodies[i] = "";        //  and will not be added to insert template menu
+      };
     };
-
-    // Get formatted string for weather 3 from template 
-    if (this.settings.weatherTemplate3.length > 0) {
-      weatherTemplateTitle3 = this.settings.weatherTemplate3.slice(0,this.settings.weatherTemplate3.indexOf("\n"));
-      let withoutTitleTemplate3 = this.settings.weatherTemplate3.slice(this.settings.weatherTemplate3.indexOf("\n")+1);
-      weatherTemplateBody3 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate3);
-    } else {
-      weatherTemplateTitle3 = "";       // Ensure title and template are empty strings in case user deleted the template
-      weatherTemplateBody3 = "";        //   and will not be added to insert template menu
-    };
-
-    // Get formatted string for weather 4 from template 
-    if (this.settings.weatherTemplate4.length > 0) {
-      weatherTemplateTitle4 = this.settings.weatherTemplate4.slice(0,this.settings.weatherTemplate4.indexOf("\n"));
-      let withoutTitleTemplate4 = this.settings.weatherTemplate4.slice(this.settings.weatherTemplate4.indexOf("\n")+1);
-      weatherTemplateBody4 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate4);
-    } else {
-      weatherTemplateTitle4 = "";       // Ensure title and template are empty strings in case user deleted the template
-      weatherTemplateBody4 = "";        //   and will not be added to insert template menu
-    };
-
-    // Get formatted string for weather 5 from template 
-    if (this.settings.weatherTemplate5.length > 0) {
-      weatherTemplateTitle5 = this.settings.weatherTemplate5.slice(0,this.settings.weatherTemplate5.indexOf("\n"));
-      let withoutTitleTemplate5 = this.settings.weatherTemplate5.slice(this.settings.weatherTemplate5.indexOf("\n")+1);
-      weatherTemplateBody5 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate5);
-    } else {
-      weatherTemplateTitle5 = "";       // Ensure title and template are empty strings in case user deleted the template
-      weatherTemplateBody5 = "";        //   and will not be added to insert template menu
-    };
-
-    // Get formatted string for weather 6 from template 
-    if (this.settings.weatherTemplate6.length > 0) {
-      weatherTemplateTitle6 = this.settings.weatherTemplate6.slice(0,this.settings.weatherTemplate6.indexOf("\n"));
-      let withoutTitleTemplate6 = this.settings.weatherTemplate6.slice(this.settings.weatherTemplate6.indexOf("\n")+1);
-      weatherTemplateBody6 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate6);
-    } else {
-      weatherTemplateTitle6 = "";       // Ensure title and template are empty strings in case user deleted the template
-      weatherTemplateBody6 = "";        //   and will not be added to insert template menu
-    };
-
-    // Get formatted string for weather 7 from template 
-    if (this.settings.weatherTemplate7.length > 0) {
-      weatherTemplateTitle7 = this.settings.weatherTemplate7.slice(0,this.settings.weatherTemplate7.indexOf("\n"));
-      let withoutTitleTemplate7 = this.settings.weatherTemplate7.slice(this.settings.weatherTemplate7.indexOf("\n")+1);
-      weatherTemplateBody7 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate7);
-    } else {
-      weatherTemplateTitle7 = "";       // Ensure title and template are empty strings in case user deleted the template
-      weatherTemplateBody7 = "";        //   and will not be added to insert template menu
-    };
-
-    // Get formatted string for weather 8 from template 
-    if (this.settings.weatherTemplate8.length > 0) {
-      weatherTemplateTitle8 = this.settings.weatherTemplate8.slice(0,this.settings.weatherTemplate8.indexOf("\n"));
-      let withoutTitleTemplate8 = this.settings.weatherTemplate8.slice(this.settings.weatherTemplate8.indexOf("\n")+1);
-      weatherTemplateBody8 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate8);
-    } else {
-      weatherTemplateTitle8 = "";       // Ensure title and template are empty strings in case user deleted the template
-      weatherTemplateBody8 = "";        //   and will not be added to insert template menu
-    };
+    weatherTemplateTitle1 = templateTitles[0];
+    weatherTemplateTitle2 = templateTitles[1];
+    weatherTemplateTitle3 = templateTitles[2];
+    weatherTemplateTitle4 = templateTitles[3];
+    weatherTemplateTitle5 = templateTitles[4];
+    weatherTemplateTitle6 = templateTitles[5];
+    weatherTemplateTitle7 = templateTitles[6];
+    weatherTemplateTitle8 = templateTitles[7];
+    weatherTemplateBody1 = templateBodies[0];
+    weatherTemplateBody2 = templateBodies[1];
+    weatherTemplateBody3 = templateBodies[2];
+    weatherTemplateBody4 = templateBodies[3];
+    weatherTemplateBody5 = templateBodies[4];
+    weatherTemplateBody6 = templateBodies[5];
+    weatherTemplateBody7 = templateBodies[6];
+    weatherTemplateBody8 = templateBodies[7];
 
     // Get formatted strings for statusbar from templates 
     formattedSBTemplate1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate1SB);
@@ -529,92 +481,19 @@ export default class VCWPlugin extends Plugin {
         };
             let editor = view.getViewData();
         if (editor != null) {
-          if (document.getElementsByClassName('weather_current_1').length > 0) {
-            if (editor.contains('class="weather_current_1">')) {
-              let withDate = await this.setCurrentDateTime(weatherTemplateBody1);
-              let idxStart = editor.indexOf("weather_current_1")+19;
-              let idxEnd = editor.indexOf("</div>",idxStart);
-              let startStr = editor.substring(0,idxStart);
-              let endStr = editor.substring(idxEnd);
-              let newTemplate = startStr+withDate+endStr;
-              file?.vault.modify(file, newTemplate);
-            };
-          };
-          if (document.getElementsByClassName('weather_current_2').length > 0) {
-            if (editor.contains('class="weather_current_2">')) {
-              let withDate = await this.setCurrentDateTime(weatherTemplateBody2);
-              let idxStart = editor.indexOf("weather_current_2")+19;
-              let idxEnd = editor.indexOf("</div>",idxStart);
-              let startStr = editor.substring(0,idxStart);
-              let endStr = editor.substring(idxEnd);
-              let newTemplate = startStr+withDate+endStr;
-              file?.vault.modify(file, newTemplate);
-            };
-          };
-          if (document.getElementsByClassName('weather_current_3').length > 0) {
-            if (editor.contains('class="weather_current_3">')) {
-              let withDate = await this.setCurrentDateTime(weatherTemplateBody3);
-              let idxStart = editor.indexOf("weather_current_3")+19;
-              let idxEnd = editor.indexOf("</div>",idxStart);
-              let startStr = editor.substring(0,idxStart);
-              let endStr = editor.substring(idxEnd);
-              let newTemplate = startStr+withDate+endStr;
-              file?.vault.modify(file, newTemplate);
-            };
-          };
-          if (document.getElementsByClassName('weather_current_4').length > 0) {
-            if (editor.contains('class="weather_current_4">')) {
-              let withDate = await this.setCurrentDateTime(weatherTemplateBody4);
-              let idxStart = editor.indexOf("weather_current_4")+19;
-              let idxEnd = editor.indexOf("</div>",idxStart);
-              let startStr = editor.substring(0,idxStart);
-              let endStr = editor.substring(idxEnd);
-              let newTemplate = startStr+withDate+endStr;
-              file?.vault.modify(file, newTemplate);
-            };
-          };
-          if(document.getElementsByClassName('weather_current_5').length > 0) {
-            if (editor.contains('class="weather_current_5">')) {
-              let withDate = await this.setCurrentDateTime(weatherTemplateBody5);
-              let idxStart = editor.indexOf("weather_current_5")+19;
-              let idxEnd = editor.indexOf("</div>",idxStart);
-              let startStr = editor.substring(0,idxStart);
-              let endStr = editor.substring(idxEnd);
-              let newTemplate = startStr+withDate+endStr;
-              file?.vault.modify(file, newTemplate);
-            };
-          };
-          if(document.getElementsByClassName('weather_current_6').length > 0) {
-            if (editor.contains('class="weather_current_6">')) {
-              let withDate = await this.setCurrentDateTime(weatherTemplateBody6);
-              let idxStart = editor.indexOf("weather_current_6")+19;
-              let idxEnd = editor.indexOf("</div>",idxStart);
-              let startStr = editor.substring(0,idxStart);
-              let endStr = editor.substring(idxEnd);
-              let newTemplate = startStr+withDate+endStr;
-              file?.vault.modify(file, newTemplate);
-            };
-          };
-          if(document.getElementsByClassName('weather_current_7').length > 0) {
-            if (editor.contains('class="weather_current_7">')) {
-              let withDate = await this.setCurrentDateTime(weatherTemplateBody7);
-              let idxStart = editor.indexOf("weather_current_7")+19;
-              let idxEnd = editor.indexOf("</div>",idxStart);
-              let startStr = editor.substring(0,idxStart);
-              let endStr = editor.substring(idxEnd);
-              let newTemplate = startStr+withDate+endStr;
-              file?.vault.modify(file, newTemplate);
-            };
-          };
-          if(document.getElementsByClassName('weather_current_8').length > 0) {
-            if (editor.contains('class="weather_current_8">')) {
-              let withDate = await this.setCurrentDateTime(weatherTemplateBody8);
-              let idxStart = editor.indexOf("weather_current_8")+19;
-              let idxEnd = editor.indexOf("</div>",idxStart);
-              let startStr = editor.substring(0,idxStart);
-              let endStr = editor.substring(idxEnd);
-              let newTemplate = startStr+withDate+endStr;
-              file?.vault.modify(file, newTemplate);
+          let classNames = ['weather_current_1', 'weather_current_2', 'weather_current_3', 'weather_current_4', 'weather_current_5', 'weather_current_6', 'weather_current_7', 'weather_current_8'];
+          let templateBodies = [weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8];
+          for (let i = 0; i < 8; i++) {
+            if (document.getElementsByClassName(classNames[i]).length > 0) {
+              if (editor.contains(`class="${classNames[i]}">`)) {
+                let withDate = await this.setCurrentDateTime(templateBodies[i]);
+                let idxStart = editor.indexOf(classNames[i])+19;
+                let idxEnd = editor.indexOf("</div>",idxStart);
+                let startStr = editor.substring(0,idxStart);
+                let endStr = editor.substring(idxEnd);
+                let newTemplate = startStr+withDate+endStr;
+                file?.vault.modify(file, newTemplate);
+              };
             };
           };
         };
@@ -625,51 +504,15 @@ export default class VCWPlugin extends Plugin {
     let sbCycled = false;
     this.registerInterval(window.setInterval(async () => {
       statusbarAlertEl.setText("");
+      let location = [this.settings.location_five, this.settings.location_four, this.settings.location_three, this.settings.location_two, this.settings.location_one];
+      let alerts = [l5Alerts, l4Alerts, l3Alerts, l2Alerts, l1Alerts];
       if (this.settings.statusbarActive) {
-        if (this.settings.location_five.length > 0) {
-          if (l5Alerts.length > 0) {
-            statusbarAlertEl.setText(`WEATHER ALERT - ${this.settings.location_five.toUpperCase()} - ${l5Alerts[0].headline}`);
-            setTooltip(statusbarAlertEl,`WEATHER ALERT\n\nENDS: ${l5Alerts[0].ends.replace('T',' - ')}\n\nClick to open link...\n${l5Alerts[0].description}`,{ placement: "top" })
-          };
-        };
-      } else {
-        statusbarAlertEl.setText('');
-      };
-      if (this.settings.statusbarActive) {
-        if (this.settings.location_four.length > 0) {
-          if (l4Alerts.length > 0) {
-            statusbarAlertEl.setText(`WEATHER ALERT - ${this.settings.location_four.toUpperCase()} - ${l4Alerts[0].headline}`);
-            setTooltip(statusbarAlertEl,`WEATHER ALERT\n\nENDS: ${l4Alerts[0].ends.replace('T',' - ')}\n\nClick to open link...\n${l4Alerts[0].description}`,{ placement: "top" })
-          };
-        };
-      } else {
-        statusbarAlertEl.setText('');
-      };
-      if (this.settings.statusbarActive) {
-        if (this.settings.location_three.length > 0) {
-          if (l3Alerts.length > 0) {
-            statusbarAlertEl.setText(`WEATHER ALERT - ${this.settings.location_three.toUpperCase()} - ${l3Alerts[0].headline}`);
-            setTooltip(statusbarAlertEl,`WEATHER ALERT\n\nENDS: ${l3Alerts[0].ends.replace('T',' - ')}\n\nClick to open link...\n${l3Alerts[0].description}`,{ placement: "top" })
-          };
-        };
-      } else {
-        statusbarAlertEl.setText('');
-      };
-      if (this.settings.statusbarActive) {
-        if (this.settings.location_two.length > 0) {
-          if (l2Alerts.length > 0) {
-            statusbarAlertEl.setText(`WEATHER ALERT - ${this.settings.location_two.toUpperCase()} - ${l2Alerts[0].headline}`);
-            setTooltip(statusbarAlertEl,`WEATHER ALERT\n\nENDS: ${l2Alerts[0].ends.replace('T',' - ')}\n\nClick to open link...\n${l2Alerts[0].description}`,{ placement: "top" })
-          };
-        };
-      } else {
-        statusbarAlertEl.setText('');
-      };
-      if (this.settings.statusbarActive) {
-        if (this.settings.location_one.length > 0) {
-          if (l1Alerts.length > 0) {
-            statusbarAlertEl.setText(`WEATHER ALERT - ${this.settings.location_one.toUpperCase()} - ${l1Alerts[0].headline}`);
-            setTooltip(statusbarAlertEl,`WEATHER ALERT\n\nENDS: ${l1Alerts[0].ends.replace('T',' - ')}\n\nClick to open link...\n${l1Alerts[0].description}`,{ placement: "top" })
+        for (let i = 0; i < 5; i++) {
+          if (location[i].length > 0) {
+            if (alerts[i].length > 0) {
+              statusbarAlertEl.setText(`WEATHER ALERT - ${location[i].toUpperCase()} - ${alerts[i][0].headline}`);
+              setTooltip(statusbarAlertEl,`WEATHER ALERT\n\nENDS: ${alerts[i][0].ends.replace('T',' - ')}\n\nClick to open link...\n${alerts[i][0].description}`,{ placement: "top" })
+            };
           };
         };
       } else {
@@ -691,6 +534,7 @@ export default class VCWPlugin extends Plugin {
         };
       } else {
         statusbarEl.setText('');
+        statusbarAlertEl.setText('');
       };
       }, 30 * 1000))
     
@@ -950,76 +794,42 @@ export default class VCWPlugin extends Plugin {
     let sbWithDate  = await this.setCurrentDateTime(formattedSBTemplate1);
     formattedSBTemplate2 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate2SB);
     if (this.settings.statusbarActive) {
-      let sbWithDate  = await this.setCurrentDateTime(formattedSBTemplate1);
       statusbarEl.setText(sbWithDate);
     } else {
       statusbarEl.setText('');
       statusbarAlertEl.setText('');
     };
-    if (this.settings.weatherTemplate1.length > 0) {
-      weatherTemplateTitle1 = this.settings.weatherTemplate1.slice(0,this.settings.weatherTemplate1.indexOf("\n"));
-      let withoutTitleTemplate1 = this.settings.weatherTemplate1.slice(this.settings.weatherTemplate1.indexOf("\n")+1);
-      weatherTemplateBody1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate1);
-    } else {
-      weatherTemplateTitle1 = "";       // Ensure title and template are empty strings in case user deleted the template
-      weatherTemplateBody1 = "";        //  and will not be added to insert template menu
+
+    // Get formatted strings for all weather templates 
+    let templates = [this.settings.weatherTemplate1, this.settings.weatherTemplate2, this.settings.weatherTemplate3, this.settings.weatherTemplate4, this.settings.weatherTemplate5, this.settings.weatherTemplate6, this.settings.weatherTemplate7, this.settings.weatherTemplate8];
+    let templateBodies = [weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8];
+    let templateTitles = [weatherTemplateTitle1, weatherTemplateTitle2, weatherTemplateTitle3, weatherTemplateTitle4, weatherTemplateTitle5, weatherTemplateTitle6, weatherTemplateTitle7, weatherTemplateTitle8];
+    for (let i = 0; i < 8; i++) {
+      if (templates[i].length > 0) {
+        templateTitles[i] = templates[i].slice(0,templates[i].indexOf("\n"));
+        let withoutTitleTemplate = templates[i].slice(templates[i].indexOf("\n")+1);
+        templateBodies[i] = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate);
+      } else {
+        templateTitles[i] = "";       // Ensure title and template are empty strings in case user deleted the template
+        templateBodies[i] = "";        //  and will not be added to insert template menu
+      };
     };
-    if (this.settings.weatherTemplate2.length > 0) {
-      weatherTemplateTitle2 = this.settings.weatherTemplate2.slice(0,this.settings.weatherTemplate2.indexOf("\n"));
-      let withoutTitleTemplate2 = this.settings.weatherTemplate2.slice(this.settings.weatherTemplate2.indexOf("\n")+1);
-      weatherTemplateBody2 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate2);
-    } else {
-      weatherTemplateTitle2 = "";       // Ensure title and template are empty strings in case user deleted the template
-      weatherTemplateBody2 = "";        //  and will not be added to insert template menu
-    };
-    if (this.settings.weatherTemplate3.length > 0) {
-      weatherTemplateTitle3 = this.settings.weatherTemplate3.slice(0,this.settings.weatherTemplate3.indexOf("\n"));
-      let withoutTitleTemplate3 = this.settings.weatherTemplate3.slice(this.settings.weatherTemplate3.indexOf("\n")+1);
-      weatherTemplateBody3 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate3);
-    } else {
-      weatherTemplateTitle3 = "";       // Ensure title and template are empty strings in case user deleted the template
-      weatherTemplateBody3 = "";        //  and will not be added to insert template menu
-    };
-    if (this.settings.weatherTemplate4.length > 0) {
-      weatherTemplateTitle4 = this.settings.weatherTemplate4.slice(0,this.settings.weatherTemplate4.indexOf("\n"));
-      let withoutTitleTemplate4 = this.settings.weatherTemplate4.slice(this.settings.weatherTemplate4.indexOf("\n")+1);
-      weatherTemplateBody4 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate4);
-    } else {
-      weatherTemplateTitle4 = "";       // Ensure title and template are empty strings in case user deleted the template
-      weatherTemplateBody4 = "";        //  and will not be added to insert template menu
-    };
-    if (this.settings.weatherTemplate5.length > 0) {
-      weatherTemplateTitle5 = this.settings.weatherTemplate5.slice(0,this.settings.weatherTemplate5.indexOf("\n"));
-      let withoutTitleTemplate5 = this.settings.weatherTemplate5.slice(this.settings.weatherTemplate5.indexOf("\n")+1);
-      weatherTemplateBody5 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate5);
-    } else {
-      weatherTemplateTitle5 = "";       // Ensure title and template are empty strings in case user deleted the template
-      weatherTemplateBody5 = "";        //  and will not be added to insert template menu
-    };
-    if (this.settings.weatherTemplate6.length > 0) {
-      weatherTemplateTitle6 = this.settings.weatherTemplate6.slice(0,this.settings.weatherTemplate6.indexOf("\n"));
-      let withoutTitleTemplate6 = this.settings.weatherTemplate6.slice(this.settings.weatherTemplate6.indexOf("\n")+1);
-      weatherTemplateBody6 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate6);
-    } else {
-      weatherTemplateTitle6 = "";       // Ensure title and template are empty strings in case user deleted the template
-      weatherTemplateBody6 = "";        //  and will not be added to insert template menu
-    };
-    if (this.settings.weatherTemplate7.length > 0) {
-      weatherTemplateTitle7 = this.settings.weatherTemplate7.slice(0,this.settings.weatherTemplate7.indexOf("\n"));
-      let withoutTitleTemplate7 = this.settings.weatherTemplate7.slice(this.settings.weatherTemplate7.indexOf("\n")+1);
-      weatherTemplateBody7 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate7);
-    } else {
-      weatherTemplateTitle7 = "";       // Ensure title and template are empty strings in case user deleted the template
-      weatherTemplateBody7 = "";        //  and will not be added to insert template menu
-    };
-    if (this.settings.weatherTemplate8.length > 0) {
-      weatherTemplateTitle8 = this.settings.weatherTemplate8.slice(0,this.settings.weatherTemplate8.indexOf("\n"));
-      let withoutTitleTemplate8 = this.settings.weatherTemplate8.slice(this.settings.weatherTemplate8.indexOf("\n")+1);
-      weatherTemplateBody8 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate8);
-    } else {
-      weatherTemplateTitle8 = "";       // Ensure title and template are empty strings in case user deleted the template
-      weatherTemplateBody8 = "";        //  and will not be added to insert template menu
-    };
+    weatherTemplateTitle1 = templateTitles[0];
+    weatherTemplateTitle2 = templateTitles[1];
+    weatherTemplateTitle3 = templateTitles[2];
+    weatherTemplateTitle4 = templateTitles[3];
+    weatherTemplateTitle5 = templateTitles[4];
+    weatherTemplateTitle6 = templateTitles[5];
+    weatherTemplateTitle7 = templateTitles[6];
+    weatherTemplateTitle8 = templateTitles[7];
+    weatherTemplateBody1 = templateBodies[0];
+    weatherTemplateBody2 = templateBodies[1];
+    weatherTemplateBody3 = templateBodies[2];
+    weatherTemplateBody4 = templateBodies[3];
+    weatherTemplateBody5 = templateBodies[4];
+    weatherTemplateBody6 = templateBodies[5];
+    weatherTemplateBody7 = templateBodies[6];
+    weatherTemplateBody8 = templateBodies[7];
   };
 
   // • Handle external changes to data.json settings file • 
@@ -1027,7 +837,7 @@ export default class VCWPlugin extends Plugin {
     await this.loadSettings();
   };
 
-  // • Handle external changes to data.json settings file • 
+  // • Update weather • 
   async updateWeather(delayTime: number) {
     const getResults = new UpdateWeather();
     const getFormatted = new FormatTemplates;
@@ -1110,78 +920,36 @@ export default class VCWPlugin extends Plugin {
       };
     };
             
-    // Get formatted string for weather 1 from template 
-    if (this.settings.weatherTemplate1.length > 0) {
-      weatherTemplateTitle1 = this.settings.weatherTemplate1.slice(0,this.settings.weatherTemplate1.indexOf("\n"));
-      let withoutTitleTemplate1 = this.settings.weatherTemplate1.slice(this.settings.weatherTemplate1.indexOf("\n")+1);
-      weatherTemplateBody1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate1);
-    } else {
-      weatherTemplateTitle1 = "";       // Ensure title and template are empty strings in case user deleted the template
-      weatherTemplateBody1 = "";        //  and will not be added to insert template menu
+    // Get formatted strings for all weather templates 
+    let templates = [this.settings.weatherTemplate1, this.settings.weatherTemplate2, this.settings.weatherTemplate3, this.settings.weatherTemplate4, this.settings.weatherTemplate5, this.settings.weatherTemplate6, this.settings.weatherTemplate7, this.settings.weatherTemplate8];
+    let templateBodies = [weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8];
+    let templateTitles = [weatherTemplateTitle1, weatherTemplateTitle2, weatherTemplateTitle3, weatherTemplateTitle4, weatherTemplateTitle5, weatherTemplateTitle6, weatherTemplateTitle7, weatherTemplateTitle8];
+    for (let i = 0; i < 8; i++) {
+      if (templates[i].length > 0) {
+        templateTitles[i] = templates[i].slice(0,templates[i].indexOf("\n"));
+        let withoutTitleTemplate = templates[i].slice(templates[i].indexOf("\n")+1);
+        templateBodies[i] = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate);
+      } else {
+        templateTitles[i] = "";       // Ensure title and template are empty strings in case user deleted the template
+        templateBodies[i] = "";        //  and will not be added to insert template menu
+      };
     };
-    // Get formatted string for weather 2 from template 
-    if (this.settings.weatherTemplate2.length > 0) {
-      weatherTemplateTitle2 = this.settings.weatherTemplate2.slice(0,this.settings.weatherTemplate2.indexOf("\n"));
-      let withoutTitleTemplate2 = this.settings.weatherTemplate2.slice(this.settings.weatherTemplate2.indexOf("\n")+1);
-      weatherTemplateBody2 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate2);
-    } else {
-      weatherTemplateTitle2 = "";       // Ensure title and template are empty strings in case user deleted the template
-      weatherTemplateBody2 = "";        //  and will not be added to insert template menu
-    };
-    // Get formatted string for weather 3 from template 
-    if (this.settings.weatherTemplate3.length > 0) {
-      weatherTemplateTitle3 = this.settings.weatherTemplate3.slice(0,this.settings.weatherTemplate3.indexOf("\n"));
-      let withoutTitleTemplate3 = this.settings.weatherTemplate3.slice(this.settings.weatherTemplate3.indexOf("\n")+1);
-      weatherTemplateBody3 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate3);
-    } else {
-      weatherTemplateTitle3 = "";       // Ensure title and template are empty strings in case user deleted the template
-      weatherTemplateBody3 = "";        //  and will not be added to insert template menu
-    };
-    // Get formatted string for weather 4 from template 
-    if (this.settings.weatherTemplate4.length > 0) {
-      weatherTemplateTitle4 = this.settings.weatherTemplate4.slice(0,this.settings.weatherTemplate4.indexOf("\n"));
-      let withoutTitleTemplate4 = this.settings.weatherTemplate4.slice(this.settings.weatherTemplate4.indexOf("\n")+1);
-      weatherTemplateBody4 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate4);
-    } else {
-      weatherTemplateTitle4 = "";       // Ensure title and template are empty strings in case user deleted the template
-      weatherTemplateBody4 = "";        //  and will not be added to insert template menu
-    };
-    // Get formatted string for weather 5 from template 
-    if (this.settings.weatherTemplate5.length > 0) {
-      weatherTemplateTitle5 = this.settings.weatherTemplate5.slice(0,this.settings.weatherTemplate5.indexOf("\n"));
-      let withoutTitleTemplate5 = this.settings.weatherTemplate5.slice(this.settings.weatherTemplate5.indexOf("\n")+1);
-      weatherTemplateBody5 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate5);
-    } else {
-      weatherTemplateTitle5 = "";       // Ensure title and template are empty strings in case user deleted the template
-      weatherTemplateBody5 = "";        //  and will not be added to insert template menu
-    };
-    // Get formatted string for weather 6 from template 
-    if (this.settings.weatherTemplate6.length > 0) {
-      weatherTemplateTitle6 = this.settings.weatherTemplate6.slice(0,this.settings.weatherTemplate6.indexOf("\n"));
-      let withoutTitleTemplate6 = this.settings.weatherTemplate6.slice(this.settings.weatherTemplate6.indexOf("\n")+1);
-      weatherTemplateBody6 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate6);
-    } else {
-      weatherTemplateTitle6 = "";       // Ensure title and template are empty strings in case user deleted the template
-      weatherTemplateBody6 = "";        //  and will not be added to insert template menu
-    };
-    // Get formatted string for weather 7 from template 
-    if (this.settings.weatherTemplate7.length > 0) {
-      weatherTemplateTitle7 = this.settings.weatherTemplate7.slice(0,this.settings.weatherTemplate7.indexOf("\n"));
-      let withoutTitleTemplate7 = this.settings.weatherTemplate7.slice(this.settings.weatherTemplate7.indexOf("\n")+1);
-      weatherTemplateBody7 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate7);
-    } else {
-      weatherTemplateTitle7 = "";       // Ensure title and template are empty strings in case user deleted the template
-      weatherTemplateBody7 = "";        //  and will not be added to insert template menu
-    };
-    // Get formatted string for weather 8 from template 
-    if (this.settings.weatherTemplate8.length > 0) {
-      weatherTemplateTitle8 = this.settings.weatherTemplate8.slice(0,this.settings.weatherTemplate8.indexOf("\n"));
-      let withoutTitleTemplate8 = this.settings.weatherTemplate8.slice(this.settings.weatherTemplate8.indexOf("\n")+1);
-      weatherTemplateBody8 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, withoutTitleTemplate8);
-    } else {
-      weatherTemplateTitle8 = "";       // Ensure title and template are empty strings in case user deleted the template
-      weatherTemplateBody8 = "";        //  and will not be added to insert template menu
-    };
+    weatherTemplateTitle1 = templateTitles[0];
+    weatherTemplateTitle2 = templateTitles[1];
+    weatherTemplateTitle3 = templateTitles[2];
+    weatherTemplateTitle4 = templateTitles[3];
+    weatherTemplateTitle5 = templateTitles[4];
+    weatherTemplateTitle6 = templateTitles[5];
+    weatherTemplateTitle7 = templateTitles[6];
+    weatherTemplateTitle8 = templateTitles[7];
+    weatherTemplateBody1 = templateBodies[0];
+    weatherTemplateBody2 = templateBodies[1];
+    weatherTemplateBody3 = templateBodies[2];
+    weatherTemplateBody4 = templateBodies[3];
+    weatherTemplateBody5 = templateBodies[4];
+    weatherTemplateBody6 = templateBodies[5];
+    weatherTemplateBody7 = templateBodies[6];
+    weatherTemplateBody8 = templateBodies[7];
 
     // Replace template strings and update DIV's 
     this.replaceTemplateStrings(weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8);
@@ -1195,7 +963,7 @@ export default class VCWPlugin extends Plugin {
 
   };
 
-  // • Handle external changes to data.json settings file • 
+  // • Replace current time macros • 
   async setCurrentDateTime(template: string) {
     // | Macro               | Description                            | Replaced With Example |
     // | ------------------- | -------------------------------------- | --------------------- |
@@ -1272,94 +1040,24 @@ export default class VCWPlugin extends Plugin {
     };
     let editor = view.getViewData();
     if (editor == null) return;
-    if (this.settings.weatherTemplate1.length > 0) {
-      if (editor.contains("%weather1%")) {
-        let withDate = await this.setCurrentDateTime(weatherTemplateBody1);
-        let idx = editor.indexOf('%weather1%');
-        let editPosStart = view.editor.offsetToPos(idx);
-        let editPosEnd = view.editor.offsetToPos(idx+10);
-        view.editor.replaceRange(withDate, editPosStart,editPosEnd);
-        view.save();
-        return;
+
+    let macros = ["%weather1%", "%weather2%", "%weather3%", "%weather4%", "%weather5%", "%weather6%", "%weather7%", "%weather8%"];
+    let templates = [this.settings.weatherTemplate1, this.settings.weatherTemplate2, this.settings.weatherTemplate3, this.settings.weatherTemplate4, this.settings.weatherTemplate5, this.settings.weatherTemplate6, this.settings.weatherTemplate7, this.settings.weatherTemplate8];
+    let templateBodies = [weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8];
+
+    for (let i = 0; i < 8; i++) {
+      if (templates[i].length > 0) {
+        if (editor.contains(macros[i])) {
+          let withDate = await this.setCurrentDateTime(templateBodies[i]);
+          let idx = editor.indexOf(macros[i]);
+          let editPosStart = view.editor.offsetToPos(idx);
+          let editPosEnd = view.editor.offsetToPos(idx+10);
+          view.editor.replaceRange(withDate, editPosStart,editPosEnd);
+          view.save();
+          return;
+        };
       };
-    };
-    if (this.settings.weatherTemplate2.length > 0) {
-      if (editor.contains("%weather2%")) {
-        let withDate = await this.setCurrentDateTime(weatherTemplateBody2);
-        let idx = editor.indexOf('%weather2%');
-        let editPosStart = view.editor.offsetToPos(idx);
-        let editPosEnd = view.editor.offsetToPos(idx+10);
-        view.editor.replaceRange(withDate, editPosStart,editPosEnd);
-        view.save();
-        return;
-      };
-    };
-    if (this.settings.weatherTemplate3.length > 0) {
-      if (editor.contains("%weather3%")) {
-        let withDate = await this.setCurrentDateTime(weatherTemplateBody3);
-        let idx = editor.indexOf('%weather3%');
-        let editPosStart = view.editor.offsetToPos(idx);
-        let editPosEnd = view.editor.offsetToPos(idx+10);
-        view.editor.replaceRange(withDate, editPosStart,editPosEnd);
-        view.save();
-        return;
-      };
-    };
-    if (this.settings.weatherTemplate4.length > 0) {
-      if (editor.contains("%weather4%")) {
-        let withDate = await this.setCurrentDateTime(weatherTemplateBody4);
-        let idx = editor.indexOf('%weather4%');
-        let editPosStart = view.editor.offsetToPos(idx);
-        let editPosEnd = view.editor.offsetToPos(idx+10);
-        view.editor.replaceRange(withDate, editPosStart,editPosEnd);
-        view.save();
-        return;
-      };
-    };
-    if (this.settings.weatherTemplate5.length > 0) {
-      if (editor.contains("%weather5%")) {
-        let withDate = await this.setCurrentDateTime(weatherTemplateBody5);
-        let idx = editor.indexOf('%weather5%');
-        let editPosStart = view.editor.offsetToPos(idx);
-        let editPosEnd = view.editor.offsetToPos(idx+10);
-        view.editor.replaceRange(withDate, editPosStart,editPosEnd);
-        view.save();
-        return;
-      };
-    };
-    if (this.settings.weatherTemplate6.length > 0) {
-      if (editor.contains("%weather6%")) {
-        let withDate = await this.setCurrentDateTime(weatherTemplateBody6);
-        let idx = editor.indexOf('%weather6%');
-        let editPosStart = view.editor.offsetToPos(idx);
-        let editPosEnd = view.editor.offsetToPos(idx+10);
-        view.editor.replaceRange(withDate, editPosStart,editPosEnd);
-        view.save();
-        return;
-      };
-    };
-    if (this.settings.weatherTemplate7.length > 0) {
-      if (editor.contains("%weather7%")) {
-        let withDate = await this.setCurrentDateTime(weatherTemplateBody7);
-        let idx = editor.indexOf('%weather7%');
-        let editPosStart = view.editor.offsetToPos(idx);
-        let editPosEnd = view.editor.offsetToPos(idx+10);
-        view.editor.replaceRange(withDate, editPosStart,editPosEnd);
-        view.save();
-        return;
-      };
-    };
-    if (this.settings.weatherTemplate8.length > 0) {
-      if (editor.contains("%weather8%")) {
-        let withDate = await this.setCurrentDateTime(weatherTemplateBody8);
-        let idx = editor.indexOf('%weather8%');
-        let editPosStart = view.editor.offsetToPos(idx);
-        let editPosEnd = view.editor.offsetToPos(idx+10);
-        view.editor.replaceRange(withDate, editPosStart,editPosEnd);
-        view.save();
-        return;
-      };
-    };
+    }
   };
 
 }

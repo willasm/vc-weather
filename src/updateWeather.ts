@@ -27,7 +27,7 @@ export default class UpdateWeather {
       // Comment line below to get real data
       //------------------------------------
       //console.log("📢testData: \s", testData);
-      return testData;
+      //return testData;
 
       let updFreNum = Number(updateFrequency);
       let returnData;
