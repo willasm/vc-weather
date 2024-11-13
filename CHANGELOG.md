@@ -2,6 +2,9 @@
 
 <!-- ## [v-inc] ${YEAR4}-${MONTHNUMBER}-${DATE} -->
 
+## [0.3.2] 2024-11-13
+- Removed: Some unnecessary duplicated code
+
 ## [0.3.1] 2024-11-12
 - Added: Wind direction string short version
 - Removed: Some unnecessary duplicated code

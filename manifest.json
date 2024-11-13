@@ -1,7 +1,7 @@
 {
 	"id": "visual-crossing-weather",
 	"name": "Visual Crossing Weather",
-	"version": "0.3.1",
+	"version": "0.3.2",
 	"minAppVersion": "0.15.0",
 	"description": "Visual Crossing Weather API for Your Notes",
 	"author": "willasm",

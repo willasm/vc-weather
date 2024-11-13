@@ -11,10 +11,8 @@
 
 <!-- ## [v-inc] ${YEAR4}-${MONTHNUMBER}-${DATE} -->
 
-## [0.3.1] 2024-11-12
-- Added: Wind direction string short version
+## [0.3.2] 2024-11-13
 - Removed: Some unnecessary duplicated code
-- Updated: Documentation: `Macros.md`
 
 For a full list of changes, please see the projects [Changelog](CHANGELOG.md) file.
 
