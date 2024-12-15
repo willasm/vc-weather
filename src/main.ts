@@ -260,7 +260,14 @@ export default class VCWPlugin extends Plugin {
     this.registerEvent(this.app.workspace.on('file-open', async (file) => {
       if (file) {
         this.replaceTemplateStrings(weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8);
-      }
+        // const fname = file.basename;
+        // if (/\d{4}-\d{2}-\d{2}/.test(fname)) {
+        //   console.log("📢File is Daily Note: ", file.basename);
+        // };
+        // console.log("📢l1results: ", l1results);
+        // console.log("📢l1results Day [0]: ", l1results.days[0]);
+        // console.log("📢l1results Days [0] datetime: ", l1results.days[0].datetime);
+        };
     }));
 
     // onload - registerEvent - 'layout-change' 

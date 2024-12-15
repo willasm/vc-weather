@@ -84,6 +84,7 @@ export default class FormatTemplates {
       "conditions" : `${l1FormattedData.CurrentWeather.conditions}`,
       "icon" : `${l1FormattedData.CurrentWeather.icon}`,
       "iconurl": `${l1FormattedData.CurrentWeather.iconurl}`,
+      "iconurlloc": `${l1FormattedData.CurrentWeather.iconurlloc}`,
       "sunrise" : `${l1FormattedData.CurrentWeather.sunrise}`,
       "sunriseepoch" : `${l1FormattedData.CurrentWeather.sunriseepoch}`,
       "sunset" : `${l1FormattedData.CurrentWeather.sunset}`,
@@ -138,6 +139,7 @@ export default class FormatTemplates {
       "description-today" : `${l1FormattedData.WeatherToday.description}`,
       "icon-today" : `${l1FormattedData.WeatherToday.icon}`,
       "iconurl-today" : `${l1FormattedData.WeatherToday.iconurl}`,
+      "iconurlloc-today": `${l1FormattedData.WeatherToday.iconurlloc}`,
       // Weather in 1 Day
       "year1-in1day" : `${l1FormattedData.WeatherIn1Day.year1}`,
       "year2-in1day" : `${l1FormattedData.WeatherIn1Day.year2}`,
@@ -187,6 +189,7 @@ export default class FormatTemplates {
       "description-in1day" : `${l1FormattedData.WeatherIn1Day.description}`,
       "icon-in1day" : `${l1FormattedData.WeatherIn1Day.icon}`,
       "iconurl-in1day" : `${l1FormattedData.WeatherIn1Day.iconurl}`,
+      "iconurlloc-in1day": `${l1FormattedData.WeatherIn1Day.iconurlloc}`,
       // Weather in 2 days
       "year1-in2days" : `${l1FormattedData.WeatherIn2Days.year1}`,
       "year2-in2days" : `${l1FormattedData.WeatherIn2Days.year2}`,
@@ -236,6 +239,7 @@ export default class FormatTemplates {
       "description-in2days" : `${l1FormattedData.WeatherIn2Days.description}`,
       "icon-in2days" : `${l1FormattedData.WeatherIn2Days.icon}`,
       "iconurl-in2days" : `${l1FormattedData.WeatherIn2Days.iconurl}`,
+      "iconurlloc-in2days": `${l1FormattedData.WeatherIn2Days.iconurlloc}`,
       // Weather in 3 days
       "year1-in3days" : `${l1FormattedData.WeatherIn3Days.year1}`,
       "year2-in3days" : `${l1FormattedData.WeatherIn3Days.year2}`,
@@ -285,6 +289,7 @@ export default class FormatTemplates {
       "description-in3days" : `${l1FormattedData.WeatherIn3Days.description}`,
       "icon-in3days" : `${l1FormattedData.WeatherIn3Days.icon}`,
       "iconurl-in3days" : `${l1FormattedData.WeatherIn3Days.iconurl}`,
+      "iconurlloc-in3days": `${l1FormattedData.WeatherIn3Days.iconurlloc}`,
       // Weather in 4 days
       "year1-in4days" : `${l1FormattedData.WeatherIn4Days.year1}`,
       "year2-in4days" : `${l1FormattedData.WeatherIn4Days.year2}`,
@@ -334,6 +339,7 @@ export default class FormatTemplates {
       "description-in4days" : `${l1FormattedData.WeatherIn4Days.description}`,
       "icon-in4days" : `${l1FormattedData.WeatherIn4Days.icon}`,
       "iconurl-in4days" : `${l1FormattedData.WeatherIn4Days.iconurl}`,
+      "iconurlloc-in4days": `${l1FormattedData.WeatherIn4Days.iconurlloc}`,
       // Weather in 5 days
       "year1-in5days" : `${l1FormattedData.WeatherIn5Days.year1}`,
       "year2-in5days" : `${l1FormattedData.WeatherIn5Days.year2}`,
@@ -383,6 +389,7 @@ export default class FormatTemplates {
       "description-in5days" : `${l1FormattedData.WeatherIn5Days.description}`,
       "icon-in5days" : `${l1FormattedData.WeatherIn5Days.icon}`,
       "iconurl-in5days" : `${l1FormattedData.WeatherIn5Days.iconurl}`,
+      "iconurlloc-in5days": `${l1FormattedData.WeatherIn5Days.iconurlloc}`,
       // Weather in 6 days
       "year1-in6days" : `${l1FormattedData.WeatherIn6Days.year1}`,
       "year2-in6days" : `${l1FormattedData.WeatherIn6Days.year2}`,
@@ -432,6 +439,7 @@ export default class FormatTemplates {
       "description-in6days" : `${l1FormattedData.WeatherIn6Days.description}`,
       "icon-in6days" : `${l1FormattedData.WeatherIn6Days.icon}`,
       "iconurl-in6days" : `${l1FormattedData.WeatherIn6Days.iconurl}`,
+      "iconurlloc-in6days": `${l1FormattedData.WeatherIn6Days.iconurlloc}`,
       // Weather in 7 days
       "year1-in7days" : `${l1FormattedData.WeatherIn7Days.year1}`,
       "year2-in7days" : `${l1FormattedData.WeatherIn7Days.year2}`,
@@ -481,6 +489,7 @@ export default class FormatTemplates {
       "description-in7days" : `${l1FormattedData.WeatherIn7Days.description}`,
       "icon-in7days" : `${l1FormattedData.WeatherIn7Days.icon}`,
       "iconurl-in7days" : `${l1FormattedData.WeatherIn7Days.iconurl}`,
+      "iconurlloc-in7days": `${l1FormattedData.WeatherIn7Days.iconurlloc}`,
       // Weather in 8 days
       "year1-in8days" : `${l1FormattedData.WeatherIn8Days.year1}`,
       "year2-in8days" : `${l1FormattedData.WeatherIn8Days.year2}`,
@@ -530,6 +539,7 @@ export default class FormatTemplates {
       "description-in8days" : `${l1FormattedData.WeatherIn8Days.description}`,
       "icon-in8days" : `${l1FormattedData.WeatherIn8Days.icon}`,
       "iconurl-in8days" : `${l1FormattedData.WeatherIn8Days.iconurl}`,
+      "iconurlloc-in8days": `${l1FormattedData.WeatherIn8Days.iconurlloc}`,
       // Weather in 9 days
       "year1-in9days" : `${l1FormattedData.WeatherIn9Days.year1}`,
       "year2-in9days" : `${l1FormattedData.WeatherIn9Days.year2}`,
@@ -579,6 +589,7 @@ export default class FormatTemplates {
       "description-in9days" : `${l1FormattedData.WeatherIn9Days.description}`,
       "icon-in9days" : `${l1FormattedData.WeatherIn9Days.icon}`,
       "iconurl-in9days" : `${l1FormattedData.WeatherIn9Days.iconurl}`,
+      "iconurlloc-in9days": `${l1FormattedData.WeatherIn9Days.iconurlloc}`,
       // Weather in 10 days
       "year1-in10days" : `${l1FormattedData.WeatherIn10Days.year1}`,
       "year2-in10days" : `${l1FormattedData.WeatherIn10Days.year2}`,
@@ -628,6 +639,7 @@ export default class FormatTemplates {
       "description-in10days" : `${l1FormattedData.WeatherIn10Days.description}`,
       "icon-in10days" : `${l1FormattedData.WeatherIn10Days.icon}`,
       "iconurl-in10days" : `${l1FormattedData.WeatherIn10Days.iconurl}`,
+      "iconurlloc-in10days": `${l1FormattedData.WeatherIn10Days.iconurlloc}`,
       // Weather in 11 days
       "year1-in11days" : `${l1FormattedData.WeatherIn11Days.year1}`,
       "year2-in11days" : `${l1FormattedData.WeatherIn11Days.year2}`,
@@ -677,6 +689,7 @@ export default class FormatTemplates {
       "description-in11days" : `${l1FormattedData.WeatherIn11Days.description}`,
       "icon-in11days" : `${l1FormattedData.WeatherIn11Days.icon}`,
       "iconurl-in11days" : `${l1FormattedData.WeatherIn11Days.iconurl}`,
+      "iconurlloc-in11days": `${l1FormattedData.WeatherIn11Days.iconurlloc}`,
       // Weather in 12 days
       "year1-in12days" : `${l1FormattedData.WeatherIn12Days.year1}`,
       "year2-in12days" : `${l1FormattedData.WeatherIn12Days.year2}`,
@@ -726,6 +739,7 @@ export default class FormatTemplates {
       "description-in12days" : `${l1FormattedData.WeatherIn12Days.description}`,
       "icon-in12days" : `${l1FormattedData.WeatherIn12Days.icon}`,
       "iconurl-in12days" : `${l1FormattedData.WeatherIn12Days.iconurl}`,
+      "iconurlloc-in12days": `${l1FormattedData.WeatherIn12Days.iconurlloc}`,
       // Weather in 13 days
       "year1-in13days" : `${l1FormattedData.WeatherIn13Days.year1}`,
       "year2-in13days" : `${l1FormattedData.WeatherIn13Days.year2}`,
@@ -775,6 +789,7 @@ export default class FormatTemplates {
       "description-in13days" : `${l1FormattedData.WeatherIn13Days.description}`,
       "icon-in13days" : `${l1FormattedData.WeatherIn13Days.icon}`,
       "iconurl-in13days" : `${l1FormattedData.WeatherIn13Days.iconurl}`,
+      "iconurlloc-in13days": `${l1FormattedData.WeatherIn13Days.iconurlloc}`,
       // Weather in 14 days
       "year1-in14days" : `${l1FormattedData.WeatherIn14Days.year1}`,
       "year2-in14days" : `${l1FormattedData.WeatherIn14Days.year2}`,
@@ -824,6 +839,7 @@ export default class FormatTemplates {
       "description-in14days" : `${l1FormattedData.WeatherIn14Days.description}`,
       "icon-in14days" : `${l1FormattedData.WeatherIn14Days.icon}`,
       "iconurl-in14days" : `${l1FormattedData.WeatherIn14Days.iconurl}`,
+      "iconurlloc-in14days": `${l1FormattedData.WeatherIn14Days.iconurlloc}`,
 
       //-----------------------
       // Location 2 Information
@@ -867,6 +883,7 @@ export default class FormatTemplates {
       "l2conditions" : `${l2FormattedData.CurrentWeather.conditions}`,
       "l2icon" : `${l2FormattedData.CurrentWeather.icon}`,
       "l2iconurl" : `${l2FormattedData.CurrentWeather.iconurl}`,
+      "l2iconurlloc": `${l2FormattedData.CurrentWeather.iconurlloc}`,
       "l2sunrise" : `${l2FormattedData.CurrentWeather.sunrise}`,
       "l2sunriseepoch" : `${l2FormattedData.CurrentWeather.sunriseepoch}`,
       "l2sunset" : `${l2FormattedData.CurrentWeather.sunset}`,
@@ -921,6 +938,7 @@ export default class FormatTemplates {
       "l2description-today" : `${l2FormattedData.WeatherToday.descriptiontoday}`,
       "l2icon-today" : `${l2FormattedData.WeatherToday.icontoday}`,
       "l2iconurl-today" : `${l2FormattedData.WeatherToday.iconurltoday}`,
+      "l2iconurlloc-today": `${l2FormattedData.WeatherToday.iconurlloc}`,
       // Weather in 1 Day
       "l2year1-in1day" : `${l2FormattedData.WeatherIn1Day.year1}`,
       "l2year2-in1day" : `${l2FormattedData.WeatherIn1Day.year2}`,
@@ -970,6 +988,7 @@ export default class FormatTemplates {
       "l2description-in1day" : `${l2FormattedData.WeatherIn1Day.description}`,
       "l2icon-in1day" : `${l2FormattedData.WeatherIn1Day.icon}`,
       "l2iconurl-in1day" : `${l2FormattedData.WeatherIn1Day.iconurl}`,
+      "l2iconurlloc-in1day": `${l2FormattedData.WeatherIn1Day.iconurlloc}`,
       // Weather in 2 days
       "l2year1-in2days" : `${l2FormattedData.WeatherIn2Days.year1}`,
       "l2year2-in2days" : `${l2FormattedData.WeatherIn2Days.year2}`,
@@ -1019,6 +1038,7 @@ export default class FormatTemplates {
       "l2description-in2days" : `${l2FormattedData.WeatherIn2Days.description}`,
       "l2icon-in2days" : `${l2FormattedData.WeatherIn2Days.icon}`,
       "l2iconurl-in2days" : `${l2FormattedData.WeatherIn2Days.iconurl}`,
+      "l2iconurlloc-in2days": `${l2FormattedData.WeatherIn2Days.iconurlloc}`,
       // Weather in 3 days
       "l2year1-in3days" : `${l2FormattedData.WeatherIn3Days.year1}`,
       "l2year2-in3days" : `${l2FormattedData.WeatherIn3Days.year2}`,
@@ -1068,6 +1088,7 @@ export default class FormatTemplates {
       "l2description-in3days" : `${l2FormattedData.WeatherIn3Days.description}`,
       "l2icon-in3days" : `${l2FormattedData.WeatherIn3Days.icon}`,
       "l2iconurl-in3days" : `${l2FormattedData.WeatherIn3Days.iconurl}`,
+      "l2iconurlloc-in3days": `${l2FormattedData.WeatherIn3Days.iconurlloc}`,
       // Weather in 4 days
       "l2year1-in4days" : `${l2FormattedData.WeatherIn4Days.year1}`,
       "l2year2-in4days" : `${l2FormattedData.WeatherIn4Days.year2}`,
@@ -1117,6 +1138,7 @@ export default class FormatTemplates {
       "l2description-in4days" : `${l2FormattedData.WeatherIn4Days.description}`,
       "l2icon-in4days" : `${l2FormattedData.WeatherIn4Days.icon}`,
       "l2iconurl-in4days" : `${l2FormattedData.WeatherIn4Days.iconurl}`,
+      "l2iconurlloc-in4days": `${l2FormattedData.WeatherIn4Days.iconurlloc}`,
       // Weather in 5 days
       "l2year1-in5days" : `${l2FormattedData.WeatherIn5Days.year1}`,
       "l2year2-in5days" : `${l2FormattedData.WeatherIn5Days.year2}`,
@@ -1166,6 +1188,7 @@ export default class FormatTemplates {
       "l2description-in5days" : `${l2FormattedData.WeatherIn5Days.description}`,
       "l2icon-in5days" : `${l2FormattedData.WeatherIn5Days.icon}`,
       "l2iconurl-in5days" : `${l2FormattedData.WeatherIn5Days.iconurl}`,
+      "l2iconurlloc-in5days" : `${l2FormattedData.WeatherIn5Days.iconurlloc}`,
       // Weather in 6 days
       "l2year1-in6days" : `${l2FormattedData.WeatherIn6Days.year1}`,
       "l2year2-in6days" : `${l2FormattedData.WeatherIn6Days.year2}`,
@@ -1215,6 +1238,7 @@ export default class FormatTemplates {
       "l2description-in6days" : `${l2FormattedData.WeatherIn6Days.description}`,
       "l2icon-in6days" : `${l2FormattedData.WeatherIn6Days.icon}`,
       "l2iconurl-in6days" : `${l2FormattedData.WeatherIn6Days.iconurl}`,
+      "l2iconurlloc-in6days" : `${l2FormattedData.WeatherIn6Days.iconurlloc}`,
       // Weather in 7 days
       "l2year1-in7days" : `${l2FormattedData.WeatherIn7Days.year1}`,
       "l2year2-in7days" : `${l2FormattedData.WeatherIn7Days.year2}`,
@@ -1264,6 +1288,7 @@ export default class FormatTemplates {
       "l2description-in7days" : `${l2FormattedData.WeatherIn7Days.description}`,
       "l2icon-in7days" : `${l2FormattedData.WeatherIn7Days.icon}`,
       "l2iconurl-in7days" : `${l2FormattedData.WeatherIn7Days.iconurl}`,
+      "l2iconurlloc-in7days" : `${l2FormattedData.WeatherIn7Days.iconurlloc}`,
       // Weather in 8 days
       "l2year1-in8days" : `${l2FormattedData.WeatherIn8Days.year1}`,
       "l2year2-in8days" : `${l2FormattedData.WeatherIn8Days.year2}`,
@@ -1313,6 +1338,7 @@ export default class FormatTemplates {
       "l2description-in8days" : `${l2FormattedData.WeatherIn8Days.description}`,
       "l2icon-in8days" : `${l2FormattedData.WeatherIn8Days.icon}`,
       "l2iconurl-in8days" : `${l2FormattedData.WeatherIn8Days.iconurl}`,
+      "l2iconurlloc-in8days" : `${l2FormattedData.WeatherIn8Days.iconurlloc}`,
       // Weather in 9 days
       "l2year1-in9days" : `${l2FormattedData.WeatherIn9Days.year1}`,
       "l2year2-in9days" : `${l2FormattedData.WeatherIn9Days.year2}`,
@@ -1362,6 +1388,7 @@ export default class FormatTemplates {
       "l2description-in9days" : `${l2FormattedData.WeatherIn9Days.description}`,
       "l2icon-in9days" : `${l2FormattedData.WeatherIn9Days.icon}`,
       "l2iconurl-in9days" : `${l2FormattedData.WeatherIn9Days.iconurl}`,
+      "l2iconurlloc-in9days" : `${l2FormattedData.WeatherIn9Days.iconurlloc}`,
       // Weather in 10 days
       "l2year1-in10days" : `${l2FormattedData.WeatherIn10Days.year1}`,
       "l2year2-in10days" : `${l2FormattedData.WeatherIn10Days.year2}`,
@@ -1411,6 +1438,7 @@ export default class FormatTemplates {
       "l2description-in10days" : `${l2FormattedData.WeatherIn10Days.description}`,
       "l2icon-in10days" : `${l2FormattedData.WeatherIn10Days.icon}`,
       "l2iconurl-in10days" : `${l2FormattedData.WeatherIn10Days.iconurl}`,
+      "l2iconurlloc-in10days" : `${l2FormattedData.WeatherIn10Days.iconurlloc}`,
       // Weather in 11 days
       "l2year1-in11days" : `${l2FormattedData.WeatherIn11Days.year1}`,
       "l2year2-in11days" : `${l2FormattedData.WeatherIn11Days.year2}`,
@@ -1460,6 +1488,7 @@ export default class FormatTemplates {
       "l2description-in11days" : `${l2FormattedData.WeatherIn11Days.description}`,
       "l2icon-in11days" : `${l2FormattedData.WeatherIn11Days.icon}`,
       "l2iconurl-in11days" : `${l2FormattedData.WeatherIn11Days.iconurl}`,
+      "l2iconurlloc-in11days" : `${l2FormattedData.WeatherIn11Days.iconurlloc}`,
       // Weather in 12 days
       "l2year1-in12days" : `${l2FormattedData.WeatherIn12Days.year1}`,
       "l2year2-in12days" : `${l2FormattedData.WeatherIn12Days.year2}`,
@@ -1509,6 +1538,7 @@ export default class FormatTemplates {
       "l2description-in12days" : `${l2FormattedData.WeatherIn12Days.description}`,
       "l2icon-in12days" : `${l2FormattedData.WeatherIn12Days.icon}`,
       "l2iconurl-in12days" : `${l2FormattedData.WeatherIn12Days.iconurl}`,
+      "l2iconurlloc-in12days" : `${l2FormattedData.WeatherIn12Days.iconurlloc}`,
       // Weather in 13 days
       "l2year1-in13days" : `${l2FormattedData.WeatherIn13Days.year1}`,
       "l2year2-in13days" : `${l2FormattedData.WeatherIn13Days.year2}`,
@@ -1558,6 +1588,7 @@ export default class FormatTemplates {
       "l2description-in13days" : `${l2FormattedData.WeatherIn13Days.description}`,
       "l2icon-in13days" : `${l2FormattedData.WeatherIn13Days.icon}`,
       "l2iconurl-in13days" : `${l2FormattedData.WeatherIn13Days.iconurl}`,
+      "l2iconurlloc-in13days" : `${l2FormattedData.WeatherIn13Days.iconurlloc}`,
       // Weather in 14 days
       "l2year1-in14days" : `${l2FormattedData.WeatherIn14Days.year1}`,
       "l2year2-in14days" : `${l2FormattedData.WeatherIn14Days.year2}`,
@@ -1607,6 +1638,7 @@ export default class FormatTemplates {
       "l2description-in14days" : `${l2FormattedData.WeatherIn14Days.description}`,
       "l2icon-in14days" : `${l2FormattedData.WeatherIn14Days.icon}`,
       "l2iconurl-in14days" : `${l2FormattedData.WeatherIn14Days.iconurl}`,
+      "l2iconurlloc-in14days" : `${l2FormattedData.WeatherIn14Days.iconurlloc}`,
 
       //-----------------------
       // Location 3 Information
@@ -1650,6 +1682,7 @@ export default class FormatTemplates {
       "l3conditions" : `${l3FormattedData.CurrentWeather.conditions}`,
       "l3icon" : `${l3FormattedData.CurrentWeather.icon}`,
       "l3iconurl" : `${l3FormattedData.CurrentWeather.iconurl}`,
+      "l3iconurlloc" : `${l3FormattedData.CurrentWeather.iconurlloc}`,
       "l3sunrise" : `${l3FormattedData.CurrentWeather.sunrise}`,
       "l3sunriseepoch" : `${l3FormattedData.CurrentWeather.sunriseepoch}`,
       "l3sunset" : `${l3FormattedData.CurrentWeather.sunset}`,
@@ -1704,6 +1737,7 @@ export default class FormatTemplates {
       "l3description-today" : `${l3FormattedData.WeatherToday.descriptiontoday}`,
       "l3icon-today" : `${l3FormattedData.WeatherToday.icontoday}`,
       "l3iconurl-today" : `${l3FormattedData.WeatherToday.iconurltoday}`,
+      "l3iconurlloc-today" : `${l3FormattedData.WeatherToday.iconurlloctoday}`,
       // Weather in 1 Day
       "l3year1-in1day" : `${l3FormattedData.WeatherIn1Day.year1}`,
       "l3year2-in1day" : `${l3FormattedData.WeatherIn1Day.year2}`,
@@ -1753,6 +1787,7 @@ export default class FormatTemplates {
       "l3description-in1day" : `${l3FormattedData.WeatherIn1Day.description}`,
       "l3icon-in1day" : `${l3FormattedData.WeatherIn1Day.icon}`,
       "l3iconurl-in1day" : `${l3FormattedData.WeatherIn1Day.iconurl}`,
+      "l3iconurlloc-in1day" : `${l3FormattedData.WeatherIn1Day.iconurlloc}`,
       // Weather in 2 days
       "l3year1-in2days" : `${l3FormattedData.WeatherIn2Days.year1}`,
       "l3year2-in2days" : `${l3FormattedData.WeatherIn2Days.year2}`,
@@ -1802,6 +1837,7 @@ export default class FormatTemplates {
       "l3description-in2days" : `${l3FormattedData.WeatherIn2Days.description}`,
       "l3icon-in2days" : `${l3FormattedData.WeatherIn2Days.icon}`,
       "l3iconurl-in2days" : `${l3FormattedData.WeatherIn2Days.iconurl}`,
+      "l3iconurlloc-in2days" : `${l3FormattedData.WeatherIn2Days.iconurlloc}`,
       // Weather in 3 days
       "l3year1-in3days" : `${l3FormattedData.WeatherIn3Days.year1}`,
       "l3year2-in3days" : `${l3FormattedData.WeatherIn3Days.year2}`,
@@ -1851,6 +1887,7 @@ export default class FormatTemplates {
       "l3description-in3days" : `${l3FormattedData.WeatherIn3Days.description}`,
       "l3icon-in3days" : `${l3FormattedData.WeatherIn3Days.icon}`,
       "l3iconurl-in3days" : `${l3FormattedData.WeatherIn3Days.iconurl}`,
+      "l3iconurlloc-in3days" : `${l3FormattedData.WeatherIn3Days.iconurlloc}`,
       // Weather in 4 days
       "l3year1-in4days" : `${l3FormattedData.WeatherIn4Days.year1}`,
       "l3year2-in4days" : `${l3FormattedData.WeatherIn4Days.year2}`,
@@ -1900,6 +1937,7 @@ export default class FormatTemplates {
       "l3description-in4days" : `${l3FormattedData.WeatherIn4Days.description}`,
       "l3icon-in4days" : `${l3FormattedData.WeatherIn4Days.icon}`,
       "l3iconurl-in4days" : `${l3FormattedData.WeatherIn4Days.iconurl}`,
+      "l3iconurlloc-in4days" : `${l3FormattedData.WeatherIn4Days.iconurlloc}`,
       // Weather in 5 days
       "l3year1-in5days" : `${l3FormattedData.WeatherIn5Days.year1}`,
       "l3year2-in5days" : `${l3FormattedData.WeatherIn5Days.year2}`,
@@ -1949,6 +1987,7 @@ export default class FormatTemplates {
       "l3description-in5days" : `${l3FormattedData.WeatherIn5Days.description}`,
       "l3icon-in5days" : `${l3FormattedData.WeatherIn5Days.icon}`,
       "l3iconurl-in5days" : `${l3FormattedData.WeatherIn5Days.iconurl}`,
+      "l3iconurlloc-in5days" : `${l3FormattedData.WeatherIn5Days.iconurlloc}`,
       // Weather in 6 days
       "l3year1-in6days" : `${l3FormattedData.WeatherIn6Days.year1}`,
       "l3year2-in6days" : `${l3FormattedData.WeatherIn6Days.year2}`,
@@ -1998,6 +2037,7 @@ export default class FormatTemplates {
       "l3description-in6days" : `${l3FormattedData.WeatherIn6Days.description}`,
       "l3icon-in6days" : `${l3FormattedData.WeatherIn6Days.icon}`,
       "l3iconurl-in6days" : `${l3FormattedData.WeatherIn6Days.iconurl}`,
+      "l3iconurlloc-in6days" : `${l3FormattedData.WeatherIn6Days.iconurlloc}`,
       // Weather in 7 days
       "l3year1-in7days" : `${l3FormattedData.WeatherIn7Days.year1}`,
       "l3year2-in7days" : `${l3FormattedData.WeatherIn7Days.year2}`,
@@ -2047,6 +2087,7 @@ export default class FormatTemplates {
       "l3description-in7days" : `${l3FormattedData.WeatherIn7Days.description}`,
       "l3icon-in7days" : `${l3FormattedData.WeatherIn7Days.icon}`,
       "l3iconurl-in7days" : `${l3FormattedData.WeatherIn7Days.iconurl}`,
+      "l3iconurlloc-in7days" : `${l3FormattedData.WeatherIn7Days.iconurlloc}`,
       // Weather in 8 days
       "l3year1-in8days" : `${l3FormattedData.WeatherIn8Days.year1}`,
       "l3year2-in8days" : `${l3FormattedData.WeatherIn8Days.year2}`,
@@ -2096,6 +2137,7 @@ export default class FormatTemplates {
       "l3description-in8days" : `${l3FormattedData.WeatherIn8Days.description}`,
       "l3icon-in8days" : `${l3FormattedData.WeatherIn8Days.icon}`,
       "l3iconurl-in8days" : `${l3FormattedData.WeatherIn8Days.iconurl}`,
+      "l3iconurlloc-in8days" : `${l3FormattedData.WeatherIn8Days.iconurlloc}`,
       // Weather in 9 days
       "l3year1-in9days" : `${l3FormattedData.WeatherIn9Days.year1}`,
       "l3year2-in9days" : `${l3FormattedData.WeatherIn9Days.year2}`,
@@ -2145,6 +2187,7 @@ export default class FormatTemplates {
       "l3description-in9days" : `${l3FormattedData.WeatherIn9Days.description}`,
       "l3icon-in9days" : `${l3FormattedData.WeatherIn9Days.icon}`,
       "l3iconurl-in9days" : `${l3FormattedData.WeatherIn9Days.iconurl}`,
+      "l3iconurlloc-in9days" : `${l3FormattedData.WeatherIn9Days.iconurlloc}`,
       // Weather in 10 days
       "l3year1-in10days" : `${l3FormattedData.WeatherIn10Days.year1}`,
       "l3year2-in10days" : `${l3FormattedData.WeatherIn10Days.year2}`,
@@ -2194,6 +2237,7 @@ export default class FormatTemplates {
       "l3description-in10days" : `${l3FormattedData.WeatherIn10Days.description}`,
       "l3icon-in10days" : `${l3FormattedData.WeatherIn10Days.icon}`,
       "l3iconurl-in10days" : `${l3FormattedData.WeatherIn10Days.iconurl}`,
+      "l3iconurlloc-in10days" : `${l3FormattedData.WeatherIn10Days.iconurlloc}`,
       // Weather in 11 days
       "l3year1-in11days" : `${l3FormattedData.WeatherIn11Days.year1}`,
       "l3year2-in11days" : `${l3FormattedData.WeatherIn11Days.year2}`,
@@ -2243,6 +2287,7 @@ export default class FormatTemplates {
       "l3description-in11days" : `${l3FormattedData.WeatherIn11Days.description}`,
       "l3icon-in11days" : `${l3FormattedData.WeatherIn11Days.icon}`,
       "l3iconurl-in11days" : `${l3FormattedData.WeatherIn11Days.iconurl}`,
+      "l3iconurlloc-in11days" : `${l3FormattedData.WeatherIn11Days.iconurlloc}`,
       // Weather in 12 days
       "l3year1-in12days" : `${l3FormattedData.WeatherIn12Days.year1}`,
       "l3year2-in12days" : `${l3FormattedData.WeatherIn12Days.year2}`,
@@ -2292,6 +2337,7 @@ export default class FormatTemplates {
       "l3description-in12days" : `${l3FormattedData.WeatherIn12Days.description}`,
       "l3icon-in12days" : `${l3FormattedData.WeatherIn12Days.icon}`,
       "l3iconurl-in12days" : `${l3FormattedData.WeatherIn12Days.iconurl}`,
+      "l3iconurlloc-in12days" : `${l3FormattedData.WeatherIn12Days.iconurlloc}`,
       // Weather in 13 days
       "l3year1-in13days" : `${l3FormattedData.WeatherIn13Days.year1}`,
       "l3year2-in13days" : `${l3FormattedData.WeatherIn13Days.year2}`,
@@ -2341,6 +2387,7 @@ export default class FormatTemplates {
       "l3description-in13days" : `${l3FormattedData.WeatherIn13Days.description}`,
       "l3icon-in13days" : `${l3FormattedData.WeatherIn13Days.icon}`,
       "l3iconurl-in13days" : `${l3FormattedData.WeatherIn13Days.iconurl}`,
+      "l3iconurlloc-in13days" : `${l3FormattedData.WeatherIn13Days.iconurlloc}`,
       // Weather in 14 days
       "l3year1-in14days" : `${l3FormattedData.WeatherIn14Days.year1}`,
       "l3year2-in14days" : `${l3FormattedData.WeatherIn14Days.year2}`,
@@ -2390,6 +2437,7 @@ export default class FormatTemplates {
       "l3description-in14days" : `${l3FormattedData.WeatherIn14Days.description}`,
       "l3icon-in14days" : `${l3FormattedData.WeatherIn14Days.icon}`,
       "l3iconurl-in14days" : `${l3FormattedData.WeatherIn14Days.iconurl}`,
+      "l3iconurlloc-in14days" : `${l3FormattedData.WeatherIn14Days.iconurlloc}`,
 
       //-----------------------
       // Location 4 Information
@@ -2433,6 +2481,7 @@ export default class FormatTemplates {
       "l4conditions" : `${l4FormattedData.CurrentWeather.conditions}`,
       "l4icon" : `${l4FormattedData.CurrentWeather.icon}`,
       "l4iconurl" : `${l4FormattedData.CurrentWeather.iconurl}`,
+      "l4iconurlloc" : `${l4FormattedData.CurrentWeather.iconurlloc}`,
       "l4sunrise" : `${l4FormattedData.CurrentWeather.sunrise}`,
       "l4sunriseepoch" : `${l4FormattedData.CurrentWeather.sunriseepoch}`,
       "l4sunset" : `${l4FormattedData.CurrentWeather.sunset}`,
@@ -2487,6 +2536,7 @@ export default class FormatTemplates {
       "l4description-today" : `${l4FormattedData.WeatherToday.descriptiontoday}`,
       "l4icon-today" : `${l4FormattedData.WeatherToday.icontoday}`,
       "l4iconurl-today" : `${l4FormattedData.WeatherToday.iconurltoday}`,
+      "l4iconurlloc-today" : `${l4FormattedData.CurrentWeather.iconurlloctoday}`,
       // Weather in 1 Day
       "l4year1-in1day" : `${l4FormattedData.WeatherIn1Day.year1}`,
       "l4year2-in1day" : `${l4FormattedData.WeatherIn1Day.year2}`,
@@ -2536,6 +2586,7 @@ export default class FormatTemplates {
       "l4description-in1day" : `${l4FormattedData.WeatherIn1Day.description}`,
       "l4icon-in1day" : `${l4FormattedData.WeatherIn1Day.icon}`,
       "l4iconurl-in1day" : `${l4FormattedData.WeatherIn1Day.iconurl}`,
+      "l4iconurlloc-in1day" : `${l4FormattedData.WeatherIn1Day.iconurlloc}`,
       // Weather in 2 days
       "l4year1-in2days" : `${l4FormattedData.WeatherIn2Days.year1}`,
       "l4year2-in2days" : `${l4FormattedData.WeatherIn2Days.year2}`,
@@ -2585,6 +2636,7 @@ export default class FormatTemplates {
       "l4description-in2days" : `${l4FormattedData.WeatherIn2Days.description}`,
       "l4icon-in2days" : `${l4FormattedData.WeatherIn2Days.icon}`,
       "l4iconurl-in2days" : `${l4FormattedData.WeatherIn2Days.iconurl}`,
+      "l4iconurlloc-in2days" : `${l4FormattedData.WeatherIn2Days.iconurlloc}`,
       // Weather in 3 days
       "l4year1-in3days" : `${l4FormattedData.WeatherIn3Days.year1}`,
       "l4year2-in3days" : `${l4FormattedData.WeatherIn3Days.year2}`,
@@ -2634,6 +2686,7 @@ export default class FormatTemplates {
       "l4description-in3days" : `${l4FormattedData.WeatherIn3Days.description}`,
       "l4icon-in3days" : `${l4FormattedData.WeatherIn3Days.icon}`,
       "l4iconurl-in3days" : `${l4FormattedData.WeatherIn3Days.iconurl}`,
+      "l4iconurlloc-in3days" : `${l4FormattedData.WeatherIn3Days.iconurlloc}`,
       // Weather in 4 days
       "l4year1-in4days" : `${l4FormattedData.WeatherIn4Days.year1}`,
       "l4year2-in4days" : `${l4FormattedData.WeatherIn4Days.year2}`,
@@ -2683,6 +2736,7 @@ export default class FormatTemplates {
       "l4description-in4days" : `${l4FormattedData.WeatherIn4Days.description}`,
       "l4icon-in4days" : `${l4FormattedData.WeatherIn4Days.icon}`,
       "l4iconurl-in4days" : `${l4FormattedData.WeatherIn4Days.iconurl}`,
+      "l4iconurlloc-in4days" : `${l4FormattedData.WeatherIn4Days.iconurlloc}`,
       // Weather in 5 days
       "l4year1-in5days" : `${l4FormattedData.WeatherIn5Days.year1}`,
       "l4year2-in5days" : `${l4FormattedData.WeatherIn5Days.year2}`,
@@ -2731,6 +2785,7 @@ export default class FormatTemplates {
       "l4description-in5days" : `${l4FormattedData.WeatherIn5Days.description}`,
       "l4icon-in5days" : `${l4FormattedData.WeatherIn5Days.icon}`,
       "l4iconurl-in5days" : `${l4FormattedData.WeatherIn5Days.iconurl}`,
+      "l4iconurlloc-in5days" : `${l4FormattedData.WeatherIn5Days.iconurlloc}`,
       // Weather in 6 days
       "l4year1-in6days" : `${l4FormattedData.WeatherIn6Days.year1}`,
       "l4year2-in6days" : `${l4FormattedData.WeatherIn6Days.year2}`,
@@ -2780,6 +2835,7 @@ export default class FormatTemplates {
       "l4description-in6days" : `${l4FormattedData.WeatherIn6Days.description}`,
       "l4icon-in6days" : `${l4FormattedData.WeatherIn6Days.icon}`,
       "l4iconurl-in6days" : `${l4FormattedData.WeatherIn6Days.iconurl}`,
+      "l4iconurlloc-in6days" : `${l4FormattedData.WeatherIn6Days.iconurlloc}`,
       // Weather in 7 days
       "l4year1-in7days" : `${l4FormattedData.WeatherIn7Days.year1}`,
       "l4year2-in7days" : `${l4FormattedData.WeatherIn7Days.year2}`,
@@ -2829,6 +2885,7 @@ export default class FormatTemplates {
       "l4description-in7days" : `${l4FormattedData.WeatherIn7Days.description}`,
       "l4icon-in7days" : `${l4FormattedData.WeatherIn7Days.icon}`,
       "l4iconurl-in7days" : `${l4FormattedData.WeatherIn7Days.iconurl}`,
+      "l4iconurlloc-in7days" : `${l4FormattedData.WeatherIn7Days.iconurlloc}`,
       // Weather in 8 days
       "l4year1-in8days" : `${l4FormattedData.WeatherIn8Days.year1}`,
       "l4year2-in8days" : `${l4FormattedData.WeatherIn8Days.year2}`,
@@ -2878,6 +2935,7 @@ export default class FormatTemplates {
       "l4description-in8days" : `${l4FormattedData.WeatherIn8Days.description}`,
       "l4icon-in8days" : `${l4FormattedData.WeatherIn8Days.icon}`,
       "l4iconurl-in8days" : `${l4FormattedData.WeatherIn8Days.iconurl}`,
+      "l4iconurlloc-in8days" : `${l4FormattedData.WeatherIn8Days.iconurlloc}`,
       // Weather in 9 days
       "l4year1-in9days" : `${l4FormattedData.WeatherIn9Days.year1}`,
       "l4year2-in9days" : `${l4FormattedData.WeatherIn9Days.year2}`,
@@ -2927,6 +2985,7 @@ export default class FormatTemplates {
       "l4description-in9days" : `${l4FormattedData.WeatherIn9Days.description}`,
       "l4icon-in9days" : `${l4FormattedData.WeatherIn9Days.icon}`,
       "l4iconurl-in9days" : `${l4FormattedData.WeatherIn9Days.iconurl}`,
+      "l4iconurlloc-in9days" : `${l4FormattedData.WeatherIn9Days.iconurlloc}`,
       // Weather in 10 days
       "l4year1-in10days" : `${l4FormattedData.WeatherIn10Days.year1}`,
       "l4year2-in10days" : `${l4FormattedData.WeatherIn10Days.year2}`,
@@ -2976,6 +3035,7 @@ export default class FormatTemplates {
       "l4description-in10days" : `${l4FormattedData.WeatherIn10Days.description}`,
       "l4icon-in10days" : `${l4FormattedData.WeatherIn10Days.icon}`,
       "l4iconurl-in10days" : `${l4FormattedData.WeatherIn10Days.iconurl}`,
+      "l4iconurlloc-in10days" : `${l4FormattedData.WeatherIn10Days.iconurlloc}`,
       // Weather in 11 days
       "l4year1-in11days" : `${l4FormattedData.WeatherIn11Days.year1}`,
       "l4year2-in11days" : `${l4FormattedData.WeatherIn11Days.year2}`,
@@ -3025,6 +3085,7 @@ export default class FormatTemplates {
       "l4description-in11days" : `${l4FormattedData.WeatherIn11Days.description}`,
       "l4icon-in11days" : `${l4FormattedData.WeatherIn11Days.icon}`,
       "l4iconurl-in11days" : `${l4FormattedData.WeatherIn11Days.iconurl}`,
+      "l4iconurlloc-in11days" : `${l4FormattedData.WeatherIn11Days.iconurlloc}`,
       // Weather in 12 days
       "l4year1-in12days" : `${l4FormattedData.WeatherIn12Days.year1}`,
       "l4year2-in12days" : `${l4FormattedData.WeatherIn12Days.year2}`,
@@ -3074,6 +3135,7 @@ export default class FormatTemplates {
       "l4description-in12days" : `${l4FormattedData.WeatherIn12Days.description}`,
       "l4icon-in12days" : `${l4FormattedData.WeatherIn12Days.icon}`,
       "l4iconurl-in12days" : `${l4FormattedData.WeatherIn12Days.iconurl}`,
+      "l4iconurlloc-in12days" : `${l4FormattedData.WeatherIn12Days.iconurlloc}`,
       // Weather in 13 days
       "l4year1-in13days" : `${l4FormattedData.WeatherIn13Days.year1}`,
       "l4year2-in13days" : `${l4FormattedData.WeatherIn13Days.year2}`,
@@ -3123,6 +3185,7 @@ export default class FormatTemplates {
       "l4description-in13days" : `${l4FormattedData.WeatherIn13Days.description}`,
       "l4icon-in13days" : `${l4FormattedData.WeatherIn13Days.icon}`,
       "l4iconurl-in13days" : `${l4FormattedData.WeatherIn13Days.iconurl}`,
+      "l4iconurlloc-in13days" : `${l4FormattedData.WeatherIn13Days.iconurlloc}`,
       // Weather in 14 days
       "l4year1-in14days" : `${l4FormattedData.WeatherIn14Days.year1}`,
       "l4year2-in14days" : `${l4FormattedData.WeatherIn14Days.year2}`,
@@ -3172,6 +3235,7 @@ export default class FormatTemplates {
       "l4description-in14days" : `${l4FormattedData.WeatherIn14Days.description}`,
       "l4icon-in14days" : `${l4FormattedData.WeatherIn14Days.icon}`,
       "l4iconurl-in14days" : `${l4FormattedData.WeatherIn14Days.iconurl}`,
+      "l4iconurlloc-in14days" : `${l4FormattedData.WeatherIn14Days.iconurlloc}`,
 
       //-----------------------
       // Location 5 Information
@@ -3215,6 +3279,7 @@ export default class FormatTemplates {
       "l5conditions" : `${l5FormattedData.CurrentWeather.conditions}`,
       "l5icon" : `${l5FormattedData.CurrentWeather.icon}`,
       "l5iconurl" : `${l5FormattedData.CurrentWeather.iconurl}`,
+      "l5iconurlloc" : `${l5FormattedData.CurrentWeather.iconurlloc}`,
       "l5sunrise" : `${l5FormattedData.CurrentWeather.sunrise}`,
       "l5sunriseepoch" : `${l5FormattedData.CurrentWeather.sunriseepoch}`,
       "l5sunset" : `${l5FormattedData.CurrentWeather.sunset}`,
@@ -3269,6 +3334,7 @@ export default class FormatTemplates {
       "l5description-today" : `${l5FormattedData.WeatherToday.descriptiontoday}`,
       "l5icon-today" : `${l5FormattedData.WeatherToday.icontoday}`,
       "l5iconurl-today" : `${l5FormattedData.WeatherToday.iconurltoday}`,
+      "l5iconurlloc-today" : `${l5FormattedData.WeatherToday.iconurlloctoday}`,
       // Weather in 1 Day
       "l5year1-in1day" : `${l5FormattedData.WeatherIn1Day.year1}`,
       "l5year2-in1day" : `${l5FormattedData.WeatherIn1Day.year2}`,
@@ -3318,6 +3384,7 @@ export default class FormatTemplates {
       "l5description-in1day" : `${l5FormattedData.WeatherIn1Day.description}`,
       "l5icon-in1day" : `${l5FormattedData.WeatherIn1Day.icon}`,
       "l5iconurl-in1day" : `${l5FormattedData.WeatherIn1Day.iconurl}`,
+      "l5iconurlloc-in1day" : `${l5FormattedData.WeatherIn1Day.iconurlloc}`,
       // Weather in 2 days
       "l5year1-in2days" : `${l5FormattedData.WeatherIn2Days.year1}`,
       "l5year2-in2days" : `${l5FormattedData.WeatherIn2Days.year2}`,
@@ -3367,6 +3434,7 @@ export default class FormatTemplates {
       "l5description-in2days" : `${l5FormattedData.WeatherIn2Days.description}`,
       "l5icon-in2days" : `${l5FormattedData.WeatherIn2Days.icon}`,
       "l5iconurl-in2days" : `${l5FormattedData.WeatherIn2Days.iconurl}`,
+      "l5iconurlloc-in2days" : `${l5FormattedData.WeatherIn2Days.iconurlloc}`,
       // Weather in 3 days
       "l5year1-in3days" : `${l5FormattedData.WeatherIn3Days.year1}`,
       "l5year2-in3days" : `${l5FormattedData.WeatherIn3Days.year2}`,
@@ -3416,6 +3484,7 @@ export default class FormatTemplates {
       "l5description-in3days" : `${l5FormattedData.WeatherIn3Days.description}`,
       "l5icon-in3days" : `${l5FormattedData.WeatherIn3Days.icon}`,
       "l5iconurl-in3days" : `${l5FormattedData.WeatherIn3Days.iconurl}`,
+      "l5iconurlloc-in3days" : `${l5FormattedData.WeatherIn3Days.iconurlloc}`,
       // Weather in 4 days
       "l5year1-in4days" : `${l5FormattedData.WeatherIn4Days.year1}`,
       "l5year2-in4days" : `${l5FormattedData.WeatherIn4Days.year2}`,
@@ -3465,6 +3534,7 @@ export default class FormatTemplates {
       "l5description-in4days" : `${l5FormattedData.WeatherIn4Days.description}`,
       "l5icon-in4days" : `${l5FormattedData.WeatherIn4Days.icon}`,
       "l5iconurl-in4days" : `${l5FormattedData.WeatherIn4Days.iconurl}`,
+      "l5iconurlloc-in4days" : `${l5FormattedData.WeatherIn4Days.iconurlloc}`,
       // Weather in 5 days
       "l5year1-in5days" : `${l5FormattedData.WeatherIn5Days.year1}`,
       "l5year2-in5days" : `${l5FormattedData.WeatherIn5Days.year2}`,
@@ -3514,6 +3584,7 @@ export default class FormatTemplates {
       "l5description-in5days" : `${l5FormattedData.WeatherIn5Days.description}`,
       "l5icon-in5days" : `${l5FormattedData.WeatherIn5Days.icon}`,
       "l5iconurl-in5days" : `${l5FormattedData.WeatherIn5Days.iconurl}`,
+      "l5iconurlloc-in5days" : `${l5FormattedData.WeatherIn5Days.iconurlloc}`,
       // Weather in 6 days
       "l5year1-in6days" : `${l5FormattedData.WeatherIn6Days.year1}`,
       "l5year2-in6days" : `${l5FormattedData.WeatherIn6Days.year2}`,
@@ -3563,6 +3634,7 @@ export default class FormatTemplates {
       "l5description-in6days" : `${l5FormattedData.WeatherIn6Days.description}`,
       "l5icon-in6days" : `${l5FormattedData.WeatherIn6Days.icon}`,
       "l5iconurl-in6days" : `${l5FormattedData.WeatherIn6Days.iconurl}`,
+      "l5iconurlloc-in6days" : `${l5FormattedData.WeatherIn6Days.iconurlloc}`,
       // Weather in 7 days
       "l5year1-in7days" : `${l5FormattedData.WeatherIn7Days.year1}`,
       "l5year2-in7days" : `${l5FormattedData.WeatherIn7Days.year2}`,
@@ -3612,6 +3684,7 @@ export default class FormatTemplates {
       "l5description-in7days" : `${l5FormattedData.WeatherIn7Days.description}`,
       "l5icon-in7days" : `${l5FormattedData.WeatherIn7Days.icon}`,
       "l5iconurl-in7days" : `${l5FormattedData.WeatherIn7Days.iconurl}`,
+      "l5iconurlloc-in7days" : `${l5FormattedData.WeatherIn7Days.iconurlloc}`,
       // Weather in 8 days
       "l5year1-in8days" : `${l5FormattedData.WeatherIn8Days.year1}`,
       "l5year2-in8days" : `${l5FormattedData.WeatherIn8Days.year2}`,
@@ -3661,6 +3734,7 @@ export default class FormatTemplates {
       "l5description-in8days" : `${l5FormattedData.WeatherIn8Days.description}`,
       "l5icon-in8days" : `${l5FormattedData.WeatherIn8Days.icon}`,
       "l5iconurl-in8days" : `${l5FormattedData.WeatherIn8Days.iconurl}`,
+      "l5iconurlloc-in8days" : `${l5FormattedData.WeatherIn8Days.iconurlloc}`,
       // Weather in 9 days
       "l5year1-in9days" : `${l5FormattedData.WeatherIn9Days.year1}`,
       "l5year2-in9days" : `${l5FormattedData.WeatherIn9Days.year2}`,
@@ -3710,6 +3784,7 @@ export default class FormatTemplates {
       "l5description-in9days" : `${l5FormattedData.WeatherIn9Days.description}`,
       "l5icon-in9days" : `${l5FormattedData.WeatherIn9Days.icon}`,
       "l5iconurl-in9days" : `${l5FormattedData.WeatherIn9Days.iconurl}`,
+      "l5iconurlloc-in9days" : `${l5FormattedData.WeatherIn9Days.iconurlloc}`,
       // Weather in 10 days
       "l5year1-in10days" : `${l5FormattedData.WeatherIn10Days.year1}`,
       "l5year2-in10days" : `${l5FormattedData.WeatherIn10Days.year2}`,
@@ -3759,6 +3834,7 @@ export default class FormatTemplates {
       "l5description-in10days" : `${l5FormattedData.WeatherIn10Days.description}`,
       "l5icon-in10days" : `${l5FormattedData.WeatherIn10Days.icon}`,
       "l5iconurl-in10days" : `${l5FormattedData.WeatherIn10Days.iconurl}`,
+      "l5iconurlloc-in10days" : `${l5FormattedData.WeatherIn10Days.iconurlloc}`,
       // Weather in 11 days
       "l5year1-in11days" : `${l5FormattedData.WeatherIn11Days.year1}`,
       "l5year2-in11days" : `${l5FormattedData.WeatherIn11Days.year2}`,
@@ -3808,6 +3884,7 @@ export default class FormatTemplates {
       "l5description-in11days" : `${l5FormattedData.WeatherIn11Days.description}`,
       "l5icon-in11days" : `${l5FormattedData.WeatherIn11Days.icon}`,
       "l5iconurl-in11days" : `${l5FormattedData.WeatherIn11Days.iconurl}`,
+      "l5iconurlloc-in11days" : `${l5FormattedData.WeatherIn11Days.iconurlloc}`,
       // Weather in 12 days
       "l5year1-in12days" : `${l5FormattedData.WeatherIn12Days.year1}`,
       "l5year2-in12days" : `${l5FormattedData.WeatherIn12Days.year2}`,
@@ -3857,6 +3934,7 @@ export default class FormatTemplates {
       "l5description-in12days" : `${l5FormattedData.WeatherIn12Days.description}`,
       "l5icon-in12days" : `${l5FormattedData.WeatherIn12Days.icon}`,
       "l5iconurl-in12days" : `${l5FormattedData.WeatherIn12Days.iconurl}`,
+      "l5iconurlloc-in12days" : `${l5FormattedData.WeatherIn12Days.iconurlloc}`,
       // Weather in 13 days
       "l5year1-in13days" : `${l5FormattedData.WeatherIn13Days.year1}`,
       "l5year2-in13days" : `${l5FormattedData.WeatherIn13Days.year2}`,
@@ -3906,6 +3984,7 @@ export default class FormatTemplates {
       "l5description-in13days" : `${l5FormattedData.WeatherIn13Days.description}`,
       "l5icon-in13days" : `${l5FormattedData.WeatherIn13Days.icon}`,
       "l5iconurl-in13days" : `${l5FormattedData.WeatherIn13Days.iconurl}`,
+      "l5iconurlloc-in13days" : `${l5FormattedData.WeatherIn13Days.iconurlloc}`,
       // Weather in 14 days
       "l5year1-in14days" : `${l5FormattedData.WeatherIn14Days.year1}`,
       "l5year2-in14days" : `${l5FormattedData.WeatherIn14Days.year2}`,
@@ -3955,6 +4034,7 @@ export default class FormatTemplates {
       "l5description-in14days" : `${l5FormattedData.WeatherIn14Days.description}`,
       "l5icon-in14days" : `${l5FormattedData.WeatherIn14Days.icon}`,
       "l5iconurl-in14days" : `${l5FormattedData.WeatherIn14Days.iconurl}`,
+      "l5iconurlloc-in14days" : `${l5FormattedData.WeatherIn14Days.iconurlloc}`,
     });
     return retFormatted;
   };

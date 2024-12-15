@@ -197,6 +197,7 @@ export default class UpdateWeather {
           "description": response.days[i].description,
           "icon": response.days[i].icon,
           "iconurl": "https://github.com/visualcrossing/WeatherIcons/blob/main/PNG/1st%20Set%20-%20Color/"+`${response.days[i].icon}`+".png?raw=true",
+          "iconurlloc": "<img class="+`"${response.days[i].icon}"`+"/>",
         }
       daysObj.push(dayData);
       }
@@ -249,6 +250,7 @@ export default class UpdateWeather {
           "conditions": response.currentConditions.conditions,
           "icon": response.currentConditions.icon,
           "iconurl": "https://github.com/visualcrossing/WeatherIcons/blob/main/PNG/1st%20Set%20-%20Color/"+`${response.currentConditions.icon}`+".png?raw=true",
+          "iconurlloc": "<img class="+`"${response.currentConditions.icon}"`+"/>",
           "sunrise": response.currentConditions.sunrise,
           "sunriseepoch": response.currentConditions.sunriseEpoch,
           "sunset": response.currentConditions.sunset,

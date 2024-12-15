@@ -73,6 +73,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%conditions%`      | Description of the weather for the day | Partially cloudy      | -      | -        | -     |
 | `%icon%`            | A weather icon name                    | partly-cloudy-night   | -      | -        | -     |
 | `%iconurl%`         | A weather icon URL from Github         | Icon URL              | -      | -        | -     |
+| `%iconurlloc%`      | A weather icon URL from local CSS      | <img class="snow"/>   | -      | -        | -     |
 | `%sunrise%`         | Sunrise time                           | 06:33:45              | -      | -        | -     |
 | `%sunriseepoch%`    | Sunrise Unix time                      | 1724675625            | -      | -        | -     |
 | `%sunset%`          | Sunset time                            | 20:36:16              | -      | -        | -     |
@@ -171,6 +172,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%description-today%`    | Description of the weather for the day | Partly cloudy throughout the day. | -      | -        | -     |
 | `%icon-today%`           | A weather icon name                    | partly-cloudy-night               | -      | -        | -     |
 | `%iconurl-today%`        | A weather icon URL from Github         | Icon URL                          | -      | -        | -     |
+| `%iconurlloc-today%`     | A weather icon URL from local CSS      | <img class="snow"/>               | -      | -        | -     |
 
 [Table of Contents](#table-of-contents)
 
@@ -225,6 +227,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%description-in1day%`    | Description of the weather for the day | Partly cloudy throughout the day. | -      | -        | -     |
 | `%icon-in1day%`           | A weather icon name                    | partly-cloudy-night               | -      | -        | -     |
 | `%iconurl-in1day%`        | A weather icon URL from Github         | Icon URL                          | -      | -        | -     |
+| `%iconurlloc-in1day%`     | A weather icon URL from local CSS      | <img class="snow"/>               | -      | -        | -     |
 
 [Table of Contents](#table-of-contents)
 
@@ -279,6 +282,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%description-in2days%`    | Description of the weather for the day | Partly cloudy throughout the day. | -      | -        | -     |
 | `%icon-in2days%`           | A weather icon name                    | partly-cloudy-night               | -      | -        | -     |
 | `%iconurl-in2days%`        | A weather icon URL from Github         | Icon URL                          | -      | -        | -     |
+| `%iconurlloc-in2days%`     | A weather icon URL from local CSS      | <img class="snow"/>               | -      | -        | -     |
 
 [Table of Contents](#table-of-contents)
 
@@ -333,6 +337,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%description-in3days%`    | Description of the weather for the day | Partly cloudy throughout the day. | -      | -        | -     |
 | `%icon-in3days%`           | A weather icon name                    | partly-cloudy-night               | -      | -        | -     |
 | `%iconurl-in3days%`        | A weather icon URL from Github         | Icon URL                          | -      | -        | -     |
+| `%iconurlloc-in3days%`     | A weather icon URL from local CSS      | <img class="snow"/>               | -      | -        | -     |
 
 [Table of Contents](#table-of-contents)
 
@@ -387,6 +392,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%description-in4days%`    | Description of the weather for the day | Partly cloudy throughout the day. | -      | -        | -     |
 | `%icon-in4days%`           | A weather icon name                    | partly-cloudy-night               | -      | -        | -     |
 | `%iconurl-in4days%`        | A weather icon URL from Github         | Icon URL                          | -      | -        | -     |
+| `%iconurlloc-in4days%`     | A weather icon URL from local CSS      | <img class="snow"/>               | -      | -        | -     |
 
 [Table of Contents](#table-of-contents)
 
@@ -441,6 +447,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%description-in5days%`    | Description of the weather for the day | Partly cloudy throughout the day. | -      | -        | -     |
 | `%icon-in5days%`           | A weather icon name                    | partly-cloudy-night               | -      | -        | -     |
 | `%iconurl-in5days%`        | A weather icon URL from Github         | Icon URL                          | -      | -        | -     |
+| `%iconurlloc-in5days%`     | A weather icon URL from local CSS      | <img class="snow"/>               | -      | -        | -     |
 
 [Table of Contents](#table-of-contents)
 
@@ -495,6 +502,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%description-in6days%`    | Description of the weather for the day | Partly cloudy throughout the day. | -      | -        | -     |
 | `%icon-in6days%`           | A weather icon name                    | partly-cloudy-night               | -      | -        | -     |
 | `%iconurl-in6days%`        | A weather icon URL from Github         | Icon URL                          | -      | -        | -     |
+| `%iconurlloc-in6days%`     | A weather icon URL from local CSS      | <img class="snow"/>               | -      | -        | -     |
 
 [Table of Contents](#table-of-contents)
 
@@ -549,6 +557,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%description-in7days%`    | Description of the weather for the day | Partly cloudy throughout the day. | -      | -        | -     |
 | `%icon-in7days%`           | A weather icon name                    | partly-cloudy-night               | -      | -        | -     |
 | `%iconurl-in7days%`        | A weather icon URL from Github         | Icon URL                          | -      | -        | -     |
+| `%iconurlloc-in7days%`     | A weather icon URL from local CSS      | <img class="snow"/>               | -      | -        | -     |
 
 [Table of Contents](#table-of-contents)
 
@@ -603,6 +612,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%description-in8days%`    | Description of the weather for the day | Partly cloudy throughout the day. | -      | -        | -     |
 | `%icon-in8days%`           | A weather icon name                    | partly-cloudy-night               | -      | -        | -     |
 | `%iconurl-in8days%`        | A weather icon URL from Github         | Icon URL                          | -      | -        | -     |
+| `%iconurlloc-in8days%`     | A weather icon URL from local CSS      | <img class="snow"/>               | -      | -        | -     |
 
 [Table of Contents](#table-of-contents)
 
@@ -657,6 +667,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%description-in9days%`    | Description of the weather for the day | Partly cloudy throughout the day. | -      | -        | -     |
 | `%icon-in9days%`           | A weather icon name                    | partly-cloudy-night               | -      | -        | -     |
 | `%iconurl-in9days%`        | A weather icon URL from Github         | Icon URL                          | -      | -        | -     |
+| `%iconurlloc-in9days%`     | A weather icon URL from local CSS      | <img class="snow"/>               | -      | -        | -     |
 
 [Table of Contents](#table-of-contents)
 
@@ -711,6 +722,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%description-in10days%`    | Description of the weather for the day | Partly cloudy throughout the day. | -      | -        | -     |
 | `%icon-in10days%`           | A weather icon name                    | partly-cloudy-night               | -      | -        | -     |
 | `%iconurl-in10days%`        | A weather icon URL from Github         | Icon URL                          | -      | -        | -     |
+| `%iconurlloc-in10days%`     | A weather icon URL from local CSS      | <img class="snow"/>               | -      | -        | -     |
 
 [Table of Contents](#table-of-contents)
 
@@ -765,6 +777,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%description-in11days%`    | Description of the weather for the day | Partly cloudy throughout the day. | -      | -        | -     |
 | `%icon-in11days%`           | A weather icon name                    | partly-cloudy-night               | -      | -        | -     |
 | `%iconurl-in11days%`        | A weather icon URL from Github         | Icon URL                          | -      | -        | -     |
+| `%iconurlloc-in11days%`     | A weather icon URL from local CSS      | <img class="snow"/>               | -      | -        | -     |
 
 [Table of Contents](#table-of-contents)
 
@@ -819,6 +832,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%description-in12days%`    | Description of the weather for the day | Partly cloudy throughout the day. | -      | -        | -     |
 | `%icon-in12days%`           | A weather icon name                    | partly-cloudy-night               | -      | -        | -     |
 | `%iconurl-in12days%`        | A weather icon URL from Github         | Icon URL                          | -      | -        | -     |
+| `%iconurlloc-in12days%`     | A weather icon URL from local CSS      | <img class="snow"/>               | -      | -        | -     |
 
 [Table of Contents](#table-of-contents)
 
@@ -873,6 +887,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%description-in13days%`    | Description of the weather for the day | Partly cloudy throughout the day. | -      | -        | -     |
 | `%icon-in13days%`           | A weather icon name                    | partly-cloudy-night               | -      | -        | -     |
 | `%iconurl-in13days%`        | A weather icon URL from Github         | Icon URL                          | -      | -        | -     |
+| `%iconurlloc-in13days%`     | A weather icon URL from local CSS      | <img class="snow"/>               | -      | -        | -     |
 
 [Table of Contents](#table-of-contents)
 
@@ -927,6 +942,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%description-in14days%`    | Description of the weather for the day | Partly cloudy throughout the day. | -      | -        | -     |
 | `%icon-in14days%`           | A weather icon name                    | partly-cloudy-night               | -      | -        | -     |
 | `%iconurl-in14days%`        | A weather icon URL from Github         | Icon URL                          | -      | -        | -     |
+| `%iconurlloc-in14days%`     | A weather icon URL from local CSS      | <img class="snow"/>               | -      | -        | -     |
 
 [Table of Contents](#table-of-contents)
 
