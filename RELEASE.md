@@ -11,16 +11,11 @@
 
 <!-- ## [v-inc] ${YEAR4}-${MONTHNUMBER}-${DATE} -->
 
-## [1.0.0] 2024-12-15
-- Changed: Plugin  haas finally been added to the community plugins list!
-  - BRAT plugin is no longer required to install/update this plugin
-  - Version has been bumped up to 1.0.0
-- Added: Local URL Icon macro
-  - Taken from CSS, does not require internet connection
-  - Returns `<img class=ICONS_CLASSNAME/>`. Class name defined in CSS Eg. `<img class="snow"/>`
-  - See Macros.md for definition
-- Updated: styles.css file
-- Updated: Test data file
+## [1.1.0] 2024-12-28
+- Added: Daily notes template support for 14 future/past days when opening notes
+  - Daily notes specific template macros (See Macros.md)
+  - Opening any daily note within the -14 to +14 days range will replace the macros within that note
+  - You should add these macros to your daily note template to take advantage of this feature
 
 For a full list of changes, please see the projects [Changelog](CHANGELOG.md) file.
 

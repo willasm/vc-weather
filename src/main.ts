@@ -96,6 +96,60 @@ interface internalCurrentData {
 
 let internalCurrentData: any;
 
+interface dailyData {
+  "year1": string,
+  "year2": string,
+  "month1": string,
+  "month2": string,
+  "month3": string,
+  "month4": string,
+  "date1": string,
+  "date2": string,
+  "dow1": string,
+  "dow2": string,
+  "datetime": string,
+  "datetimeepoch": number,
+  "tempmax": number,
+  "tempmin": number,
+  "tempavg": number,
+  "feelslikemax": number,
+  "feelslikemin": number,
+  "feelslikeavg": number,
+  "dew": number,
+  "humidity": string,
+  "precip": number,
+  "precipprob": string,
+  "precipcover": string,
+  "preciptype": string,
+  "snow": number,
+  "snowdepth": number,
+  "windgust": number,
+  "windspeed": number,
+  "windspeedms": number,
+  "winddirdeg": number,
+  "winddirstr": string,
+  "winddirstrshort": string,
+  "pressure": number,
+  "cloudcover": string,
+  "visibility": number,
+  "solarradiation": number,
+  "solarenergy": number,
+  "uvindex": string,
+  "severerisk": string,
+  "sunrise": string,
+  "sunriseepoch": number,
+  "sunset": string,
+  "sunsetepoch": number,
+  "moonphase": number,
+  "conditions": string,
+  "description": string,
+  "icon": string,
+  "iconurl": string,
+  "iconurlloc": string,
+}
+
+let dailyData: any;
+
 interface Global {
   statusbarEl: HTMLSpanElement;
   statusbarAlertEl: HTMLSpanElement;
@@ -120,6 +174,8 @@ interface Global {
   weatherTemplateBody8: string;
   // Formatted template current weather info
   formattedInternalCurrentData: string;
+  // Formatted Daily Data
+  formattedDailyData: dailyData;
 }
 
 // Statusbar elements
@@ -148,6 +204,8 @@ let weatherTemplateBody7: string;
 let weatherTemplateBody8: string;
 // Formatted template current weather info
 let formattedInternalCurrentData: string;
+// Formatted template current weather info
+let formattedDailyData: any;
 
 //  ╭──────────────────────────────────────────────────────────────────────────────╮
 //  │                             ● Class VCWPlugin ●                              │
@@ -259,25 +317,32 @@ export default class VCWPlugin extends Plugin {
     // onload - registerEvent - 'file-open' 
     this.registerEvent(this.app.workspace.on('file-open', async (file) => {
       if (file) {
-        this.replaceTemplateStrings(weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8);
-        // const fname = file.basename;
-        // if (/\d{4}-\d{2}-\d{2}/.test(fname)) {
-        //   console.log("📢File is Daily Note: ", file.basename);
-        // };
-        // console.log("📢l1results: ", l1results);
-        // console.log("📢l1results Day [0]: ", l1results.days[0]);
-        // console.log("📢l1results Days [0] datetime: ", l1results.days[0].datetime);
-        };
+        //console.log('File Opened...');
+        await new Promise(r => setTimeout(r, 500));  // Delay to let Templater do its thing
+        await this.replaceTemplateStrings(weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8);
+        await this.replaceDailyTemplateStrings();
+      };
     }));
 
+    // onload - registerEvent - 'editor-change' 
+    // this.registerEvent(this.app.workspace.on('editor-change', async () => {
+    //   console.log('Editor Changed...');
+    //   await this.replaceTemplateStrings(weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8);
+    //   await this.replaceDailyTemplateStrings();
+    // }));
+
     // onload - registerEvent - 'layout-change' 
-    this.registerEvent(this.app.workspace.on('layout-change', async () => {
-      this.replaceTemplateStrings(weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8);
-    }));
+    // this.registerEvent(this.app.workspace.on('layout-change', async () => {
+    //   console.log('Layout Changed...');
+    //   await this.replaceTemplateStrings(weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8);
+    //   await this.replaceDailyTemplateStrings();
+    // }));
 
     // onload - registerEvent - 'resolved' 
     this.registerEvent(this.app.metadataCache.on('resolved', async () => {
-      this.replaceTemplateStrings(weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8);
+    //console.log('Resolved...');
+    await this.replaceTemplateStrings(weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8);
+    //await this.replaceDailyTemplateStrings();
     }));
     
     // • Add settings tab so users can configure this plugin • 
@@ -1067,4 +1132,76 @@ export default class VCWPlugin extends Plugin {
     }
   };
 
+  // • replaceDailyTemplateStrings - Replace any template strings in current file • 
+  async replaceDailyTemplateStrings() {
+    const view = this.app.workspace.getActiveViewOfType(MarkdownView);
+    if (!view) return;
+    const file = this.app.workspace.getActiveFile();
+    const filePath = file?.path;
+
+    const fname = file?.basename;
+    if (/\d{4}-\d{2}-\d{2}/.test(fname as string)) {
+    
+      formattedDailyData = {} as any;
+      for (let i = 0; i < 15; i++) {
+        if (fname === l1results.days[i].datetime) {
+          // Get data from existing future dates
+          formattedDailyData = Object.values(l1formattedresults)[i+3];
+          break;
+        };
+      };
+      if (Object.keys(formattedDailyData).length == 0) {
+        // Get data by past date
+        for (let i = 1; i < 15; i++) {
+          if (fname === window.moment().subtract(i, "days").format("YYYY-MM-DD")) {
+
+            // • Get weather for daily notes • 
+            const getResults = new UpdateWeather();
+            let dailyNoteResult = await getResults.getDailyNoteWeather(
+              this.settings.apikey,
+              this.settings.location_one,
+              fname,
+              this.settings.units
+            );
+            formattedDailyData = getResults.processDailyWeatherData(dailyNoteResult, this.settings.units);
+            break;
+          };
+        };
+      };
+      if (Object.keys(formattedDailyData).length == 0) {
+        return;
+      };
+    };
+    
+    // Ignore this folder and any subfolders for Template String Replacement
+    if (filePath?.includes(this.settings.excludeFolder)) {
+      return;
+    };
+    // Ignore this folder and any subfolders for Template String Replacement
+    if (this.settings.excludeFolder2.length > 0) {
+      if (filePath?.includes(this.settings.excludeFolder2)) {
+        return;
+      };
+    };
+    let editor = view.getViewData();
+    if (editor == null) return;
+
+    let macros = ["%year1-daily%", "%year2-daily%", "%month1-daily%", "%month2-daily%", "%month3-daily%", "%month4-daily%", "%date1-daily%", "%date2-daily%", "%dow1-daily%", "%dow2-daily%", "%datetime-daily%", "%datetimeepoch-daily%", "%tempmax-daily%", "%tempmin-daily%", "%tempavg-daily%", "%feelslikemax-daily%", "%feelslikemin-daily%", "%feelslikeavg-daily%", "%dew-daily%", "%humidity-daily%", "%precip-daily%", "%precipprob-daily%", "%precipcover-daily%", "%preciptype-daily%", "%snow-daily%", "%snowdepth-daily%", "%windgust-daily%", "%windspeed-daily%", "%windspeedms-daily%", "%winddirdeg-daily%", "%winddirstr-daily%", "%winddirstrshort-daily%", "%pressure-daily%", "%cloudcover-daily%", "%visibility-daily%", "%solarradiation-daily%", "%solarenergy-daily%", "%uvindex-daily%", "%severerisk-daily%", "%sunrise-daily%", "%sunriseepoch-daily%", "%sunset-daily%", "%sunsetepoch-daily%", "%moonphase-daily%", "%conditions-daily%", "%description-daily%", "%icon-daily%", "%iconurl-daily%", "%iconurlloc-daily%"];
+    let macrosExpanded = [formattedDailyData.year1, formattedDailyData.year2, formattedDailyData.month1, formattedDailyData.month2, formattedDailyData.month3, formattedDailyData.month4, formattedDailyData.date1, formattedDailyData.date2, formattedDailyData.dow1, formattedDailyData.dow2, formattedDailyData.datetime, formattedDailyData.datetimeepoch, formattedDailyData.tempmax, formattedDailyData.tempmin, formattedDailyData.tempavg, formattedDailyData.feelslikemax, formattedDailyData.feelslikemin, formattedDailyData.feelslikeavg, formattedDailyData.dew, formattedDailyData.humidity, formattedDailyData.precip, formattedDailyData.precipprob, formattedDailyData.precipcover, formattedDailyData.preciptype, formattedDailyData.snow, formattedDailyData.snowdepth, formattedDailyData.windgust, formattedDailyData.windspeed, formattedDailyData.windspeedms, formattedDailyData.winddirdeg, formattedDailyData.winddirstr, formattedDailyData.winddirstrshort, formattedDailyData.pressure, formattedDailyData.cloudcover, formattedDailyData.visibility, formattedDailyData.solarradiation, formattedDailyData.solarenergy, formattedDailyData.uvindex, formattedDailyData.severerisk, formattedDailyData.sunrise, formattedDailyData.sunriseepoch, formattedDailyData.sunset, formattedDailyData.sunsetepoch, formattedDailyData.moonphase, formattedDailyData.conditions, formattedDailyData.description, formattedDailyData.icon, formattedDailyData.iconurl, formattedDailyData.iconurlloc];
+
+    let withDate = await this.setCurrentDateTime(editor);
+    for (let i = 0; i < macros.length; i++) {
+      if (withDate.contains(macros[i])) {
+        let variable = macros[i];
+        let expression = `${variable}`;
+        var re = new RegExp(expression, 'g');
+        withDate = withDate.replace(re, macrosExpanded[i]);
+      };
+    };
+    // let editPosStart = view.editor.offsetToPos(0);
+    // let editPosEnd = view.editor.offsetToPos(editor.length);
+    file?.vault.modify(file, withDate);
+    // view.editor.replaceRange(withDate, editPosStart, editPosEnd);
+    // view.save();
+  };
 }

@@ -24,6 +24,7 @@ These strings in your templates will be replaced with the relevant weather infor
 > `Edmonton: 28°, London: 30°, Chicago: 31°`
 
 ## Table of Contents
+- [Daily Note Macros](#daily-note-macros)
 - [Current weather](#current-weather)
 - [Current Date and Time](#current-date-and-time)
 - [Location Information](#location-information)
@@ -43,6 +44,59 @@ These strings in your templates will be replaced with the relevant weather infor
 - [Weather in 13 Days](#weather-in-13-days)
 - [Weather in 14 Days](#weather-in-14-days)
 - [Macros for Additional Locations](#macros-for-additional-locations)
+
+## Daily Note Macros
+| Macro                    | Description                            | Replaced With Example             | US     |  Metric  |  UK   |
+| ------------------------ | -------------------------------------- | --------------------------------- | :----: | :------: | :---: |
+| `%year1-daily%`          | Expands to year of the weather data    | 2024                              | -      | -        | -     |
+| `%year2-daily%`          | Expands to year of the weather data    | 24                                | -      | -        | -     |
+| `%month1-daily%`         | Expands to month of the weather data   | 1 - 12                            | -      | -        | -     |
+| `%month2-daily%`         | Expands to month of the weather data   | 01 - 12                           | -      | -        | -     |
+| `%month3-daily%`         | Expands to month of the weather data   | Jan                               | -      | -        | -     |
+| `%month4-daily%`         | Expands to month of the weather data   | January                           | -      | -        | -     |
+| `%date1-daily%`          | Expands to month of the weather data   | 1 - 31                            | -      | -        | -     |
+| `%date2-daily%`          | Expands to month of the weather data   | 01 - 31                           | -      | -        | -     |
+| `%dow1-daily%`           | Expands to day of the week             | Sun                               | -      | -        | -     |
+| `%dow2-daily%`           | Expands to day of the week             | Sunday                            | -      | -        | -     |
+| `%datetime-daily%`       | Expands to time of the weather data    | 2024-08-29                        | -      | -        | -     |
+| `%datetimeepoch-daily%`  | Unix timestamp for the datetime        | 1724726700                        | -      | -        | -     |
+| `%tempmax-daily%`        | Maximum temperature for the day        | 32                                | F      | C        | C     |
+| `%tempmin-daily%`        | Minimum temperature for the day        | 22                                | F      | C        | C     |
+| `%tempavg-daily%`        | Average temperature for the day        | 27                                | F      | C        | C     |
+| `%feelslikemax-daily%`   | Maximum temperature feels like today   | 35                                | F      | C        | C     |
+| `%feelslikemin-daily%`   | Minimum temperature feels like today   | 22                                | F      | C        | C     |
+| `%feelslikeavg-daily%`   | Average temperature feels like today   | 27                                | F      | C        | C     |
+| `%dew-daily%`            | Dew Point temperature                  | 12                                | F      | C        | C     |
+| `%humidity-daily%`       | Relative humidity                      | 40%                               | -      | -        | -     |
+| `%precip-daily%`         | Precipitation                          | 2.5                               | inches | mm       | mm    |
+| `%precipprob-daily%`     | Precipitation chance                   | 80%                               | -      | -        | -     |
+| `%precipcover-daily%`    | % of time precip actually occured      | 21%                               | -      | -        | -     |
+| `%preciptype-daily%`     | Precipitation type                     | rain                              | -      | -        | -     |
+| `%snow-daily%`           | Snow expected                          | 2.5                               | inches | cm       | cm    |
+| `%snowdepth-daily%`      | Snow depth                             | 2.5                               | inches | cm       | cm    |
+| `%windgust-daily%`       | Wind gust                              | 15                                | mph    | kph      | mph   |
+| `%windspeed-daily%`      | Wind speed                             | 10                                | mph    | kph      | mph   |
+| `%windspeedms-daily%`    | Wind speed in meters per second        | 2                                 | -      | -        | -     |
+| `%winddirdeg-daily%`     | Wind direction in degrees              | 245                               | -      | -        | -     |
+| `%winddirstr-daily%`     | Wind direction as string               | northwest                         | -      | -        | -     |
+| `%winddirstrshort-daily%`| Wind direction as short string         | N NW W SW S SE E NE               | -      | -        | -     |
+| `%pressure-daily%`       | Sea level air pressure                 | 1013.0                            | mb     | mb       | mb    |
+| `%cloudcover-daily%`     | Cloud cover percentage                 | 85%                               | %      | %        | %     |
+| `%visibility-daily%`     | Visibility                             | 14                                | miles  | km       | miles |
+| `%solarradiation-daily%` | Solar radiation                        | 38.0                              | W/m2   | W/m2     | W/m2  |
+| `%solarenergy-daily%`    | Solar energy                           | 0.1                               | MJ/m2  | MJ/m2    | MJ/m2 |
+| `%uvindex-daily%`        | UV index                               | 3                                 | -      | -        | -     |
+| `%severerisk-daily%`     | Severe risk percentage                 | 10%                               | -      | -        | -     |
+| `%sunrise-daily%`        | Sunrise time                           | 06:33:45                          | -      | -        | -     |
+| `%sunriseepoch-daily%`   | Sunrise Unix time                      | 1724675625                        | -      | -        | -     |
+| `%sunset-daily%`         | Sunset time                            | 20:36:16                          | -      | -        | -     |
+| `%sunsetepoch-daily%`    | Sunset Unix time                       | 1724726176                        | -      | -        | -     |
+| `%moonphase-daily%`      | Moonphase                              | 0.75                              | -      | -        | -     |
+| `%conditions-daily%`     | Short text about the weather           | Partially cloudy                  | -      | -        | -     |
+| `%description-daily%`    | Description of the weather for the day | Partly cloudy throughout the day. | -      | -        | -     |
+| `%icon-daily%`           | A weather icon name                    | partly-cloudy-night               | -      | -        | -     |
+| `%iconurl-daily%`        | A weather icon URL from Github         | Icon URL                          | -      | -        | -     |
+| `%iconurlloc-daily%`     | A weather icon URL from local CSS      | A weather icon                    | -      | -        | -     |
 
 ## Current weather
 | Macro               | Description                            | Replaced With Example | US     |  Metric  |  UK   |
