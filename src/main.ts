@@ -359,7 +359,8 @@ export default class VCWPlugin extends Plugin {
         this.settings.updateFrequency,
         this.settings.apikey,
         this.settings.location_five,
-        this.settings.units
+        this.settings.units,
+        this.settings.language
       );
       // get alerts
       l5Alerts = getResults.getAlerts(l5results);
@@ -379,7 +380,8 @@ export default class VCWPlugin extends Plugin {
         this.settings.updateFrequency,
         this.settings.apikey,
         this.settings.location_four,
-        this.settings.units
+        this.settings.units,
+        this.settings.language
       );
       // get alerts
       l4Alerts = getResults.getAlerts(l4results);
@@ -399,7 +401,8 @@ export default class VCWPlugin extends Plugin {
         this.settings.updateFrequency,
         this.settings.apikey,
         this.settings.location_three,
-        this.settings.units
+        this.settings.units,
+        this.settings.language
       );
       // get alerts
       l3Alerts = getResults.getAlerts(l3results);
@@ -419,7 +422,8 @@ export default class VCWPlugin extends Plugin {
         this.settings.updateFrequency,
         this.settings.apikey,
         this.settings.location_two,
-        this.settings.units
+        this.settings.units,
+        this.settings.language
       );
       // get alerts
       l2Alerts = getResults.getAlerts(l2results);
@@ -438,7 +442,8 @@ export default class VCWPlugin extends Plugin {
       this.settings.updateFrequency,
       this.settings.apikey,
       this.settings.location_one,
-      this.settings.units
+      this.settings.units,
+      this.settings.language
     );
     // get alerts
     l1Alerts = getResults.getAlerts(l1results);
@@ -919,7 +924,8 @@ export default class VCWPlugin extends Plugin {
       this.settings.updateFrequency,
       this.settings.apikey,
       this.settings.location_one,
-      this.settings.units
+      this.settings.units,
+      this.settings.language
     );
     l1formattedresults = getResults.processWeatherData(l1results, this.settings.units);
     statusbarAlertEl.setText("");
@@ -933,7 +939,8 @@ export default class VCWPlugin extends Plugin {
         this.settings.updateFrequency,
         this.settings.apikey,
         this.settings.location_two,
-        this.settings.units
+        this.settings.units,
+        this.settings.language
       );
       statusbarAlertEl.setText("");
       l2Alerts = [];
@@ -950,7 +957,8 @@ export default class VCWPlugin extends Plugin {
         this.settings.updateFrequency,
         this.settings.apikey,
         this.settings.location_three,
-        this.settings.units
+        this.settings.units,
+        this.settings.language
       );
       statusbarAlertEl.setText("");
       l3Alerts = [];
@@ -966,7 +974,8 @@ export default class VCWPlugin extends Plugin {
         this.settings.updateFrequency,
         this.settings.apikey,
         this.settings.location_four,
-        this.settings.units
+        this.settings.units,
+        this.settings.language
       );
       statusbarAlertEl.setText("");
       l4Alerts = [];
@@ -982,7 +991,8 @@ export default class VCWPlugin extends Plugin {
         this.settings.updateFrequency,
         this.settings.apikey,
         this.settings.location_five,
-        this.settings.units
+        this.settings.units,
+        this.settings.language
       );
       statusbarAlertEl.setText("");
       l5Alerts = [];
@@ -1161,7 +1171,8 @@ export default class VCWPlugin extends Plugin {
               this.settings.apikey,
               this.settings.location_one,
               fname,
-              this.settings.units
+              this.settings.units,
+              this.settings.language
             );
             formattedDailyData = getResults.processDailyWeatherData(dailyNoteResult, this.settings.units);
             break;

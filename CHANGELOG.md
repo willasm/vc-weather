@@ -2,6 +2,12 @@
 
 <!-- ## [v-inc] ${YEAR4}-${MONTHNUMBER}-${DATE} -->
 
+## [1.1.1] 2024-12-29
+- Added: Language support for text returned by the API
+  - Note: This does not change the text in your templates, you will need to edit those if you wish to change them
+  - Supported Languages: rabic, Bulgarian, Chinese, Czech, Danish, Dutch, English, Farsi, Finnish, French, German, Greek Modern, Hebrew, Hungarian, Italian, Japanese, Korean, Polish, Portuguese, Russian, Serbian, Slovakian, Spanish, Swedish, Turkish, Ukrainian, Vietnamese
+- Updated: Readme.md document includes new features information
+
 ## [1.1.0] 2024-12-28
 - Added: Daily notes template support for 14 future/past days when opening notes
   - Daily notes specific template macros (See Macros.md)

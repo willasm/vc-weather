@@ -1,7 +1,5 @@
-// FIXME: FileSystemAdapter need to be removed for mobile
-import { App, Plugin, Notice, PluginSettingTab, Setting, TAbstractFile, TFolder, TextAreaComponent, Platform, FileSystemAdapter, setTooltip } from 'obsidian';
+import { App, PluginSettingTab, Setting, TAbstractFile, TFolder, TextAreaComponent, Platform, setTooltip } from 'obsidian';
 import VCWPlugin from './main';
-import * as fs from 'fs';
 
 export interface VCWSettings {
   apikey: string;
@@ -11,6 +9,7 @@ export interface VCWSettings {
   location_four: string;
   location_five: string;
   units: string;
+  language: string;
   excludeFolder: string;
   excludeFolder2: string;
   updateFrequency: string;
@@ -36,6 +35,7 @@ export const DEFAULT_SETTINGS: VCWSettings = {
   location_four: "",
   location_five: "",
   units: "us",
+  language: "en",
   excludeFolder: "",
   excludeFolder2: "",
   updateFrequency: "15",
@@ -143,7 +143,6 @@ export class VCWSettingsTab extends PluginSettingTab {
       .onChange(async (value) => {
         this.plugin.settings.location_one = value;
         await this.plugin.saveSettings();
-//        await this.plugin.updatedSettings();
       })
     );
 
@@ -214,6 +213,8 @@ export class VCWSettingsTab extends PluginSettingTab {
       dropDown.onChange(async (value) => {
         this.plugin.settings.units = value;
         await this.plugin.saveSettings();
+        await this.plugin.updateWeather(0);
+        await this.plugin.updatedSettings();
       })
     .setValue(this.plugin.settings.units);
     })
@@ -225,7 +226,46 @@ export class VCWSettingsTab extends PluginSettingTab {
       });
     });
 
-    // TODO Language (To be added later)
+    // Language for API returned text 
+    new Setting(containerEl)
+      .setName("Language")
+      .setDesc("Supported languages available Note: This only affects text returned from the Visual Crossing API")
+      .addDropdown(dropDown => {
+        dropDown.addOption('ar', 'Arabic');
+        dropDown.addOption('bg', 'Bulgarian');
+        dropDown.addOption('zh', 'Chinese');
+        dropDown.addOption('cs', 'Czech');
+        dropDown.addOption('da', 'Danish');
+        dropDown.addOption('nl', 'Dutch');
+        dropDown.addOption('en', 'English');
+        dropDown.addOption('fa', 'Farsi');
+        dropDown.addOption('fi', 'Finnish');
+        dropDown.addOption('fr', 'French');
+        dropDown.addOption('de', 'German');
+        dropDown.addOption('el', 'Greek Modern');
+        dropDown.addOption('he', 'Hebrew');
+        dropDown.addOption('hu', 'Hungarian');
+        dropDown.addOption('it', 'Italian');
+        dropDown.addOption('ja', 'Japanese');
+        dropDown.addOption('ko', 'Korean');
+        dropDown.addOption('pl', 'Polish');
+        dropDown.addOption('pt', 'Portuguese');
+        dropDown.addOption('ru', 'Russian');
+        dropDown.addOption('sr', 'Serbian');
+        dropDown.addOption('sk', 'Slovakian');
+        dropDown.addOption('es', 'Spanish');
+        dropDown.addOption('sv', 'Swedish');
+        dropDown.addOption('tr', 'Turkish');
+        dropDown.addOption('uk', 'Ukrainian');
+        dropDown.addOption('vi', 'Vietnamese');
+        dropDown.onChange(async (value) => {
+        this.plugin.settings.language = value;
+        await this.plugin.saveSettings();
+        await this.plugin.updateWeather(0);
+        await this.plugin.updatedSettings();
+      })
+      .setValue(this.plugin.settings.language);
+      });
 
     // Exclude template folder 
     new Setting(containerEl)
@@ -238,6 +278,7 @@ export class VCWSettingsTab extends PluginSettingTab {
       dropDown.onChange(async (value) => {
         this.plugin.settings.excludeFolder = value;
         await this.plugin.saveSettings();
+        await this.plugin.updatedSettings();
       })
     .setValue(this.plugin.settings.excludeFolder);
     });
@@ -298,6 +339,7 @@ export class VCWSettingsTab extends PluginSettingTab {
       .onChange(async (value) => {
         this.plugin.settings.statusbarCycle = value;
         await this.plugin.saveSettings();
+        await this.plugin.updatedSettings();
       }));
       
     // Weather template string for the statusbar primary 

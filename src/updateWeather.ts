@@ -19,7 +19,8 @@ export default class UpdateWeather {
     apikey: string,
     fetch_location: string,
     notesDate: string,
-    units: string,) {
+    units: string,
+    lang: string,) {
     //------------------------------------
     // Use Test Data
     // Avoids going over daily limit
@@ -29,7 +30,6 @@ export default class UpdateWeather {
     //return testData;
 
     let returnData;
-    let requestURL = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${fetch_location}/${notesDate}?unitGroup=${units}&key=${apikey}&include=current&contentType=json`
     // let dateMin = new Date().getMinutes().toString().padStart(2,"0");
     // let dateHour = new Date().getHours().toString().padStart(2,"0");
     // console.log("----------------------------------------------")
@@ -39,7 +39,7 @@ export default class UpdateWeather {
     // console.log('units.................:', units);
 
     await requestUrl({
-      url: requestURL,
+      url: `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${fetch_location}/${notesDate}?unitGroup=${units}&lang=${lang}&key=${apikey}&include=current&contentType=json`,
       "method": "GET",
       "headers": {},
       }).then(response => {;
@@ -84,7 +84,8 @@ export default class UpdateWeather {
     updateFrequency: string,
     apikey: string,
     fetch_location: string,
-    units: string,) {
+    units: string,
+    lang: string,) {
     //------------------------------------
     // Use Test Data
     // Avoids going over daily limit
@@ -106,7 +107,7 @@ export default class UpdateWeather {
 
 
       await requestUrl({
-        url: `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${fetch_location}?unitGroup=${units}&include=days%2Chours%2Calerts%2Ccurrent&key=${apikey}&contentType=json`,
+        url: `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${fetch_location}?unitGroup=${units}&lang=${lang}&include=days%2Chours%2Calerts%2Ccurrent&key=${apikey}&contentType=json`,
         "method": "GET",
         "headers": {},
       }).then(response => {;
