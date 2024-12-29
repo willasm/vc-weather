@@ -233,6 +233,9 @@ Toggles the weather display in the statusbar on or off
 #### **Cycle statusbar display**
 Toggles cycling the statusbar weather display between the 2 statusbar templates on or off. The templates are alternated every 30 seconds
 
+#### **Show weather alerts in the statusbar**
+Toggles the weather alerts display in the statusbar on or off
+
 #### **Primary statusbar template**
 This template will always be displayed in the statusbar when enabled
 

@@ -1,4 +1,4 @@
-import { App, Editor, FileView, MarkdownView, Modal, Notice, Plugin, setTooltip } from 'obsidian';
+import { Editor, MarkdownView, Notice, Plugin, setTooltip } from 'obsidian';
 import { VCWSettingsTab, VCWSettings, DEFAULT_SETTINGS } from './settings';
 import FormatTemplates from './formatTemplates';
 import UpdateWeather from './updateWeather';
@@ -249,7 +249,7 @@ export default class VCWPlugin extends Plugin {
       };
     });
 
-    // • Adds plugins status bar item to display weather information. Does not work on mobile apps. • 
+    // • Adds plugins statusbar item to display weather information. Does not work on mobile apps. • 
     // Statusbar weather alert
     statusbarAlertEl = this.addStatusBarItem().createEl('span');
     statusbarAlertEl.setText("");
@@ -259,8 +259,12 @@ export default class VCWPlugin extends Plugin {
       if (this.settings.location_one.length > 0) {
         if (l1Alerts.length > 0) {
           let link = l1Alerts[0].link;
-          if (link.startsWith('http://') || link.startsWith('https://')) {
-            window.open(`${l1Alerts[0].link}`);
+          if (link != null) {
+            if (link.startsWith('http://') || link.startsWith('https://')) {
+              window.open(`${l1Alerts[0].link}`);
+            } else {
+              new Notice('A valid link was not returned with this weather alert');
+            };
           } else {
             new Notice('A valid link was not returned with this weather alert');
           };
@@ -269,8 +273,12 @@ export default class VCWPlugin extends Plugin {
       if (this.settings.location_two.length > 0) {
         if (l2Alerts.length > 0) {
           let link = l2Alerts[0].link;
-          if (link.startsWith('http://') || link.startsWith('https://')) {
-            window.open(`${l2Alerts[0].link}`);
+          if (link != null) {
+            if (link.startsWith('http://') || link.startsWith('https://')) {
+              window.open(`${l1Alerts[0].link}`);
+            } else {
+              new Notice('A valid link was not returned with this weather alert');
+            };
           } else {
             new Notice('A valid link was not returned with this weather alert');
           };
@@ -279,8 +287,12 @@ export default class VCWPlugin extends Plugin {
       if (this.settings.location_three.length > 0) {
         if (l3Alerts.length > 0) {
           let link = l3Alerts[0].link;
-          if (link.startsWith('http://') || link.startsWith('https://')) {
-            window.open(`${l3Alerts[0].link}`);
+          if (link != null) {
+            if (link.startsWith('http://') || link.startsWith('https://')) {
+              window.open(`${l1Alerts[0].link}`);
+            } else {
+              new Notice('A valid link was not returned with this weather alert');
+            };
           } else {
             new Notice('A valid link was not returned with this weather alert');
           };
@@ -289,8 +301,12 @@ export default class VCWPlugin extends Plugin {
       if (this.settings.location_four.length > 0) {
         if (l4Alerts.length > 0) {
           let link = l4Alerts[0].link;
-          if (link.startsWith('http://') || link.startsWith('https://')) {
-            window.open(`${l4Alerts[0].link}`);
+          if (link != null) {
+            if (link.startsWith('http://') || link.startsWith('https://')) {
+              window.open(`${l1Alerts[0].link}`);
+            } else {
+              new Notice('A valid link was not returned with this weather alert');
+            };
           } else {
             new Notice('A valid link was not returned with this weather alert');
           };
@@ -299,8 +315,12 @@ export default class VCWPlugin extends Plugin {
       if (this.settings.location_five.length > 0) {
         if (l5Alerts.length > 0) {
           let link = l5Alerts[0].link;
-          if (link.startsWith('http://') || link.startsWith('https://')) {
-            window.open(`${l5Alerts[0].link}`);
+          if (link != null) {
+            if (link.startsWith('http://') || link.startsWith('https://')) {
+              window.open(`${l1Alerts[0].link}`);
+            } else {
+              new Notice('A valid link was not returned with this weather alert');
+            };
           } else {
             new Notice('A valid link was not returned with this weather alert');
           };
@@ -344,7 +364,7 @@ export default class VCWPlugin extends Plugin {
     await this.replaceTemplateStrings(weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8);
     //await this.replaceDailyTemplateStrings();
     }));
-    
+
     // • Add settings tab so users can configure this plugin • 
     this.addSettingTab(new VCWSettingsTab(this.app, this));
 
@@ -364,11 +384,13 @@ export default class VCWPlugin extends Plugin {
       );
       // get alerts
       l5Alerts = getResults.getAlerts(l5results);
-      if (l5Alerts.length > 0) {
-        if (this.settings.statusbarActive) {
-          statusbarAlertEl.setText(`WEATHER ALERT - ${this.settings.location_five.toUpperCase()} - ${l5Alerts[0].headline}`);
-          setTooltip(statusbarAlertEl,`WEATHER ALERT\n\nENDS: ${l5Alerts[0].ends.replace('T',' - ')}\n\nClick to open link...\n${l5Alerts[0].description}`,{ placement: "top" })
-          new Notice(`WEATHER ALERT...\n\n${this.settings.location_five.toUpperCase()}\n\n${l5Alerts[0].headline}`,8000);
+      if (this.settings.statusbarAlerts) {
+        if (l5Alerts.length > 0) {
+          if (this.settings.statusbarActive) {
+            statusbarAlertEl.setText(`WEATHER ALERT - ${this.settings.location_five.toUpperCase()}`);
+            setTooltip(statusbarAlertEl,`WEATHER ALERT\n\nENDS: ${l5Alerts[0].ends.replace('T',' - ')}\n\nClick to open link...\n${l5Alerts[0].description}`,{ placement: "top" })
+            new Notice(`WEATHER ALERT...\n\n${this.settings.location_five.toUpperCase()}\n\n${l5Alerts[0].headline}`,8000);
+          };
         };
       };
     };
@@ -385,11 +407,13 @@ export default class VCWPlugin extends Plugin {
       );
       // get alerts
       l4Alerts = getResults.getAlerts(l4results);
-      if (this.settings.statusbarActive) {
-        if (l4Alerts.length > 0) {
-          statusbarAlertEl.setText(`WEATHER ALERT - ${this.settings.location_four.toUpperCase()} - ${l4Alerts[0].headline}`);
-          setTooltip(statusbarAlertEl,`WEATHER ALERT\n\nENDS: ${l4Alerts[0].ends.replace('T',' - ')}\n\nClick to open link...\n${l4Alerts[0].description}`,{ placement: "top" })
-          new Notice(`WEATHER ALERT...\n\n${this.settings.location_four.toUpperCase()}\n\n${l4Alerts[0].headline}`,8000);
+      if (this.settings.statusbarAlerts) {
+        if (this.settings.statusbarActive) {
+          if (l4Alerts.length > 0) {
+            statusbarAlertEl.setText(`WEATHER ALERT - ${this.settings.location_four.toUpperCase()}`);
+            setTooltip(statusbarAlertEl,`WEATHER ALERT\n\nENDS: ${l4Alerts[0].ends.replace('T',' - ')}\n\nClick to open link...\n${l4Alerts[0].description}`,{ placement: "top" })
+            new Notice(`WEATHER ALERT...\n\n${this.settings.location_four.toUpperCase()}\n\n${l4Alerts[0].headline}`,8000);
+          };
         };
       };
     };
@@ -406,11 +430,13 @@ export default class VCWPlugin extends Plugin {
       );
       // get alerts
       l3Alerts = getResults.getAlerts(l3results);
-      if (this.settings.statusbarActive) {
-        if (l3Alerts.length > 0) {
-          statusbarAlertEl.setText(`WEATHER ALERT - ${this.settings.location_three.toUpperCase()} - ${l3Alerts[0].headline}`);
-          setTooltip(statusbarAlertEl,`WEATHER ALERT\n\nENDS: ${l3Alerts[0].ends.replace('T',' - ')}\n\nClick to open link...\n${l3Alerts[0].description}`,{ placement: "top" })
-          new Notice(`WEATHER ALERT...\n\n${this.settings.location_three.toUpperCase()}\n\n${l3Alerts[0].headline}`,8000);
+      if (this.settings.statusbarAlerts) {
+        if (this.settings.statusbarActive) {
+          if (l3Alerts.length > 0) {
+            statusbarAlertEl.setText(`WEATHER ALERT - ${this.settings.location_three.toUpperCase()}`);
+            setTooltip(statusbarAlertEl,`WEATHER ALERT\n\nENDS: ${l3Alerts[0].ends.replace('T',' - ')}\n\nClick to open link...\n${l3Alerts[0].description}`,{ placement: "top" })
+            new Notice(`WEATHER ALERT...\n\n${this.settings.location_three.toUpperCase()}\n\n${l3Alerts[0].headline}`,8000);
+          };
         };
       };
     };
@@ -427,11 +453,13 @@ export default class VCWPlugin extends Plugin {
       );
       // get alerts
       l2Alerts = getResults.getAlerts(l2results);
-      if (this.settings.statusbarActive) {
-        if (l2Alerts.length > 0) {
-          statusbarAlertEl.setText(`WEATHER ALERT - ${this.settings.location_two.toUpperCase()} - ${l2Alerts[0].headline}`);
-          setTooltip(statusbarAlertEl,`WEATHER ALERT\n\nENDS: ${l2Alerts[0].ends.replace('T',' - ')}\n\nClick to open link...\n${l2Alerts[0].description}`,{ placement: "top" })
-          new Notice(`WEATHER ALERT...\n\n${this.settings.location_two.toUpperCase()}\n\n${l2Alerts[0].headline}`,8000);
+      if (this.settings.statusbarAlerts) {
+        if (this.settings.statusbarActive) {
+          if (l2Alerts.length > 0) {
+            statusbarAlertEl.setText(`WEATHER ALERT - ${this.settings.location_two.toUpperCase()}`);
+            setTooltip(statusbarAlertEl,`WEATHER ALERT\n\nENDS: ${l2Alerts[0].ends.replace('T',' - ')}\n\nClick to open link...\n${l2Alerts[0].description}`,{ placement: "top" })
+            new Notice(`WEATHER ALERT...\n\n${this.settings.location_two.toUpperCase()}\n\n${l2Alerts[0].headline}`,8000);
+          };
         };
       };
     };
@@ -447,14 +475,16 @@ export default class VCWPlugin extends Plugin {
     );
     // get alerts
     l1Alerts = getResults.getAlerts(l1results);
-    if (this.settings.statusbarActive) {
-      if (l1Alerts.length > 0) {
-        statusbarAlertEl.setText(`WEATHER ALERT - ${this.settings.location_one.toUpperCase()} - ${l1Alerts[0].headline}`);
-        setTooltip(statusbarAlertEl,`WEATHER ALERT\n\nENDS: ${l1Alerts[0].ends.replace('T',' - ')}\n\nClick to open link...\n${l1Alerts[0].description}`,{ placement: "top" })
-        new Notice(`WEATHER ALERT...\n\n${this.settings.location_one.toUpperCase()}\n\n${l1Alerts[0].headline}`,8000);
+    if (this.settings.statusbarAlerts) {
+      if (this.settings.statusbarActive) {
+        if (l1Alerts.length > 0) {
+          statusbarAlertEl.setText(`WEATHER ALERT - ${this.settings.location_one.toUpperCase()}`);
+          setTooltip(statusbarAlertEl,`WEATHER ALERT\n\nENDS: ${l1Alerts[0].ends.replace('T',' - ')}\n\nClick to open link...\n${l1Alerts[0].description}`,{ placement: "top" })
+          new Notice(`WEATHER ALERT...\n\n${this.settings.location_one.toUpperCase()}\n\n${l1Alerts[0].headline}`,8000);
+        };
       };
     };
-    
+
 
     // • Get formatted results for all existing locations and get all formatted templates • 
     // Formatted results for location one (primary - Must Exist)
@@ -556,7 +586,7 @@ export default class VCWPlugin extends Plugin {
             return;
           };
         };
-            let editor = view.getViewData();
+        let editor = view.getViewData();
         if (editor != null) {
           let classNames = ['weather_current_1', 'weather_current_2', 'weather_current_3', 'weather_current_4', 'weather_current_5', 'weather_current_6', 'weather_current_7', 'weather_current_8'];
           let templateBodies = [weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8];
@@ -583,12 +613,14 @@ export default class VCWPlugin extends Plugin {
       statusbarAlertEl.setText("");
       let location = [this.settings.location_five, this.settings.location_four, this.settings.location_three, this.settings.location_two, this.settings.location_one];
       let alerts = [l5Alerts, l4Alerts, l3Alerts, l2Alerts, l1Alerts];
-      if (this.settings.statusbarActive) {
-        for (let i = 0; i < 5; i++) {
-          if (location[i].length > 0) {
-            if (alerts[i].length > 0) {
-              statusbarAlertEl.setText(`WEATHER ALERT - ${location[i].toUpperCase()} - ${alerts[i][0].headline}`);
-              setTooltip(statusbarAlertEl,`WEATHER ALERT\n\nENDS: ${alerts[i][0].ends.replace('T',' - ')}\n\nClick to open link...\n${alerts[i][0].description}`,{ placement: "top" })
+      if (this.settings.statusbarAlerts) {
+        if (this.settings.statusbarActive) {
+          for (let i = 0; i < 5; i++) {
+            if (location[i].length > 0) {
+              if (alerts[i].length > 0) {
+                statusbarAlertEl.setText(`WEATHER ALERT - ${location[i].toUpperCase()}`);
+                setTooltip(statusbarAlertEl,`WEATHER ALERT\n\nENDS: ${alerts[i][0].ends.replace('T',' - ')}\n\nClick to open link...\n${alerts[i][0].description}`,{ placement: "top" })
+              };
             };
           };
         };
@@ -614,7 +646,7 @@ export default class VCWPlugin extends Plugin {
         statusbarAlertEl.setText('');
       };
       }, 30 * 1000))
-    
+
     // Initialize and process 10 minutes intervals 
     this.registerInterval(window.setInterval(async () => {
       if (this.settings.updateFrequency == "10") {
@@ -864,7 +896,7 @@ export default class VCWPlugin extends Plugin {
     await this.saveData(this.settings);
   };
 
-  // • Save this plugins settings • 
+  // • Update this plugins settings • 
   async updatedSettings() {
     const getFormatted = new FormatTemplates;
     formattedSBTemplate1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate1SB);
@@ -872,6 +904,23 @@ export default class VCWPlugin extends Plugin {
     formattedSBTemplate2 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate2SB);
     if (this.settings.statusbarActive) {
       statusbarEl.setText(sbWithDate);
+      if (this.settings.statusbarAlerts) {
+        if (l5Alerts) {
+          statusbarAlertEl.setText(`WEATHER ALERT - ${this.settings.location_five.toUpperCase()}`)
+        };
+        if (l4Alerts) {
+          statusbarAlertEl.setText(`WEATHER ALERT - ${this.settings.location_four.toUpperCase()}`)
+        };
+        if (l3Alerts) {
+          statusbarAlertEl.setText(`WEATHER ALERT - ${this.settings.location_three.toUpperCase()}`)
+        };
+        if (l2Alerts) {
+          statusbarAlertEl.setText(`WEATHER ALERT - ${this.settings.location_two.toUpperCase()}`)
+        };
+        if (l1Alerts) {
+          statusbarAlertEl.setText(`WEATHER ALERT - ${this.settings.location_one.toUpperCase()}`)
+        };
+      };
     } else {
       statusbarEl.setText('');
       statusbarAlertEl.setText('');
@@ -1001,7 +1050,7 @@ export default class VCWPlugin extends Plugin {
         l5Alerts = getResults.getAlerts(l5results);
       };
     };
-            
+
     // Get formatted strings for all weather templates 
     let templates = [this.settings.weatherTemplate1, this.settings.weatherTemplate2, this.settings.weatherTemplate3, this.settings.weatherTemplate4, this.settings.weatherTemplate5, this.settings.weatherTemplate6, this.settings.weatherTemplate7, this.settings.weatherTemplate8];
     let templateBodies = [weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8];
@@ -1182,6 +1231,8 @@ export default class VCWPlugin extends Plugin {
       if (Object.keys(formattedDailyData).length == 0) {
         return;
       };
+    } else {
+      return;
     };
     
     // Ignore this folder and any subfolders for Template String Replacement

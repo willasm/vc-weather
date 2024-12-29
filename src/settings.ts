@@ -15,6 +15,7 @@ export interface VCWSettings {
   updateFrequency: string;
   statusbarActive: boolean;
   statusbarCycle: boolean;
+  statusbarAlerts: boolean;
   weatherTemplate1SB: string;
   weatherTemplate2SB: string;
   weatherTemplate1: string;
@@ -41,6 +42,7 @@ export const DEFAULT_SETTINGS: VCWSettings = {
   updateFrequency: "15",
   statusbarActive: true,
   statusbarCycle: true,
+  statusbarAlerts: true,
   weatherTemplate1SB: "🔸%address%: %dow2-now% %month3-now% %date1-now% (today)🔸High: %tempmax-today%° Low: %tempmin-today%°🔸Currently: %conditions% Temp: %temp%° Feels Like: %feelslike%°🔸",
   weatherTemplate2SB: "🔸%address%: %dow2-in1day% %month3-in1day% %date1-in1day% (tomorrow)🔸High: %tempmax-in1day%° Low: %tempmin-in1day%°🔸Clouds: %cloudcover-in1day%🔸PoP: %precipprob-in1day% (%preciptype-in1day%)🔸",
   weatherTemplate1: "1) Short one liner\n%conditions% • Current Temp: %temp%° • Feels Like: %feelslike%°\n",
@@ -171,7 +173,7 @@ export class VCWSettingsTab extends PluginSettingTab {
         await this.plugin.saveSettings();
       })
     );
-    
+
     // Additional location Three (Optional) 
     new Setting(containerEl)
     .setName('Additional location')
@@ -197,7 +199,7 @@ export class VCWSettingsTab extends PluginSettingTab {
         await this.plugin.saveSettings();
       })
     );
-        
+
     // • VCWSettingsTab - Advanced options • 
     new Setting(containerEl).setName('Advanced').setHeading();
 
@@ -329,7 +331,7 @@ export class VCWSettingsTab extends PluginSettingTab {
         await this.plugin.saveSettings();
         await this.plugin.updatedSettings();
       }));
-      
+
     // Cycle statusbar display 
     new Setting(containerEl)
     .setName('Cycle statusbar display')
@@ -341,7 +343,20 @@ export class VCWSettingsTab extends PluginSettingTab {
         await this.plugin.saveSettings();
         await this.plugin.updatedSettings();
       }));
-      
+
+    // Show alerts in statusbar 
+    new Setting(containerEl)
+    .setName('Show weather alerts in statusbar')
+    .setDesc('Enable weather alerts display in statusbar')
+    .addToggle(toggle => toggle
+      .setValue(this.plugin.settings.statusbarAlerts)
+      .onChange(async (value) => {
+        this.plugin.settings.statusbarAlerts = value;
+        await this.plugin.saveSettings();
+        await this.plugin.updateWeather(0);
+        await this.plugin.updatedSettings();
+      }));
+
     // Weather template string for the statusbar primary 
     new Setting(containerEl)
     .setDesc("Weather template string for the statusbar primary")
@@ -352,7 +367,7 @@ export class VCWSettingsTab extends PluginSettingTab {
         window.open("https://github.com/willasm/vc-weather?tab=readme-ov-file#the-statusbar-weather-display--templates");
       })
     });
-    
+
     // Text area for statusbar primary 
     new Setting(containerEl)
     .addTextArea((textArea: TextAreaComponent) => {

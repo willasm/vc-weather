@@ -2,6 +2,10 @@
 
 <!-- ## [v-inc] ${YEAR4}-${MONTHNUMBER}-${DATE} -->
 
+## [1.1.2] 2024-12-29
+- Added: Setting to show alerts in statusbar
+- Updated: Readme.md document includes new settings information
+
 ## [1.1.1] 2024-12-29
 - Added: Language support for text returned by the API
   - Note: This does not change the text in your templates, you will need to edit those if you wish to change them
