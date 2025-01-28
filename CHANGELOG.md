@@ -2,6 +2,11 @@
 
 <!-- ## [v-inc] ${YEAR4}-${MONTHNUMBER}-${DATE} -->
 
+## [1.1.3] 2025-01-28
+- Fixed: Locations 2-5 returning undefined for todays weather
+- Added: Wind gusts in meters per second
+  - Macros.md updated with new macros for wind gusts in meters per second
+
 ## [1.1.2] 2024-12-29
 - Added: Setting to show alerts in statusbar
 - Updated: Readme.md document includes new settings information

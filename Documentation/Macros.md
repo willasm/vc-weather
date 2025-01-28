@@ -75,6 +75,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%snow-daily%`           | Snow expected                          | 2.5                               | inches | cm       | cm    |
 | `%snowdepth-daily%`      | Snow depth                             | 2.5                               | inches | cm       | cm    |
 | `%windgust-daily%`       | Wind gust                              | 15                                | mph    | kph      | mph   |
+| `%windgustms-daily%`     | Wind gust in meters per second         | 15                                | mph    | mps      | mph   |
 | `%windspeed-daily%`      | Wind speed                             | 10                                | mph    | kph      | mph   |
 | `%windspeedms-daily%`    | Wind speed in meters per second        | 2                                 | -      | -        | -     |
 | `%winddirdeg-daily%`     | Wind direction in degrees              | 245                               | -      | -        | -     |
@@ -113,6 +114,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%snowdepth%`       | Snow depth                             | 2.5                   | inches | cm       | cm    |
 | `%preciptype%`      | Precipitation type                     | rain                  | -      | -        | -     |
 | `%windgust%`        | Wind gust                              | 15                    | mph    | kph      | mph   |
+| `%windgustms%`      | Wind gust in meters per second         | 15                    | mph    | mps      | mph   |
 | `%windspeed%`       | Wind speed                             | 10                    | mph    | kph      | mph   |
 | `%windspeedms%`     | Wind speed in meters per second        | 2                     | -      | -        | -     |
 | `%winddirdeg%`      | Wind direction in degrees              | 245                   | -      | -        | -     |
@@ -205,6 +207,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%snow-today%`           | Snow expected                          | 2.5                               | inches | cm       | cm    |
 | `%snowdepth-today%`      | Snow depth                             | 2.5                               | inches | cm       | cm    |
 | `%windgust-today%`       | Wind gust                              | 15                                | mph    | kph      | mph   |
+| `%windgustms-today%`     | Wind gust in meters per second         | 15                                | mph    | mps      | mph   |
 | `%windspeed-today%`      | Wind speed                             | 10                                | mph    | kph      | mph   |
 | `%windspeedms-today%`    | Wind speed in meters per second        | 2                                 | -      | -        | -     |
 | `%winddirdeg-today%`     | Wind direction in degrees              | 245                               | -      | -        | -     |
@@ -260,6 +263,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%snow-in1day%`           | Snow expected                          | 2.5                               | inches | cm       | cm    |
 | `%snowdepth-in1day%`      | Snow depth                             | 2.5                               | inches | cm       | cm    |
 | `%windgust-in1day%`       | Wind gust                              | 15                                | mph    | kph      | mph   |
+| `%windgustms-in1day%`     | Wind gust in meters per second         | 15                                | mph    | mps      | mph   |
 | `%windspeed-in1day%`      | Wind speed                             | 10                                | mph    | kph      | mph   |
 | `%windspeedms-in1day%`    | Wind speed in meters per second        | 2                                 | -      | -        | -     |
 | `%winddirdeg-in1day%`     | Wind direction in degrees              | 245                               | -      | -        | -     |
@@ -315,6 +319,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%snow-in2days%`           | Snow expected                          | 2.5                               | inches | cm       | cm    |
 | `%snowdepth-in2days%`      | Snow depth                             | 2.5                               | inches | cm       | cm    |
 | `%windgust-in2days%`       | Wind gust                              | 15                                | mph    | kph      | mph   |
+| `%windgustms-in2days%`     | Wind gust in meters per second         | 15                                | mph    | mps      | mph   |
 | `%windspeed-in2days%`      | Wind speed                             | 10                                | mph    | kph      | mph   |
 | `%windspeedms-in2days%`    | Wind speed in meters per second        | 2                                 | -      | -        | -     |
 | `%winddirdeg-in2days%`     | Wind direction in degrees              | 245                               | -      | -        | -     |
@@ -370,6 +375,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%snow-in3days%`           | Snow expected                          | 2.5                               | inches | cm       | cm    |
 | `%snowdepth-in3days%`      | Snow depth                             | 2.5                               | inches | cm       | cm    |
 | `%windgust-in3days%`       | Wind gust                              | 15                                | mph    | kph      | mph   |
+| `%windgustms-in3days%`     | Wind gust in meters per second         | 15                                | mph    | mps      | mph   |
 | `%windspeed-in3days%`      | Wind speed                             | 10                                | mph    | kph      | mph   |
 | `%windspeedms-in3days%`    | Wind speed in meters per second        | 2                                 | -      | -        | -     |
 | `%winddirdeg-in3days%`     | Wind direction in degrees              | 245                               | -      | -        | -     |
@@ -425,6 +431,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%snow-in4days%`           | Snow expected                          | 2.5                               | inches | cm       | cm    |
 | `%snowdepth-in4days%`      | Snow depth                             | 2.5                               | inches | cm       | cm    |
 | `%windgust-in4days%`       | Wind gust                              | 15                                | mph    | kph      | mph   |
+| `%windgustms-in4days%`     | Wind gust in meters per second         | 15                                | mph    | mps      | mph   |
 | `%windspeed-in4days%`      | Wind speed                             | 10                                | mph    | kph      | mph   |
 | `%windspeedms-in4days%`    | Wind speed in meters per second        | 2                                 | -      | -        | -     |
 | `%winddirdeg-in4days%`     | Wind direction in degrees              | 245                               | -      | -        | -     |
@@ -480,6 +487,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%snow-in5days%`           | Snow expected                          | 2.5                               | inches | cm       | cm    |
 | `%snowdepth-in5days%`      | Snow depth                             | 2.5                               | inches | cm       | cm    |
 | `%windgust-in5days%`       | Wind gust                              | 15                                | mph    | kph      | mph   |
+| `%windgustms-in5days%`     | Wind gust in meters per second         | 15                                | mph    | mps      | mph   |
 | `%windspeed-in5days%`      | Wind speed                             | 10                                | mph    | kph      | mph   |
 | `%windspeedms-in5days%`    | Wind speed in meters per second        | 2                                 | -      | -        | -     |
 | `%winddirdeg-in5days%`     | Wind direction in degrees              | 245                               | -      | -        | -     |
@@ -535,6 +543,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%snow-in6days%`           | Snow expected                          | 2.5                               | inches | cm       | cm    |
 | `%snowdepth-in6days%`      | Snow depth                             | 2.5                               | inches | cm       | cm    |
 | `%windgust-in6days%`       | Wind gust                              | 15                                | mph    | kph      | mph   |
+| `%windgustms-in6days%`     | Wind gust in meters per second         | 15                                | mph    | mps      | mph   |
 | `%windspeed-in6days%`      | Wind speed                             | 10                                | mph    | kph      | mph   |
 | `%windspeedms-in6days%`    | Wind speed in meters per second        | 2                                 | -      | -        | -     |
 | `%winddirdeg-in6days%`     | Wind direction in degrees              | 245                               | -      | -        | -     |
@@ -590,6 +599,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%snow-in7days%`           | Snow expected                          | 2.5                               | inches | cm       | cm    |
 | `%snowdepth-in7days%`      | Snow depth                             | 2.5                               | inches | cm       | cm    |
 | `%windgust-in7days%`       | Wind gust                              | 15                                | mph    | kph      | mph   |
+| `%windgustms-in7days%`     | Wind gust in meters per second         | 15                                | mph    | mps      | mph   |
 | `%windspeed-in7days%`      | Wind speed                             | 10                                | mph    | kph      | mph   |
 | `%windspeedms-in7days%`    | Wind speed in meters per second        | 2                                 | -      | -        | -     |
 | `%winddirdeg-in7days%`     | Wind direction in degrees              | 245                               | -      | -        | -     |
@@ -645,6 +655,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%snow-in8days%`           | Snow expected                          | 2.5                               | inches | cm       | cm    |
 | `%snowdepth-in8days%`      | Snow depth                             | 2.5                               | inches | cm       | cm    |
 | `%windgust-in8days%`       | Wind gust                              | 15                                | mph    | kph      | mph   |
+| `%windgustms-in8days%`     | Wind gust in meters per second         | 15                                | mph    | mps      | mph   |
 | `%windspeed-in8days%`      | Wind speed                             | 10                                | mph    | kph      | mph   |
 | `%windspeedms-in8days%`    | Wind speed in meters per second        | 2                                 | -      | -        | -     |
 | `%winddirdeg-in8days%`     | Wind direction in degrees              | 245                               | -      | -        | -     |
@@ -700,6 +711,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%snow-in9days%`           | Snow expected                          | 2.5                               | inches | cm       | cm    |
 | `%snowdepth-in9days%`      | Snow depth                             | 2.5                               | inches | cm       | cm    |
 | `%windgust-in9days%`       | Wind gust                              | 15                                | mph    | kph      | mph   |
+| `%windgustms-in9days%`     | Wind gust in meters per second         | 15                                | mph    | mps      | mph   |
 | `%windspeed-in9days%`      | Wind speed                             | 10                                | mph    | kph      | mph   |
 | `%windspeedms-in9days%`    | Wind speed in meters per second        | 2                                 | -      | -        | -     |
 | `%winddirdeg-in9days%`     | Wind direction in degrees              | 245                               | -      | -        | -     |
@@ -755,6 +767,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%snow-in10days%`           | Snow expected                          | 2.5                               | inches | cm       | cm    |
 | `%snowdepth-in10days%`      | Snow depth                             | 2.5                               | inches | cm       | cm    |
 | `%windgust-in10days%`       | Wind gust                              | 15                                | mph    | kph      | mph   |
+| `%windgustms-in10days%`     | Wind gust in meters per second         | 15                                | mph    | mps      | mph   |
 | `%windspeed-in10days%`      | Wind speed                             | 10                                | mph    | kph      | mph   |
 | `%windspeedms-in10days%`    | Wind speed in meters per second        | 2                                 | -      | -        | -     |
 | `%winddirdeg-in10days%`     | Wind direction in degrees              | 245                               | -      | -        | -     |
@@ -810,6 +823,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%snow-in11days%`           | Snow expected                          | 2.5                               | inches | cm       | cm    |
 | `%snowdepth-in11days%`      | Snow depth                             | 2.5                               | inches | cm       | cm    |
 | `%windgust-in11days%`       | Wind gust                              | 15                                | mph    | kph      | mph   |
+| `%windgustms-in11days%`     | Wind gust in meters per second         | 15                                | mph    | mps      | mph   |
 | `%windspeed-in11days%`      | Wind speed                             | 10                                | mph    | kph      | mph   |
 | `%windspeedms-in11days%`    | Wind speed in meters per second        | 2                                 | -      | -        | -     |
 | `%winddirdeg-in11days%`     | Wind direction in degrees              | 245                               | -      | -        | -     |
@@ -865,6 +879,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%snow-in12days%`           | Snow expected                          | 2.5                               | inches | cm       | cm    |
 | `%snowdepth-in12days%`      | Snow depth                             | 2.5                               | inches | cm       | cm    |
 | `%windgust-in12days%`       | Wind gust                              | 15                                | mph    | kph      | mph   |
+| `%windgustms-in12days%`     | Wind gust in meters per second         | 15                                | mph    | mps      | mph   |
 | `%windspeed-in12days%`      | Wind speed                             | 10                                | mph    | kph      | mph   |
 | `%windspeedms-in12days%`    | Wind speed in meters per second        | 2                                 | -      | -        | -     |
 | `%winddirdeg-in12days%`     | Wind direction in degrees              | 245                               | -      | -        | -     |
@@ -920,6 +935,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%snow-in13days%`           | Snow expected                          | 2.5                               | inches | cm       | cm    |
 | `%snowdepth-in13days%`      | Snow depth                             | 2.5                               | inches | cm       | cm    |
 | `%windgust-in13days%`       | Wind gust                              | 15                                | mph    | kph      | mph   |
+| `%windgustms-in13days%`     | Wind gust in meters per second         | 15                                | mph    | mps      | mph   |
 | `%windspeed-in13days%`      | Wind speed                             | 10                                | mph    | kph      | mph   |
 | `%windspeedms-in13days%`    | Wind speed in meters per second        | 2                                 | -      | -        | -     |
 | `%winddirdeg-in13days%`     | Wind direction in degrees              | 245                               | -      | -        | -     |
@@ -975,6 +991,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%snow-in14days%`           | Snow expected                          | 2.5                               | inches | cm       | cm    |
 | `%snowdepth-in14days%`      | Snow depth                             | 2.5                               | inches | cm       | cm    |
 | `%windgust-in14days%`       | Wind gust                              | 15                                | mph    | kph      | mph   |
+| `%windgustms-in14days%`     | Wind gust in meters per second         | 15                                | mph    | mps      | mph   |
 | `%windspeed-in14days%`      | Wind speed                             | 10                                | mph    | kph      | mph   |
 | `%windspeedms-in14days%`    | Wind speed in meters per second        | 2                                 | -      | -        | -     |
 | `%winddirdeg-in14days%`     | Wind direction in degrees              | 245                               | -      | -        | -     |

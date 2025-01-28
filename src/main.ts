@@ -45,8 +45,8 @@ let l5Alerts: Alerts;
 //"year":"%year1-today%","month":"%month3-today%","date":"%date1-today%","dow":"%dow1-today%","hours24":"%hours24%",
 //"hours12":"%hours12%","mins":"%mins%","ampm1":"%ampm1%","ampm2":"%ampm2%","datetime":"%datetime%","temp":"%temp%",
 //"feelslike":"%feelslike%","humidity":"%humidity%","dew":"%dew%","precip":"%precip%","pop":"%precipprob%",
-//"preciptype":"%preciptype%","snow":"%snow%","snowdepth":"%snowdepth%","windgust":"%windgust%","windspeed":"%windspeed%",
-//"windspeedms":"%windspeedms%","winddirdeg":"%winddirdeg%","winddirstr":"%winddirstr%","pressure":"%pressure%",
+//"preciptype":"%preciptype%","snow":"%snow%","snowdepth":"%snowdepth%","windgust":"%windgust%","windgustms":"%windgustms%"
+//,"windspeed":"%windspeed%","windspeedms":"%windspeedms%","winddirdeg":"%winddirdeg%","winddirstr":"%winddirstr%","pressure":"%pressure%",
 //"visibility":"%visibility%","solarradiation":"%solarradiation%","solarenergy":"%solarenergy%","uvindex":"%uvindex%",
 //"conditions":"%conditions%","desc":"%description-today%","iconUrl":"%iconurl%","sunrise":"%sunrise%","sunset":"%sunset%",
 //"moonphase":"%moonphase%"}'
@@ -76,6 +76,7 @@ interface internalCurrentData {
   "snow": string
   "snowdepth": string
   "windgust": number
+  "windgustms": number
   "windspeed": string
   "windspeedms": string
   "winddirdeg": string
@@ -124,6 +125,7 @@ interface dailyData {
   "snow": number,
   "snowdepth": number,
   "windgust": number,
+  "windgustms": number,
   "windspeed": number,
   "windspeedms": number,
   "winddirdeg": number,
@@ -221,7 +223,7 @@ export default class VCWPlugin extends Plugin {
 
     // Data for internal template used for display current weather modal
     formattedInternalCurrentData = "";
-    internalCurrentData = '{"address":"%address%","resAddress":"%resolvedaddress%","lat":"%latitude%","lon":"%longitude%","timezone":"%timezone%","year":"%year1-today%","month":"%month3-today%","date":"%date1-today%","dow":"%dow1-today%","hours24":"%hours24%","hours12":"%hours12%","mins":"%mins%","ampm1":"%ampm1%","ampm2":"%ampm2%","datetime":"%datetime%","temp":"%temp%","feelslike":"%feelslike%","humidity":"%humidity%","dew":"%dew%","precip":"%precip%","pop":"%precipprob%","preciptype":"%preciptype%","snow":"%snow%","snowdepth":"%snowdepth%","windgust":"%windgust%","windspeed":"%windspeed%","windspeedms":"%windspeedms%","winddirdeg":"%winddirdeg%","winddirstr":"%winddirstr%","pressure":"%pressure%","visibility":"%visibility%","solarradiation":"%solarradiation%","solarenergy":"%solarenergy%","uvindex":"%uvindex%","conditions":"%conditions%","desc":"%description-today%","icon":"%icon%","iconUrl":"%iconurl%","sunrise":"%sunrise%","sunset":"%sunset%","moonphase":"%moonphase%"}'
+    internalCurrentData = '{"address":"%address%","resAddress":"%resolvedaddress%","lat":"%latitude%","lon":"%longitude%","timezone":"%timezone%","year":"%year1-today%","month":"%month3-today%","date":"%date1-today%","dow":"%dow1-today%","hours24":"%hours24%","hours12":"%hours12%","mins":"%mins%","ampm1":"%ampm1%","ampm2":"%ampm2%","datetime":"%datetime%","temp":"%temp%","feelslike":"%feelslike%","humidity":"%humidity%","dew":"%dew%","precip":"%precip%","pop":"%precipprob%","preciptype":"%preciptype%","snow":"%snow%","snowdepth":"%snowdepth%","windgust":"%windgust%","windgustms":"%windgustms%","windspeed":"%windspeed%","windspeedms":"%windspeedms%","winddirdeg":"%winddirdeg%","winddirstr":"%winddirstr%","pressure":"%pressure%","visibility":"%visibility%","solarradiation":"%solarradiation%","solarenergy":"%solarenergy%","uvindex":"%uvindex%","conditions":"%conditions%","desc":"%description-today%","icon":"%icon%","iconUrl":"%iconurl%","sunrise":"%sunrise%","sunset":"%sunset%","moonphase":"%moonphase%"}'
 
     // • Load plugin settings • 
     await this.loadSettings();
@@ -1248,8 +1250,8 @@ export default class VCWPlugin extends Plugin {
     let editor = view.getViewData();
     if (editor == null) return;
 
-    let macros = ["%year1-daily%", "%year2-daily%", "%month1-daily%", "%month2-daily%", "%month3-daily%", "%month4-daily%", "%date1-daily%", "%date2-daily%", "%dow1-daily%", "%dow2-daily%", "%datetime-daily%", "%datetimeepoch-daily%", "%tempmax-daily%", "%tempmin-daily%", "%tempavg-daily%", "%feelslikemax-daily%", "%feelslikemin-daily%", "%feelslikeavg-daily%", "%dew-daily%", "%humidity-daily%", "%precip-daily%", "%precipprob-daily%", "%precipcover-daily%", "%preciptype-daily%", "%snow-daily%", "%snowdepth-daily%", "%windgust-daily%", "%windspeed-daily%", "%windspeedms-daily%", "%winddirdeg-daily%", "%winddirstr-daily%", "%winddirstrshort-daily%", "%pressure-daily%", "%cloudcover-daily%", "%visibility-daily%", "%solarradiation-daily%", "%solarenergy-daily%", "%uvindex-daily%", "%severerisk-daily%", "%sunrise-daily%", "%sunriseepoch-daily%", "%sunset-daily%", "%sunsetepoch-daily%", "%moonphase-daily%", "%conditions-daily%", "%description-daily%", "%icon-daily%", "%iconurl-daily%", "%iconurlloc-daily%"];
-    let macrosExpanded = [formattedDailyData.year1, formattedDailyData.year2, formattedDailyData.month1, formattedDailyData.month2, formattedDailyData.month3, formattedDailyData.month4, formattedDailyData.date1, formattedDailyData.date2, formattedDailyData.dow1, formattedDailyData.dow2, formattedDailyData.datetime, formattedDailyData.datetimeepoch, formattedDailyData.tempmax, formattedDailyData.tempmin, formattedDailyData.tempavg, formattedDailyData.feelslikemax, formattedDailyData.feelslikemin, formattedDailyData.feelslikeavg, formattedDailyData.dew, formattedDailyData.humidity, formattedDailyData.precip, formattedDailyData.precipprob, formattedDailyData.precipcover, formattedDailyData.preciptype, formattedDailyData.snow, formattedDailyData.snowdepth, formattedDailyData.windgust, formattedDailyData.windspeed, formattedDailyData.windspeedms, formattedDailyData.winddirdeg, formattedDailyData.winddirstr, formattedDailyData.winddirstrshort, formattedDailyData.pressure, formattedDailyData.cloudcover, formattedDailyData.visibility, formattedDailyData.solarradiation, formattedDailyData.solarenergy, formattedDailyData.uvindex, formattedDailyData.severerisk, formattedDailyData.sunrise, formattedDailyData.sunriseepoch, formattedDailyData.sunset, formattedDailyData.sunsetepoch, formattedDailyData.moonphase, formattedDailyData.conditions, formattedDailyData.description, formattedDailyData.icon, formattedDailyData.iconurl, formattedDailyData.iconurlloc];
+    let macros = ["%year1-daily%", "%year2-daily%", "%month1-daily%", "%month2-daily%", "%month3-daily%", "%month4-daily%", "%date1-daily%", "%date2-daily%", "%dow1-daily%", "%dow2-daily%", "%datetime-daily%", "%datetimeepoch-daily%", "%tempmax-daily%", "%tempmin-daily%", "%tempavg-daily%", "%feelslikemax-daily%", "%feelslikemin-daily%", "%feelslikeavg-daily%", "%dew-daily%", "%humidity-daily%", "%precip-daily%", "%precipprob-daily%", "%precipcover-daily%", "%preciptype-daily%", "%snow-daily%", "%snowdepth-daily%", "%windgust-daily%", "%windgustms-daily%", "%windspeed-daily%", "%windspeedms-daily%", "%winddirdeg-daily%", "%winddirstr-daily%", "%winddirstrshort-daily%", "%pressure-daily%", "%cloudcover-daily%", "%visibility-daily%", "%solarradiation-daily%", "%solarenergy-daily%", "%uvindex-daily%", "%severerisk-daily%", "%sunrise-daily%", "%sunriseepoch-daily%", "%sunset-daily%", "%sunsetepoch-daily%", "%moonphase-daily%", "%conditions-daily%", "%description-daily%", "%icon-daily%", "%iconurl-daily%", "%iconurlloc-daily%"];
+    let macrosExpanded = [formattedDailyData.year1, formattedDailyData.year2, formattedDailyData.month1, formattedDailyData.month2, formattedDailyData.month3, formattedDailyData.month4, formattedDailyData.date1, formattedDailyData.date2, formattedDailyData.dow1, formattedDailyData.dow2, formattedDailyData.datetime, formattedDailyData.datetimeepoch, formattedDailyData.tempmax, formattedDailyData.tempmin, formattedDailyData.tempavg, formattedDailyData.feelslikemax, formattedDailyData.feelslikemin, formattedDailyData.feelslikeavg, formattedDailyData.dew, formattedDailyData.humidity, formattedDailyData.precip, formattedDailyData.precipprob, formattedDailyData.precipcover, formattedDailyData.preciptype, formattedDailyData.snow, formattedDailyData.snowdepth, formattedDailyData.windgust, formattedDailyData.windgustms, formattedDailyData.windspeed, formattedDailyData.windspeedms, formattedDailyData.winddirdeg, formattedDailyData.winddirstr, formattedDailyData.winddirstrshort, formattedDailyData.pressure, formattedDailyData.cloudcover, formattedDailyData.visibility, formattedDailyData.solarradiation, formattedDailyData.solarenergy, formattedDailyData.uvindex, formattedDailyData.severerisk, formattedDailyData.sunrise, formattedDailyData.sunriseepoch, formattedDailyData.sunset, formattedDailyData.sunsetepoch, formattedDailyData.moonphase, formattedDailyData.conditions, formattedDailyData.description, formattedDailyData.icon, formattedDailyData.iconurl, formattedDailyData.iconurlloc];
 
     let withDate = await this.setCurrentDateTime(editor);
     for (let i = 0; i < macros.length; i++) {
