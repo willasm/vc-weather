@@ -11,10 +11,9 @@
 
 <!-- ## [v-inc] ${YEAR4}-${MONTHNUMBER}-${DATE} -->
 
-## [1.1.3] 2025-01-28
-- Fixed: Locations 2-5 returning undefined for todays weather
-- Added: Wind gusts in meters per second
-  - Macros.md updated with new macros for wind gusts in meters per second
+## [1.1.4] 2025-01-30
+- Added: Weather emojis
+  - Macros.md updated with new macros for weather emojis
 
 For a full list of changes, please see the projects [Changelog](CHANGELOG.md) file.
 

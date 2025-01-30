@@ -95,6 +95,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%moonphase-daily%`      | Moonphase                              | 0.75                              | -      | -        | -     |
 | `%conditions-daily%`     | Short text about the weather           | Partially cloudy                  | -      | -        | -     |
 | `%description-daily%`    | Description of the weather for the day | Partly cloudy throughout the day. | -      | -        | -     |
+| `%descemoji-daily%`      | Emoji for Description of the weather   | 🌅 ❄️ 🌧️ 🌫️ 💨 ☁️ ⛅ 🌥 🔆 🌛       | -      | -        | -     |
 | `%icon-daily%`           | A weather icon name                    | partly-cloudy-night               | -      | -        | -     |
 | `%iconurl-daily%`        | A weather icon URL from Github         | Icon URL                          | -      | -        | -     |
 | `%iconurlloc-daily%`     | A weather icon URL from local CSS      | A weather icon                    | -      | -        | -     |
@@ -127,6 +128,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%solarenergy%`     | Solar energy                           | 0.1                   | MJ/m2  | MJ/m2    | MJ/m2 |
 | `%uvindex%`         | UV index                               | 3                     | -      | -        | -     |
 | `%conditions%`      | Description of the weather for the day | Partially cloudy      | -      | -        | -     |
+| `%descemoji%`       | Emoji for Description of the weather   | 🌅 ❄️ 🌧️ 🌫️ 💨 ☁️ ...   | -      | -        | -     |
 | `%icon%`            | A weather icon name                    | partly-cloudy-night   | -      | -        | -     |
 | `%iconurl%`         | A weather icon URL from Github         | Icon URL              | -      | -        | -     |
 | `%iconurlloc%`      | A weather icon URL from local CSS      | <img class="snow"/>   | -      | -        | -     |
@@ -227,6 +229,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%moonphase-today%`      | Moonphase                              | 0.75                              | -      | -        | -     |
 | `%conditions-today%`     | Short text about the weather           | Partially cloudy                  | -      | -        | -     |
 | `%description-today%`    | Description of the weather for the day | Partly cloudy throughout the day. | -      | -        | -     |
+| `%descemoji-today%`      | Emoji for Description of the weather   | 🌅 ❄️ 🌧️ 🌫️ 💨 ☁️ ⛅ 🌥 🔆 🌛       | -      | -        | -     |
 | `%icon-today%`           | A weather icon name                    | partly-cloudy-night               | -      | -        | -     |
 | `%iconurl-today%`        | A weather icon URL from Github         | Icon URL                          | -      | -        | -     |
 | `%iconurlloc-today%`     | A weather icon URL from local CSS      | <img class="snow"/>               | -      | -        | -     |
@@ -283,6 +286,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%moonphase-in1day%`      | Moonphase                              | 0.75                              | -      | -        | -     |
 | `%conditions-in1day%`     | Short text about the weather           | Partially cloudy                  | -      | -        | -     |
 | `%description-in1day%`    | Description of the weather for the day | Partly cloudy throughout the day. | -      | -        | -     |
+| `%descemoji-in1day%`      | Emoji for Description of the weather   | 🌅 ❄️ 🌧️ 🌫️ 💨 ☁️ ⛅ 🌥 🔆 🌛       | -      | -        | -     |
 | `%icon-in1day%`           | A weather icon name                    | partly-cloudy-night               | -      | -        | -     |
 | `%iconurl-in1day%`        | A weather icon URL from Github         | Icon URL                          | -      | -        | -     |
 | `%iconurlloc-in1day%`     | A weather icon URL from local CSS      | <img class="snow"/>               | -      | -        | -     |
@@ -339,6 +343,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%moonphase-in2days%`      | Moonphase                              | 0.75                              | -      | -        | -     |
 | `%conditions-in2days%`     | Short text about the weather           | Partially cloudy                  | -      | -        | -     |
 | `%description-in2days%`    | Description of the weather for the day | Partly cloudy throughout the day. | -      | -        | -     |
+| `%descemoji-in2days%`      | Emoji for Description of the weather   | 🌅 ❄️ 🌧️ 🌫️ 💨 ☁️ ⛅ 🌥 🔆 🌛       | -      | -        | -     |
 | `%icon-in2days%`           | A weather icon name                    | partly-cloudy-night               | -      | -        | -     |
 | `%iconurl-in2days%`        | A weather icon URL from Github         | Icon URL                          | -      | -        | -     |
 | `%iconurlloc-in2days%`     | A weather icon URL from local CSS      | <img class="snow"/>               | -      | -        | -     |
@@ -395,6 +400,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%moonphase-in3days%`      | Moonphase                              | 0.75                              | -      | -        | -     |
 | `%conditions-in3days%`     | Short text about the weather           | Partially cloudy                  | -      | -        | -     |
 | `%description-in3days%`    | Description of the weather for the day | Partly cloudy throughout the day. | -      | -        | -     |
+| `%descemoji-in3days%`      | Emoji for Description of the weather   | 🌅 ❄️ 🌧️ 🌫️ 💨 ☁️ ⛅ 🌥 🔆 🌛       | -      | -        | -     |
 | `%icon-in3days%`           | A weather icon name                    | partly-cloudy-night               | -      | -        | -     |
 | `%iconurl-in3days%`        | A weather icon URL from Github         | Icon URL                          | -      | -        | -     |
 | `%iconurlloc-in3days%`     | A weather icon URL from local CSS      | <img class="snow"/>               | -      | -        | -     |
@@ -451,6 +457,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%moonphase-in4days%`      | Moonphase                              | 0.75                              | -      | -        | -     |
 | `%conditions-in4days%`     | Short text about the weather           | Partially cloudy                  | -      | -        | -     |
 | `%description-in4days%`    | Description of the weather for the day | Partly cloudy throughout the day. | -      | -        | -     |
+| `%descemoji-in4days%`      | Emoji for Description of the weather   | 🌅 ❄️ 🌧️ 🌫️ 💨 ☁️ ⛅ 🌥 🔆 🌛       | -      | -        | -     |
 | `%icon-in4days%`           | A weather icon name                    | partly-cloudy-night               | -      | -        | -     |
 | `%iconurl-in4days%`        | A weather icon URL from Github         | Icon URL                          | -      | -        | -     |
 | `%iconurlloc-in4days%`     | A weather icon URL from local CSS      | <img class="snow"/>               | -      | -        | -     |
@@ -507,6 +514,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%moonphase-in5days%`      | Moonphase                              | 0.75                              | -      | -        | -     |
 | `%conditions-in5days%`     | Short text about the weather           | Partially cloudy                  | -      | -        | -     |
 | `%description-in5days%`    | Description of the weather for the day | Partly cloudy throughout the day. | -      | -        | -     |
+| `%descemoji-in5days%`      | Emoji for Description of the weather   | 🌅 ❄️ 🌧️ 🌫️ 💨 ☁️ ⛅ 🌥 🔆 🌛       | -      | -        | -     |
 | `%icon-in5days%`           | A weather icon name                    | partly-cloudy-night               | -      | -        | -     |
 | `%iconurl-in5days%`        | A weather icon URL from Github         | Icon URL                          | -      | -        | -     |
 | `%iconurlloc-in5days%`     | A weather icon URL from local CSS      | <img class="snow"/>               | -      | -        | -     |
@@ -563,6 +571,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%moonphase-in6days%`      | Moonphase                              | 0.75                              | -      | -        | -     |
 | `%conditions-in6days%`     | Short text about the weather           | Partially cloudy                  | -      | -        | -     |
 | `%description-in6days%`    | Description of the weather for the day | Partly cloudy throughout the day. | -      | -        | -     |
+| `%descemoji-in6days%`      | Emoji for Description of the weather   | 🌅 ❄️ 🌧️ 🌫️ 💨 ☁️ ⛅ 🌥 🔆 🌛       | -      | -        | -     |
 | `%icon-in6days%`           | A weather icon name                    | partly-cloudy-night               | -      | -        | -     |
 | `%iconurl-in6days%`        | A weather icon URL from Github         | Icon URL                          | -      | -        | -     |
 | `%iconurlloc-in6days%`     | A weather icon URL from local CSS      | <img class="snow"/>               | -      | -        | -     |
@@ -619,6 +628,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%moonphase-in7days%`      | Moonphase                              | 0.75                              | -      | -        | -     |
 | `%conditions-in7days%`     | Short text about the weather           | Partially cloudy                  | -      | -        | -     |
 | `%description-in7days%`    | Description of the weather for the day | Partly cloudy throughout the day. | -      | -        | -     |
+| `%descemoji-in7days%`      | Emoji for Description of the weather   | 🌅 ❄️ 🌧️ 🌫️ 💨 ☁️ ⛅ 🌥 🔆 🌛       | -      | -        | -     |
 | `%icon-in7days%`           | A weather icon name                    | partly-cloudy-night               | -      | -        | -     |
 | `%iconurl-in7days%`        | A weather icon URL from Github         | Icon URL                          | -      | -        | -     |
 | `%iconurlloc-in7days%`     | A weather icon URL from local CSS      | <img class="snow"/>               | -      | -        | -     |
@@ -675,6 +685,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%moonphase-in8days%`      | Moonphase                              | 0.75                              | -      | -        | -     |
 | `%conditions-in8days%`     | Short text about the weather           | Partially cloudy                  | -      | -        | -     |
 | `%description-in8days%`    | Description of the weather for the day | Partly cloudy throughout the day. | -      | -        | -     |
+| `%descemoji-in8days%`      | Emoji for Description of the weather   | 🌅 ❄️ 🌧️ 🌫️ 💨 ☁️ ⛅ 🌥 🔆 🌛       | -      | -        | -     |
 | `%icon-in8days%`           | A weather icon name                    | partly-cloudy-night               | -      | -        | -     |
 | `%iconurl-in8days%`        | A weather icon URL from Github         | Icon URL                          | -      | -        | -     |
 | `%iconurlloc-in8days%`     | A weather icon URL from local CSS      | <img class="snow"/>               | -      | -        | -     |
@@ -731,6 +742,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%moonphase-in9days%`      | Moonphase                              | 0.75                              | -      | -        | -     |
 | `%conditions-in9days%`     | Short text about the weather           | Partially cloudy                  | -      | -        | -     |
 | `%description-in9days%`    | Description of the weather for the day | Partly cloudy throughout the day. | -      | -        | -     |
+| `%descemoji-in9days%`      | Emoji for Description of the weather   | 🌅 ❄️ 🌧️ 🌫️ 💨 ☁️ ⛅ 🌥 🔆 🌛       | -      | -        | -     |
 | `%icon-in9days%`           | A weather icon name                    | partly-cloudy-night               | -      | -        | -     |
 | `%iconurl-in9days%`        | A weather icon URL from Github         | Icon URL                          | -      | -        | -     |
 | `%iconurlloc-in9days%`     | A weather icon URL from local CSS      | <img class="snow"/>               | -      | -        | -     |
@@ -787,6 +799,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%moonphase-in10days%`      | Moonphase                              | 0.75                              | -      | -        | -     |
 | `%conditions-in10days%`     | Short text about the weather           | Partially cloudy                  | -      | -        | -     |
 | `%description-in10days%`    | Description of the weather for the day | Partly cloudy throughout the day. | -      | -        | -     |
+| `%descemoji-in10days%`      | Emoji for Description of the weather   | 🌅 ❄️ 🌧️ 🌫️ 💨 ☁️ ⛅ 🌥 🔆 🌛       | -      | -        | -     |
 | `%icon-in10days%`           | A weather icon name                    | partly-cloudy-night               | -      | -        | -     |
 | `%iconurl-in10days%`        | A weather icon URL from Github         | Icon URL                          | -      | -        | -     |
 | `%iconurlloc-in10days%`     | A weather icon URL from local CSS      | <img class="snow"/>               | -      | -        | -     |
@@ -843,6 +856,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%moonphase-in11days%`      | Moonphase                              | 0.75                              | -      | -        | -     |
 | `%conditions-in11days%`     | Short text about the weather           | Partially cloudy                  | -      | -        | -     |
 | `%description-in11days%`    | Description of the weather for the day | Partly cloudy throughout the day. | -      | -        | -     |
+| `%descemoji-in11days%`      | Emoji for Description of the weather   | 🌅 ❄️ 🌧️ 🌫️ 💨 ☁️ ⛅ 🌥 🔆 🌛       | -      | -        | -     |
 | `%icon-in11days%`           | A weather icon name                    | partly-cloudy-night               | -      | -        | -     |
 | `%iconurl-in11days%`        | A weather icon URL from Github         | Icon URL                          | -      | -        | -     |
 | `%iconurlloc-in11days%`     | A weather icon URL from local CSS      | <img class="snow"/>               | -      | -        | -     |
@@ -899,6 +913,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%moonphase-in12days%`      | Moonphase                              | 0.75                              | -      | -        | -     |
 | `%conditions-in12days%`     | Short text about the weather           | Partially cloudy                  | -      | -        | -     |
 | `%description-in12days%`    | Description of the weather for the day | Partly cloudy throughout the day. | -      | -        | -     |
+| `%descemoji-in12days%`      | Emoji for Description of the weather   | 🌅 ❄️ 🌧️ 🌫️ 💨 ☁️ ⛅ 🌥 🔆 🌛       | -      | -        | -     |
 | `%icon-in12days%`           | A weather icon name                    | partly-cloudy-night               | -      | -        | -     |
 | `%iconurl-in12days%`        | A weather icon URL from Github         | Icon URL                          | -      | -        | -     |
 | `%iconurlloc-in12days%`     | A weather icon URL from local CSS      | <img class="snow"/>               | -      | -        | -     |
@@ -955,6 +970,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%moonphase-in13days%`      | Moonphase                              | 0.75                              | -      | -        | -     |
 | `%conditions-in13days%`     | Short text about the weather           | Partially cloudy                  | -      | -        | -     |
 | `%description-in13days%`    | Description of the weather for the day | Partly cloudy throughout the day. | -      | -        | -     |
+| `%descemoji-in13days%`      | Emoji for Description of the weather   | 🌅 ❄️ 🌧️ 🌫️ 💨 ☁️ ⛅ 🌥 🔆 🌛       | -      | -        | -     |
 | `%icon-in13days%`           | A weather icon name                    | partly-cloudy-night               | -      | -        | -     |
 | `%iconurl-in13days%`        | A weather icon URL from Github         | Icon URL                          | -      | -        | -     |
 | `%iconurlloc-in13days%`     | A weather icon URL from local CSS      | <img class="snow"/>               | -      | -        | -     |
@@ -1011,6 +1027,7 @@ These strings in your templates will be replaced with the relevant weather infor
 | `%moonphase-in14days%`      | Moonphase                              | 0.75                              | -      | -        | -     |
 | `%conditions-in14days%`     | Short text about the weather           | Partially cloudy                  | -      | -        | -     |
 | `%description-in14days%`    | Description of the weather for the day | Partly cloudy throughout the day. | -      | -        | -     |
+| `%descemoji-in14days%`      | Emoji for Description of the weather   | 🌅 ❄️ 🌧️ 🌫️ 💨 ☁️ ⛅ 🌥 🔆 🌛       | -      | -        | -     |
 | `%icon-in14days%`           | A weather icon name                    | partly-cloudy-night               | -      | -        | -     |
 | `%iconurl-in14days%`        | A weather icon URL from Github         | Icon URL                          | -      | -        | -     |
 | `%iconurlloc-in14days%`     | A weather icon URL from local CSS      | <img class="snow"/>               | -      | -        | -     |

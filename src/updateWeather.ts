@@ -177,6 +177,26 @@ export default class UpdateWeather {
     } else {
       windSpeedMS = Math.round(response.days[0].windspeed*0.447);
     };
+    let descEmoji = '🌅';
+    if (response.days[0].icon == 'snow') {
+      descEmoji = '❄️';
+    } else if (response.days[0].icon == 'rain') {
+      descEmoji = '🌧️';
+    } else if (response.days[0].icon == 'fog') {
+      descEmoji = '🌫️';
+    } else if (response.days[0].icon == 'wind') {
+      descEmoji = '💨';
+    } else if (response.days[0].icon == 'cloudy') {
+      descEmoji = '☁️';
+    } else if (response.days[0].icon == 'partly-cloudy-day') {
+      descEmoji = '⛅';
+    } else if (response.days[0].icon == 'partly-cloudy-night') {
+      descEmoji = '🌥';
+    } else if (response.days[0].icon == 'clear-day') {
+      descEmoji = '🔆';
+    } else if (response.days[0].icon == 'clear-night') {
+      descEmoji = '🌛';
+    };
   
     // Daily Notes Weather Data
     let weatherData = {
@@ -224,6 +244,7 @@ export default class UpdateWeather {
       "severerisk": Math.round(response.days[0].severerisk)+'%',
       "conditions": response.days[0].conditions,
       "description": response.days[0].description,
+      "descEmoji": descEmoji,
       "icon": response.days[0].icon,
       "iconurl": "https://github.com/visualcrossing/WeatherIcons/blob/main/PNG/1st%20Set%20-%20Color/"+`${response.days[0].icon}`+".png?raw=true",
       "iconurlloc": "<img class="+`"${response.days[0].icon}"`+"/>",
@@ -245,10 +266,12 @@ export default class UpdateWeather {
   let precipsDataArray = [];
   let windDataArray = [];
   let windmsDataArray = [];
+  let descEmojiArray = [];
   const directions = ['North', 'Northeast', 'East', 'Southeast', 'South', 'Southwest', 'West', 'Northwest'];
   const directionsShort = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
 
   for (let i = 0; i < 15; i++) {
+    // Dates
     dateArray = [];
     let dateTime = response.days[i].datetime;
     dateArray.push(window.moment(dateTime).format('YYYY'));
@@ -262,6 +285,29 @@ export default class UpdateWeather {
     dateArray.push(window.moment(dateTime).format('ddd'));
     dateArray.push(window.moment(dateTime).format('dddd'));
     datesDataArray.push(dateArray);
+    // Description Emojis
+    //let descIcon = response.days[i].icon;
+    let descEmoji = '🌅';
+    if (response.days[i].icon == 'snow') {
+      descEmoji = '❄️';
+    } else if (response.days[i].icon == 'rain') {
+      descEmoji = '🌧️';
+    } else if (response.days[i].icon == 'fog') {
+      descEmoji = '🌫️';
+    } else if (response.days[i].icon == 'wind') {
+      descEmoji = '💨';
+    } else if (response.days[i].icon == 'cloudy') {
+      descEmoji = '☁️';
+    } else if (response.days[i].icon == 'partly-cloudy-day') {
+      descEmoji = '⛅';
+    } else if (response.days[i].icon == 'partly-cloudy-night') {
+      descEmoji = '🌥';
+    } else if (response.days[i].icon == 'clear-day') {
+      descEmoji = '🔆';
+    } else if (response.days[i].icon == 'clear-night') {
+      descEmoji = '🌛';
+    };
+    descEmojiArray.push(descEmoji);
     // precipitation
     let precipTypeSt = response.days[i].preciptype;
     if (precipTypeSt === null) {
@@ -341,6 +387,7 @@ export default class UpdateWeather {
       "moonphase": response.days[i].moonphase,
       "conditions": response.days[i].conditions,
       "description": response.days[i].description,
+      "descemoji": descEmojiArray[i],
       "icon": response.days[i].icon,
       "iconurl": "https://github.com/visualcrossing/WeatherIcons/blob/main/PNG/1st%20Set%20-%20Color/"+`${response.days[i].icon}`+".png?raw=true",
       "iconurlloc": "<img class="+`"${response.days[i].icon}"`+"/>",
@@ -352,6 +399,27 @@ export default class UpdateWeather {
     daysObj.splice(index, 1);
   };
     
+  let descEmoji = '🌅';
+  if (response.currentConditions.icon == 'snow') {
+    descEmoji = '❄️';
+  } else if (response.currentConditions.icon == 'rain') {
+    descEmoji = '🌧️';
+  } else if (response.currentConditions.icon == 'fog') {
+    descEmoji = '🌫️';
+  } else if (response.currentConditions.icon == 'wind') {
+    descEmoji = '💨';
+  } else if (response.currentConditions.icon == 'cloudy') {
+    descEmoji = '☁️';
+  } else if (response.currentConditions.icon == 'partly-cloudy-day') {
+    descEmoji = '⛅';
+  } else if (response.currentConditions.icon == 'partly-cloudy-night') {
+    descEmoji = '🌥';
+  } else if (response.currentConditions.icon == 'clear-day') {
+    descEmoji = '🔆';
+  } else if (response.currentConditions.icon == 'clear-night') {
+    descEmoji = '🌛';
+  };
+
   let weatherData = {
     "LocationInfo": {
       "address": response.address,
@@ -395,6 +463,7 @@ export default class UpdateWeather {
       "solarenergy": response.currentConditions.solarenergy,
       "uvindex": Math.round(response.currentConditions.uvindex),
       "conditions": response.currentConditions.conditions,
+      "descemoji": descEmoji, //response.currentConditions.icon,
       "icon": response.currentConditions.icon,
       "iconurl": "https://github.com/visualcrossing/WeatherIcons/blob/main/PNG/1st%20Set%20-%20Color/"+`${response.currentConditions.icon}`+".png?raw=true",
       "iconurlloc": "<img class="+`"${response.currentConditions.icon}"`+"/>",
