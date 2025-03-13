@@ -264,7 +264,7 @@ export default class VCWPlugin extends Plugin {
           let link = l1Alerts[0].link;
           if (link != null) {
             if (link.startsWith('http://') || link.startsWith('https://')) {
-              window.open(`${l1Alerts[0].link}`);
+              window.open(link);
             } else {
               new Notice('A valid link was not returned with this weather alert');
             };
@@ -278,7 +278,7 @@ export default class VCWPlugin extends Plugin {
           let link = l2Alerts[0].link;
           if (link != null) {
             if (link.startsWith('http://') || link.startsWith('https://')) {
-              window.open(`${l1Alerts[0].link}`);
+              window.open(link);
             } else {
               new Notice('A valid link was not returned with this weather alert');
             };
@@ -292,7 +292,7 @@ export default class VCWPlugin extends Plugin {
           let link = l3Alerts[0].link;
           if (link != null) {
             if (link.startsWith('http://') || link.startsWith('https://')) {
-              window.open(`${l1Alerts[0].link}`);
+              window.open(link);
             } else {
               new Notice('A valid link was not returned with this weather alert');
             };
@@ -306,7 +306,7 @@ export default class VCWPlugin extends Plugin {
           let link = l4Alerts[0].link;
           if (link != null) {
             if (link.startsWith('http://') || link.startsWith('https://')) {
-              window.open(`${l1Alerts[0].link}`);
+              window.open(link);
             } else {
               new Notice('A valid link was not returned with this weather alert');
             };
@@ -320,7 +320,7 @@ export default class VCWPlugin extends Plugin {
           let link = l5Alerts[0].link;
           if (link != null) {
             if (link.startsWith('http://') || link.startsWith('https://')) {
-              window.open(`${l1Alerts[0].link}`);
+              window.open(link);
             } else {
               new Notice('A valid link was not returned with this weather alert');
             };
@@ -643,6 +643,9 @@ export default class VCWPlugin extends Plugin {
             statusbarEl.setText(sb2WithDate as string);
             sbCycled = true;
           };
+        } else {
+          let sb1WithDate = await this.setCurrentDateTime(formattedSBTemplate1)
+          statusbarEl.setText(sb1WithDate as string);
         };
       } else {
         statusbarEl.setText('');

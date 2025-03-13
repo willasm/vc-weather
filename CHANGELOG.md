@@ -2,6 +2,10 @@
 
 <!-- ## [v-inc] ${YEAR4}-${MONTHNUMBER}-${DATE} -->
 
+## [1.1.5] 2025-03-12
+- Fixed: Statusbar not updating with cycling disabled
+- Fixed: Weather alert links for locations 2-5 not working
+
 ## [1.1.4] 2025-01-30
 - Added: Weather emojis
   - Macros.md updated with new macros for weather emojis
