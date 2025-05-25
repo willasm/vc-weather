@@ -1209,7 +1209,7 @@ export default class VCWPlugin extends Plugin {
     
       formattedDailyData = {} as any;
       for (let i = 0; i < 15; i++) {
-        if (fname === l1results.days[i].datetime) {
+        if (fname.startsWith(l1results.days[i].datetime)) {
           // Get data from existing future dates
           formattedDailyData = Object.values(l1formattedresults)[i+3];
           break;
@@ -1218,7 +1218,7 @@ export default class VCWPlugin extends Plugin {
       if (Object.keys(formattedDailyData).length == 0) {
         // Get data by past date
         for (let i = 1; i < 15; i++) {
-          if (fname === window.moment().subtract(i, "days").format("YYYY-MM-DD")) {
+          if (fname.startsWith(window.moment().subtract(i, "days").format("YYYY-MM-DD"))) {
 
             // • Get weather for daily notes • 
             const getResults = new UpdateWeather();
