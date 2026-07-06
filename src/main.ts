@@ -1234,9 +1234,10 @@ export default class VCWPlugin extends Plugin {
     const view = this.app.workspace.getActiveViewOfType(MarkdownView);
     if (!view) return;
     const file = this.app.workspace.getActiveFile();
-    const filePath = file?.path;
+    if (!file) return;
+    const filePath = file.path;
 
-    const fname = file?.basename;
+    const fname = file.basename;
     if (/\d{4}-\d{2}-\d{2}/.test(fname as string)) {
 
       formattedDailyData = {} as any;
