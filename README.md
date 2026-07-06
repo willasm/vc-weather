@@ -102,7 +102,19 @@ The text macros are used to represent a weather data object and will be expanded
 
 
 ## Daily Notes Template Macros
-These special macros are specifically used in your daily notes template. They allow for the expansion of the macros weather data in any one of 14 future/past days. In order for this to work your daily notes file name must be in the format `YYYY-MM-DD` (This is the default in Obsidian). For a detailed complete list of available macros in table form see [Macros.md](./Documentation/Macros.md#daily-note-macros)
+These special macros are specifically used in your daily notes template. They allow for the expansion of the macros weather data in any one of 14 future/past days. ~~In order for this to work your daily notes file name must be in the format `YYYY-MM-DD` (This is the default in Obsidian)~~. For a detailed complete list of available macros in table form see [Macros.md](./Documentation/Macros.md#daily-note-macros)
+
+Changed: Now supports extended file names. Thanks to [heycalmdownr](https://github.com/heycalmdownr) for the PR
+
+- Modified Daily Notes template macros to support filename postfixes
+- Previously only supported exact YYYY-MM-DD format, now supports any filename that starts with YYYY-MM-DD
+
+### File Name Examples
+The following filename formats are now supported:
+- `2024-03-20.md`
+- `2024-03-20-Wednesday.md`
+- `2024-03-20-daily.md`
+- `2024-03-20-notes.md`
 
 [Table of Contents](#table-of-contents)
 
@@ -137,7 +149,9 @@ The statusbar cycling...
 ![Statusbar1](./images/sb.gif)
 
 ### Weather Alerts
-If a weather alert is active it will be displayed in the statusbar in red. Only one alert is displayed at a time with your primary location taking the highest precedence, then your additional locations in the order that they are entered in the settings. Mouse over the statusbars weather alert to see a description of the alert. Click the statusbars weather alert text to open in your default browser the web page associated with the alert.
+If a weather alert is active it will be displayed in the statusbar in red. Only one alert is displayed at a time with your primary location taking the highest precedence, then your additional locations in the order that they are entered in the settings. Weather alerts for all locations will be displayed as an Obsidian notice (upper right corner). Mouse over the statusbars weather alert to see a description of the alert. Click the statusbars weather alert text to open in your default browser the web page associated with the alert.
+
+Note: There is no guarantee that your nearest weather station provides all of this information (I have not seen this anywhere as of yet but I can not possibly test every location). If that is the case in your location then you will never see this extra information.
 
 Example of a weather alert...
 
