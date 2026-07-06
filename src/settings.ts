@@ -43,7 +43,7 @@ export const DEFAULT_SETTINGS: VCWSettings = {
   statusbarActive: true,
   statusbarCycle: true,
   statusbarAlerts: true,
-  weatherTemplate1SB: "🔸%address%: %dow2-now% %month3-now% %date1-now% (today)🔸High: %tempmax-today%° Low: %tempmin-today%°🔸Currently: %conditions% Temp: %temp%° Feels Like: %feelslike%°🔸",
+  weatherTemplate1SB: "🔸%address%: %dow2-now% %month3-now% %date1-now% (today)🔸High: %tempmax-today%° Low: %tempmin-today%°🔸Currently: %conditions%🔸Temp: %temp%°🔸Feels Like: %feelslike%°🔸",
   weatherTemplate2SB: "🔸%address%: %dow2-in1day% %month3-in1day% %date1-in1day% (tomorrow)🔸High: %tempmax-in1day%° Low: %tempmin-in1day%°🔸Clouds: %cloudcover-in1day%🔸PoP: %precipprob-in1day% (%preciptype-in1day%)🔸",
   weatherTemplate1: "1) Short one liner\n%conditions% • Current Temp: %temp%° • Feels Like: %feelslike%°\n",
   weatherTemplate2: "2) More detailed\n%address%: %dow2-now% %month4-now% %date1-now% - %hours12-now%:%mins-now% %ampm2-now%\nProbability of precipitation: %precipprob% • (%preciptype%)\nCurrent Temp: %temp%°C • Feels Like: %feelslike%°C\nWind: %windspeed% km/h from the %winddirstr% with gusts up to %windgust% km/h\nSunrise: %sunrise% • Sunset: %sunset%\n",
@@ -53,7 +53,7 @@ export const DEFAULT_SETTINGS: VCWSettings = {
   weatherTemplate6: "6) Weather in a block quote\n<blockquote class=\"quote-vc\"><br>\n%address%: %dow2-now% %month4-now% %date1-now% - %hours12-now%:%mins-now% %ampm2-now%<br>\nProbability of precipitation: %precipprob% • (%preciptype%)<br>\nCurrent Temp: %temp%°C • Feels Like: %feelslike%°C<br>\nWind: %windspeed% km/h from the %winddirstr% with gusts up to %windgust% km/h<br>\nSunrise: %sunrise% • Sunset: %sunset%<br><br>\n</blockquote>\n",
   weatherTemplate7: "7) Weather in a callout\n> [!weather-vc]- %conditions% • Current Temp: %temp%° • Feels Like: %feelslike%°\n> \n> %address%: %dow2-now% %month4-now% %date1-now% - %hours12-now%:%mins-now% %ampm2-now%\n> Probability of precipitation: %precipprob% • (%preciptype%)\n> Current Temp: %temp%°C • Feels Like: %feelslike%°C\n> Wind: %windspeed% km/h from the %winddirstr% with gusts up to %windgust% km/h\n> Sunrise: %sunrise% • Sunset: %sunset%\n",
   weatherTemplate8: "8) Weather for the next week\n<div class=\"container-vc\">\n   <div class=\"child-title\">%resolvedaddress%</div>\n  <div class=\"child-wide-day\">Today</div>\n  <div class=\"child-wide-day\">%dow1-in1day%</div>\n  <div class=\"child-wide-day\">%dow1-in2days%</div>\n  <div class=\"child-wide-day\">%dow1-in3days%</div>\n  <div class=\"child-wide-day\">%dow1-in4days%</div>\n  <div class=\"child-wide-day\">%dow1-in5days%</div>\n  <div class=\"child-wide-day\">%dow1-in6days%</div>\n  <div class=\"child-wide-date\">%month3-today% %date1-today%</div>\n  <div class=\"child-wide-date\">%month3-in1day% %date1-in1day%</div>\n  <div class=\"child-wide-date\">%month3-in2days% %date1-in2days%</div>\n  <div class=\"child-wide-date\">%month3-in3days% %date1-in3days%</div>\n  <div class=\"child-wide-date\">%month3-in4days% %date1-in4days%</div>\n  <div class=\"child-wide-date\">%month3-in5days% %date1-in5days%</div>\n  <div class=\"child-wide-date\">%month3-in6days% %date1-in6days%</div>\n  <div class=\"child-wide-icon\"><img class=\"%icon-today%\" src='data:image/png;base64,R0lGODlhFAAUAIAAAP///wAAACH5BAEAAAAALAAAAAAUABQAAAIRhI+py+0Po5y02ouz3rz7rxUAOw=='/></div>\n  <div class=\"child-wide-icon\"><img class=\"%icon-in1day%\" src='data:image/png;base64,R0lGODlhFAAUAIAAAP///wAAACH5BAEAAAAALAAAAAAUABQAAAIRhI+py+0Po5y02ouz3rz7rxUAOw=='/></div>\n  <div class=\"child-wide-icon\"><img class=\"%icon-in2days%\" src='data:image/png;base64,R0lGODlhFAAUAIAAAP///wAAACH5BAEAAAAALAAAAAAUABQAAAIRhI+py+0Po5y02ouz3rz7rxUAOw=='/></div>\n  <div class=\"child-wide-icon\"><img class=\"%icon-in3days%\" src='data:image/png;base64,R0lGODlhFAAUAIAAAP///wAAACH5BAEAAAAALAAAAAAUABQAAAIRhI+py+0Po5y02ouz3rz7rxUAOw=='/></div>\n  <div class=\"child-wide-icon\"><img class=\"%icon-in4days%\" src='data:image/png;base64,R0lGODlhFAAUAIAAAP///wAAACH5BAEAAAAALAAAAAAUABQAAAIRhI+py+0Po5y02ouz3rz7rxUAOw=='/></div>\n  <div class=\"child-wide-icon\"><img class=\"%icon-in5days%\" src='data:image/png;base64,R0lGODlhFAAUAIAAAP///wAAACH5BAEAAAAALAAAAAAUABQAAAIRhI+py+0Po5y02ouz3rz7rxUAOw=='/></div>\n  <div class=\"child-wide-icon\"><img class=\"%icon-in6days%\" src='data:image/png;base64,R0lGODlhFAAUAIAAAP///wAAACH5BAEAAAAALAAAAAAUABQAAAIRhI+py+0Po5y02ouz3rz7rxUAOw=='/></div>\n  <div class=\"child-wide-temp\">%tempmax-today%°</div>\n  <div class=\"child-wide-temp\">%tempmax-in1day%°</div>\n  <div class=\"child-wide-temp\">%tempmax-in2days%°</div>\n  <div class=\"child-wide-temp\">%tempmax-in3days%°</div>\n  <div class=\"child-wide-temp\">%tempmax-in4days%°</div>\n  <div class=\"child-wide-temp\">%tempmax-in5days%°</div>\n  <div class=\"child-wide-temp\">%tempmax-in6days%°</div>\n  <div class=\"child-wide-night\">Night %tempmin-today%°</div>\n  <div class=\"child-wide-night\">Night %tempmin-in1day%°</div>\n  <div class=\"child-wide-night\">Night %tempmin-in2days%°</div>\n  <div class=\"child-wide-night\">Night %tempmin-in3days%°</div>\n  <div class=\"child-wide-night\">Night %tempmin-in4days%°</div>\n  <div class=\"child-wide-night\">Night %tempmin-in5days%°</div>\n  <div class=\"child-wide-night\">Night %tempmin-in6days%°</div>\n  <div class=\"child-narrow-left\"><img class=\"cloudy-small\" src='data:image/png;base64,R0lGODlhFAAUAIAAAP///wAAACH5BAEAAAAALAAAAAAUABQAAAIRhI+py+0Po5y02ouz3rz7rxUAOw=='/></div>\n  <div class=\"child-narrow-right\">%cloudcover-today%</div>\n  <div class=\"child-narrow-left\"><img class=\"cloudy-small\" src='data:image/png;base64,R0lGODlhFAAUAIAAAP///wAAACH5BAEAAAAALAAAAAAUABQAAAIRhI+py+0Po5y02ouz3rz7rxUAOw=='/></div>\n  <div class=\"child-narrow-right\">%cloudcover-in1day%</div>\n  <div class=\"child-narrow-left\"><img class=\"cloudy-small\" src='data:image/png;base64,R0lGODlhFAAUAIAAAP///wAAACH5BAEAAAAALAAAAAAUABQAAAIRhI+py+0Po5y02ouz3rz7rxUAOw=='/></div>\n  <div class=\"child-narrow-right\">%cloudcover-in2days%</div>\n  <div class=\"child-narrow-left\"><img class=\"cloudy-small\" src='data:image/png;base64,R0lGODlhFAAUAIAAAP///wAAACH5BAEAAAAALAAAAAAUABQAAAIRhI+py+0Po5y02ouz3rz7rxUAOw=='/></div>\n  <div class=\"child-narrow-right\">%cloudcover-in3days%</div>\n  <div class=\"child-narrow-left\"><img class=\"cloudy-small\" src='data:image/png;base64,R0lGODlhFAAUAIAAAP///wAAACH5BAEAAAAALAAAAAAUABQAAAIRhI+py+0Po5y02ouz3rz7rxUAOw=='/></div>\n  <div class=\"child-narrow-right\">%cloudcover-in4days%</div>\n  <div class=\"child-narrow-left\"><img class=\"cloudy-small\" src='data:image/png;base64,R0lGODlhFAAUAIAAAP///wAAACH5BAEAAAAALAAAAAAUABQAAAIRhI+py+0Po5y02ouz3rz7rxUAOw=='/></div>\n  <div class=\"child-narrow-right\">%cloudcover-in5days%</div>\n  <div class=\"child-narrow-left\"><img class=\"cloudy-small\" src='data:image/png;base64,R0lGODlhFAAUAIAAAP///wAAACH5BAEAAAAALAAAAAAUABQAAAIRhI+py+0Po5y02ouz3rz7rxUAOw=='/></div>\n  <div class=\"child-narrow-right\">%cloudcover-in6days%</div>\n</div>\n",
-}
+};
 
 //  ╭──────────────────────────────────────────────────────────────────────────────╮
 //  │                           ● Class VCWSettingsTab ●                           │
@@ -64,6 +64,9 @@ export class VCWSettingsTab extends PluginSettingTab {
 
   plugin: VCWPlugin;
   app: App;
+  settings: any;
+  // Minimum required settings flag (true = API Key, Location, and Exclude folder set)
+  dataSet: Boolean = true;
 
   constructor(app: App, plugin: VCWPlugin) {
     super(app, plugin);
@@ -72,161 +75,144 @@ export class VCWSettingsTab extends PluginSettingTab {
   }
 
   async display(): Promise<void> {
-    const {containerEl} = this;
+    const { containerEl } = this;
 
     containerEl.empty();
 
     // • Get vault folders for exclude folder dropdown list • 
     const abstractFiles = this.app.vault.getAllLoadedFiles();
     const folders: TFolder[] = [];
-    abstractFiles.forEach((folder: TAbstractFile) => {
+    abstractFiles.forEach(async (folder: TAbstractFile) => {
       if (
         folder instanceof TFolder && folder.name.length > 0
       ) {
         folders.push(folder);
-      }
+        // If Obsidians default templates folder exists, save it as exclude folder 
+        if (folder.name.toLowerCase() === 'templates') {
+          this.plugin.settings.excludeFolder = folder.name;
+          await this.plugin.saveSettings();
+        };
+      };
     });
 
-    // Get "Templates" folder if it is defined in core plugin "Templates" 
-    // Note: Removing this for now (this only applies to desktop)
-    // let adapter = this.app.vault.adapter;
-    // let basePath = "";
-    // let templateFolder = "";
-    // // FIXME: FileSystemAdapter & adapter need to be removed for mobile
-    // if (adapter instanceof FileSystemAdapter) {
-    //   basePath = adapter.getBasePath();
-    //   //console.log("📢basePath: ", basePath);
-    //   const configDir = this.app.vault.configDir;
-    //   //console.log("📢configDir: ", configDir);
-    //   const templateConfigPath = `${basePath}/${configDir}/templates.json`;
-    //   //console.log("📢templateConfigPath: ", templateConfigPath);
-    //   const templateFile = await adapter.exists(templateConfigPath, true)
-    //   if (templateFile) {
-    //   //if (fs.existsSync(templateConfigPath)) {
-    //     //console.log('>>>>>>>>> here');
-    //     let json = require(templateConfigPath);
-    //     templateFolder = json.folder;
-    //     //console.log("📢templateFolder: ", templateFolder);
-    //   };
-    // };
+    // • Get status of data.json required settings (true = all required settings are defined) • 
+    if ((this.plugin.settings.apikey.length === 0) || (this.plugin.settings.location_one.length === 0) || (this.plugin.settings.excludeFolder.length === 0)) {
+      // If not all required settings are set then no weather updates will occur 
+      this.dataSet = false;
+    };
 
-    // If "Templates" folder exists and excludeFolder setting is an empty string, write template folder to settings 
-    // if (templateFolder.length > 0 && this.plugin.settings.excludeFolder == "") {
-    //   this.plugin.settings.excludeFolder = templateFolder;
-    //   await this.plugin.saveSettings();
-    // };
+    // • VCWSettingsTab - Section API Key • 
 
-    // • VCWSettingsTab - Visual Crossing API Authentication key (required) • 
-    //new Setting(containerEl).setName('Visual Crossing API authentication key (required)').setHeading();
-
-    // API Key 
+    // API Authentication key (required) 
     new Setting(containerEl)
-    .setName('API key')
-    .setDesc('Enter your Visual Crossing API key (required)')
-    .addText(text => text
-      .setPlaceholder('Enter your API key')
-      .setValue(this.plugin.settings.apikey)
-      .onChange(async (value) => {
-        this.plugin.settings.apikey = value;
-        await this.plugin.saveSettings();
-      })
-    );
+      .setName('API key')
+      .setDesc('Enter your Visual Crossing API key (required)')
+      .addText(text => text
+        .setPlaceholder('Enter your API key')
+        .setValue(this.plugin.settings.apikey)
+        .onChange(async (value) => {
+          this.plugin.settings.apikey = value;
+          await this.plugin.saveSettings();
+        })
+      );
 
-    // • VCWSettingsTab - User Locations • 
+    // • VCWSettingsTab - Section User Locations • 
     new Setting(containerEl).setName('Locations - Primary location is required, the others are optional').setHeading();
 
     // Primary location (Required) 
     new Setting(containerEl)
-    .setName('Primary location')
-    .setDesc('Address location for which to retrieve weather data (Eg. London,UK), partial address (London) or latitude,longitude (Eg.38.9697,-77.385)')
-    .addText(text => text
-      .setPlaceholder('Enter location Eg. Edmonton,AB,CA')
-      .setValue(this.plugin.settings.location_one)
-      .onChange(async (value) => {
-        this.plugin.settings.location_one = value;
-        await this.plugin.saveSettings();
-      })
-    );
+      .setName('Primary location')
+      .setDesc('Address location for which to retrieve weather data (Eg. London,UK), partial address (London) or latitude,longitude (Eg.38.9697,-77.385)')
+      .addText(text => text
+        .setPlaceholder('Enter location Eg. Edmonton,AB,CA')
+        .setValue(this.plugin.settings.location_one)
+        .onChange(async (value) => {
+          this.plugin.settings.location_one = value;
+          await this.plugin.saveSettings();
+        })
+      );
 
     // Additional location One (Optional) 
     new Setting(containerEl)
-    .setName('Additional location')
-    .setDesc('Additional city to get weather data for (Optional) Leave blank if not required')
-    .addText(text => text
-      .setPlaceholder('Enter location Eg. South Bend,WA,US')
-      .setValue(this.plugin.settings.location_two)
-      .onChange(async (value) => {
-        this.plugin.settings.location_two = value;
-        await this.plugin.saveSettings();
-      })
-    );
+      .setName('Additional location')
+      .setDesc('Additional city to get weather data for (Optional) Leave blank if not required')
+      .addText(text => text
+        .setPlaceholder('Enter location Eg. South Bend,WA,US')
+        .setValue(this.plugin.settings.location_two)
+        .onChange(async (value) => {
+          this.plugin.settings.location_two = value;
+          await this.plugin.saveSettings();
+        })
+      );
 
     // Additional location Two (Optional) 
     new Setting(containerEl)
-    .setName('Additional location')
-    .setDesc('Additional city to get weather data for (Optional) Leave blank if not required')
-    .addText(text => text
-      .setPlaceholder('Enter location Eg. Chicago,US')
-      .setValue(this.plugin.settings.location_three)
-      .onChange(async (value) => {
-        this.plugin.settings.location_three = value;
-        await this.plugin.saveSettings();
-      })
-    );
+      .setName('Additional location')
+      .setDesc('Additional city to get weather data for (Optional) Leave blank if not required')
+      .addText(text => text
+        .setPlaceholder('Enter location Eg. Chicago,US')
+        .setValue(this.plugin.settings.location_three)
+        .onChange(async (value) => {
+          this.plugin.settings.location_three = value;
+          await this.plugin.saveSettings();
+        })
+      );
 
     // Additional location Three (Optional) 
     new Setting(containerEl)
-    .setName('Additional location')
-    .setDesc('Additional city to get weather data for (Optional) Leave blank if not required')
-    .addText(text => text
-      .setPlaceholder('Enter location Eg. Calgary,CA')
-      .setValue(this.plugin.settings.location_four)
-      .onChange(async (value) => {
-        this.plugin.settings.location_four = value;
-        await this.plugin.saveSettings();
-      })
-    );
+      .setName('Additional location')
+      .setDesc('Additional city to get weather data for (Optional) Leave blank if not required')
+      .addText(text => text
+        .setPlaceholder('Enter location Eg. Calgary,CA')
+        .setValue(this.plugin.settings.location_four)
+        .onChange(async (value) => {
+          this.plugin.settings.location_four = value;
+          await this.plugin.saveSettings();
+        })
+      );
 
     // Additional location Four (Optional) 
     new Setting(containerEl)
-    .setName('Additional location')
-    .setDesc('Additional city to get weather data for (Optional) Leave blank if not required')
-    .addText(text => text
-      .setPlaceholder('Enter city Eg. South Bend,WA,US')
-      .setValue(this.plugin.settings.location_five)
-      .onChange(async (value) => {
-        this.plugin.settings.location_five = value;
-        await this.plugin.saveSettings();
-      })
-    );
+      .setName('Additional location')
+      .setDesc('Additional city to get weather data for (Optional) Leave blank if not required')
+      .addText(text => text
+        .setPlaceholder('Enter city Eg. South Bend,WA,US')
+        .setValue(this.plugin.settings.location_five)
+        .onChange(async (value) => {
+          this.plugin.settings.location_five = value;
+          await this.plugin.saveSettings();
+        })
+      );
 
-    // • VCWSettingsTab - Advanced options • 
+    // • VCWSettingsTab - Section Advanced Options • 
     new Setting(containerEl).setName('Advanced').setHeading();
 
     // Units of measurement 
     new Setting(containerEl)
-    .setName("Units of measurement")
-    .setDesc("Units of measurement: United States, Metric, United Kingdom and Base")
-    .addDropdown(dropDown => {
-      dropDown.addOption('us', 'United States');
-      dropDown.addOption('metric', 'Metric');
-      dropDown.addOption('uk', 'United Kingdom');
-      dropDown.addOption('base', 'Base');
-      dropDown.onChange(async (value) => {
-        this.plugin.settings.units = value;
-        await this.plugin.saveSettings();
-        await this.plugin.updateWeather(0);
-        await this.plugin.updatedSettings();
+      .setName("Units of measurement")
+      .setDesc("Units of measurement: United States, Metric, United Kingdom and Base")
+      .addDropdown(dropDown => {
+        dropDown.addOption('us', 'United States');
+        dropDown.addOption('metric', 'Metric');
+        dropDown.addOption('uk', 'United Kingdom');
+        dropDown.addOption('base', 'Base');
+        dropDown.onChange(async (value) => {
+          this.plugin.settings.units = value;
+          await this.plugin.saveSettings();
+          // if (this.dataSet) {
+          //   await this.plugin.updateWeather(0);
+          //   await this.plugin.updatedSettings();
+          // };
+        })
+          .setValue(this.plugin.settings.units);
       })
-    .setValue(this.plugin.settings.units);
-    })
-    .addButton(cb => {
-      cb.setButtonText('View info');
-      cb.setTooltip('Weather query builder');
-      cb.onClick(() => {
-        window.open("https://www.visualcrossing.com/resources/documentation/weather-api/unit-groups-and-measurement-units/");
+      .addButton(cb => {
+        cb.setButtonText('View info');
+        cb.setTooltip('Weather query builder');
+        cb.onClick(() => {
+          window.open("https://www.visualcrossing.com/resources/documentation/weather-api/unit-groups-and-measurement-units/");
+        });
       });
-    });
 
     // Language for API returned text 
     new Setting(containerEl)
@@ -261,333 +247,384 @@ export class VCWSettingsTab extends PluginSettingTab {
         dropDown.addOption('uk', 'Ukrainian');
         dropDown.addOption('vi', 'Vietnamese');
         dropDown.onChange(async (value) => {
-        this.plugin.settings.language = value;
-        await this.plugin.saveSettings();
-        await this.plugin.updateWeather(0);
-        await this.plugin.updatedSettings();
-      })
-      .setValue(this.plugin.settings.language);
+          this.plugin.settings.language = value;
+          await this.plugin.saveSettings();
+          if (this.dataSet) {
+            await this.plugin.updateWeather(0);
+            await this.plugin.updatedSettings();
+          };
+        })
+          .setValue(this.plugin.settings.language);
       });
 
     // Exclude template folder 
     new Setting(containerEl)
-    .setName("Exclude template folder (required)")
-    .setDesc("You need to exclude your templates folder or any files containing weather template strings will have that text replaced")
-    .addDropdown(dropDown => {
-      folders.forEach(e => {
-        dropDown.addOption(e.name,e.name);
+      .setName("Exclude template folder (required)")
+      .setDesc("You need to exclude your templates folder or any files containing weather template strings will have that text replaced")
+      .addDropdown(dropDown => {
+        folders.forEach(e => {
+          dropDown.addOption(e.name, e.name);
+        });
+        dropDown.onChange(async (value) => {
+          this.plugin.settings.excludeFolder = value;
+          await this.plugin.saveSettings();
+          // if (this.dataSet) {
+          //   await this.plugin.updateWeather(0);
+          //   await this.plugin.updatedSettings();
+          // };
+        })
+          .setValue(this.plugin.settings.excludeFolder);
       });
-      dropDown.onChange(async (value) => {
-        this.plugin.settings.excludeFolder = value;
-        await this.plugin.saveSettings();
-        await this.plugin.updatedSettings();
-      })
-    .setValue(this.plugin.settings.excludeFolder);
-    });
 
     // Exclude template folder secondary 
     new Setting(containerEl)
-    .setDesc("You may want to exclude your scripts folder as well if any files in it contain macro strings")
-    .addDropdown(dropDown => {
-      folders.forEach(e => {
-        dropDown.addOption(e.name,e.name);
+      .setDesc("You may want to exclude your scripts folder as well if any files in it contain macro strings")
+      .addDropdown(dropDown => {
+        folders.forEach(e => {
+          dropDown.addOption(e.name, e.name);
+        });
+        dropDown.onChange(async (value) => {
+          this.plugin.settings.excludeFolder2 = value;
+          await this.plugin.saveSettings();
+          // if (this.dataSet) {
+          //   await this.plugin.updateWeather(0);
+          //   await this.plugin.updatedSettings();
+          // };
+        })
+          .setValue(this.plugin.settings.excludeFolder2);
       });
-      dropDown.onChange(async (value) => {
-        this.plugin.settings.excludeFolder2 = value;
-        await this.plugin.saveSettings();
-      })
-    .setValue(this.plugin.settings.excludeFolder2);
-    });
 
     // Weather update frequency 
     new Setting(containerEl)
-    .setName("Update frequency")
-    .setDesc("Update frequency for getting weather information")
-    .addDropdown(dropDown => {
-      dropDown.addOption('10', 'Every 10 Minutes');
-      dropDown.addOption('15', 'Every 15 Minutes');
-      dropDown.addOption('20', 'Every 20 Minutes');
-      dropDown.addOption('30', 'Every 30 Minutes');
-      dropDown.addOption('60', 'Every Hour');
-      dropDown.onChange(async (value) => {
-        this.plugin.settings.updateFrequency = value;
-        await this.plugin.saveSettings();
-      })
-    .setValue(this.plugin.settings.updateFrequency)
-  });
+      .setName("Update frequency")
+      .setDesc("Update frequency for getting weather information")
+      .addDropdown(dropDown => {
+        dropDown.addOption('10', 'Every 10 Minutes');
+        dropDown.addOption('15', 'Every 15 Minutes');
+        dropDown.addOption('20', 'Every 20 Minutes');
+        dropDown.addOption('30', 'Every 30 Minutes');
+        dropDown.addOption('60', 'Every Hour');
+        dropDown.onChange(async (value) => {
+          this.plugin.settings.updateFrequency = value;
+          await this.plugin.saveSettings();
+          // if (this.dataSet) {
+          //   await this.plugin.updateWeather(0);
+          //   await this.plugin.updatedSettings();
+          // };
+        })
+          .setValue(this.plugin.settings.updateFrequency);
+      });
 
-    // • OpenWeatherSettingsTab - Show Weather in Statusbar Options - Not available for mobile • 
+    // • VCWSettingsTab - Section Show Weather in Statusbar Options (Not available for mobile) • 
     if (Platform.isDesktop) {
       new Setting(containerEl).setName('Show weather in statusbar').setHeading();
 
-    // Show weather in statusbar 
-    new Setting(containerEl)
-    .setName('Show weather in statusbar')
-    .setDesc('Enable weather display in statusbar')
-    .addToggle(toggle => toggle
-      .setValue(this.plugin.settings.statusbarActive)
-      .onChange(async (value) => {
-        this.plugin.settings.statusbarActive = value;
-        await this.plugin.saveSettings();
-        await this.plugin.updatedSettings();
-      }));
+      // Show weather in statusbar 
+      new Setting(containerEl)
+        .setName('Show weather in statusbar')
+        .setDesc('Enable weather display in statusbar')
+        .addToggle(toggle => toggle
+          .setValue(this.plugin.settings.statusbarActive)
+          .onChange(async (value) => {
+            this.plugin.settings.statusbarActive = value;
+            await this.plugin.saveSettings();
+            if (this.dataSet) {
+              // await this.plugin.updateWeather(0);
+              await this.plugin.updatedSettings();
+            };
+          }));
 
-    // Cycle statusbar display 
-    new Setting(containerEl)
-    .setName('Cycle statusbar display')
-    .setDesc('Cycle between primary and secondary statusbar templates every 30 seconds')
-    .addToggle(toggle => toggle
-      .setValue(this.plugin.settings.statusbarCycle)
-      .onChange(async (value) => {
-        this.plugin.settings.statusbarCycle = value;
-        await this.plugin.saveSettings();
-        await this.plugin.updatedSettings();
-      }));
+      // Cycle statusbar display 
+      new Setting(containerEl)
+        .setName('Cycle statusbar display')
+        .setDesc('Cycle between primary and secondary statusbar templates every 30 seconds')
+        .addToggle(toggle => toggle
+          .setValue(this.plugin.settings.statusbarCycle)
+          .onChange(async (value) => {
+            this.plugin.settings.statusbarCycle = value;
+            await this.plugin.saveSettings();
+            if (this.dataSet) {
+              // await this.plugin.updateWeather(0);
+              await this.plugin.updatedSettings();
+            };
+          }));
 
-    // Show alerts in statusbar 
-    new Setting(containerEl)
-    .setName('Show weather alerts in statusbar')
-    .setDesc('Enable weather alerts display in statusbar')
-    .addToggle(toggle => toggle
-      .setValue(this.plugin.settings.statusbarAlerts)
-      .onChange(async (value) => {
-        this.plugin.settings.statusbarAlerts = value;
-        await this.plugin.saveSettings();
-        await this.plugin.updateWeather(0);
-        await this.plugin.updatedSettings();
-      }));
+      // Show alerts in statusbar 
+      new Setting(containerEl)
+        .setName('Show weather alerts in statusbar')
+        .setDesc('Enable weather alerts display in statusbar')
+        .addToggle(toggle => toggle
+          .setValue(this.plugin.settings.statusbarAlerts)
+          .onChange(async (value) => {
+            this.plugin.settings.statusbarAlerts = value;
+            await this.plugin.saveSettings();
+            if (this.dataSet) {
+              // await this.plugin.updateWeather(0);
+              await this.plugin.updatedSettings();
+            };
+          }));
 
-    // Weather template string for the statusbar primary 
-    new Setting(containerEl)
-    .setDesc("Weather template string for the statusbar primary")
-    .addButton(cb => {
-      cb.setButtonText('View Statusbar Template Documentation');
-      cb.setTooltip('View Statusbar Weather Template Documentation on Github');
-      cb.onClick(() => {
-        window.open("https://github.com/willasm/vc-weather?tab=readme-ov-file#the-statusbar-weather-display--templates");
-      })
-    });
+      // Weather template string for the statusbar primary 
+      new Setting(containerEl)
+        .setDesc("Weather template string for the statusbar primary")
+        .addButton(cb => {
+          cb.setButtonText('View Statusbar Template Documentation');
+          cb.setTooltip('View Statusbar Weather Template Documentation on Github');
+          cb.onClick(() => {
+            window.open("https://github.com/willasm/vc-weather?tab=readme-ov-file#the-statusbar-weather-display--templates");
+          });
+        });
 
-    // Text area for statusbar primary 
-    new Setting(containerEl)
-    .addTextArea((textArea: TextAreaComponent) => {
-      textArea
-      .setPlaceholder('Statusbar weather template')
-      .setValue(this.plugin.settings.weatherTemplate1SB)
-      .onChange(async (value) => {
-        this.plugin.settings.weatherTemplate1SB = value;
-        await this.plugin.saveSettings();
-        await this.plugin.updatedSettings();
-      })
-      textArea.inputEl.setAttr("style", "margin-top: 12px; padding-left: 0px; margin-left: 0px; margin-right: 20px;");
-      textArea.inputEl.setAttr("rows", 3);
-      textArea.inputEl.setAttr("cols", 80);
-    });
+      // Text area for statusbar primary 
+      new Setting(containerEl)
+        .addTextArea((textArea: TextAreaComponent) => {
+          textArea
+            .setPlaceholder('Statusbar weather template')
+            .setValue(this.plugin.settings.weatherTemplate1SB)
+            .onChange(async (value) => {
+              this.plugin.settings.weatherTemplate1SB = value;
+              await this.plugin.saveSettings();
+              if (this.dataSet) {
+                // await this.plugin.updateWeather(0);
+                await this.plugin.updatedSettings();
+              };
+            });
+          textArea.inputEl.setAttr("style", "margin-top: 12px; padding-left: 0px; margin-left: 0px; margin-right: 20px;");
+          textArea.inputEl.setAttr("rows", 3);
+          textArea.inputEl.setAttr("cols", 80);
+        });
 
-    // Text area for statusbar secondary 
-    new Setting(containerEl)
-    .setDesc("Weather template string for the statusbar secondary")
+      // Text area for statusbar secondary 
+      new Setting(containerEl)
+        .setDesc("Weather template string for the statusbar secondary");
 
-    new Setting(containerEl)
-    .addTextArea((textArea: TextAreaComponent) => {
-      textArea
-      .setPlaceholder('Statusbar weather template secondary')
-      .setValue(this.plugin.settings.weatherTemplate2SB)
-      .onChange(async (value) => {
-        this.plugin.settings.weatherTemplate2SB = value;
-        await this.plugin.saveSettings();
-        await this.plugin.updatedSettings();
-      })
-      textArea.inputEl.setAttr("style", "margin-top: 12px; padding-left: 0px; margin-left: 0px; margin-right: 20px;");
-      textArea.inputEl.setAttr("rows", 3);
-      textArea.inputEl.setAttr("cols", 80);
-    });
+      new Setting(containerEl)
+        .addTextArea((textArea: TextAreaComponent) => {
+          textArea
+            .setPlaceholder('Statusbar weather template secondary')
+            .setValue(this.plugin.settings.weatherTemplate2SB)
+            .onChange(async (value) => {
+              this.plugin.settings.weatherTemplate2SB = value;
+              await this.plugin.saveSettings();
+              if (this.dataSet) {
+                // await this.plugin.updateWeather(0);
+                await this.plugin.updatedSettings();
+              };
+            });
+          textArea.inputEl.setAttr("style", "margin-top: 12px; padding-left: 0px; margin-left: 0px; margin-right: 20px;");
+          textArea.inputEl.setAttr("rows", 3);
+          textArea.inputEl.setAttr("cols", 80);
+        });
 
     } else {
       this.plugin.settings.statusbarActive = false;   // Set statusbar inactive for mobile
     };
 
-    // • VCWSettingsTab - Weather templates • 
+    // • VCWSettingsTab - Section Weather Templates • 
     new Setting(containerEl).setName('Weather templates').setHeading();
 
     // Weather template one help button 
     new Setting(containerEl)
-    .setName("Weather template 1")
-    .setDesc("First line is the descriptive text used in menus for this template")
-    .addButton(cb => {
-      cb.setButtonText('View template documentation');
-      cb.setTooltip('View weather template documentation on Github');
-      cb.onClick(() => {
-        window.open("https://github.com/willasm/vc-weather?tab=readme-ov-file#the-weather-templates");
-      })
-    });
+      .setName("Weather template 1")
+      .setDesc("First line is the descriptive text used in menus for this template")
+      .addButton(cb => {
+        cb.setButtonText('View template documentation');
+        cb.setTooltip('View weather template documentation on Github');
+        cb.onClick(() => {
+          window.open("https://github.com/willasm/vc-weather?tab=readme-ov-file#the-weather-templates");
+        });
+      });
 
     // Weather template one text area 
     new Setting(containerEl)
-    .addTextArea((textArea: TextAreaComponent) => {
-      textArea
-      .setPlaceholder('Weather template 1')
-      .setValue(this.plugin.settings.weatherTemplate1)
-      .onChange(async (value) => {
-        this.plugin.settings.weatherTemplate1 = value;
-        await this.plugin.saveSettings();
-        await this.plugin.updatedSettings();
-      })
-      textArea.inputEl.setAttr("style", "margin-top: 12px; padding-left: 0px; margin-left: 0px; margin-right: 20px;");
-      textArea.inputEl.setAttr("rows", 10);
-      textArea.inputEl.setAttr("cols", 80);
-    });
+      .addTextArea((textArea: TextAreaComponent) => {
+        textArea
+          .setPlaceholder('Weather template 1')
+          .setValue(this.plugin.settings.weatherTemplate1)
+          .onChange(async (value) => {
+            this.plugin.settings.weatherTemplate1 = value;
+            await this.plugin.saveSettings();
+            if (this.dataSet) {
+              // await this.plugin.updateWeather(0);
+              await this.plugin.updatedSettings();
+            };
+          });
+        textArea.inputEl.setAttr("style", "margin-top: 12px; padding-left: 0px; margin-left: 0px; margin-right: 20px;");
+        textArea.inputEl.setAttr("rows", 10);
+        textArea.inputEl.setAttr("cols", 80);
+      });
 
     // Weather template two 
     new Setting(containerEl)
-    .setName("Weather template 2")
-    .setDesc("First line is the descriptive text used in menus for this template")
+      .setName("Weather template 2")
+      .setDesc("First line is the descriptive text used in menus for this template");
 
     // Weather template two text area 
     new Setting(containerEl)
-    .addTextArea((textArea: TextAreaComponent) => {
-      textArea
-      .setPlaceholder('Weather template 2')
-      .setValue(this.plugin.settings.weatherTemplate2)
-      .onChange(async (value) => {
-        this.plugin.settings.weatherTemplate2 = value;
-        await this.plugin.saveSettings();
-        await this.plugin.updatedSettings();
-      })
-      textArea.inputEl.setAttr("style", "margin-top: 12px; padding-left: 0px; margin-left: 0px; margin-right: 20px;");
-      textArea.inputEl.setAttr("rows", 10);
-      textArea.inputEl.setAttr("cols", 80);
-    });
+      .addTextArea((textArea: TextAreaComponent) => {
+        textArea
+          .setPlaceholder('Weather template 2')
+          .setValue(this.plugin.settings.weatherTemplate2)
+          .onChange(async (value) => {
+            this.plugin.settings.weatherTemplate2 = value;
+            await this.plugin.saveSettings();
+            if (this.dataSet) {
+              // await this.plugin.updateWeather(0);
+              await this.plugin.updatedSettings();
+            };
+          });
+        textArea.inputEl.setAttr("style", "margin-top: 12px; padding-left: 0px; margin-left: 0px; margin-right: 20px;");
+        textArea.inputEl.setAttr("rows", 10);
+        textArea.inputEl.setAttr("cols", 80);
+      });
 
     // Weather template three 
     new Setting(containerEl)
-    .setName("Weather template 3")
-    .setDesc("First line is the descriptive text used in menus for this template")
+      .setName("Weather template 3")
+      .setDesc("First line is the descriptive text used in menus for this template");
 
     // Weather template three text area 
     new Setting(containerEl)
-    .addTextArea((textArea: TextAreaComponent) => {
-      textArea
-      .setPlaceholder('Weather template 3')
-      .setValue(this.plugin.settings.weatherTemplate3)
-      .onChange(async (value) => {
-        this.plugin.settings.weatherTemplate3 = value;
-        await this.plugin.saveSettings();
-        await this.plugin.updatedSettings();
-      })
-      textArea.inputEl.setAttr("style", "margin-top: 12px; padding-left: 0px; margin-left: 0px; margin-right: 20px;");
-      textArea.inputEl.setAttr("rows", 10);
-      textArea.inputEl.setAttr("cols", 80);
-    });
+      .addTextArea((textArea: TextAreaComponent) => {
+        textArea
+          .setPlaceholder('Weather template 3')
+          .setValue(this.plugin.settings.weatherTemplate3)
+          .onChange(async (value) => {
+            this.plugin.settings.weatherTemplate3 = value;
+            await this.plugin.saveSettings();
+            if (this.dataSet) {
+              // await this.plugin.updateWeather(0);
+              await this.plugin.updatedSettings();
+            };
+          });
+        textArea.inputEl.setAttr("style", "margin-top: 12px; padding-left: 0px; margin-left: 0px; margin-right: 20px;");
+        textArea.inputEl.setAttr("rows", 10);
+        textArea.inputEl.setAttr("cols", 80);
+      });
 
     // Weather template four 
     new Setting(containerEl)
-    .setName("Weather template 4")
-    .setDesc("First line is the descriptive text used in menus for this template")
+      .setName("Weather template 4")
+      .setDesc("First line is the descriptive text used in menus for this template");
 
     // Weather template four text area 
     new Setting(containerEl)
-    .addTextArea((textArea: TextAreaComponent) => {
-      textArea
-      .setPlaceholder('Weather template 4')
-      .setValue(this.plugin.settings.weatherTemplate4)
-      .onChange(async (value) => {
-        this.plugin.settings.weatherTemplate4 = value;
-        await this.plugin.saveSettings();
-        await this.plugin.updatedSettings();
-      })
-      textArea.inputEl.setAttr("style", "margin-top: 12px; padding-left: 0px; margin-left: 0px; margin-right: 20px;");
-      textArea.inputEl.setAttr("rows", 10);
-      textArea.inputEl.setAttr("cols", 80);
-    });
+      .addTextArea((textArea: TextAreaComponent) => {
+        textArea
+          .setPlaceholder('Weather template 4')
+          .setValue(this.plugin.settings.weatherTemplate4)
+          .onChange(async (value) => {
+            this.plugin.settings.weatherTemplate4 = value;
+            await this.plugin.saveSettings();
+            if (this.dataSet) {
+              // await this.plugin.updateWeather(0);
+              await this.plugin.updatedSettings();
+            };
+          });
+        textArea.inputEl.setAttr("style", "margin-top: 12px; padding-left: 0px; margin-left: 0px; margin-right: 20px;");
+        textArea.inputEl.setAttr("rows", 10);
+        textArea.inputEl.setAttr("cols", 80);
+      });
 
     // Weather template five 
     new Setting(containerEl)
-    .setName("Weather template 5")
-    .setDesc("First line is the descriptive text used in menus for this template")
+      .setName("Weather template 5")
+      .setDesc("First line is the descriptive text used in menus for this template");
 
     // Weather template five text area 
     new Setting(containerEl)
-    .addTextArea((textArea: TextAreaComponent) => {
-      textArea
-      .setPlaceholder('Weather template 5')
-      .setValue(this.plugin.settings.weatherTemplate5)
-      .onChange(async (value) => {
-        this.plugin.settings.weatherTemplate5 = value;
-        await this.plugin.saveSettings();
-        await this.plugin.updatedSettings();
-      })
-      textArea.inputEl.setAttr("style", "margin-top: 12px; padding-left: 0px; margin-left: 0px; margin-right: 20px;");
-      textArea.inputEl.setAttr("rows", 10);
-      textArea.inputEl.setAttr("cols", 80);
-    });
+      .addTextArea((textArea: TextAreaComponent) => {
+        textArea
+          .setPlaceholder('Weather template 5')
+          .setValue(this.plugin.settings.weatherTemplate5)
+          .onChange(async (value) => {
+            this.plugin.settings.weatherTemplate5 = value;
+            await this.plugin.saveSettings();
+            if (this.dataSet) {
+              // await this.plugin.updateWeather(0);
+              await this.plugin.updatedSettings();
+            };
+          });
+        textArea.inputEl.setAttr("style", "margin-top: 12px; padding-left: 0px; margin-left: 0px; margin-right: 20px;");
+        textArea.inputEl.setAttr("rows", 10);
+        textArea.inputEl.setAttr("cols", 80);
+      });
 
     // Weather template six 
     new Setting(containerEl)
-    .setName("Weather template 6")
-    .setDesc("First line is the descriptive text used in menus for this template")
+      .setName("Weather template 6")
+      .setDesc("First line is the descriptive text used in menus for this template");
 
     // Weather template six text area 
     new Setting(containerEl)
-    .addTextArea((textArea: TextAreaComponent) => {
-      textArea
-      .setPlaceholder('Weather template 6')
-      .setValue(this.plugin.settings.weatherTemplate6)
-      .onChange(async (value) => {
-        this.plugin.settings.weatherTemplate6 = value;
-        await this.plugin.saveSettings();
-        await this.plugin.updatedSettings();
-      })
-      textArea.inputEl.setAttr("style", "margin-top: 12px; padding-left: 0px; margin-left: 0px; margin-right: 20px;");
-      textArea.inputEl.setAttr("rows", 10);
-      textArea.inputEl.setAttr("cols", 80);
-    });
+      .addTextArea((textArea: TextAreaComponent) => {
+        textArea
+          .setPlaceholder('Weather template 6')
+          .setValue(this.plugin.settings.weatherTemplate6)
+          .onChange(async (value) => {
+            this.plugin.settings.weatherTemplate6 = value;
+            await this.plugin.saveSettings();
+            if (this.dataSet) {
+              // await this.plugin.updateWeather(0);
+              await this.plugin.updatedSettings();
+            };
+          });
+        textArea.inputEl.setAttr("style", "margin-top: 12px; padding-left: 0px; margin-left: 0px; margin-right: 20px;");
+        textArea.inputEl.setAttr("rows", 10);
+        textArea.inputEl.setAttr("cols", 80);
+      });
 
     // Weather template seven 
     new Setting(containerEl)
-    .setName("Weather template 7")
-    .setDesc("First line is the descriptive text used in menus for this template")
+      .setName("Weather template 7")
+      .setDesc("First line is the descriptive text used in menus for this template");
 
     // Weather template seven text area 
     new Setting(containerEl)
-    .addTextArea((textArea: TextAreaComponent) => {
-      textArea
-      .setPlaceholder('Weather template 7')
-      .setValue(this.plugin.settings.weatherTemplate7)
-      .onChange(async (value) => {
-        this.plugin.settings.weatherTemplate7 = value;
-        await this.plugin.saveSettings();
-        await this.plugin.updatedSettings();
-      })
-      textArea.inputEl.setAttr("style", "margin-top: 12px; padding-left: 0px; margin-left: 0px; margin-right: 20px;");
-      textArea.inputEl.setAttr("rows", 10);
-      textArea.inputEl.setAttr("cols", 80);
-    });
+      .addTextArea((textArea: TextAreaComponent) => {
+        textArea
+          .setPlaceholder('Weather template 7')
+          .setValue(this.plugin.settings.weatherTemplate7)
+          .onChange(async (value) => {
+            this.plugin.settings.weatherTemplate7 = value;
+            await this.plugin.saveSettings();
+            if (this.dataSet) {
+              // await this.plugin.updateWeather(0);
+              await this.plugin.updatedSettings();
+            };
+          });
+        textArea.inputEl.setAttr("style", "margin-top: 12px; padding-left: 0px; margin-left: 0px; margin-right: 20px;");
+        textArea.inputEl.setAttr("rows", 10);
+        textArea.inputEl.setAttr("cols", 80);
+      });
 
     // Weather template eight 
     new Setting(containerEl)
-    .setName("Weather template 8")
-    .setDesc("First line is the descriptive text used in menus for this template")
+      .setName("Weather template 8")
+      .setDesc("First line is the descriptive text used in menus for this template");
 
     // Weather template eight text area 
     new Setting(containerEl)
-    .addTextArea((textArea: TextAreaComponent) => {
-      textArea
-      .setPlaceholder('Weather template 8')
-      .setValue(this.plugin.settings.weatherTemplate8)
-      .onChange(async (value) => {
-        this.plugin.settings.weatherTemplate8 = value;
-        await this.plugin.saveSettings();
-        await this.plugin.updatedSettings();
-      })
-      textArea.inputEl.setAttr("style", "margin-top: 12px; padding-left: 0px; margin-left: 0px; margin-right: 20px;");
-      textArea.inputEl.setAttr("rows", 10);
-      textArea.inputEl.setAttr("cols", 80);
-    });
+      .addTextArea((textArea: TextAreaComponent) => {
+        textArea
+          .setPlaceholder('Weather template 8')
+          .setValue(this.plugin.settings.weatherTemplate8)
+          .onChange(async (value) => {
+            this.plugin.settings.weatherTemplate8 = value;
+            await this.plugin.saveSettings();
+            if (this.dataSet) {
+              // await this.plugin.updateWeather(0);
+              await this.plugin.updatedSettings();
+            };
+          });
+        textArea.inputEl.setAttr("style", "margin-top: 12px; padding-left: 0px; margin-left: 0px; margin-right: 20px;");
+        textArea.inputEl.setAttr("rows", 10);
+        textArea.inputEl.setAttr("cols", 80);
+      });
 
-    // • VCWSettingsTab - Donation Support Links • 
+    // • VCWSettingsTab - Section Donation Support Links • 
     containerEl.createEl('hr');
-    containerEl.createEl('h2', {text: 'If you would like to make a small donation to help support my work, please use one of the buttons below.'});
+    containerEl.createEl('h2', { text: 'If you would like to make a small donation to help support my work, please use one of the buttons below.' });
 
     // Buy me a coffee donation button 
     const bmacLink = containerEl.createEl("a");
@@ -595,15 +632,15 @@ export class VCWSettingsTab extends PluginSettingTab {
     bmacHeader.className = "bmac";
     bmacLink.appendChild(bmacHeader);
     bmacLink.setAttribute('href', "https://www.buymeacoffee.com/willasm");
-    setTooltip(bmacHeader, "Make a donation through Buy Me a Coffee", {delay: 500, placement: 'top'});
+    setTooltip(bmacHeader, "Make a donation through Buy Me a Coffee", { delay: 500, placement: 'top' });
 
     // PayPal donation button 
     const paypalLink = containerEl.createEl("a");
     const paypalHeader = containerEl.createEl("img");
-    paypalHeader.className = "pp"
+    paypalHeader.className = "pp";
     paypalLink.appendChild(paypalHeader);
     paypalLink.setAttribute('href', "https://www.paypal.com/donate/?business=RPSQD5E9KJPUL&amount=5&no_recurring=0&item_name=If+you+enjoy+using+my+software%2C+please+consider+making+a+small+donation+to+help+me+to+continue+with+my+programming+endeavors.&currency_code=CAD");
-    setTooltip(paypalHeader, "Make a donation through PayPal", {delay: 500, placement: 'top'});
+    setTooltip(paypalHeader, "Make a donation through PayPal", { delay: 500, placement: 'top' });
 
   }
 }

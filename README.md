@@ -1,6 +1,7 @@
 # Visual Crossing Weather
 
 ## Table of Contents
+- [Installation](#installation)
 - [Introduction](#introduction)
 - [Features](#features)
 - [Template Macros](#template-macros)
@@ -28,6 +29,35 @@
     - [Weather templates](#weather-templates)
 - [Dynamic Weather Using DIV's](#dynamic-weather-using-divs)
 
+
+## Installation
+- Enable Community Plugins (if not already enabled)
+- In the settings sidebar, scroll down until you find the “Community plugins” tab and select it
+- Select the Community Plugins Browse button on the right
+- Type "crossing" to filter the list, then select "Visual Crossing Weather"
+- Select "Install" followed by "Enable"
+
+At this point the plugin is installed, but it requires certain settings to be set for the plugin to function. On the status bar at the bottom right of the screen you will see the message "Visual Crossing Weather plugin missing required settings" Click this message to enter the plugins settings tab. See the screenshot below.
+
+![install1](./images/Install1.png)
+
+From the plugins settings tab, enter your [Visual Crossing Weather API key](#visual-crossing-api-authentification-key) and set your [Primary location](#primary-location). Your location should be your cities name.
+
+![install2](./images/Install2.png)
+
+Scroll down until you see the "Exclude template folder (Required)" setting. If you are using Obsidians default template folder name (Templates) it will already be entered here. If not, you will need to select a folder from the dropdown to exclude (If your template folder has a different name for example). This will include any subfolders below the one selected as well. Note: This is required or the plugin will replace any weather template macros you have in your templates which would not be what you want it to do!
+
+![install3](./images/Install3.png)
+
+Note: There is an optional second exclude folder below the first one you can use if you have a second template or script folder you would like to exclude from the plugin.
+
+> At this point you can restart Obsidian and the plugin will be fully functional.
+> 
+> After Obsidian restart, you should now see the current weather information in the status bar.
+
+![install4](./images/Install4.png)
+
+Note: After the install is completed and if your cities name is a common name (Eg. Springfield) you may get the incorrect weather data for your location. If this is the case, try adding your state/province and/or country after the city name until you get the correct weather data for your location.
 
 ## Introduction
 This is a replacement for my [OpenWeather](https://github.com/willasm/obsidian-open-weather) plugin. Open Weather has discontinued its version 2.5 API on which that plugin is based. They do have a 3.0 API, but that requires a credit card to subscribe to and a lot of people, myself included, are not willing to do that.
@@ -202,8 +232,12 @@ Enter your Visual Crossing API Key here (Required)
 
 Go here to get your [Visual Crossing](https://www.visualcrossing.com/) API key or use this direct link to the sign up page for your [free API key](https://www.visualcrossing.com/sign-up)
 
+Note: After registering for your API key it will take some time before you receive the email with your API key. I recieved mine in less than an hour but others have told me it took several hours. I believe this depends on the time of day you make the request?
+
 #### **Primary location**
 You must add at least your primary location here, the additional locations are optional
+
+Note: If your cities name is a common name (Eg. Springfield) you may get the incorrect weather data for your location. If this is the case, try adding your state/province and/or country after the city name until you get the correct weather data for your location
 
 #### **Additional locations 1 to 4**
 If you wish to get weather information for any additional locations you may define them here (optional)

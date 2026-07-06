@@ -8,7 +8,7 @@ import { requestUrl } from 'obsidian';
 //  │                   • Visual Crossing Weather Update Data •                    │
 //  ╰──────────────────────────────────────────────────────────────────────────────╯
 export default class UpdateWeather {
-  settings: VCWSettings;
+  settings!: VCWSettings;
 
   constructor() {
 
@@ -42,38 +42,43 @@ export default class UpdateWeather {
       url: `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${fetch_location}/${notesDate}?unitGroup=${units}&lang=${lang}&key=${apikey}&include=current&contentType=json`,
       "method": "GET",
       "headers": {},
-      }).then(response => {;
+    }).then(response => {
+      ;
       if (response.status != 200) {
         throw response; //check the http response code and if isn't ok then throw the response as an error
       };
 
       return response.json; // Return the result as JSON
 
-      }).then(response => {
-        //response now contains parsed JSON ready for use
-        returnData = response;
-  
-      }).catch((errorResponse) => {
-        console.log(errorResponse);
-        if (errorResponse.status == 400) {
-          new Notification("VC Weather: [BAD_REQUEST] Your requests is invalid in some way (invalid dates, bad location parameter etc).")
-        } else if (errorResponse.status == 401) {
-          new Notification("VC Weather: [UNAUTHORIZED] Check if your API key is entered correctly.")
-        } else if (errorResponse.status == 429) {
-          new Notification("VC Weather: [TOO_MANY_REQUESTS] You have exceeded the maximum number of daily result records for your account.")
-        } else if (errorResponse.status == 500) {
-          new Notification("VC Weather: [INTERNAL_SERVER_ERROR] Visual Crossing servers returned an unexpected error.")
-        };
-        if (errorResponse.text) { //additional error information
-          errorResponse.text().then( (errorMessage: any) => {
+    }).then(response => {
+      //response now contains parsed JSON ready for use
+      returnData = response;
+
+    }).catch((errorResponse) => {
+      console.error(errorResponse);
+      if (errorResponse.status == 400) {
+        new Notification("VC Weather: [BAD_REQUEST] Your requests is invalid in some way (invalid dates, bad location parameter etc).");
+        console.error("VCW PLUGIN: [BAD_REQUEST] Your requests is invalid in some way (invalid dates, bad location parameter etc).");
+      } else if (errorResponse.status == 401) {
+        new Notification("VC Weather: [UNAUTHORIZED] Check if your API key is entered correctly.");
+        console.error("VCW PLUGIN: [UNAUTHORIZED] Check if your API key is entered correctly.");
+      } else if (errorResponse.status == 429) {
+        new Notification("VC Weather: [TOO_MANY_REQUESTS] You have exceeded the maximum number of daily result records for your account.");
+        console.error("VCW PLUGIN: [TOO_MANY_REQUESTS] You have exceeded the maximum number of daily result records for your account.");
+      } else if (errorResponse.status == 500) {
+        new Notification("VC Weather: [INTERNAL_SERVER_ERROR] Visual Crossing servers returned an unexpected error.");
+        console.error("VCW PLUGIN: [INTERNAL_SERVER_ERROR] Visual Crossing servers returned an unexpected error.");
+      };
+      if (errorResponse.text) { //additional error information
+        errorResponse.text().then((errorMessage: any) => {
           //errorMessage now returns the response body which includes the full error message
           console.error(errorMessage);
 
-        })
+        });
       } else {
         //no additional error information 
         console.error(errorResponse);
-      } 
+      }
     });
     return returnData;
   };
@@ -110,38 +115,43 @@ export default class UpdateWeather {
         url: `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${fetch_location}?unitGroup=${units}&lang=${lang}&include=days%2Chours%2Calerts%2Ccurrent&key=${apikey}&contentType=json`,
         "method": "GET",
         "headers": {},
-      }).then(response => {;
-      if (response.status != 200) {
-        throw response; //check the http response code and if isn't ok then throw the response as an error
-      };
+      }).then(response => {
+        ;
+        if (response.status != 200) {
+          throw response; //check the http response code and if isn't ok then throw the response as an error
+        };
 
-      return response.json;// Return the result as JSON
+        return response.json;// Return the result as JSON
 
       }).then(response => {
         //response now contains parsed JSON ready for use
         returnData = response;
-    
+
       }).catch((errorResponse) => {
-        console.log(errorResponse);
+        console.error(errorResponse);
         if (errorResponse.status == 400) {
-          new Notification("VC Weather: [BAD_REQUEST] Your requests is invalid in some way (invalid dates, bad location parameter etc).")
+          new Notification("VC Weather: [BAD_REQUEST] Your requests is invalid in some way (invalid dates, bad location parameter etc).");
+          console.error("VCW PLUGIN: [BAD_REQUEST] Your requests is invalid in some way (invalid dates, bad location parameter etc).");
         } else if (errorResponse.status == 401) {
-          new Notification("VC Weather: [UNAUTHORIZED] Check if your API key is entered correctly.")
+          new Notification("VC Weather: [UNAUTHORIZED] Check if your API key is entered correctly.");
+          console.error("VCW PLUGIN: [UNAUTHORIZED] Check if your API key is entered correctly.");
         } else if (errorResponse.status == 429) {
-          new Notification("VC Weather: [TOO_MANY_REQUESTS] You have exceeded the maximum number of daily result records for your account.")
+          new Notification("VC Weather: [TOO_MANY_REQUESTS] You have exceeded the maximum number of daily result records for your account.");
+          console.error("VCW PLUGIN: [TOO_MANY_REQUESTS] You have exceeded the maximum number of daily result records for your account.");
         } else if (errorResponse.status == 500) {
-          new Notification("VC Weather: [INTERNAL_SERVER_ERROR] Visual Crossing servers returned an unexpected error.")
+          new Notification("VC Weather: [INTERNAL_SERVER_ERROR] Visual Crossing servers returned an unexpected error.");
+          console.error("VCW PLUGIN: [INTERNAL_SERVER_ERROR] Visual Crossing servers returned an unexpected error.");
         }
         if (errorResponse.text) { //additional error information
-        errorResponse.text().then( (errorMessage: any) => {
-          //errorMessage now returns the response body which includes the full error message
-          console.error(errorMessage);
+          errorResponse.text().then((errorMessage: any) => {
+            //errorMessage now returns the response body which includes the full error message
+            console.error(errorMessage);
 
-        })
-      } else {
-        //no additional error information 
-        console.error(errorResponse);
-      };
+          });
+        } else {
+          //no additional error information 
+          console.error(errorResponse);
+        };
       });      //     })
     };
     return returnData;
@@ -166,16 +176,16 @@ export default class UpdateWeather {
     // wind speed
     let windSpeed = Math.round(response.days[0].windspeed);
     if (units === "metric") {
-      windSpeed = Math.round(response.days[0].windspeed*0.27777778);
+      windSpeed = Math.round(response.days[0].windspeed * 0.27777778);
     } else {
-      windSpeed = Math.round(response.days[0].windspeed*0.447);
+      windSpeed = Math.round(response.days[0].windspeed * 0.447);
     };
     // wind speed meters per second
     let windSpeedMS;
     if (units === "metric") {
-      windSpeedMS = Math.round(response.days[0].windspeed*0.27777778);
+      windSpeedMS = Math.round(response.days[0].windspeed * 0.27777778);
     } else {
-      windSpeedMS = Math.round(response.days[0].windspeed*0.447);
+      windSpeedMS = Math.round(response.days[0].windspeed * 0.447);
     };
     let descEmoji = '🌅';
     if (response.days[0].icon == 'snow') {
@@ -197,7 +207,7 @@ export default class UpdateWeather {
     } else if (response.days[0].icon == 'clear-night') {
       descEmoji = '🌛';
     };
-  
+
     // Daily Notes Weather Data
     let weatherData = {
       "year1": window.moment(response.days[0].datetime).format('YYYY'),
@@ -220,11 +230,11 @@ export default class UpdateWeather {
       "feelslikeavg": Math.round(response.days[0].feelslike),
       "temp": Math.round(response.days[0].temp),
       "feelslike": Math.round(response.days[0].temp),
-      "humidity": Math.round(response.days[0].humidity)+'%',
+      "humidity": Math.round(response.days[0].humidity) + '%',
       "dew": Math.round(response.days[0].dew),
       "precip": response.days[0].precip,
-      "precipprob": Math.round(response.days[0].precipprob)+'%',
-      "precipcover": Math.round(response.days[0].precipcover)+'%',
+      "precipprob": Math.round(response.days[0].precipprob) + '%',
+      "precipcover": Math.round(response.days[0].precipcover) + '%',
       "snow": response.days[0].snow,
       "snowdepth": response.days[0].snowdepth,
       "preciptype": precipTypeSt,
@@ -237,17 +247,17 @@ export default class UpdateWeather {
       "winddirstrshort": directionsShort[Math.round(response.days[0].winddir / 45) % 8],
       "pressure": response.days[0].pressure,
       "visibility": Math.round(response.days[0].visibility),
-      "cloudcover": Math.round(response.days[0].cloudcover)+'%',
+      "cloudcover": Math.round(response.days[0].cloudcover) + '%',
       "solarradiation": response.days[0].solarradiation,
       "solarenergy": response.days[0].solarenergy,
       "uvindex": Math.round(response.days[0].uvindex),
-      "severerisk": Math.round(response.days[0].severerisk)+'%',
+      "severerisk": Math.round(response.days[0].severerisk) + '%',
       "conditions": response.days[0].conditions,
       "description": response.days[0].description,
       "descEmoji": descEmoji,
       "icon": response.days[0].icon,
-      "iconurl": "https://github.com/visualcrossing/WeatherIcons/blob/main/PNG/1st%20Set%20-%20Color/"+`${response.days[0].icon}`+".png?raw=true",
-      "iconurlloc": "<img class="+`"${response.days[0].icon}"`+"/>",
+      "iconurl": "https://github.com/visualcrossing/WeatherIcons/blob/main/PNG/1st%20Set%20-%20Color/" + `${response.days[0].icon}` + ".png?raw=true",
+      "iconurlloc": "<img class=" + `"${response.days[0].icon}"` + "/>",
       "sunrise": response.days[0].sunrise,
       "sunriseepoch": response.days[0].sunriseEpoch,
       "sunset": response.days[0].sunset,
@@ -259,236 +269,236 @@ export default class UpdateWeather {
 
   // • Get Current Weather Data We Want • 
   processWeatherData(response: any, units: string) {
-  
-  let weatherDataArray = [];
-  let dateArray = [];
-  let datesDataArray = [];
-  let precipsDataArray = [];
-  let windDataArray = [];
-  let windmsDataArray = [];
-  let descEmojiArray = [];
-  const directions = ['North', 'Northeast', 'East', 'Southeast', 'South', 'Southwest', 'West', 'Northwest'];
-  const directionsShort = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
 
-  for (let i = 0; i < 15; i++) {
-    // Dates
-    dateArray = [];
-    let dateTime = response.days[i].datetime;
-    dateArray.push(window.moment(dateTime).format('YYYY'));
-    dateArray.push(window.moment(dateTime).format('YY'));
-    dateArray.push(window.moment(dateTime).format('M'));
-    dateArray.push(window.moment(dateTime).format('MM'));
-    dateArray.push(window.moment(dateTime).format('MMM'));
-    dateArray.push(window.moment(dateTime).format('MMMM'));
-    dateArray.push(window.moment(dateTime).format('D'));
-    dateArray.push(window.moment(dateTime).format('DD'));
-    dateArray.push(window.moment(dateTime).format('ddd'));
-    dateArray.push(window.moment(dateTime).format('dddd'));
-    datesDataArray.push(dateArray);
-    // Description Emojis
-    //let descIcon = response.days[i].icon;
+    let weatherDataArray = [];
+    let dateArray = [];
+    let datesDataArray = [];
+    let precipsDataArray = [];
+    let windDataArray = [];
+    let windmsDataArray = [];
+    let descEmojiArray = [];
+    const directions = ['North', 'Northeast', 'East', 'Southeast', 'South', 'Southwest', 'West', 'Northwest'];
+    const directionsShort = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+
+    for (let i = 0; i < 15; i++) {
+      // Dates
+      dateArray = [];
+      let dateTime = response.days[i].datetime;
+      dateArray.push(window.moment(dateTime).format('YYYY'));
+      dateArray.push(window.moment(dateTime).format('YY'));
+      dateArray.push(window.moment(dateTime).format('M'));
+      dateArray.push(window.moment(dateTime).format('MM'));
+      dateArray.push(window.moment(dateTime).format('MMM'));
+      dateArray.push(window.moment(dateTime).format('MMMM'));
+      dateArray.push(window.moment(dateTime).format('D'));
+      dateArray.push(window.moment(dateTime).format('DD'));
+      dateArray.push(window.moment(dateTime).format('ddd'));
+      dateArray.push(window.moment(dateTime).format('dddd'));
+      datesDataArray.push(dateArray);
+      // Description Emojis
+      //let descIcon = response.days[i].icon;
+      let descEmoji = '🌅';
+      if (response.days[i].icon == 'snow') {
+        descEmoji = '❄️';
+      } else if (response.days[i].icon == 'rain') {
+        descEmoji = '🌧️';
+      } else if (response.days[i].icon == 'fog') {
+        descEmoji = '🌫️';
+      } else if (response.days[i].icon == 'wind') {
+        descEmoji = '💨';
+      } else if (response.days[i].icon == 'cloudy') {
+        descEmoji = '☁️';
+      } else if (response.days[i].icon == 'partly-cloudy-day') {
+        descEmoji = '⛅';
+      } else if (response.days[i].icon == 'partly-cloudy-night') {
+        descEmoji = '🌥';
+      } else if (response.days[i].icon == 'clear-day') {
+        descEmoji = '🔆';
+      } else if (response.days[i].icon == 'clear-night') {
+        descEmoji = '🌛';
+      };
+      descEmojiArray.push(descEmoji);
+      // precipitation
+      let precipTypeSt = response.days[i].preciptype;
+      if (precipTypeSt === null) {
+        precipTypeSt = "none";
+      } else {
+        precipTypeSt = response.days[i].preciptype[0];
+      };
+      precipsDataArray.push(precipTypeSt);
+      windDataArray.push(Math.round(response.days[i].windspeed));
+      if (units === "metric") {
+        windmsDataArray.push(Math.round(response.days[i].windspeed * 0.27777778));
+      } else {
+        windmsDataArray.push(Math.round(response.days[i].windspeed * 0.447));
+      };
+    };
+    weatherDataArray.push(datesDataArray);
+    weatherDataArray.push(precipsDataArray);
+    weatherDataArray.push(windDataArray);
+    weatherDataArray.push(windmsDataArray);
+
+    const responseTime = response.currentConditions.datetime as string;
+
+    let windSpeedmsCurrent;
+    if (units === "metric") {
+      windSpeedmsCurrent = Math.round(response.currentConditions.windspeed * 0.27777778);
+    } else {
+      windSpeedmsCurrent = Math.round(response.currentConditions.windspeed * 0.447);
+    };
+
+    let daysObj = [{}];
+    for (let i = 0; i < 15; i++) {
+      let dayData = {
+        "year1": weatherDataArray[0][i][0],
+        "year2": weatherDataArray[0][i][1],
+        "month1": weatherDataArray[0][i][2],
+        "month2": weatherDataArray[0][i][3],
+        "month3": weatherDataArray[0][i][4],
+        "month4": weatherDataArray[0][i][5],
+        "date1": weatherDataArray[0][i][6],
+        "date2": weatherDataArray[0][i][7],
+        "dow1": weatherDataArray[0][i][8],
+        "dow2": weatherDataArray[0][i][9],
+        "datetime": response.days[i].datetime,
+        "datetimeepoch": response.days[i].datetimeEpoch,
+        "tempmax": Math.round(response.days[i].tempmax),
+        "tempmin": Math.round(response.days[i].tempmin),
+        "tempavg": Math.round(response.days[i].temp),
+        "feelslikemax": Math.round(response.days[i].feelslikemax),
+        "feelslikemin": Math.round(response.days[i].feelslikemin),
+        "feelslikeavg": Math.round(response.days[i].feelslike),
+        "dew": Math.round(response.days[i].dew),
+        "humidity": Math.round(response.days[i].humidity) + '%',
+        "precip": response.days[i].precip,
+        "precipprob": Math.round(response.days[i].precipprob) + '%',
+        "precipcover": Math.round(response.days[i].precipcover) + '%',
+        "preciptype": weatherDataArray[1][i],
+        "snow": response.days[i].snow,
+        "snowdepth": response.days[i].snowdepth,
+        "windgust": Math.round(response.days[i].windgust),
+        "windgustms": Math.round(response.days[i].windgust * 0.27777778),
+        "windspeed": weatherDataArray[2][i],
+        "windspeedms": weatherDataArray[3][i],
+        "winddirdeg": Math.round(response.days[i].winddir),
+        "winddirstr": directions[Math.round(response.days[i].winddir / 45) % 8],
+        "winddirstrshort": directionsShort[Math.round(response.days[i].winddir / 45) % 8],
+        "pressure": response.days[i].pressure,
+        "cloudcover": Math.round(response.days[i].cloudcover) + '%',
+        "visibility": Math.round(response.days[i].visibility),
+        "solarradiation": response.days[i].solarradiation,
+        "solarenergy": response.days[i].solarenergy,
+        "uvindex": Math.round(response.days[i].uvindex),
+        "severerisk": Math.round(response.days[i].severerisk) + '%',
+        "sunrise": response.days[i].sunrise,
+        "sunriseepoch": response.days[i].sunriseEpoch,
+        "sunset": response.days[i].sunset,
+        "sunsetepoch": response.days[i].sunsetEpoch,
+        "moonphase": response.days[i].moonphase,
+        "conditions": response.days[i].conditions,
+        "description": response.days[i].description,
+        "descemoji": descEmojiArray[i],
+        "icon": response.days[i].icon,
+        "iconurl": "https://github.com/visualcrossing/WeatherIcons/blob/main/PNG/1st%20Set%20-%20Color/" + `${response.days[i].icon}` + ".png?raw=true",
+        "iconurlloc": "<img class=" + `"${response.days[i].icon}"` + "/>",
+      };
+      daysObj.push(dayData);
+    };
+    const index = 0;//daysObj.indexOf(key, 0);
+    if (index > -1) {
+      daysObj.splice(index, 1);
+    };
+
     let descEmoji = '🌅';
-    if (response.days[i].icon == 'snow') {
+    if (response.currentConditions.icon == 'snow') {
       descEmoji = '❄️';
-    } else if (response.days[i].icon == 'rain') {
+    } else if (response.currentConditions.icon == 'rain') {
       descEmoji = '🌧️';
-    } else if (response.days[i].icon == 'fog') {
+    } else if (response.currentConditions.icon == 'fog') {
       descEmoji = '🌫️';
-    } else if (response.days[i].icon == 'wind') {
+    } else if (response.currentConditions.icon == 'wind') {
       descEmoji = '💨';
-    } else if (response.days[i].icon == 'cloudy') {
+    } else if (response.currentConditions.icon == 'cloudy') {
       descEmoji = '☁️';
-    } else if (response.days[i].icon == 'partly-cloudy-day') {
+    } else if (response.currentConditions.icon == 'partly-cloudy-day') {
       descEmoji = '⛅';
-    } else if (response.days[i].icon == 'partly-cloudy-night') {
+    } else if (response.currentConditions.icon == 'partly-cloudy-night') {
       descEmoji = '🌥';
-    } else if (response.days[i].icon == 'clear-day') {
+    } else if (response.currentConditions.icon == 'clear-day') {
       descEmoji = '🔆';
-    } else if (response.days[i].icon == 'clear-night') {
+    } else if (response.currentConditions.icon == 'clear-night') {
       descEmoji = '🌛';
     };
-    descEmojiArray.push(descEmoji);
-    // precipitation
-    let precipTypeSt = response.days[i].preciptype;
-    if (precipTypeSt === null) {
-      precipTypeSt = "none";
-    } else {
-      precipTypeSt = response.days[i].preciptype[0];
+
+    let weatherData = {
+      "LocationInfo": {
+        "address": response.address,
+        "resolvedaddress": response.resolvedAddress,
+        "latitude": response.latitude,
+        "longitude": response.longitude,
+        "timezone": response.timezone,
+        "tzoffset": response.tzoffset,
+        "querycost": response.queryCost,
+        "hours24": window.moment(responseTime, "HH:mm:ss").format('HH'),
+        "hours12": window.moment(responseTime, "HH:mm:ss").format('h'),
+        "mins": window.moment(responseTime, "HH:mm:ss").format('mm'),
+        "secs": window.moment(responseTime, "HH:mm:ss").format('ss'),
+        "ampm1": window.moment(responseTime, "HH:mm:ss").format('A'),
+        "ampm2": window.moment(responseTime, "HH:mm:ss").format('a')
+      },
+      "Alerts": response.alerts,
+      "CurrentWeather": {
+        "datetime": response.currentConditions.datetime,
+        "datetimeepoch": response.currentConditions.datetimeEpoch,
+        "temp": Math.round(response.currentConditions.temp),
+        "feelslike": Math.round(response.currentConditions.temp),
+        "humidity": Math.round(response.currentConditions.humidity) + '%',
+        "dew": Math.round(response.currentConditions.dew),
+        "precip": response.currentConditions.precip,
+        "precipprob": Math.round(response.currentConditions.precipprob) + '%',
+        "snow": response.currentConditions.snow,
+        "snowdepth": response.currentConditions.snowdepth,
+        "preciptype": weatherDataArray[1][0],
+        "windgust": Math.round(response.currentConditions.windgust),
+        "windgustms": Math.round(response.currentConditions.windgust * 0.27777778),
+        "windspeed": Math.round(response.currentConditions.windspeed),
+        "windspeedms": windSpeedmsCurrent,
+        "winddirdeg": Math.round(response.currentConditions.winddir),
+        "winddirstr": directions[Math.round(response.currentConditions.winddir / 45) % 8],
+        "winddirstrshort": directionsShort[Math.round(response.currentConditions.winddir / 45) % 8],
+        "pressure": response.currentConditions.pressure,
+        "visibility": Math.round(response.currentConditions.visibility),
+        "cloudcover": Math.round(response.currentConditions.cloudcover) + '%',
+        "solarradiation": response.currentConditions.solarradiation,
+        "solarenergy": response.currentConditions.solarenergy,
+        "uvindex": Math.round(response.currentConditions.uvindex),
+        "conditions": response.currentConditions.conditions,
+        "descemoji": descEmoji, //response.currentConditions.icon,
+        "icon": response.currentConditions.icon,
+        "iconurl": "https://github.com/visualcrossing/WeatherIcons/blob/main/PNG/1st%20Set%20-%20Color/" + `${response.currentConditions.icon}` + ".png?raw=true",
+        "iconurlloc": "<img class=" + `"${response.currentConditions.icon}"` + "/>",
+        "sunrise": response.currentConditions.sunrise,
+        "sunriseepoch": response.currentConditions.sunriseEpoch,
+        "sunset": response.currentConditions.sunset,
+        "sunsetepoch": response.currentConditions.sunsetEpoch,
+        "moonphase": response.currentConditions.moonphase,
+      },
+      "WeatherToday": daysObj[0],
+      "WeatherIn1Day": daysObj[1],
+      "WeatherIn2Days": daysObj[2],
+      "WeatherIn3Days": daysObj[3],
+      "WeatherIn4Days": daysObj[4],
+      "WeatherIn5Days": daysObj[5],
+      "WeatherIn6Days": daysObj[6],
+      "WeatherIn7Days": daysObj[7],
+      "WeatherIn8Days": daysObj[8],
+      "WeatherIn9Days": daysObj[9],
+      "WeatherIn10Days": daysObj[10],
+      "WeatherIn11Days": daysObj[11],
+      "WeatherIn12Days": daysObj[12],
+      "WeatherIn13Days": daysObj[13],
+      "WeatherIn14Days": daysObj[14],
     };
-    precipsDataArray.push(precipTypeSt);
-    windDataArray.push(Math.round(response.days[i].windspeed));
-    if (units === "metric") {
-      windmsDataArray.push(Math.round(response.days[i].windspeed*0.27777778));
-    } else {
-      windmsDataArray.push(Math.round(response.days[i].windspeed*0.447));
-    };
-  };
-  weatherDataArray.push(datesDataArray);
-  weatherDataArray.push(precipsDataArray);
-  weatherDataArray.push(windDataArray);
-  weatherDataArray.push(windmsDataArray);
-
-  const responseTime = response.currentConditions.datetime as string;
-
-  let windSpeedmsCurrent;
-  if (units === "metric") {
-    windSpeedmsCurrent = Math.round(response.currentConditions.windspeed*0.27777778);
-  } else {
-    windSpeedmsCurrent = Math.round(response.currentConditions.windspeed*0.447);
-  };
-
-  let daysObj = [{}];
-  for (let i = 0; i < 15; i++) {
-    let dayData = {
-      "year1": weatherDataArray[0][i][0],
-      "year2": weatherDataArray[0][i][1],
-      "month1": weatherDataArray[0][i][2],
-      "month2": weatherDataArray[0][i][3],
-      "month3": weatherDataArray[0][i][4],
-      "month4": weatherDataArray[0][i][5],
-      "date1": weatherDataArray[0][i][6],
-      "date2": weatherDataArray[0][i][7],
-      "dow1": weatherDataArray[0][i][8],
-      "dow2": weatherDataArray[0][i][9],
-      "datetime": response.days[i].datetime,
-      "datetimeepoch": response.days[i].datetimeEpoch,
-      "tempmax": Math.round(response.days[i].tempmax),
-      "tempmin": Math.round(response.days[i].tempmin),
-      "tempavg": Math.round(response.days[i].temp),
-      "feelslikemax": Math.round(response.days[i].feelslikemax),
-      "feelslikemin": Math.round(response.days[i].feelslikemin),
-      "feelslikeavg": Math.round(response.days[i].feelslike),
-      "dew": Math.round(response.days[i].dew),
-      "humidity": Math.round(response.days[i].humidity)+'%',
-      "precip": response.days[i].precip,
-      "precipprob": Math.round(response.days[i].precipprob)+'%',
-      "precipcover": Math.round(response.days[i].precipcover)+'%',
-      "preciptype": weatherDataArray[1][i],
-      "snow": response.days[i].snow,
-      "snowdepth": response.days[i].snowdepth,
-      "windgust": Math.round(response.days[i].windgust),
-      "windgustms": Math.round(response.days[i].windgust * 0.27777778),
-      "windspeed": weatherDataArray[2][i],
-      "windspeedms": weatherDataArray[3][i],
-      "winddirdeg": Math.round(response.days[i].winddir),
-      "winddirstr": directions[Math.round(response.days[i].winddir / 45) % 8],
-      "winddirstrshort": directionsShort[Math.round(response.days[i].winddir / 45) % 8],
-      "pressure": response.days[i].pressure,
-      "cloudcover": Math.round(response.days[i].cloudcover)+'%',
-      "visibility": Math.round(response.days[i].visibility),
-      "solarradiation": response.days[i].solarradiation,
-      "solarenergy": response.days[i].solarenergy,
-      "uvindex": Math.round(response.days[i].uvindex),
-      "severerisk": Math.round(response.days[i].severerisk)+'%',
-      "sunrise": response.days[i].sunrise,
-      "sunriseepoch": response.days[i].sunriseEpoch,
-      "sunset": response.days[i].sunset,
-      "sunsetepoch": response.days[i].sunsetEpoch,
-      "moonphase": response.days[i].moonphase,
-      "conditions": response.days[i].conditions,
-      "description": response.days[i].description,
-      "descemoji": descEmojiArray[i],
-      "icon": response.days[i].icon,
-      "iconurl": "https://github.com/visualcrossing/WeatherIcons/blob/main/PNG/1st%20Set%20-%20Color/"+`${response.days[i].icon}`+".png?raw=true",
-      "iconurlloc": "<img class="+`"${response.days[i].icon}"`+"/>",
-    }
-  daysObj.push(dayData);
-  };
-  const index = 0//daysObj.indexOf(key, 0);
-  if (index > -1) {
-    daysObj.splice(index, 1);
-  };
-    
-  let descEmoji = '🌅';
-  if (response.currentConditions.icon == 'snow') {
-    descEmoji = '❄️';
-  } else if (response.currentConditions.icon == 'rain') {
-    descEmoji = '🌧️';
-  } else if (response.currentConditions.icon == 'fog') {
-    descEmoji = '🌫️';
-  } else if (response.currentConditions.icon == 'wind') {
-    descEmoji = '💨';
-  } else if (response.currentConditions.icon == 'cloudy') {
-    descEmoji = '☁️';
-  } else if (response.currentConditions.icon == 'partly-cloudy-day') {
-    descEmoji = '⛅';
-  } else if (response.currentConditions.icon == 'partly-cloudy-night') {
-    descEmoji = '🌥';
-  } else if (response.currentConditions.icon == 'clear-day') {
-    descEmoji = '🔆';
-  } else if (response.currentConditions.icon == 'clear-night') {
-    descEmoji = '🌛';
-  };
-
-  let weatherData = {
-    "LocationInfo": {
-      "address": response.address,
-      "resolvedaddress": response.resolvedAddress,
-      "latitude": response.latitude,
-      "longitude": response.longitude,
-      "timezone": response.timezone,
-      "tzoffset": response.tzoffset,
-      "querycost": response.queryCost,
-      "hours24": window.moment(responseTime, "HH:mm:ss").format('HH'),
-      "hours12": window.moment(responseTime, "HH:mm:ss").format('h'),
-      "mins": window.moment(responseTime, "HH:mm:ss").format('mm'),
-      "secs": window.moment(responseTime, "HH:mm:ss").format('ss'),
-      "ampm1": window.moment(responseTime, "HH:mm:ss").format('A'),
-      "ampm2": window.moment(responseTime, "HH:mm:ss").format('a')
-    },
-    "Alerts": response.alerts,
-    "CurrentWeather": {
-      "datetime": response.currentConditions.datetime,
-      "datetimeepoch": response.currentConditions.datetimeEpoch,
-      "temp": Math.round(response.currentConditions.temp),
-      "feelslike": Math.round(response.currentConditions.temp),
-      "humidity": Math.round(response.currentConditions.humidity)+'%',
-      "dew": Math.round(response.currentConditions.dew),
-      "precip": response.currentConditions.precip,
-      "precipprob": Math.round(response.currentConditions.precipprob)+'%',
-      "snow": response.currentConditions.snow,
-      "snowdepth": response.currentConditions.snowdepth,
-      "preciptype": weatherDataArray[1][0],
-      "windgust": Math.round(response.currentConditions.windgust),
-      "windgustms": Math.round(response.currentConditions.windgust * 0.27777778),
-      "windspeed": Math.round(response.currentConditions.windspeed),
-      "windspeedms": windSpeedmsCurrent,
-      "winddirdeg": Math.round(response.currentConditions.winddir),
-      "winddirstr": directions[Math.round(response.currentConditions.winddir / 45) % 8],
-      "winddirstrshort": directionsShort[Math.round(response.currentConditions.winddir / 45) % 8],
-      "pressure": response.currentConditions.pressure,
-      "visibility": Math.round(response.currentConditions.visibility),
-      "cloudcover": Math.round(response.currentConditions.cloudcover)+'%',
-      "solarradiation": response.currentConditions.solarradiation,
-      "solarenergy": response.currentConditions.solarenergy,
-      "uvindex": Math.round(response.currentConditions.uvindex),
-      "conditions": response.currentConditions.conditions,
-      "descemoji": descEmoji, //response.currentConditions.icon,
-      "icon": response.currentConditions.icon,
-      "iconurl": "https://github.com/visualcrossing/WeatherIcons/blob/main/PNG/1st%20Set%20-%20Color/"+`${response.currentConditions.icon}`+".png?raw=true",
-      "iconurlloc": "<img class="+`"${response.currentConditions.icon}"`+"/>",
-      "sunrise": response.currentConditions.sunrise,
-      "sunriseepoch": response.currentConditions.sunriseEpoch,
-      "sunset": response.currentConditions.sunset,
-      "sunsetepoch": response.currentConditions.sunsetEpoch,
-      "moonphase": response.currentConditions.moonphase,
-    },
-    "WeatherToday": daysObj[0],
-    "WeatherIn1Day": daysObj[1],
-    "WeatherIn2Days": daysObj[2],
-    "WeatherIn3Days": daysObj[3],
-    "WeatherIn4Days": daysObj[4],
-    "WeatherIn5Days": daysObj[5],
-    "WeatherIn6Days": daysObj[6],
-    "WeatherIn7Days": daysObj[7],
-    "WeatherIn8Days": daysObj[8],
-    "WeatherIn9Days": daysObj[9],
-    "WeatherIn10Days": daysObj[10],
-    "WeatherIn11Days": daysObj[11],
-    "WeatherIn12Days": daysObj[12],
-    "WeatherIn13Days": daysObj[13],
-    "WeatherIn14Days": daysObj[14],
-  };
-  return weatherData;
+    return weatherData;
   };
 };
