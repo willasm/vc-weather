@@ -1,5 +1,5 @@
-import { App, MarkdownView, View, DropdownComponent, Editor, Modal, Setting, Plugin } from "obsidian";
-import VCWPlugin from './main'
+import { App, Editor, Modal, Setting } from "obsidian";
+import VCWPlugin from './main';
 
 export default class InsertTemplatesModal extends Modal {
   app: App;
@@ -24,7 +24,7 @@ export default class InsertTemplatesModal extends Modal {
   constructor(app: App, editor: any, title1: string, template1: string, title2: string, template2: string, title3: string, template3: string, title4: string, template4: string, title5: string, template5: string, title6: string, template6: string, title7: string, template7: string, title8: string, template8: string) {
     super(app);
     this.app = app;
-    this.editor = editor
+    this.editor = editor;
     this.title1 = title1;
     this.template1 = template1;
     this.title2 = title2;
@@ -58,7 +58,7 @@ export default class InsertTemplatesModal extends Modal {
 
     contentEl.createEl("br");
 
-    // Visual Crossing Header Image 
+    // Visual Crossing Header Image
     // const imageLink = contentEl.createEl("a");
     // const imageHeader = contentEl.createEl("img");
     // imageHeader.setAttribute("src", "https://www.visualcrossing.com/images/vclogo.svg");
@@ -80,8 +80,9 @@ export default class InsertTemplatesModal extends Modal {
         btn.setButtonText('Insert this template');
         btn.onClick(value => {
           this.onSelected(currentTemplate);
-        })
-        btn.buttonEl.setAttribute("style", "width:50%;");
+        });
+        //btn.setClass('btn-modal');
+        //btn.buttonEl.setAttribute("style", "width:50%;"); // Scorecard wants this removed setClass and styles.css should fix this
       })
       .addDropdown(dropDown => {
         dropDown.addOption('t1', this.title1);
@@ -140,18 +141,18 @@ export default class InsertTemplatesModal extends Modal {
             currentTemplate = 't8';
           };
           //return value;
-        })
-        dropDown.selectEl.setAttribute("style", "width:100%;");
+        });
+        //dropDown.selectEl.setAttribute("style", "width:100%;"); // Scorecard wants this removed
         dropDown.setValue('t1');
-      })
-    
-      contentEl.createEl("br");
-      let paragraph = contentEl.createEl("p",{text: `${this.template1}`});
+      });
+
+    contentEl.createEl("br");
+    let paragraph = contentEl.createEl("p", { text: `${this.template1}` });
 
   }
 
   async onSelected(selected: string) {
-    const {contentEl} = this;
+    const { contentEl } = this;
     contentEl.empty();
     this.close();
 
@@ -191,7 +192,7 @@ export default class InsertTemplatesModal extends Modal {
   };
 
   onClose() {
-    const {contentEl} = this;
+    const { contentEl } = this;
     contentEl.empty();
   };
 };

@@ -1,4 +1,4 @@
-import { Editor, MarkdownView, Notice, Plugin, SettingTab, setTooltip } from 'obsidian';
+import { Editor, MarkdownView, Notice, Plugin, setTooltip } from 'obsidian';
 import { VCWSettingsTab, VCWSettings, DEFAULT_SETTINGS } from './settings';
 import FormatTemplates from './formatTemplates';
 import UpdateWeather from './updateWeather';
@@ -153,33 +153,33 @@ interface dailyData {
 
 let dailyData: any;
 
-interface Global {
-  statusbarEl: HTMLSpanElement;
-  statusbarAlertEl: HTMLSpanElement;
-  formattedSBTemplate1: string;
-  formattedSBTemplate2: string;
-  weatherTemplateTitle1: string;
-  weatherTemplateTitle2: string;
-  weatherTemplateTitle3: string;
-  weatherTemplateTitle4: string;
-  weatherTemplateTitle5: string;
-  weatherTemplateTitle6: string;
-  weatherTemplateTitle7: string;
-  weatherTemplateTitle8: string;
-  // Formatted template body strings
-  weatherTemplateBody1: string;
-  weatherTemplateBody2: string;
-  weatherTemplateBody3: string;
-  weatherTemplateBody4: string;
-  weatherTemplateBody5: string;
-  weatherTemplateBody6: string;
-  weatherTemplateBody7: string;
-  weatherTemplateBody8: string;
-  // Formatted template current weather info
-  formattedInternalCurrentData: string;
-  // Formatted Daily Data
-  formattedDailyData: dailyData;
-}
+// interface Global {
+//   statusbarEl: HTMLSpanElement;
+//   statusbarAlertEl: HTMLSpanElement;
+//   formattedSBTemplate1: string;
+//   formattedSBTemplate2: string;
+//   weatherTemplateTitle1: string;
+//   weatherTemplateTitle2: string;
+//   weatherTemplateTitle3: string;
+//   weatherTemplateTitle4: string;
+//   weatherTemplateTitle5: string;
+//   weatherTemplateTitle6: string;
+//   weatherTemplateTitle7: string;
+//   weatherTemplateTitle8: string;
+//   // Formatted template body strings
+//   weatherTemplateBody1: string;
+//   weatherTemplateBody2: string;
+//   weatherTemplateBody3: string;
+//   weatherTemplateBody4: string;
+//   weatherTemplateBody5: string;
+//   weatherTemplateBody6: string;
+//   weatherTemplateBody7: string;
+//   weatherTemplateBody8: string;
+//   // Formatted template current weather info
+//   formattedInternalCurrentData: string;
+//   // Formatted Daily Data
+//   formattedDailyData: dailyData;
+// }
 
 // Statusbar elements
 let statusbarEl: HTMLSpanElement;
@@ -210,12 +210,12 @@ let formattedInternalCurrentData: string;
 // Formatted template current weather info
 let formattedDailyData: any;
 // Minimum required settings flag (true = API Key, Location, and Exclude folder set)
-let dataSet: Boolean;
+let dataSet: boolean;
 
 //  ╭──────────────────────────────────────────────────────────────────────────────╮
 //  │                             ● Class VCWPlugin ●                              │
 //  │                                                                              │
-//  │                      • Visual Crossing Weather Plugin •                      │
+//  │                     Visual Crossing Weather Plugin                     │
 //  ╰──────────────────────────────────────────────────────────────────────────────╯
 export default class VCWPlugin extends Plugin {
 
@@ -231,21 +231,22 @@ export default class VCWPlugin extends Plugin {
     // Set settings data set flag = true;
     dataSet = true;
 
-    // • Load plugin settings • 
+    // Load plugin settings
     await this.loadSettings();
 
-    // • Add settings tab so users can configure this plugin • 
+    // Add settings tab so users can configure this plugin
     this.addSettingTab(new VCWSettingsTab(this.app, this));
 
-    // • Ensure settings are configured, inform user if required items are not set. • 
+    // Ensure settings are configured, inform user if required items are not set.
     if (this.settings.apikey.length === 0 || this.settings.location_one.length === 0 || this.settings.excludeFolder.length === 0) {
       new Notice('Visual Crossing Weather plugin\nis missing required settings.\nPlease configure the plugins settings.\n\nThen restart Obsidian to apply changes', 8000);
       dataSet = false;
     };
 
-    // • Create icon in the left ribbon bar • 
+    // Create icon in the left ribbon bar
     if (dataSet) {
-      const ribbonIconEl = this.addRibbonIcon('thermometer-snowflake', 'Visual Crossing Weather', async (evt: MouseEvent) => {
+      // const ribbonIconEl = this.addRibbonIcon('thermometer-snowflake', 'Visual Crossing Weather', async (evt: MouseEvent) => {
+      this.addRibbonIcon('thermometer-snowflake', 'Visual Crossing Weather', async (evt: MouseEvent) => {
         // Called when the user clicks the icon.
         //"insert-vcweather-templates"
         let view = this.app.workspace.getActiveViewOfType(MarkdownView);
@@ -262,7 +263,7 @@ export default class VCWPlugin extends Plugin {
         };
       });
 
-      // • Adds plugins statusbar item to display weather information. Does not work on mobile apps. • 
+      // Adds plugins statusbar item to display weather information. Does not work on mobile apps.
       // Statusbar weather alert
       statusbarAlertEl = this.addStatusBarItem().createEl('span');
       statusbarAlertEl.setText("");
@@ -354,7 +355,7 @@ export default class VCWPlugin extends Plugin {
       statusbarEl.addClass("statusbar-alert-vc");
       statusbarEl.addEventListener("click", () => { openSettings(this.app); });
       async function openSettings(app: any): Promise<void> {
-        const setting = (app as any).setting;
+        const setting = app.setting;
         await setting.open();
         setting.openTabById('visual-crossing-weather');
       }
@@ -365,7 +366,7 @@ export default class VCWPlugin extends Plugin {
       this.registerEvent(this.app.workspace.on('file-open', async (file) => {
         if (file) {
           //console.log('File Opened...');
-          await new Promise(r => setTimeout(r, 500));  // Delay to let Templater do its thing
+          await new Promise(r => window.setTimeout(r, 500));  // Delay to let Templater do its thing
           await this.replaceTemplateStrings(weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8);
           await this.replaceDailyTemplateStrings();
         };
@@ -392,7 +393,7 @@ export default class VCWPlugin extends Plugin {
         //await this.replaceDailyTemplateStrings();
       }));
 
-      // • Get current weather for all given locations • 
+      // Get current weather for all given locations
       const getResults = new UpdateWeather();
 
       statusbarAlertEl.setText("");
@@ -520,7 +521,7 @@ export default class VCWPlugin extends Plugin {
       };
 
 
-      // • Get formatted results for all existing locations and get all formatted templates • 
+      // Get formatted results for all existing locations and get all formatted templates
       // Formatted results for location one (primary - Must Exist)
       l1formattedresults = getResults.processWeatherData(l1results, this.settings.units);
 
@@ -552,7 +553,7 @@ export default class VCWPlugin extends Plugin {
         l5formattedresults = l1formattedresults;
       };
 
-      // Get formatted strings for all weather templates 
+      // Get formatted strings for all weather templates
       const getFormatted = new FormatTemplates;
 
       let templates = [this.settings.weatherTemplate1, this.settings.weatherTemplate2, this.settings.weatherTemplate3, this.settings.weatherTemplate4, this.settings.weatherTemplate5, this.settings.weatherTemplate6, this.settings.weatherTemplate7, this.settings.weatherTemplate8];
@@ -585,7 +586,7 @@ export default class VCWPlugin extends Plugin {
       weatherTemplateBody7 = templateBodies[6];
       weatherTemplateBody8 = templateBodies[7];
 
-      // Get formatted strings for statusbar from templates 
+      // Get formatted strings for statusbar from templates
       formattedSBTemplate1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate1SB);
       let sbWithDate = await this.setCurrentDateTime(formattedSBTemplate1);
       formattedSBTemplate2 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate2SB);
@@ -595,15 +596,15 @@ export default class VCWPlugin extends Plugin {
         statusbarEl.setText('');
       };
 
-      // Get formatted string for display current weather modal 
+      // Get formatted string for display current weather modal
       formattedInternalCurrentData = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, internalCurrentData);
 
-      // Replace template strings and update DIV's 
+      // Replace template strings and update DIV's
       this.replaceTemplateStrings(weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8);
 
-      // • Initialize all weather update intervals • 
+      // Initialize all weather update intervals
 
-      // Initialize timer for DIV's Update 
+      // Initialize timer for DIV's Update
       this.registerInterval(window.setInterval(async () => {
         // Update weather DIV's
         const view = this.app.workspace.getActiveViewOfType(MarkdownView);
@@ -625,7 +626,7 @@ export default class VCWPlugin extends Plugin {
             let classNames = ['weather_current_1', 'weather_current_2', 'weather_current_3', 'weather_current_4', 'weather_current_5', 'weather_current_6', 'weather_current_7', 'weather_current_8'];
             let templateBodies = [weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8];
             for (let i = 0; i < 8; i++) {
-              if (document.getElementsByClassName(classNames[i]).length > 0) {
+              if (activeDocument.getElementsByClassName(classNames[i]).length > 0) {
                 if (editor.contains(`class="${classNames[i]}">`)) {
                   let withDate = await this.setCurrentDateTime(templateBodies[i]);
                   let idxStart = editor.indexOf(classNames[i]) + 19;
@@ -641,7 +642,7 @@ export default class VCWPlugin extends Plugin {
         };
       }, 1 * 1000));
 
-      // Initialize timer for statusbar cycle 
+      // Initialize timer for statusbar cycle
       let sbCycled = false;
       this.registerInterval(window.setInterval(async () => {
         statusbarAlertEl.setText("");
@@ -662,21 +663,21 @@ export default class VCWPlugin extends Plugin {
           statusbarAlertEl.setText('');
         };
 
-        // Cycle statusbar 
+        // Cycle statusbar
         if (this.settings.statusbarActive) {
           if (this.settings.statusbarCycle) {
             if (sbCycled) {
               let sb1WithDate = await this.setCurrentDateTime(formattedSBTemplate1);
-              statusbarEl.setText(sb1WithDate as string);
+              statusbarEl.setText(sb1WithDate);
               sbCycled = false;
             } else {
               let sb2WithDate = await this.setCurrentDateTime(formattedSBTemplate2);
-              statusbarEl.setText(sb2WithDate as string);
+              statusbarEl.setText(sb2WithDate);
               sbCycled = true;
             };
           } else {
             let sb1WithDate = await this.setCurrentDateTime(formattedSBTemplate1);
-            statusbarEl.setText(sb1WithDate as string);
+            statusbarEl.setText(sb1WithDate);
           };
         } else {
           statusbarEl.setText('');
@@ -684,44 +685,44 @@ export default class VCWPlugin extends Plugin {
         };
       }, 30 * 1000));
 
-      // Initialize and process 10 minutes intervals 
+      // Initialize and process 10 minutes intervals
       this.registerInterval(window.setInterval(async () => {
         if (this.settings.updateFrequency == "10") {
           this.updateWeather(10);
         }
       }, 10 * 60 * 1000));
 
-      // Initialize and process 15 minutes intervals 
+      // Initialize and process 15 minutes intervals
       this.registerInterval(window.setInterval(async () => {
         if (this.settings.updateFrequency == "15") {
           this.updateWeather(15);
         }
       }, 15 * 60 * 1000));
 
-      // Initialize and process 20 minutes intervals 
+      // Initialize and process 20 minutes intervals
       this.registerInterval(window.setInterval(async () => {
         if (this.settings.updateFrequency == "20") {
           this.updateWeather(20);
         }
       }, 20 * 60 * 1000));
 
-      // Initialize and process 30 minutes intervals 
+      // Initialize and process 30 minutes intervals
       this.registerInterval(window.setInterval(async () => {
         if (this.settings.updateFrequency == "30") {
           this.updateWeather(30);
         }
       }, 30 * 60 * 1000));
 
-      // Initialize and process 60 minutes intervals 
+      // Initialize and process 60 minutes intervals
       this.registerInterval(window.setInterval(async () => {
         if (this.settings.updateFrequency == "60") {
           this.updateWeather(60);
         }
       }, 60 * 60 * 1000));
 
-      // • Add insert template commands • 
+      // Add insert template commands
 
-      // Insert template one 
+      // Insert template one
       this.addCommand({
         id: 'insert-vcweather-template-one',
         name: `Insert '${weatherTemplateTitle1}' template`,
@@ -732,7 +733,7 @@ export default class VCWPlugin extends Plugin {
             if (!checking) {
               editor.replaceSelection("%weather1%");
               this.replaceTemplateStrings(weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8);
-              markdownView.save;
+              markdownView.save(false);
             };
             return true;
           };
@@ -740,7 +741,7 @@ export default class VCWPlugin extends Plugin {
         }
       });
 
-      // Insert template two 
+      // Insert template two
       this.addCommand({
         id: 'insert-vcweather-template-two',
         name: `Insert '${weatherTemplateTitle2}' template`,
@@ -751,7 +752,7 @@ export default class VCWPlugin extends Plugin {
             if (!checking) {
               editor.replaceSelection("%weather2%");
               this.replaceTemplateStrings(weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8);
-              markdownView.save;
+              markdownView.save(false);
             };
             return true;
           };
@@ -759,7 +760,7 @@ export default class VCWPlugin extends Plugin {
         }
       });
 
-      // Insert template three 
+      // Insert template three
       this.addCommand({
         id: 'insert-vcweather-template-three',
         name: `Insert '${weatherTemplateTitle3}' template`,
@@ -770,7 +771,7 @@ export default class VCWPlugin extends Plugin {
             if (!checking) {
               editor.replaceSelection("%weather3%");
               this.replaceTemplateStrings(weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8);
-              markdownView.save;
+              markdownView.save(false);
             };
             return true;
           };
@@ -778,7 +779,7 @@ export default class VCWPlugin extends Plugin {
         }
       });
 
-      // Insert template four 
+      // Insert template four
       this.addCommand({
         id: 'insert-vcweather-template-four',
         name: `Insert '${weatherTemplateTitle4}' template`,
@@ -789,7 +790,7 @@ export default class VCWPlugin extends Plugin {
             if (!checking) {
               editor.replaceSelection("%weather4%");
               this.replaceTemplateStrings(weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8);
-              markdownView.save;
+              markdownView.save(false);
             };
             return true;
           };
@@ -797,7 +798,7 @@ export default class VCWPlugin extends Plugin {
         }
       });
 
-      // Insert template five 
+      // Insert template five
       this.addCommand({
         id: 'insert-vcweather-template-five',
         name: `Insert '${weatherTemplateTitle5}' template`,
@@ -808,7 +809,7 @@ export default class VCWPlugin extends Plugin {
             if (!checking) {
               editor.replaceSelection("%weather5%");
               this.replaceTemplateStrings(weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8);
-              markdownView.save;
+              markdownView.save(false);
             };
             return true;
           };
@@ -816,7 +817,7 @@ export default class VCWPlugin extends Plugin {
         }
       });
 
-      // Insert template six 
+      // Insert template six
       this.addCommand({
         id: 'insert-vcweather-template-six',
         name: `Insert '${weatherTemplateTitle6}' template`,
@@ -827,7 +828,7 @@ export default class VCWPlugin extends Plugin {
             if (!checking) {
               editor.replaceSelection("%weather6%");
               this.replaceTemplateStrings(weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8);
-              markdownView.save;
+              markdownView.save(false);
             };
             return true;
           };
@@ -835,7 +836,7 @@ export default class VCWPlugin extends Plugin {
         }
       });
 
-      // Insert template seven 
+      // Insert template seven
       this.addCommand({
         id: 'insert-vcweather-template-seven',
         name: `Insert '${weatherTemplateTitle7}' template`,
@@ -846,7 +847,7 @@ export default class VCWPlugin extends Plugin {
             if (!checking) {
               editor.replaceSelection("%weather7%");
               this.replaceTemplateStrings(weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8);
-              markdownView.save;
+              markdownView.save(false);
             };
             return true;
           };
@@ -854,7 +855,7 @@ export default class VCWPlugin extends Plugin {
         }
       });
 
-      // Insert template eight 
+      // Insert template eight
       this.addCommand({
         id: 'insert-vcweather-template-eight',
         name: `Insert '${weatherTemplateTitle8}' template`,
@@ -865,7 +866,7 @@ export default class VCWPlugin extends Plugin {
             if (!checking) {
               editor.replaceSelection("%weather8%");
               this.replaceTemplateStrings(weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8);
-              markdownView.save;
+              markdownView.save(false);
             };
             return true;
           };
@@ -873,7 +874,7 @@ export default class VCWPlugin extends Plugin {
         }
       });
 
-      // Insert template from modal picker 
+      // Insert template from modal picker
       this.addCommand({
         id: 'insert-vcweather-templates',
         name: `Insert template from picker with preview`,
@@ -891,7 +892,7 @@ export default class VCWPlugin extends Plugin {
         }
       });
 
-      // View current weather information 
+      // View current weather information
       this.addCommand({
         id: 'view-current-weather',
         name: 'View current weather information',
@@ -900,7 +901,7 @@ export default class VCWPlugin extends Plugin {
         },
       });
 
-      // Replace template strings 
+      // Replace template strings
       this.addCommand({
         id: 'replace-vcweather-template-strings',
         name: `Replace template strings`,
@@ -919,22 +920,22 @@ export default class VCWPlugin extends Plugin {
 
   };
 
-  // • Plugin is being unloaded, perform any needed cleanup • 
+  // Plugin is being unloaded, perform any needed cleanup
   onunload() {
 
   };
 
-  // • Load this plugins settings • 
+  // Load this plugins settings
   async loadSettings() {
     this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
   };
 
-  // • Save this plugins settings • 
+  // Save this plugins settings
   async saveSettings() {
     await this.saveData(this.settings);
   };
 
-  // • Update this plugins settings • 
+  // Update this plugins settings
   async updatedSettings() {
     const getFormatted = new FormatTemplates;
     formattedSBTemplate1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate1SB);
@@ -964,7 +965,7 @@ export default class VCWPlugin extends Plugin {
       statusbarAlertEl.setText('');
     };
 
-    // Get formatted strings for all weather templates 
+    // Get formatted strings for all weather templates
     let templates = [this.settings.weatherTemplate1, this.settings.weatherTemplate2, this.settings.weatherTemplate3, this.settings.weatherTemplate4, this.settings.weatherTemplate5, this.settings.weatherTemplate6, this.settings.weatherTemplate7, this.settings.weatherTemplate8];
     let templateBodies = [weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8];
     let templateTitles = [weatherTemplateTitle1, weatherTemplateTitle2, weatherTemplateTitle3, weatherTemplateTitle4, weatherTemplateTitle5, weatherTemplateTitle6, weatherTemplateTitle7, weatherTemplateTitle8];
@@ -996,12 +997,12 @@ export default class VCWPlugin extends Plugin {
     weatherTemplateBody8 = templateBodies[7];
   };
 
-  // • Handle external changes to data.json settings file • 
+  // Handle external changes to data.json settings file
   async onExternalSettingsChange() {
     await this.loadSettings();
   };
 
-  // • Update weather • 
+  // Update weather
   async updateWeather(delayTime: number) {
     const getResults = new UpdateWeather();
     const getFormatted = new FormatTemplates;
@@ -1089,7 +1090,7 @@ export default class VCWPlugin extends Plugin {
       };
     };
 
-    // Get formatted strings for all weather templates 
+    // Get formatted strings for all weather templates
     let templates = [this.settings.weatherTemplate1, this.settings.weatherTemplate2, this.settings.weatherTemplate3, this.settings.weatherTemplate4, this.settings.weatherTemplate5, this.settings.weatherTemplate6, this.settings.weatherTemplate7, this.settings.weatherTemplate8];
     let templateBodies = [weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8];
     let templateTitles = [weatherTemplateTitle1, weatherTemplateTitle2, weatherTemplateTitle3, weatherTemplateTitle4, weatherTemplateTitle5, weatherTemplateTitle6, weatherTemplateTitle7, weatherTemplateTitle8];
@@ -1120,19 +1121,19 @@ export default class VCWPlugin extends Plugin {
     weatherTemplateBody7 = templateBodies[6];
     weatherTemplateBody8 = templateBodies[7];
 
-    // Replace template strings and update DIV's 
+    // Replace template strings and update DIV's
     this.replaceTemplateStrings(weatherTemplateBody1, weatherTemplateBody2, weatherTemplateBody3, weatherTemplateBody4, weatherTemplateBody5, weatherTemplateBody6, weatherTemplateBody7, weatherTemplateBody8);
 
-    // Get formatted strings for statusbar from templates 
+    // Get formatted strings for statusbar from templates
     formattedSBTemplate1 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate1SB);
     formattedSBTemplate2 = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, this.settings.weatherTemplate2SB);
 
-    // Get formatted string for display current weather modal 
+    // Get formatted string for display current weather modal
     formattedInternalCurrentData = getFormatted.formatTemplate(l1formattedresults, l2formattedresults, l3formattedresults, l4formattedresults, l5formattedresults, internalCurrentData);
 
   };
 
-  // • Replace current time macros • 
+  // Replace current time macros
   async setCurrentDateTime(template: string) {
     // | Macro               | Description                            | Replaced With Example |
     // | ------------------- | -------------------------------------- | --------------------- |
@@ -1191,7 +1192,7 @@ export default class VCWPlugin extends Plugin {
     return template;
   };
 
-  // • replaceTemplateStrings - Replace any template strings in current file • 
+  // replaceTemplateStrings - Replace any template strings in current file
   async replaceTemplateStrings(weatherTemplateBody1: string, weatherTemplateBody2: string, weatherTemplateBody3: string, weatherTemplateBody4: string, weatherTemplateBody5: string, weatherTemplateBody6: string, weatherTemplateBody7: string, weatherTemplateBody8: string) {
     const view = this.app.workspace.getActiveViewOfType(MarkdownView);
     if (!view) return;
@@ -1229,7 +1230,7 @@ export default class VCWPlugin extends Plugin {
     }
   };
 
-  // • replaceDailyTemplateStrings - Replace any template strings in current file • 
+  // replaceDailyTemplateStrings - Replace any template strings in current file
   async replaceDailyTemplateStrings() {
     const view = this.app.workspace.getActiveViewOfType(MarkdownView);
     if (!view) return;
@@ -1238,7 +1239,7 @@ export default class VCWPlugin extends Plugin {
     const filePath = file.path;
 
     const fname = file.basename;
-    if (/\d{4}-\d{2}-\d{2}/.test(fname as string)) {
+    if (/\d{4}-\d{2}-\d{2}/.test(fname)) {
 
       formattedDailyData = {} as any;
       for (let i = 0; i < 15; i++) {
@@ -1253,7 +1254,7 @@ export default class VCWPlugin extends Plugin {
         for (let i = 1; i < 15; i++) {
           if (fname.startsWith(window.moment().subtract(i, "days").format("YYYY-MM-DD"))) {
 
-            // • Get weather for daily notes • 
+            // Get weather for daily notes
             const getResults = new UpdateWeather();
             let dailyNoteResult = await getResults.getDailyNoteWeather(
               this.settings.apikey,
@@ -1295,7 +1296,7 @@ export default class VCWPlugin extends Plugin {
       if (withDate.contains(macros[i])) {
         let variable = macros[i];
         let expression = `${variable}`;
-        var re = new RegExp(expression, 'g');
+        let re = new RegExp(expression, 'g');
         withDate = withDate.replace(re, macrosExpanded[i]);
       };
     };

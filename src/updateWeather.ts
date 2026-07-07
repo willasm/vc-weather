@@ -1,5 +1,5 @@
 import { VCWSettings } from './settings';
-import * as testData from './testData.json';
+//import * as testData from './testData.json'; // Uncomment to use test data
 import { requestUrl } from 'obsidian';
 
 //  ╭──────────────────────────────────────────────────────────────────────────────╮
@@ -45,7 +45,7 @@ export default class UpdateWeather {
     }).then(response => {
       ;
       if (response.status != 200) {
-        throw response; //check the http response code and if isn't ok then throw the response as an error
+        throw response.status; //check the http response code and if isn't ok then throw the response as an error
       };
 
       return response.json; // Return the result as JSON
@@ -55,7 +55,6 @@ export default class UpdateWeather {
       returnData = response;
 
     }).catch((errorResponse) => {
-      console.error(errorResponse);
       if (errorResponse.status == 400) {
         new Notification("VC Weather: [BAD_REQUEST] Your requests is invalid in some way (invalid dates, bad location parameter etc).");
         console.error("VCW PLUGIN: [BAD_REQUEST] Your requests is invalid in some way (invalid dates, bad location parameter etc).");
@@ -68,6 +67,8 @@ export default class UpdateWeather {
       } else if (errorResponse.status == 500) {
         new Notification("VC Weather: [INTERNAL_SERVER_ERROR] Visual Crossing servers returned an unexpected error.");
         console.error("VCW PLUGIN: [INTERNAL_SERVER_ERROR] Visual Crossing servers returned an unexpected error.");
+      } else {
+        console.error(errorResponse);
       };
       if (errorResponse.text) { //additional error information
         errorResponse.text().then((errorMessage: any) => {
@@ -118,7 +119,7 @@ export default class UpdateWeather {
       }).then(response => {
         ;
         if (response.status != 200) {
-          throw response; //check the http response code and if isn't ok then throw the response as an error
+          throw response.status; //check the http response code and if isn't ok then throw the response as an error
         };
 
         return response.json;// Return the result as JSON
@@ -128,7 +129,6 @@ export default class UpdateWeather {
         returnData = response;
 
       }).catch((errorResponse) => {
-        console.error(errorResponse);
         if (errorResponse.status == 400) {
           new Notification("VC Weather: [BAD_REQUEST] Your requests is invalid in some way (invalid dates, bad location parameter etc).");
           console.error("VCW PLUGIN: [BAD_REQUEST] Your requests is invalid in some way (invalid dates, bad location parameter etc).");
@@ -141,6 +141,8 @@ export default class UpdateWeather {
         } else if (errorResponse.status == 500) {
           new Notification("VC Weather: [INTERNAL_SERVER_ERROR] Visual Crossing servers returned an unexpected error.");
           console.error("VCW PLUGIN: [INTERNAL_SERVER_ERROR] Visual Crossing servers returned an unexpected error.");
+        } else {
+          console.error(errorResponse);
         }
         if (errorResponse.text) { //additional error information
           errorResponse.text().then((errorMessage: any) => {
@@ -174,7 +176,7 @@ export default class UpdateWeather {
       precipTypeSt = response.days[0].preciptype[0];
     };
     // wind speed
-    let windSpeed = Math.round(response.days[0].windspeed);
+    let windSpeed;
     if (units === "metric") {
       windSpeed = Math.round(response.days[0].windspeed * 0.27777778);
     } else {

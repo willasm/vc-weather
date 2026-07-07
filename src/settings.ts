@@ -45,20 +45,20 @@ export const DEFAULT_SETTINGS: VCWSettings = {
   statusbarAlerts: true,
   weatherTemplate1SB: "🔸%address%: %dow2-now% %month3-now% %date1-now% (today)🔸High: %tempmax-today%° Low: %tempmin-today%°🔸Currently: %conditions%🔸Temp: %temp%°🔸Feels Like: %feelslike%°🔸",
   weatherTemplate2SB: "🔸%address%: %dow2-in1day% %month3-in1day% %date1-in1day% (tomorrow)🔸High: %tempmax-in1day%° Low: %tempmin-in1day%°🔸Clouds: %cloudcover-in1day%🔸PoP: %precipprob-in1day% (%preciptype-in1day%)🔸",
-  weatherTemplate1: "1) Short one liner\n%conditions% • Current Temp: %temp%° • Feels Like: %feelslike%°\n",
-  weatherTemplate2: "2) More detailed\n%address%: %dow2-now% %month4-now% %date1-now% - %hours12-now%:%mins-now% %ampm2-now%\nProbability of precipitation: %precipprob% • (%preciptype%)\nCurrent Temp: %temp%°C • Feels Like: %feelslike%°C\nWind: %windspeed% km/h from the %winddirstr% with gusts up to %windgust% km/h\nSunrise: %sunrise% • Sunset: %sunset%\n",
-  weatherTemplate3: "3) Historical DIV\n<img src=\"%iconurl%\" />&nbsp;%month4-now% %date1-now% %year1-now% • %hours12-now%:%mins-now% %ampm2-now% • %conditions%\n&nbsp;Recorded Temp: %temp% • Felt like: %feelslike%\n&nbsp;Wind: %windspeed% km/h from the %winddirstr% with gusts up to %windgust% km/h\n&nbsp;Sunrise: %sunrise% • Sunset: %sunset%\n",
-  weatherTemplate4: "4) Current DIV\n<img src=\"%iconurl%\"  />&nbsp;%month4-now% %date1-now% %year1-now% • %hours12-now%:%mins-now% %ampm2-now% • %conditions%\n&nbsp;Current Temp: %temp% • Feels like: %feelslike%\n&nbsp;Wind: %windspeed% km/h from the %winddirstr% with gusts up to %windgust% km/h\n&nbsp;Sunrise: %sunrise% • Sunset: %sunset%\n",
+  weatherTemplate1: "1) Short one liner\n%conditions%Current Temp: %temp%°Feels Like: %feelslike%°\n",
+  weatherTemplate2: "2) More detailed\n%address%: %dow2-now% %month4-now% %date1-now% - %hours12-now%:%mins-now% %ampm2-now%\nProbability of precipitation: %precipprob%(%preciptype%)\nCurrent Temp: %temp%°CFeels Like: %feelslike%°C\nWind: %windspeed% km/h from the %winddirstr% with gusts up to %windgust% km/h\nSunrise: %sunrise%Sunset: %sunset%\n",
+  weatherTemplate3: "3) Historical DIV\n<img src=\"%iconurl%\" />&nbsp;%month4-now% %date1-now% %year1-now%%hours12-now%:%mins-now% %ampm2-now%%conditions%\n&nbsp;Recorded Temp: %temp%Felt like: %feelslike%\n&nbsp;Wind: %windspeed% km/h from the %winddirstr% with gusts up to %windgust% km/h\n&nbsp;Sunrise: %sunrise%Sunset: %sunset%\n",
+  weatherTemplate4: "4) Current DIV\n<img src=\"%iconurl%\"  />&nbsp;%month4-now% %date1-now% %year1-now%%hours12-now%:%mins-now% %ampm2-now%%conditions%\n&nbsp;Current Temp: %temp%Feels like: %feelslike%\n&nbsp;Wind: %windspeed% km/h from the %winddirstr% with gusts up to %windgust% km/h\n&nbsp;Sunrise: %sunrise%Sunset: %sunset%\n",
   weatherTemplate5: "5) Today with next 3 days in a table\n|         |  Today<br>%month3-today% %date1-today%   |  %dow1-in1day%<br>%month3-in1day% %date1-in1day%  |  %dow1-in2days%<br>%month3-in2days% %date1-in2days%  |  %dow1-in3days%<br>%month3-in3days% %date1-in3days%  |\n| ------- | :---------------: | :---------------: | :---------------: | :---------------: |\n| High    | **%tempmax-today%°C**          | **%tempmax-in1day%°C**          | **%tempmax-in2days%°C**          | **%tempmax-in3days%°C**          |\n| Low     | **%tempmin-today%°C**          | **%tempmin-in1day%°C**          | **%tempmin-in2days%°C**          | **%tempmin-in3days%°C**          |\n| Skies   | %conditions-today%             | %conditions-in1day% | %conditions-in2days%           | %conditions-in3days%           |\n| PoP     | %precipprob-today%                | %precipprob-in1day%               | %precipprob-in2days%               | %precipprob-in2days%               |\n",
-  weatherTemplate6: "6) Weather in a block quote\n<blockquote class=\"quote-vc\"><br>\n%address%: %dow2-now% %month4-now% %date1-now% - %hours12-now%:%mins-now% %ampm2-now%<br>\nProbability of precipitation: %precipprob% • (%preciptype%)<br>\nCurrent Temp: %temp%°C • Feels Like: %feelslike%°C<br>\nWind: %windspeed% km/h from the %winddirstr% with gusts up to %windgust% km/h<br>\nSunrise: %sunrise% • Sunset: %sunset%<br><br>\n</blockquote>\n",
-  weatherTemplate7: "7) Weather in a callout\n> [!weather-vc]- %conditions% • Current Temp: %temp%° • Feels Like: %feelslike%°\n> \n> %address%: %dow2-now% %month4-now% %date1-now% - %hours12-now%:%mins-now% %ampm2-now%\n> Probability of precipitation: %precipprob% • (%preciptype%)\n> Current Temp: %temp%°C • Feels Like: %feelslike%°C\n> Wind: %windspeed% km/h from the %winddirstr% with gusts up to %windgust% km/h\n> Sunrise: %sunrise% • Sunset: %sunset%\n",
+  weatherTemplate6: "6) Weather in a block quote\n<blockquote class=\"quote-vc\"><br>\n%address%: %dow2-now% %month4-now% %date1-now% - %hours12-now%:%mins-now% %ampm2-now%<br>\nProbability of precipitation: %precipprob%(%preciptype%)<br>\nCurrent Temp: %temp%°CFeels Like: %feelslike%°C<br>\nWind: %windspeed% km/h from the %winddirstr% with gusts up to %windgust% km/h<br>\nSunrise: %sunrise%Sunset: %sunset%<br><br>\n</blockquote>\n",
+  weatherTemplate7: "7) Weather in a callout\n> [!weather-vc]- %conditions%Current Temp: %temp%°Feels Like: %feelslike%°\n> \n> %address%: %dow2-now% %month4-now% %date1-now% - %hours12-now%:%mins-now% %ampm2-now%\n> Probability of precipitation: %precipprob%(%preciptype%)\n> Current Temp: %temp%°CFeels Like: %feelslike%°C\n> Wind: %windspeed% km/h from the %winddirstr% with gusts up to %windgust% km/h\n> Sunrise: %sunrise%Sunset: %sunset%\n",
   weatherTemplate8: "8) Weather for the next week\n<div class=\"container-vc\">\n   <div class=\"child-title\">%resolvedaddress%</div>\n  <div class=\"child-wide-day\">Today</div>\n  <div class=\"child-wide-day\">%dow1-in1day%</div>\n  <div class=\"child-wide-day\">%dow1-in2days%</div>\n  <div class=\"child-wide-day\">%dow1-in3days%</div>\n  <div class=\"child-wide-day\">%dow1-in4days%</div>\n  <div class=\"child-wide-day\">%dow1-in5days%</div>\n  <div class=\"child-wide-day\">%dow1-in6days%</div>\n  <div class=\"child-wide-date\">%month3-today% %date1-today%</div>\n  <div class=\"child-wide-date\">%month3-in1day% %date1-in1day%</div>\n  <div class=\"child-wide-date\">%month3-in2days% %date1-in2days%</div>\n  <div class=\"child-wide-date\">%month3-in3days% %date1-in3days%</div>\n  <div class=\"child-wide-date\">%month3-in4days% %date1-in4days%</div>\n  <div class=\"child-wide-date\">%month3-in5days% %date1-in5days%</div>\n  <div class=\"child-wide-date\">%month3-in6days% %date1-in6days%</div>\n  <div class=\"child-wide-icon\"><img class=\"%icon-today%\" src='data:image/png;base64,R0lGODlhFAAUAIAAAP///wAAACH5BAEAAAAALAAAAAAUABQAAAIRhI+py+0Po5y02ouz3rz7rxUAOw=='/></div>\n  <div class=\"child-wide-icon\"><img class=\"%icon-in1day%\" src='data:image/png;base64,R0lGODlhFAAUAIAAAP///wAAACH5BAEAAAAALAAAAAAUABQAAAIRhI+py+0Po5y02ouz3rz7rxUAOw=='/></div>\n  <div class=\"child-wide-icon\"><img class=\"%icon-in2days%\" src='data:image/png;base64,R0lGODlhFAAUAIAAAP///wAAACH5BAEAAAAALAAAAAAUABQAAAIRhI+py+0Po5y02ouz3rz7rxUAOw=='/></div>\n  <div class=\"child-wide-icon\"><img class=\"%icon-in3days%\" src='data:image/png;base64,R0lGODlhFAAUAIAAAP///wAAACH5BAEAAAAALAAAAAAUABQAAAIRhI+py+0Po5y02ouz3rz7rxUAOw=='/></div>\n  <div class=\"child-wide-icon\"><img class=\"%icon-in4days%\" src='data:image/png;base64,R0lGODlhFAAUAIAAAP///wAAACH5BAEAAAAALAAAAAAUABQAAAIRhI+py+0Po5y02ouz3rz7rxUAOw=='/></div>\n  <div class=\"child-wide-icon\"><img class=\"%icon-in5days%\" src='data:image/png;base64,R0lGODlhFAAUAIAAAP///wAAACH5BAEAAAAALAAAAAAUABQAAAIRhI+py+0Po5y02ouz3rz7rxUAOw=='/></div>\n  <div class=\"child-wide-icon\"><img class=\"%icon-in6days%\" src='data:image/png;base64,R0lGODlhFAAUAIAAAP///wAAACH5BAEAAAAALAAAAAAUABQAAAIRhI+py+0Po5y02ouz3rz7rxUAOw=='/></div>\n  <div class=\"child-wide-temp\">%tempmax-today%°</div>\n  <div class=\"child-wide-temp\">%tempmax-in1day%°</div>\n  <div class=\"child-wide-temp\">%tempmax-in2days%°</div>\n  <div class=\"child-wide-temp\">%tempmax-in3days%°</div>\n  <div class=\"child-wide-temp\">%tempmax-in4days%°</div>\n  <div class=\"child-wide-temp\">%tempmax-in5days%°</div>\n  <div class=\"child-wide-temp\">%tempmax-in6days%°</div>\n  <div class=\"child-wide-night\">Night %tempmin-today%°</div>\n  <div class=\"child-wide-night\">Night %tempmin-in1day%°</div>\n  <div class=\"child-wide-night\">Night %tempmin-in2days%°</div>\n  <div class=\"child-wide-night\">Night %tempmin-in3days%°</div>\n  <div class=\"child-wide-night\">Night %tempmin-in4days%°</div>\n  <div class=\"child-wide-night\">Night %tempmin-in5days%°</div>\n  <div class=\"child-wide-night\">Night %tempmin-in6days%°</div>\n  <div class=\"child-narrow-left\"><img class=\"cloudy-small\" src='data:image/png;base64,R0lGODlhFAAUAIAAAP///wAAACH5BAEAAAAALAAAAAAUABQAAAIRhI+py+0Po5y02ouz3rz7rxUAOw=='/></div>\n  <div class=\"child-narrow-right\">%cloudcover-today%</div>\n  <div class=\"child-narrow-left\"><img class=\"cloudy-small\" src='data:image/png;base64,R0lGODlhFAAUAIAAAP///wAAACH5BAEAAAAALAAAAAAUABQAAAIRhI+py+0Po5y02ouz3rz7rxUAOw=='/></div>\n  <div class=\"child-narrow-right\">%cloudcover-in1day%</div>\n  <div class=\"child-narrow-left\"><img class=\"cloudy-small\" src='data:image/png;base64,R0lGODlhFAAUAIAAAP///wAAACH5BAEAAAAALAAAAAAUABQAAAIRhI+py+0Po5y02ouz3rz7rxUAOw=='/></div>\n  <div class=\"child-narrow-right\">%cloudcover-in2days%</div>\n  <div class=\"child-narrow-left\"><img class=\"cloudy-small\" src='data:image/png;base64,R0lGODlhFAAUAIAAAP///wAAACH5BAEAAAAALAAAAAAUABQAAAIRhI+py+0Po5y02ouz3rz7rxUAOw=='/></div>\n  <div class=\"child-narrow-right\">%cloudcover-in3days%</div>\n  <div class=\"child-narrow-left\"><img class=\"cloudy-small\" src='data:image/png;base64,R0lGODlhFAAUAIAAAP///wAAACH5BAEAAAAALAAAAAAUABQAAAIRhI+py+0Po5y02ouz3rz7rxUAOw=='/></div>\n  <div class=\"child-narrow-right\">%cloudcover-in4days%</div>\n  <div class=\"child-narrow-left\"><img class=\"cloudy-small\" src='data:image/png;base64,R0lGODlhFAAUAIAAAP///wAAACH5BAEAAAAALAAAAAAUABQAAAIRhI+py+0Po5y02ouz3rz7rxUAOw=='/></div>\n  <div class=\"child-narrow-right\">%cloudcover-in5days%</div>\n  <div class=\"child-narrow-left\"><img class=\"cloudy-small\" src='data:image/png;base64,R0lGODlhFAAUAIAAAP///wAAACH5BAEAAAAALAAAAAAUABQAAAIRhI+py+0Po5y02ouz3rz7rxUAOw=='/></div>\n  <div class=\"child-narrow-right\">%cloudcover-in6days%</div>\n</div>\n",
 };
 
 //  ╭──────────────────────────────────────────────────────────────────────────────╮
 //  │                           ● Class VCWSettingsTab ●                           │
 //  │                                                                              │
-//  │                   • Visual Crossing Weather Settings Tab •                   │
+//  │                  Visual Crossing Weather Settings Tab                  │
 //  ╰──────────────────────────────────────────────────────────────────────────────╯
 export class VCWSettingsTab extends PluginSettingTab {
 
@@ -66,7 +66,7 @@ export class VCWSettingsTab extends PluginSettingTab {
   app: App;
   settings: any;
   // Minimum required settings flag (true = API Key, Location, and Exclude folder set)
-  dataSet: Boolean = true;
+  dataSet: boolean = true;
 
   constructor(app: App, plugin: VCWPlugin) {
     super(app, plugin);
@@ -79,7 +79,7 @@ export class VCWSettingsTab extends PluginSettingTab {
 
     containerEl.empty();
 
-    // • Get vault folders for exclude folder dropdown list • 
+    // Get vault folders for exclude folder dropdown list
     const abstractFiles = this.app.vault.getAllLoadedFiles();
     const folders: TFolder[] = [];
     abstractFiles.forEach(async (folder: TAbstractFile) => {
@@ -87,7 +87,7 @@ export class VCWSettingsTab extends PluginSettingTab {
         folder instanceof TFolder && folder.name.length > 0
       ) {
         folders.push(folder);
-        // If Obsidians default templates folder exists, save it as exclude folder 
+        // If Obsidians default templates folder exists, save it as exclude folder
         if (folder.name.toLowerCase() === 'templates') {
           this.plugin.settings.excludeFolder = folder.name;
           await this.plugin.saveSettings();
@@ -95,15 +95,15 @@ export class VCWSettingsTab extends PluginSettingTab {
       };
     });
 
-    // • Get status of data.json required settings (true = all required settings are defined) • 
+    // Get status of data.json required settings (true = all required settings are defined)
     if ((this.plugin.settings.apikey.length === 0) || (this.plugin.settings.location_one.length === 0) || (this.plugin.settings.excludeFolder.length === 0)) {
-      // If not all required settings are set then no weather updates will occur 
+      // If not all required settings are set then no weather updates will occur
       this.dataSet = false;
     };
 
-    // • VCWSettingsTab - Section API Key • 
+    // VCWSettingsTab - Section API Key
 
-    // API Authentication key (required) 
+    // API Authentication key (required)
     new Setting(containerEl)
       .setName('API key')
       .setDesc('Enter your Visual Crossing API key (required)')
@@ -116,10 +116,10 @@ export class VCWSettingsTab extends PluginSettingTab {
         })
       );
 
-    // • VCWSettingsTab - Section User Locations • 
+    // VCWSettingsTab - Section User Locations
     new Setting(containerEl).setName('Locations - Primary location is required, the others are optional').setHeading();
 
-    // Primary location (Required) 
+    // Primary location (Required)
     new Setting(containerEl)
       .setName('Primary location')
       .setDesc('Address location for which to retrieve weather data (Eg. London,UK), partial address (London) or latitude,longitude (Eg.38.9697,-77.385)')
@@ -132,7 +132,7 @@ export class VCWSettingsTab extends PluginSettingTab {
         })
       );
 
-    // Additional location One (Optional) 
+    // Additional location One (Optional)
     new Setting(containerEl)
       .setName('Additional location')
       .setDesc('Additional city to get weather data for (Optional) Leave blank if not required')
@@ -145,7 +145,7 @@ export class VCWSettingsTab extends PluginSettingTab {
         })
       );
 
-    // Additional location Two (Optional) 
+    // Additional location Two (Optional)
     new Setting(containerEl)
       .setName('Additional location')
       .setDesc('Additional city to get weather data for (Optional) Leave blank if not required')
@@ -158,7 +158,7 @@ export class VCWSettingsTab extends PluginSettingTab {
         })
       );
 
-    // Additional location Three (Optional) 
+    // Additional location Three (Optional)
     new Setting(containerEl)
       .setName('Additional location')
       .setDesc('Additional city to get weather data for (Optional) Leave blank if not required')
@@ -171,7 +171,7 @@ export class VCWSettingsTab extends PluginSettingTab {
         })
       );
 
-    // Additional location Four (Optional) 
+    // Additional location Four (Optional)
     new Setting(containerEl)
       .setName('Additional location')
       .setDesc('Additional city to get weather data for (Optional) Leave blank if not required')
@@ -184,10 +184,10 @@ export class VCWSettingsTab extends PluginSettingTab {
         })
       );
 
-    // • VCWSettingsTab - Section Advanced Options • 
+    // VCWSettingsTab - Section Advanced Options
     new Setting(containerEl).setName('Advanced').setHeading();
 
-    // Units of measurement 
+    // Units of measurement
     new Setting(containerEl)
       .setName("Units of measurement")
       .setDesc("Units of measurement: United States, Metric, United Kingdom and Base")
@@ -214,7 +214,7 @@ export class VCWSettingsTab extends PluginSettingTab {
         });
       });
 
-    // Language for API returned text 
+    // Language for API returned text
     new Setting(containerEl)
       .setName("Language")
       .setDesc("Supported languages available Note: This only affects text returned from the Visual Crossing API")
@@ -257,7 +257,7 @@ export class VCWSettingsTab extends PluginSettingTab {
           .setValue(this.plugin.settings.language);
       });
 
-    // Exclude template folder 
+    // Exclude template folder
     new Setting(containerEl)
       .setName("Exclude template folder (required)")
       .setDesc("You need to exclude your templates folder or any files containing weather template strings will have that text replaced")
@@ -276,7 +276,7 @@ export class VCWSettingsTab extends PluginSettingTab {
           .setValue(this.plugin.settings.excludeFolder);
       });
 
-    // Exclude template folder secondary 
+    // Exclude template folder secondary
     new Setting(containerEl)
       .setDesc("You may want to exclude your scripts folder as well if any files in it contain macro strings")
       .addDropdown(dropDown => {
@@ -294,7 +294,7 @@ export class VCWSettingsTab extends PluginSettingTab {
           .setValue(this.plugin.settings.excludeFolder2);
       });
 
-    // Weather update frequency 
+    // Weather update frequency
     new Setting(containerEl)
       .setName("Update frequency")
       .setDesc("Update frequency for getting weather information")
@@ -315,11 +315,11 @@ export class VCWSettingsTab extends PluginSettingTab {
           .setValue(this.plugin.settings.updateFrequency);
       });
 
-    // • VCWSettingsTab - Section Show Weather in Statusbar Options (Not available for mobile) • 
+    // VCWSettingsTab - Section Show Weather in Statusbar Options (Not available for mobile)
     if (Platform.isDesktop) {
       new Setting(containerEl).setName('Show weather in statusbar').setHeading();
 
-      // Show weather in statusbar 
+      // Show weather in statusbar
       new Setting(containerEl)
         .setName('Show weather in statusbar')
         .setDesc('Enable weather display in statusbar')
@@ -334,7 +334,7 @@ export class VCWSettingsTab extends PluginSettingTab {
             };
           }));
 
-      // Cycle statusbar display 
+      // Cycle statusbar display
       new Setting(containerEl)
         .setName('Cycle statusbar display')
         .setDesc('Cycle between primary and secondary statusbar templates every 30 seconds')
@@ -349,7 +349,7 @@ export class VCWSettingsTab extends PluginSettingTab {
             };
           }));
 
-      // Show alerts in statusbar 
+      // Show alerts in statusbar
       new Setting(containerEl)
         .setName('Show weather alerts in statusbar')
         .setDesc('Enable weather alerts display in statusbar')
@@ -364,7 +364,7 @@ export class VCWSettingsTab extends PluginSettingTab {
             };
           }));
 
-      // Weather template string for the statusbar primary 
+      // Weather template string for the statusbar primary
       new Setting(containerEl)
         .setDesc("Weather template string for the statusbar primary")
         .addButton(cb => {
@@ -375,7 +375,7 @@ export class VCWSettingsTab extends PluginSettingTab {
           });
         });
 
-      // Text area for statusbar primary 
+      // Text area for statusbar primary
       new Setting(containerEl)
         .addTextArea((textArea: TextAreaComponent) => {
           textArea
@@ -394,7 +394,7 @@ export class VCWSettingsTab extends PluginSettingTab {
           textArea.inputEl.setAttr("cols", 80);
         });
 
-      // Text area for statusbar secondary 
+      // Text area for statusbar secondary
       new Setting(containerEl)
         .setDesc("Weather template string for the statusbar secondary");
 
@@ -420,10 +420,10 @@ export class VCWSettingsTab extends PluginSettingTab {
       this.plugin.settings.statusbarActive = false;   // Set statusbar inactive for mobile
     };
 
-    // • VCWSettingsTab - Section Weather Templates • 
+    // VCWSettingsTab - Section Weather Templates
     new Setting(containerEl).setName('Weather templates').setHeading();
 
-    // Weather template one help button 
+    // Weather template one help button
     new Setting(containerEl)
       .setName("Weather template 1")
       .setDesc("First line is the descriptive text used in menus for this template")
@@ -435,7 +435,7 @@ export class VCWSettingsTab extends PluginSettingTab {
         });
       });
 
-    // Weather template one text area 
+    // Weather template one text area
     new Setting(containerEl)
       .addTextArea((textArea: TextAreaComponent) => {
         textArea
@@ -454,12 +454,12 @@ export class VCWSettingsTab extends PluginSettingTab {
         textArea.inputEl.setAttr("cols", 80);
       });
 
-    // Weather template two 
+    // Weather template two
     new Setting(containerEl)
       .setName("Weather template 2")
       .setDesc("First line is the descriptive text used in menus for this template");
 
-    // Weather template two text area 
+    // Weather template two text area
     new Setting(containerEl)
       .addTextArea((textArea: TextAreaComponent) => {
         textArea
@@ -478,12 +478,12 @@ export class VCWSettingsTab extends PluginSettingTab {
         textArea.inputEl.setAttr("cols", 80);
       });
 
-    // Weather template three 
+    // Weather template three
     new Setting(containerEl)
       .setName("Weather template 3")
       .setDesc("First line is the descriptive text used in menus for this template");
 
-    // Weather template three text area 
+    // Weather template three text area
     new Setting(containerEl)
       .addTextArea((textArea: TextAreaComponent) => {
         textArea
@@ -502,12 +502,12 @@ export class VCWSettingsTab extends PluginSettingTab {
         textArea.inputEl.setAttr("cols", 80);
       });
 
-    // Weather template four 
+    // Weather template four
     new Setting(containerEl)
       .setName("Weather template 4")
       .setDesc("First line is the descriptive text used in menus for this template");
 
-    // Weather template four text area 
+    // Weather template four text area
     new Setting(containerEl)
       .addTextArea((textArea: TextAreaComponent) => {
         textArea
@@ -526,12 +526,12 @@ export class VCWSettingsTab extends PluginSettingTab {
         textArea.inputEl.setAttr("cols", 80);
       });
 
-    // Weather template five 
+    // Weather template five
     new Setting(containerEl)
       .setName("Weather template 5")
       .setDesc("First line is the descriptive text used in menus for this template");
 
-    // Weather template five text area 
+    // Weather template five text area
     new Setting(containerEl)
       .addTextArea((textArea: TextAreaComponent) => {
         textArea
@@ -550,12 +550,12 @@ export class VCWSettingsTab extends PluginSettingTab {
         textArea.inputEl.setAttr("cols", 80);
       });
 
-    // Weather template six 
+    // Weather template six
     new Setting(containerEl)
       .setName("Weather template 6")
       .setDesc("First line is the descriptive text used in menus for this template");
 
-    // Weather template six text area 
+    // Weather template six text area
     new Setting(containerEl)
       .addTextArea((textArea: TextAreaComponent) => {
         textArea
@@ -574,12 +574,12 @@ export class VCWSettingsTab extends PluginSettingTab {
         textArea.inputEl.setAttr("cols", 80);
       });
 
-    // Weather template seven 
+    // Weather template seven
     new Setting(containerEl)
       .setName("Weather template 7")
       .setDesc("First line is the descriptive text used in menus for this template");
 
-    // Weather template seven text area 
+    // Weather template seven text area
     new Setting(containerEl)
       .addTextArea((textArea: TextAreaComponent) => {
         textArea
@@ -598,12 +598,12 @@ export class VCWSettingsTab extends PluginSettingTab {
         textArea.inputEl.setAttr("cols", 80);
       });
 
-    // Weather template eight 
+    // Weather template eight
     new Setting(containerEl)
       .setName("Weather template 8")
       .setDesc("First line is the descriptive text used in menus for this template");
 
-    // Weather template eight text area 
+    // Weather template eight text area
     new Setting(containerEl)
       .addTextArea((textArea: TextAreaComponent) => {
         textArea
@@ -622,11 +622,11 @@ export class VCWSettingsTab extends PluginSettingTab {
         textArea.inputEl.setAttr("cols", 80);
       });
 
-    // • VCWSettingsTab - Section Donation Support Links • 
+    // VCWSettingsTab - Section Donation Support Links
     containerEl.createEl('hr');
     containerEl.createEl('h2', { text: 'If you would like to make a small donation to help support my work, please use one of the buttons below.' });
 
-    // Buy me a coffee donation button 
+    // Buy me a coffee donation button
     const bmacLink = containerEl.createEl("a");
     const bmacHeader = containerEl.createEl("img");
     bmacHeader.className = "bmac";
@@ -634,7 +634,7 @@ export class VCWSettingsTab extends PluginSettingTab {
     bmacLink.setAttribute('href', "https://www.buymeacoffee.com/willasm");
     setTooltip(bmacHeader, "Make a donation through Buy Me a Coffee", { delay: 500, placement: 'top' });
 
-    // PayPal donation button 
+    // PayPal donation button
     const paypalLink = containerEl.createEl("a");
     const paypalHeader = containerEl.createEl("img");
     paypalHeader.className = "pp";
