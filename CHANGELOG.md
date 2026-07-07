@@ -2,6 +2,9 @@
 
 <!-- ## [v-inc] ${YEAR4}-${MONTHNUMBER}-${DATE} -->
 
+## [1.1.7] 2026-07-06
+- Updated: Refactored in most of the Obsidian scorecard recommendations
+
 ## [1.1.6] 2026-07-05
 - Added: Much improved experience for new users
   - Added installation documentation in the [README.md](./README.md#installation)
